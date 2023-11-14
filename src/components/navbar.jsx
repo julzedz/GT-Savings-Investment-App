@@ -10,7 +10,7 @@ const CustomNavbar = () => (
       </div>
       <ul className="menu">
         <li>Get Started</li>
-        <li>Banking & Borrowing</li>
+        <li href="/banking">Banking & Borrowing</li>
         <li>Investment Services</li>
         <li>Support</li>
       </ul>
