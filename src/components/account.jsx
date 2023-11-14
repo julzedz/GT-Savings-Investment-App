@@ -9,3 +9,5 @@ const Account = () => (
     <h3>Transaction history</h3>
   </>
 );
+
+export default Account;
