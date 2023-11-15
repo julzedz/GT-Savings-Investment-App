@@ -1,5 +1,5 @@
 import { Routes, Navigate, Route } from 'react-router';
-import CustomNavbar from '../components/navbar';
+import Navbar from '../components/navbar';
 import Home from '../components/home';
 import Banking from '../components/banking';
 import Investment from '../components/investment';
@@ -9,7 +9,7 @@ import Account from '../components/account';
 
 const GtSavingsBankRoutes = () => (
   <div className="app-container">
-    <CustomNavbar />
+    <Navbar />
     <div className="tabs-container">
       <Routes>
         <Route path="/home" element={<Home />} />
