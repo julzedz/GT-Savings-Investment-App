@@ -15,18 +15,42 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import logo from '../assets/bank-leaf.png';
+import '../styles/navbar.css';
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Flex bg="black" p={4} align="center" justify="space-between" boxShadow="md">
+    <Flex
+      bg="black"
+      p={4}
+      align="center"
+      justify="space-between"
+      boxShadow="md"
+    >
       {/* Logo */}
       <Box>
-        <Image src={logo} alt="Logo" boxSize="50px" />
-        <Text fontSize="lg" fontWeight="bold" fontFamily="Atomic Age">
-          GT Savings Bank
-        </Text>
+        <Flex align="center" className="logo-group">
+
+          <Image src={logo} alt="Logo" boxSize="50px" />
+          <div>
+            <Text
+              fontSize="lg"
+              fontWeight="bold"
+              color="white"
+              fontFamily="Atomic Age"
+              align="center"
+            >
+              GT Savings Bank
+              <Text
+                color="#97a722"
+                style={{ display: 'inline' }}
+              >
+                .
+              </Text>
+            </Text>
+          </div>
+        </Flex>
       </Box>
 
       {/* Nav Links */}
@@ -37,16 +61,14 @@ const Navbar = () => {
           <DropdownItem href="/loans">Loans</DropdownItem>
           <DropdownItem href="/mortgages">Mortgages</DropdownItem>
         </DropdownMenu>
-        <DropdownMenu label="Investment Services">
-          <DropdownItem href="/investment">Investment</DropdownItem>
-          <DropdownItem href="/insurance">Insurance</DropdownItem>
-        </DropdownMenu>
         <DropdownMenu label="Support">
           <DropdownItem href="/support">Contact Us</DropdownItem>
           <DropdownItem href="/about">About Us</DropdownItem>
-          <DropdownItem href="/about">
-            Make an Appointment
-          </DropdownItem>
+          <DropdownItem href="/about">Make an Appointment</DropdownItem>
+        </DropdownMenu>
+        <DropdownMenu label="Investment Services">
+          <DropdownItem href="/investment">Investment</DropdownItem>
+          <DropdownItem href="/insurance">Insurance</DropdownItem>
         </DropdownMenu>
       </Flex>
     </Flex>
@@ -60,9 +82,9 @@ const NavLink = ({ children, href }) => (
     color="white"
     px={4}
     py={2}
-    _hover={{ bg: 'gray.700' }}
+    _hover={{ bg: '#1f2829', color: '#97a772' }}
     borderRadius="md"
-    transition="background 0.3s"
+    transition="background 0.4s"
   >
     {children}
   </Link>
@@ -77,13 +99,21 @@ const DropdownMenu = ({ label, children }) => (
       bg="black"
       px={4}
       py={2}
-      _hover={{ bg: 'gray.900' }}
+      _hover={{ bg: '#1f2829', color: '#97a772' }}
       borderRadius="md"
-      transition="background 0.3s"
+      transition="background 0.4s"
     >
-      {label}
+      <Flex align="center">
+        <Text my={0}>{label}</Text>
+        <ChevronDownIcon />
+      </Flex>
     </MenuButton>
-    <MenuList bg="black" color="white" borderRadius="md">
+    <MenuList
+      bg="#1f2829"
+      color="white"
+      borderRadius="lg"
+      _hover={{ bg: '#1f2829', color: '#97a772' }}
+    >
       {children}
     </MenuList>
   </Menu>
