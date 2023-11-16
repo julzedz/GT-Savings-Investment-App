@@ -105,12 +105,23 @@ const zIndices = {
   tooltip: 1800,
 };
 
+const colors = {
+  applegreen: '#97A722',
+  black: '#000',
+  white: '#fff',
+  cerulean: '#027F99',
+  persianred: '#BB4430',
+  gunmetal: '#1F2829',
+  transparent: 'transparent',
+};
+
 const theme = extendTheme({
   breakpoints,
   zIndices,
   spacing,
   sizes,
   borderRadius,
+  colors,
   fonts: {
     body: 'Advent Pro, sans-serif',
     heading: 'Georgia, serif',
