@@ -13,24 +13,26 @@ import {
   MenuItem,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
 
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure();
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
 
   return (
     <Flex
       bg="black"
-      p={4}
+      px={4}
       align="center"
       justify="space-between"
       boxShadow="md"
     >
       {/* Logo */}
       <Box>
-        <Flex align="center" className="logo-group">
+        <Flex align="center" className="logo-group" href="/">
 
           <Image src={logo} alt="Logo" boxSize="50px" />
           <div>
@@ -44,7 +46,7 @@ const Navbar = () => {
             >
               GT Savings Bank
               <Text
-                color="#97a722"
+                color={isActive ? 'applegreen' : 'persianred'}
                 style={{ display: 'inline' }}
               >
                 .
@@ -55,36 +57,35 @@ const Navbar = () => {
       </Box>
 
       {/* Nav Links */}
-      <Flex align="center">
-        <NavLink href="/">Home</NavLink>
+      <Flex align="center" className="nav-menu" mx={10}>
+        <NavLink href="/" isActive={isActive('/')}>Home</NavLink>
         <DropdownMenu label="Banking & Borrowing">
-          <DropdownItem href="/banking">Online Banking</DropdownItem>
-          <DropdownItem href="/loans">Loans</DropdownItem>
-          <DropdownItem href="/mortgages">Mortgages</DropdownItem>
+          <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
+          <DropdownItem href="/loans" border="none">Loans</DropdownItem>
+          <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
         </DropdownMenu>
         <DropdownMenu label="Support">
-          <DropdownItem href="/support">Contact Us</DropdownItem>
-          <DropdownItem href="/about">About Us</DropdownItem>
-          <DropdownItem href="/about">Make an Appointment</DropdownItem>
+          <DropdownItem href="/support" border="none">Contact Us</DropdownItem>
+          <DropdownItem href="/about" border="none">About Us</DropdownItem>
+          <DropdownItem href="/about" border="none">Make an Appointment</DropdownItem>
         </DropdownMenu>
         <DropdownMenu label="Investment Services">
-          <DropdownItem href="/investment">Investment</DropdownItem>
-          <DropdownItem href="/insurance">Insurance</DropdownItem>
+          <DropdownItem href="/investment" border="none">Investment</DropdownItem>
+          <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
         </DropdownMenu>
       </Flex>
     </Flex>
   );
 };
 
-const NavLink = ({ children, href }) => (
+const NavLink = ({ children, href, isActive }) => (
   <Link
     href={href}
     fontSize="md"
-    color="white"
+    color={isActive ? 'applegreen' : 'white'}
     px={4}
-    py={2}
+    py={6}
     _hover={{ bg: 'gunmetal', color: 'applegreen' }}
-    borderRadius="md"
     transition="background 0.4s"
   >
     {children}
@@ -102,9 +103,8 @@ const DropdownMenu = ({ label, children }) => {
         color="white"
         bg="black"
         px={4}
-        py={2}
+        py={6}
         _hover={{ bg: 'gunmetal', color: 'applegreen' }}
-        borderRadius="md"
         transition="background 0.4s"
         onMouseEnter={() => onToggle(true)}
         onMouseLeave={() => onToggle(false)}
@@ -116,9 +116,11 @@ const DropdownMenu = ({ label, children }) => {
       </MenuButton>
       <MenuList
         bg="gunmetal"
+        width="250px"
         color="white"
-        borderRadius="lg"
-        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
+        borderRadius="base"
+        _hover={{ bg: 'gunmetal' }}
+
       >
         {children}
       </MenuList>
@@ -127,7 +129,15 @@ const DropdownMenu = ({ label, children }) => {
 };
 
 const DropdownItem = ({ href, children }) => (
-  <MenuItem as={Link} href={href} bg="gunmetal" fontSize="md" _hover={{ border: '0px' }}>
+  <MenuItem
+    as={Link}
+    py={3}
+    px={5}
+    href={href}
+    bg="gunmetal"
+    fontSize="md"
+    _hover={{ border: 'none', bg: 'persianred', color: 'applegreen' }}
+  >
     {children}
   </MenuItem>
 );
