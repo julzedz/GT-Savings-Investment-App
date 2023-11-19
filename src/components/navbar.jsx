@@ -33,7 +33,7 @@ const Navbar = () => {
         boxShadow="md"
       >
         {/* Logo */}
-        <Box>
+        <Box py={{ base: 3 }}>
           <Flex align="center" className="logo-group" href="/">
 
             <Image src={logo} alt="Logo" boxSize="50px" />
@@ -59,7 +59,7 @@ const Navbar = () => {
         </Box>
 
         {/* Nav Links */}
-        <Flex align="center" className="nav-menu" mx={10} display={{ base: 'none', md: 'flex' }}>
+        <Flex align="center" className="nav-menu" mx={10} display={{ base: 'none', lg: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
             <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
@@ -81,7 +81,7 @@ const Navbar = () => {
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label="Toggle Navigation"
           onClick={onToggle}
-          display={{ base: 'flex', md: 'none' }}
+          display={{ base: 'flex', lg: 'none' }}
         />
       </Flex>
 
@@ -93,9 +93,9 @@ const Navbar = () => {
         >
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
-            <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
-            <DropdownItem href="/loans" border="none">Loans</DropdownItem>
-            <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
+            <DropdownItem href="/banking">Online Banking</DropdownItem>
+            <DropdownItem href="/loans">Loans</DropdownItem>
+            <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
             <DropdownItem href="/support">Contact Us</DropdownItem>
