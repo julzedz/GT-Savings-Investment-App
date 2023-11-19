@@ -46,7 +46,7 @@ const Navbar = () => {
             >
               GT Savings Bank
               <Text
-                color={isActive ? 'applegreen' : 'persianred'}
+                color={isActive('/home') ? 'applegreen' : 'persianred'}
                 style={{ display: 'inline' }}
               >
                 .
@@ -58,18 +58,18 @@ const Navbar = () => {
 
       {/* Nav Links */}
       <Flex align="center" className="nav-menu" mx={10}>
-        <NavLink href="/" isActive={isActive('/')}>Home</NavLink>
-        <DropdownMenu label="Banking & Borrowing">
+        <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
+        <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
           <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
           <DropdownItem href="/loans" border="none">Loans</DropdownItem>
           <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
         </DropdownMenu>
-        <DropdownMenu label="Support">
+        <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
           <DropdownItem href="/support" border="none">Contact Us</DropdownItem>
           <DropdownItem href="/about" border="none">About Us</DropdownItem>
           <DropdownItem href="/about" border="none">Make an Appointment</DropdownItem>
         </DropdownMenu>
-        <DropdownMenu label="Investment Services">
+        <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
           <DropdownItem href="/investment" border="none">Investment</DropdownItem>
           <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
         </DropdownMenu>
@@ -83,6 +83,7 @@ const NavLink = ({ children, href, isActive }) => (
     href={href}
     fontSize="md"
     color={isActive ? 'applegreen' : 'white'}
+    bg={isActive ? 'gunmetal' : 'black'}
     px={4}
     py={6}
     _hover={{ bg: 'gunmetal', color: 'applegreen' }}
@@ -92,7 +93,7 @@ const NavLink = ({ children, href, isActive }) => (
   </Link>
 );
 
-const DropdownMenu = ({ label, children }) => {
+const DropdownMenu = ({ label, children, isActive }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -100,8 +101,8 @@ const DropdownMenu = ({ label, children }) => {
       <MenuButton
         as={Link}
         fontSize="md"
-        color="white"
-        bg="black"
+        color={isActive ? 'applegreen' : 'white'}
+        bg={isActive ? 'gunmetal' : 'black'}
         px={4}
         py={6}
         _hover={{ bg: 'gunmetal', color: 'applegreen' }}
