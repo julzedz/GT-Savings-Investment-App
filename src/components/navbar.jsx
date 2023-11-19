@@ -24,67 +24,69 @@ const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
 
   return (
-    <Flex
-      bg="black"
-      px={4}
-      align="center"
-      justify="space-between"
-      boxShadow="md"
-    >
-      {/* Logo */}
-      <Box>
-        <Flex align="center" className="logo-group" href="/">
+    <Collapse in={isMenuOpen} animateOpacity>
+      <Flex
+        bg="black"
+        px={4}
+        align="center"
+        justify="space-between"
+        boxShadow="md"
+      >
+        {/* Logo */}
+        <Box>
+          <Flex align="center" className="logo-group" href="/">
 
-          <Image src={logo} alt="Logo" boxSize="50px" />
-          <div>
-            <Text
-              fontSize="lg"
-              fontWeight="bold"
-              color="white"
-              fontFamily="Atomic Age"
-              align="center"
-              my={0}
-            >
-              GT Savings Bank
+            <Image src={logo} alt="Logo" boxSize="50px" />
+            <div>
               <Text
-                color={isActive('/home') ? 'applegreen' : 'persianred'}
-                style={{ display: 'inline' }}
+                fontSize="lg"
+                fontWeight="bold"
+                color="white"
+                fontFamily="Atomic Age"
+                align="center"
+                my={0}
               >
-                .
+                GT Savings Bank
+                <Text
+                  color={isActive('/home') ? 'applegreen' : 'persianred'}
+                  style={{ display: 'inline' }}
+                >
+                  .
+                </Text>
               </Text>
-            </Text>
-          </div>
+            </div>
+          </Flex>
+        </Box>
+
+        {/* Nav Links */}
+        <Flex align="center" className="nav-menu" mx={10}>
+          <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
+          <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
+            <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
+            <DropdownItem href="/loans" border="none">Loans</DropdownItem>
+            <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
+          </DropdownMenu>
+          <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
+            <DropdownItem href="/support" border="none">Contact Us</DropdownItem>
+            <DropdownItem href="/about" border="none">About Us</DropdownItem>
+            <DropdownItem href="/about" border="none">Make an Appointment</DropdownItem>
+          </DropdownMenu>
+          <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
+            <DropdownItem href="/investment" border="none">Investment</DropdownItem>
+            <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
+          </DropdownMenu>
         </Flex>
-      </Box>
 
-      {/* Nav Links */}
-      <Flex align="center" className="nav-menu" mx={10}>
-        <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
-        <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
-          <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
-          <DropdownItem href="/loans" border="none">Loans</DropdownItem>
-          <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
-        </DropdownMenu>
-        <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
-          <DropdownItem href="/support" border="none">Contact Us</DropdownItem>
-          <DropdownItem href="/about" border="none">About Us</DropdownItem>
-          <DropdownItem href="/about" border="none">Make an Appointment</DropdownItem>
-        </DropdownMenu>
-        <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
-          <DropdownItem href="/investment" border="none">Investment</DropdownItem>
-          <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
-        </DropdownMenu>
+        <IconButton
+          display={{ base: 'block', md: 'none' }}
+          onClick={() => setMenuOpen(!isMenuOpen)}
+          icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+          variant="ghost"
+          color="white"
+          aria-label="Toggle Menu"
+        />
       </Flex>
-
-      <IconButton
-        display={{ base: 'block', md: 'none'}}
-        onClick={() => setMenuOpen(!isMenuOpen)}
-        icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-        variant="ghost"
-        color="white"
-        aria-label="Toggle Menu"
-      />
-    </Flex>
+    </Collapse>
   );
 };
 
