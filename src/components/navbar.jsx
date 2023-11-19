@@ -21,6 +21,7 @@ import '../styles/navbar.css';
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
 
   return (
     <Flex
