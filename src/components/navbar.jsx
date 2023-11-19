@@ -75,6 +75,15 @@ const Navbar = () => {
           <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
         </DropdownMenu>
       </Flex>
+
+      <IconButton
+        display={{ base: 'block', md: 'none'}}
+        onClick={() => setMenuOpen(!isMenuOpen)}
+        icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+        variant="ghost"
+        color="white"
+        aria-label="Toggle Menu"
+      />
     </Flex>
   );
 };
