@@ -21,10 +21,10 @@ import '../styles/navbar.css';
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-  const [isMenuOpen, setMenuOpen] = React.useState(false);
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Collapse in={isMenuOpen} animateOpacity>
+    <>
       <Flex
         bg="black"
         px={4}
@@ -59,7 +59,7 @@ const Navbar = () => {
         </Box>
 
         {/* Nav Links */}
-        <Flex align="center" className="nav-menu" mx={10}>
+        <Flex align="center" className="nav-menu" mx={10} display={{ base: 'none', md: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
             <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
@@ -78,15 +78,37 @@ const Navbar = () => {
         </Flex>
 
         <IconButton
-          display={{ base: 'block', md: 'none' }}
-          onClick={() => setMenuOpen(!isMenuOpen)}
-          icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-          variant="ghost"
-          color="white"
-          aria-label="Toggle Menu"
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label="Toggle Navigation"
+          onClick={onToggle}
+          display={{ base: 'flex', md: 'none' }}
         />
       </Flex>
-    </Collapse>
+
+      <Collapse in={isOpen} id="navbar-collapse">
+        <Flex
+          justifyContent="space-between"
+          alignItems="center"
+          flexDirection="column"
+        >
+          <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
+          <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
+            <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
+            <DropdownItem href="/loans" border="none">Loans</DropdownItem>
+            <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
+          </DropdownMenu>
+          <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
+            <DropdownItem href="/support">Contact Us</DropdownItem>
+            <DropdownItem href="/about">About Us</DropdownItem>
+            <DropdownItem href="/about">Make an Appointment</DropdownItem>
+          </DropdownMenu>
+          <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
+            <DropdownItem href="/investment">Investment</DropdownItem>
+            <DropdownItem href="/insurance">Insurance</DropdownItem>
+          </DropdownMenu>
+        </Flex>
+      </Collapse>
+    </>
   );
 };
 
