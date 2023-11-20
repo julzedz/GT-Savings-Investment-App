@@ -5,7 +5,6 @@ import {
   Image,
   Link,
   Text,
-  IconButton,
   Collapse,
   Menu,
   MenuButton,
@@ -14,7 +13,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
-import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
@@ -22,7 +21,6 @@ import '../styles/navbar.css';
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-  // const { isOpen, onToggle } = useDisclosure();
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -79,12 +77,6 @@ const Navbar = () => {
           </DropdownMenu>
         </Flex>
 
-        {/* <IconButton
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label="Toggle Navigation"
-          onClick={onToggle}
-          display={{ base: 'flex', lg: 'none' }}
-        /> */}
         <Flex display={{ base: 'flex', lg: 'none' }}>
           <Squeeze easing="ease-in" rounded toggled={isOpen} toggle={setOpen} color="#97A722" label="Navigation" />
         </Flex>
@@ -92,22 +84,27 @@ const Navbar = () => {
 
       <Collapse in={isOpen} id="navbar-collapse">
         <Flex
-          justifyContent="space-between"
-          alignItems="center"
+          justify="flex-start"
+          alignItems="flex-start"
+          px={4}
+          py={6}
           flexDirection="column"
+          bg="gunmetal"
+          height={{ base: '90vh', lg: 'auto' }}
+          display={{ base: 'flex', lg: 'none' }}
         >
-          <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
-          <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
+          <NavLink href="/">Home</NavLink>
+          <DropdownMenu label="Banking & Borrowing">
             <DropdownItem href="/banking">Online Banking</DropdownItem>
             <DropdownItem href="/loans">Loans</DropdownItem>
             <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
-          <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
+          <DropdownMenu label="Support">
             <DropdownItem href="/support">Contact Us</DropdownItem>
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/about">Make an Appointment</DropdownItem>
           </DropdownMenu>
-          <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
+          <DropdownMenu label="Investment Services">
             <DropdownItem href="/investment">Investment</DropdownItem>
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
@@ -122,10 +119,11 @@ const NavLink = ({ children, href, isActive }) => (
     href={href}
     fontSize="md"
     color={isActive ? 'applegreen' : 'white'}
-    bg={isActive ? 'gunmetal' : 'black'}
+    bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
+    width={{ base: '100%', lg: 'auto' }}
     px={4}
     py={6}
-    _hover={{ bg: 'gunmetal', color: 'applegreen' }}
+    _hover={{ bg: { base: 'black', lg: 'gunmetal' }, color: 'applegreen' }}
     transition="background 0.4s"
   >
     {children}
@@ -140,11 +138,12 @@ const DropdownMenu = ({ label, children, isActive }) => {
       <MenuButton
         as={Link}
         fontSize="md"
+        width={{ base: '100%', lg: 'auto' }}
         color={isActive ? 'applegreen' : 'white'}
-        bg={isActive ? 'gunmetal' : 'black'}
+        bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
         px={4}
         py={6}
-        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
+        _hover={{ bg: { base: 'black', lg: 'gunmetal' }, color: 'applegreen' }}
         transition="background 0.4s"
         onMouseEnter={() => onToggle(true)}
         onMouseLeave={() => onToggle(false)}
