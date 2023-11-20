@@ -64,17 +64,17 @@ const Navbar = () => {
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
             <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
-            <DropdownItem href="/loans" border="none">Loans</DropdownItem>
-            <DropdownItem href="/mortgages" border="none">Mortgages</DropdownItem>
+            <DropdownItem href="/loans">Loans</DropdownItem>
+            <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
-            <DropdownItem href="/support" border="none">Contact Us</DropdownItem>
-            <DropdownItem href="/about" border="none">About Us</DropdownItem>
-            <DropdownItem href="/about" border="none">Make an Appointment</DropdownItem>
+            <DropdownItem href="/support">Contact Us</DropdownItem>
+            <DropdownItem href="/about">About Us</DropdownItem>
+            <DropdownItem href="/about">Make an Appointment</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
-            <DropdownItem href="/investment" border="none">Investment</DropdownItem>
-            <DropdownItem href="/insurance" border="none">Insurance</DropdownItem>
+            <DropdownItem href="/investment">Investment</DropdownItem>
+            <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
         </Flex>
 

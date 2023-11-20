@@ -4,7 +4,7 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 
 const SearchBar = () => (
-  <Box width="100%" px={2} marginBottom={10}>
+  <Box width={{ base: '100%', lg: '' }} px={2} marginBottom={10}>
     <InputGroup>
       <Input
         type="text"
@@ -13,6 +13,7 @@ const SearchBar = () => (
         size="md"
         variant="filled"
         width="100%"
+        color="white"
         py={6}
       />
       <InputRightElement width={14} paddingTop={3} pointerEvents="none">
