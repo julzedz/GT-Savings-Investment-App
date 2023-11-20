@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Box,
   Flex,
@@ -133,6 +134,12 @@ const NavLink = ({ children, href, isActive }) => (
   </Link>
 );
 
+NavLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};
+
 const DropdownMenu = ({ label, children, isActive }) => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -171,6 +178,12 @@ const DropdownMenu = ({ label, children, isActive }) => {
   );
 };
 
+DropdownMenu.propTypes = {
+  children: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};
+
 const DropdownItem = ({ href, children }) => (
   <MenuItem
     as={Link}
@@ -184,5 +197,10 @@ const DropdownItem = ({ href, children }) => (
     {children}
   </MenuItem>
 );
+
+DropdownItem.propTypes = {
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+};
 
 export default Navbar;
