@@ -86,7 +86,7 @@ const Navbar = () => {
           display={{ base: 'flex', lg: 'none' }}
         /> */}
         <Flex display={{ base: 'flex', lg: 'none' }}>
-          <Squeeze display={{ base: 'flex', lg: 'none' }} toggled={isOpen} toggle={setOpen} color="#97A722" hideOutline={false} />
+          <Squeeze easing="ease-in" rounded toggled={isOpen} toggle={setOpen} color="#97A722" label="Navigation" />
         </Flex>
       </Flex>
 

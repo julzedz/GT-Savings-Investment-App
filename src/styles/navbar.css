@@ -12,3 +12,7 @@
   background-color: blue;
   transition: height 0.3s ease-in-out;
 }
+
+.squeeze-hamburger {
+  color: aqua;
+}
