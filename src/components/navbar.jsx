@@ -17,6 +17,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
+import SearchBar from './searchbar';
 
 const Navbar = () => {
   const location = useLocation();
@@ -93,6 +94,7 @@ const Navbar = () => {
           height={{ base: '90vh', lg: 'auto' }}
           display={{ base: 'flex', lg: 'none' }}
         >
+          <SearchBar />
           <NavLink href="/">Home</NavLink>
           <DropdownMenu label="Banking & Borrowing">
             <DropdownItem href="/banking">Online Banking</DropdownItem>
@@ -117,14 +119,15 @@ const Navbar = () => {
 const NavLink = ({ children, href, isActive }) => (
   <Link
     href={href}
-    fontSize="md"
-    color={isActive ? 'applegreen' : 'white'}
+    fontSize="lg"
+    color={{ base: 'white', lg: isActive ? 'applegreen' : 'white' }}
     bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
     width={{ base: '100%', lg: 'auto' }}
     px={4}
     py={6}
     _hover={{ bg: { base: 'black', lg: 'gunmetal' }, color: 'applegreen' }}
     transition="background 0.4s"
+    borderBottom={{ base: 'white solid 2px', lg: 'none' }}
   >
     {children}
   </Link>
@@ -137,7 +140,7 @@ const DropdownMenu = ({ label, children, isActive }) => {
     <Menu isOpen={isOpen} onToggle={onToggle}>
       <MenuButton
         as={Link}
-        fontSize="md"
+        fontSize="lg"
         width={{ base: '100%', lg: 'auto' }}
         color={isActive ? 'applegreen' : 'white'}
         bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
@@ -147,19 +150,20 @@ const DropdownMenu = ({ label, children, isActive }) => {
         transition="background 0.4s"
         onMouseEnter={() => onToggle(true)}
         onMouseLeave={() => onToggle(false)}
+        borderBottom={{ base: 'white solid 2px', lg: 'none' }}
       >
-        <Flex align="center">
+        <Flex align="center" justify="space-between">
           <Text my={0}>{label}</Text>
           <ChevronDownIcon />
         </Flex>
       </MenuButton>
       <MenuList
         bg="gunmetal"
-        width="250px"
+        width="sm"
         color="white"
         borderRadius="base"
+        border="none"
         _hover={{ bg: 'gunmetal' }}
-
       >
         {children}
       </MenuList>
