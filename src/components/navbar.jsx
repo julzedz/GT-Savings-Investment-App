@@ -234,11 +234,11 @@ const DropdownMenu = ({ label, children, isActive }) => {
         bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
         px={4}
         py={6}
-        _hover={{ bg: { base: 'black', lg: 'gunmetal' }, color: 'applegreen' }}
+        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
         transition="background 0.4s"
         onMouseEnter={() => onToggle(true)}
         onMouseLeave={() => onToggle(false)}
-        borderBottom={{ base: 'white solid 2px', lg: 'none' }}
+        borderBottom="none"
       >
         <Flex align="center" justify="space-between">
           <Text my={0}>{label}</Text>
