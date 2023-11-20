@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import {
   Box,
   Flex,
@@ -15,13 +15,15 @@ import {
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
 
 const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-  const { isOpen, onToggle } = useDisclosure();
+  // const { isOpen, onToggle } = useDisclosure();
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <>
@@ -77,12 +79,15 @@ const Navbar = () => {
           </DropdownMenu>
         </Flex>
 
-        <IconButton
+        {/* <IconButton
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label="Toggle Navigation"
           onClick={onToggle}
           display={{ base: 'flex', lg: 'none' }}
-        />
+        /> */}
+        <Flex display={{ base: 'flex', lg: 'none' }}>
+          <Squeeze display={{ base: 'flex', lg: 'none' }} toggled={isOpen} toggle={setOpen} color="#97A722" hideOutline={false} />
+        </Flex>
       </Flex>
 
       <Collapse in={isOpen} id="navbar-collapse">
