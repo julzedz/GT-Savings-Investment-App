@@ -7,6 +7,11 @@ import {
   Link,
   Text,
   Collapse,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
   Menu,
   MenuButton,
   MenuList,
@@ -96,21 +101,97 @@ const Navbar = () => {
           display={{ base: 'flex', lg: 'none' }}
         >
           <SearchBar />
-          <NavLink href="/">Home</NavLink>
-          <DropdownMenu label="Banking & Borrowing">
-            <DropdownItem href="/banking">Online Banking</DropdownItem>
-            <DropdownItem href="/loans">Loans</DropdownItem>
-            <DropdownItem href="/mortgages">Mortgages</DropdownItem>
-          </DropdownMenu>
-          <DropdownMenu label="Support">
-            <DropdownItem href="/support">Contact Us</DropdownItem>
-            <DropdownItem href="/about">About Us</DropdownItem>
-            <DropdownItem href="/about">Make an Appointment</DropdownItem>
-          </DropdownMenu>
-          <DropdownMenu label="Investment Services">
-            <DropdownItem href="/investment">Investment</DropdownItem>
-            <DropdownItem href="/insurance">Insurance</DropdownItem>
-          </DropdownMenu>
+          <NavLink href="/">HOME</NavLink>
+          <Accordion
+            allowToggle
+            width="100%"
+            fontSize="lg"
+            bg="gunmetal"
+          >
+            <AccordionItem
+              color="white"
+              width="100%"
+              fontSize="lg"
+              bg="gunmetal"
+            >
+              <h2 style={{ margin: '0px' }}>
+                <AccordionButton
+                  py={6}
+                  fontSize="lg"
+                  _hover={{ bg: 'black', color: 'applegreen' }}
+                  transition="background 0.4s"
+                  borderBottom="white solid 2px"
+                >
+                  <Box as="span" flex="1" textAlign="left">
+                    BANKING & BORROWING
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat.
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem
+              color="white"
+              width="100%"
+              fontSize="lg"
+              bg="gunmetal"
+            >
+              <h2 style={{ margin: '0px' }}>
+                <AccordionButton
+                  py={6}
+                  fontSize="lg"
+                  _hover={{ bg: 'black', color: 'applegreen' }}
+                  transition="background 0.4s"
+                  borderBottom="white solid 2px"
+                >
+                  <Box as="span" flex="1" textAlign="left">
+                    INVESTMENT SERVICES
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat.
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem
+              color="white"
+              width="100%"
+              fontSize="lg"
+              bg="gunmetal"
+            >
+              <h2 style={{ margin: '0px' }}>
+                <AccordionButton
+                  py={6}
+                  fontSize="lg"
+                  _hover={{ bg: 'black', color: 'applegreen' }}
+                  transition="background 0.4s"
+                  borderBottom="white solid 2px"
+                >
+                  <Box as="span" flex="1" textAlign="left">
+                    SUPPORT
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                commodo consequat.
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </Flex>
       </Collapse>
     </>

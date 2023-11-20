@@ -27,7 +27,7 @@
         "optionalDependencies": false,
         "peerDependencies": false,
         "packageDir": "./",
-        "ignoreBuiltinDependencies": true,
+        // "ignoreBuiltinDependencies": true,
         "bundledDependencies": true
       }
     ],
