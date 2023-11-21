@@ -1,10 +1,8 @@
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Box,
   Flex,
   Image,
-  Link,
   Text,
   Collapse,
   Accordion,
@@ -12,18 +10,15 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useDisclosure,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
-import { ChevronDownIcon } from '@chakra-ui/icons';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
 import SearchBar from './searchbar';
+import AccordionLink from './accordionlink';
+import { DropdownMenu, DropdownItem } from './dropdown';
+import NavLink from './navlink';
 
 const Navbar = () => {
   const location = useLocation();
@@ -73,14 +68,14 @@ const Navbar = () => {
             <DropdownItem href="/loans">Loans</DropdownItem>
             <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
+          <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
+            <DropdownItem href="/investment">Investment</DropdownItem>
+            <DropdownItem href="/insurance">Insurance</DropdownItem>
+          </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
             <DropdownItem href="/support">Contact Us</DropdownItem>
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
-          </DropdownMenu>
-          <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
-            <DropdownItem href="/investment">Investment</DropdownItem>
-            <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
         </Flex>
 
@@ -224,110 +219,6 @@ const Navbar = () => {
       </Collapse>
     </>
   );
-};
-
-const NavLink = ({ children, href, isActive }) => (
-  <Link
-    href={href}
-    fontSize="lg"
-    fontWeight="semibold"
-    color={{ base: 'white', lg: isActive ? 'applegreen' : 'white' }}
-    bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
-    width={{ base: '100%', lg: 'auto' }}
-    px={4}
-    py={6}
-    _hover={{ bg: { base: 'black', lg: 'gunmetal' }, color: 'applegreen' }}
-    transition="background 0.4s"
-    borderBottom={{ base: 'white solid 2px', lg: 'none' }}
-  >
-    {children}
-  </Link>
-);
-
-NavLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-};
-
-const AccordionLink = ({ children, href }) => (
-  <Link
-    href={href}
-    _hover={{ bg: 'black', color: 'applegreen' }}
-    borderRadius="base"
-    width="100%"
-    py={2}
-    px={2}
-  >
-    {children}
-  </Link>
-);
-
-AccordionLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
-};
-
-const DropdownMenu = ({ label, children, isActive }) => {
-  const { isOpen, onToggle } = useDisclosure();
-
-  return (
-    <Menu isOpen={isOpen} onToggle={onToggle}>
-      <MenuButton
-        as={Link}
-        fontSize="lg"
-        color={isActive ? 'applegreen' : 'white'}
-        bg={isActive ? 'gunmetal' : 'black'}
-        px={4}
-        py={6}
-        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
-        transition="background 0.4s"
-        onMouseEnter={() => onToggle(true)}
-        onMouseLeave={() => onToggle(false)}
-        borderBottom="none"
-      >
-        <Flex align="center" justify="space-between">
-          <Text my={0}>{label}</Text>
-          <ChevronDownIcon />
-        </Flex>
-      </MenuButton>
-      <MenuList
-        bg="gunmetal"
-        width="sm"
-        color="white"
-        borderRadius="base"
-        border="none"
-        _hover={{ bg: 'gunmetal' }}
-      >
-        {children}
-      </MenuList>
-    </Menu>
-  );
-};
-
-DropdownMenu.propTypes = {
-  children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-};
-
-const DropdownItem = ({ href, children }) => (
-  <MenuItem
-    as={Link}
-    py={3}
-    px={5}
-    href={href}
-    bg="gunmetal"
-    fontSize="md"
-    _hover={{ border: 'none', bg: 'persianred', color: 'applegreen' }}
-  >
-    {children}
-  </MenuItem>
-);
-
-DropdownItem.propTypes = {
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
 };
 
 export default Navbar;
