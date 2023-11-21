@@ -43,7 +43,7 @@ const Navbar = () => {
         <Box py={{ base: 3 }}>
           <Flex align="center" className="logo-group" href="/">
 
-            <Image src={logo} alt="Logo" boxSize="50px" />
+            <Image src={logo} alt="Logo" boxSize="40px" />
             <div>
               <Text
                 fontSize="lg"
@@ -106,18 +106,21 @@ const Navbar = () => {
             allowToggle
             width="100%"
             fontSize="lg"
+            fontWeight="semibold"
             bg="gunmetal"
           >
             <AccordionItem
               color="white"
               width="100%"
               fontSize="lg"
+              fontWeight="semibold"
               bg="gunmetal"
             >
               <h2 style={{ margin: '0px' }}>
                 <AccordionButton
                   py={6}
                   fontSize="lg"
+                  fontWeight="semibold"
                   _hover={{ bg: 'black', color: 'applegreen' }}
                   transition="background 0.4s"
                   borderBottom="white solid 2px"
@@ -129,10 +132,18 @@ const Navbar = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                <Text mb={0} letterSpacing="widest"> Banking Overview</Text>
+                <Flex
+                  flexDirection="column"
+                  justify="flex-start"
+                  alignItems="flex-start"
+                  px={2}
+                  py={4}
+                >
+                  <AccordionLink href="/banking">Online Banking</AccordionLink>
+                  <AccordionLink href="/loans">Loans</AccordionLink>
+                  <AccordionLink href="/mortgages">Mortgages</AccordionLink>
+                </Flex>
               </AccordionPanel>
             </AccordionItem>
 
@@ -146,6 +157,7 @@ const Navbar = () => {
                 <AccordionButton
                   py={6}
                   fontSize="lg"
+                  fontWeight="semibold"
                   _hover={{ bg: 'black', color: 'applegreen' }}
                   transition="background 0.4s"
                   borderBottom="white solid 2px"
@@ -174,6 +186,7 @@ const Navbar = () => {
                 <AccordionButton
                   py={6}
                   fontSize="lg"
+                  fontWeight="semibold"
                   _hover={{ bg: 'black', color: 'applegreen' }}
                   transition="background 0.4s"
                   borderBottom="white solid 2px"
@@ -202,6 +215,7 @@ const NavLink = ({ children, href, isActive }) => (
   <Link
     href={href}
     fontSize="lg"
+    fontWeight="semibold"
     color={{ base: 'white', lg: isActive ? 'applegreen' : 'white' }}
     bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
     width={{ base: '100%', lg: 'auto' }}
@@ -221,6 +235,23 @@ NavLink.propTypes = {
   isActive: PropTypes.bool.isRequired,
 };
 
+const AccordionLink = ({ children, href }) => (
+  <Link
+    href={href}
+    _hover={{ bg: 'black', color: 'applegreen' }}
+    width="100%"
+    py={2}
+    px={2}
+  >
+    {children}
+  </Link>
+);
+
+AccordionLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+};
+
 const DropdownMenu = ({ label, children, isActive }) => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -229,9 +260,8 @@ const DropdownMenu = ({ label, children, isActive }) => {
       <MenuButton
         as={Link}
         fontSize="lg"
-        width={{ base: '100%', lg: 'auto' }}
         color={isActive ? 'applegreen' : 'white'}
-        bg={{ base: 'gunmetal', lg: isActive ? 'gunmetal' : 'black' }}
+        bg={isActive ? 'gunmetal' : 'black'}
         px={4}
         py={6}
         _hover={{ bg: 'gunmetal', color: 'applegreen' }}
