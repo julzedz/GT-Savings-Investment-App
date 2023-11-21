@@ -76,7 +76,7 @@ const Navbar = () => {
           <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
             <DropdownItem href="/support">Contact Us</DropdownItem>
             <DropdownItem href="/about">About Us</DropdownItem>
-            <DropdownItem href="/about">Make an Appointment</DropdownItem>
+            <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
             <DropdownItem href="/investment">Investment</DropdownItem>
@@ -169,10 +169,17 @@ const Navbar = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                <Text mb={0} letterSpacing="widest"> Investment Overview</Text>
+                <Flex
+                  flexDirection="column"
+                  justify="flex-start"
+                  alignItems="flex-start"
+                  px={2}
+                  py={4}
+                >
+                  <AccordionLink href="/investment">Investment</AccordionLink>
+                  <AccordionLink href="/loans">Insurance</AccordionLink>
+                </Flex>
               </AccordionPanel>
             </AccordionItem>
 
@@ -198,10 +205,18 @@ const Navbar = () => {
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                <Text mb={0} letterSpacing="widest"> Support Overview</Text>
+                <Flex
+                  flexDirection="column"
+                  justify="flex-start"
+                  alignItems="flex-start"
+                  px={2}
+                  py={4}
+                >
+                  <AccordionLink href="/support">Contact Us</AccordionLink>
+                  <AccordionLink href="/about">About Us</AccordionLink>
+                  <AccordionLink href="/appointment">Make an Appointment</AccordionLink>
+                </Flex>
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
@@ -239,6 +254,7 @@ const AccordionLink = ({ children, href }) => (
   <Link
     href={href}
     _hover={{ bg: 'black', color: 'applegreen' }}
+    borderRadius="base"
     width="100%"
     py={2}
     px={2}
