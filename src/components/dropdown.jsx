@@ -28,7 +28,6 @@ const DropdownMenu = ({ label, children, isActive }) => {
         transition="background 0.4s"
         onMouseEnter={() => onToggle(true)}
         onMouseLeave={() => onToggle(false)}
-        borderBottom="none"
       >
         <Flex align="center" justify="space-between">
           <Text my={0}>{label}</Text>
@@ -40,9 +39,6 @@ const DropdownMenu = ({ label, children, isActive }) => {
         width="xs"
         color="white"
         borderRadius="base"
-        // position="absolute"
-        top={0}
-        // transform="translateX(0) translateY(-50%)"
         border="none"
         _hover={{ bg: 'gunmetal' }}
       >
