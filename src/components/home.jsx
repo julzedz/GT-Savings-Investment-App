@@ -6,6 +6,7 @@ const Home = () => (
   <>
     <Box
       position="relative"
+      mt={16}
     >
       <Box
         position="absolute"
@@ -22,6 +23,31 @@ const Home = () => (
         height={{ base: 'auto', lg: '2xl' }}
       />
     </Box>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
     <h1>Dashboard</h1>
   </>
 );
