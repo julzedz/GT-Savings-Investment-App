@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box, Image } from '@chakra-ui/react';
-import image from '../assets/skyscraper2.jpg';
+import coverImage from '../assets/skyscraper2.jpg';
 
 const Home = () => (
   <>
     <Box
       position="relative"
-      maxW="100%"
     >
       <Box
         position="absolute"
@@ -17,9 +16,10 @@ const Home = () => (
         bgGradient="linear(to-l, #0003, #000)"
       />
       <Image
-        src={image}
+        src={coverImage}
         alt=""
         width="100%"
+        height={{ base: 'auto', lg: '2xl' }}
       />
     </Box>
     <h1>Dashboard</h1>
