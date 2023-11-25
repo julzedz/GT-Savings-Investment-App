@@ -6,7 +6,7 @@ const Home = () => (
   <>
     <Box
       position="relative"
-      mt={16}
+      mt={{ base: 16, lg: 0 }}
     >
       <Box
         position="absolute"
@@ -20,7 +20,7 @@ const Home = () => (
         src={coverImage}
         alt=""
         width="100%"
-        height={{ base: 'auto', lg: '2xl' }}
+        height={{ base: 'auto', lg: '3xl' }}
       />
     </Box>
     <h1>Dashboard</h1>
