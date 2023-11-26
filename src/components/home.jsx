@@ -78,7 +78,7 @@ const Home = () => (
           width="50px"
           _hover={{ bg: 'gunmetal' }}
         >
-          <ArrowDownIcon color="white" _hover={{ color: 'gunmetal' }} />
+          <ArrowDownIcon color="white" _hover={{ color: 'applegreen' }} />
         </Button>
         <Text
           mx={2}
