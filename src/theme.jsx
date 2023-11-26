@@ -124,7 +124,7 @@ const theme = extendTheme({
   colors,
   fonts: {
     body: 'Advent Pro, sans-serif',
-    heading: 'Georgia, serif',
+    heading: 'Fira Sans, sans-serif',
     mono: 'Menlo, monospace',
   },
   fontSizes: {
