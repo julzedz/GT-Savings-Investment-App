@@ -36,15 +36,15 @@ const Home = () => (
         textColor="white"
         pos="absolute"
         top={{ base: '15', lg: '28' }}
-        left={{ base: '', lg: '6' }}
+        left={{ base: 'center', lg: '6' }}
       >
         <Heading
           m={3}
           p={4}
-          textAlign={{ base: 'left', lg: 'left' }}
+          textAlign={{ base: 'center', lg: 'left' }}
           fontSize={{ base: '5xl', lg: '7xl' }}
           fontWeight={{ base: 'bold', lg: 'black' }}
-          width="80%"
+          width={{ base: '100%', lg: '80%' }}
         >
           Build Wealth On Your Terms
         </Heading>
@@ -88,7 +88,11 @@ const Home = () => (
         </Flex>
       </Box>
     </Box>
-    <h1>Dashboard</h1>
+    <Box
+      bg=""
+    >
+      Dashboard
+    </Box>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
