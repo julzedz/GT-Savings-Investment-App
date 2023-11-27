@@ -19,8 +19,7 @@ const Home = () => (
     >
       <Box
         position="absolute"
-        top="0"
-        left="0"
+        inset="0 0 auto auto"
         w="100%"
         h="100%"
         bgGradient="linear(to-l, #0003, #000)"
@@ -34,7 +33,6 @@ const Home = () => (
       <Box
         m={3}
         p={3}
-        pb={28}
         textColor="white"
         pos="absolute"
         top={{ base: '15', lg: '28' }}
@@ -43,7 +41,7 @@ const Home = () => (
         <Heading
           m={3}
           p={4}
-          textAlign={{ base: 'center', lg: 'left' }}
+          textAlign={{ base: 'left', lg: 'left' }}
           fontSize={{ base: '5xl', lg: '7xl' }}
           fontWeight={{ base: 'bold', lg: 'black' }}
           width="80%"
@@ -53,6 +51,7 @@ const Home = () => (
         <Text
           m={3}
           p={4}
+          mb={44}
           textAlign={{ base: 'center', lg: 'left' }}
           fontSize={{ base: '2xl', lg: '3xl' }}
           fontWeight={{ base: 'bold', lg: 'black' }}
@@ -60,33 +59,34 @@ const Home = () => (
         >
           We are committed to helping you set and clarify your financial goals.
         </Text>
+        <Flex
+          as="Button"
+          m={3}
+          p={3}
+          textColor="white"
+          transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+        >
+          <Button
+            mx={2}
+            bg="transparent"
+            variant="outline"
+            borderRadius="50%"
+            height="60px"
+            width="60px"
+            _hover={{ bg: 'applegreen' }}
+          >
+            <ArrowDownIcon color="white" _hover={{ color: 'gunmetal' }} />
+          </Button>
+          <Text
+            mx={2}
+            my={3}
+            fontFamily="Menlo"
+            fontSize="lg"
+          >
+            Let&apos;s Get Started
+          </Text>
+        </Flex>
       </Box>
-      <Flex
-        m={3}
-        p={3}
-        textColor="white"
-        pos="absolute"
-        top={{ base: '96', lg: '28' }}
-        left={{ base: '6', lg: '6' }}
-      >
-        <Button
-          mx={2}
-          bg="transparent"
-          variant="outline"
-          borderRadius="50%"
-          height="50px"
-          width="50px"
-          _hover={{ bg: 'gunmetal' }}
-        >
-          <ArrowDownIcon color="white" _hover={{ color: 'applegreen' }} />
-        </Button>
-        <Text
-          mx={2}
-          my={3}
-        >
-          Let&apos;s Get Started
-        </Text>
-      </Flex>
     </Box>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
