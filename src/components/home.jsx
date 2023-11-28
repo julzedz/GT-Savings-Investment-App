@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
+import bgsvg from '../assets/ColoredShapes.svg';
 
 const Home = () => (
   <>
@@ -36,7 +37,7 @@ const Home = () => (
         textColor="white"
         pos="absolute"
         top={{ base: '15', lg: '28' }}
-        left={{ base: 'center', lg: '6' }}
+        left={{ base: 'auto', lg: '6' }}
       >
         <Heading
           m={3}
@@ -65,6 +66,9 @@ const Home = () => (
           p={3}
           textColor="white"
           transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+          justifyContent="center"
+          alignItems="center"
+          width={{ base: '100%', lg: 'auto%' }}
         >
           <Button
             mx={2}
@@ -89,9 +93,11 @@ const Home = () => (
       </Box>
     </Box>
     <Box
-      bg=""
+      bgImage={bgsvg}
+      w="100%"
+      height="auto"
     >
-      Dashboard
+      <h1>Hope</h1>
     </Box>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
