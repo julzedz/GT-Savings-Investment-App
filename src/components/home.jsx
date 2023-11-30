@@ -8,12 +8,13 @@ import {
   Button,
   Grid,
   GridItem,
-  ListItem,
   List,
+  ListItem,
   Link,
   Flex,
   Img,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
@@ -69,36 +70,37 @@ const Home = () => (
         >
           We are committed to helping you set and clarify your financial goals.
         </Text>
-        <Flex
-          as="Button"
-          m={3}
-          p={3}
-          textColor="white"
-          transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-          justifyContent={{ base: 'center', lg: 'center' }}
-          alignItems="center"
-          width={{ base: '100%', lg: 'auto' }}
-        >
-          <Button
-            mx={2}
-            bg="transparent"
-            variant="outline"
-            borderRadius="50%"
-            height="60px"
-            width="60px"
-            _hover={{ bg: 'applegreen' }}
+        <Link as={RouterLink} to="/investment">
+          <Flex
+            m={3}
+            p={3}
+            textColor="white"
+            transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+            justifyContent={{ base: 'center', lg: 'left' }}
+            alignItems="center"
+            width={{ base: '100%', lg: 'auto' }}
           >
-            <ArrowDownIcon color="white" _hover={{ color: 'gunmetal' }} />
-          </Button>
-          <Text
-            mx={2}
-            my={3}
-            fontFamily="Menlo"
-            fontSize="lg"
-          >
-            Let&apos;s Get Started
-          </Text>
-        </Flex>
+            <Button
+              mx={2}
+              bg="transparent"
+              variant="outline"
+              borderRadius="50%"
+              height="60px"
+              width="60px"
+              _hover={{ bg: 'applegreen' }}
+            >
+              <ArrowDownIcon color="white" _hover={{ color: 'gunmetal' }} />
+            </Button>
+            <Text
+              mx={2}
+              my={3}
+              fontFamily="Menlo"
+              fontSize="sm"
+            >
+              Let&apos;s Get Started
+            </Text>
+          </Flex>
+        </Link>
       </Box>
     </Box>
     <Box
@@ -168,7 +170,7 @@ const Home = () => (
             />
             <Text>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
           </Box>
-          <List spacing={3}>
+          <List spacing={3} textAlign="center">
             <ListItem>
               <Link href="/account">Savings</Link>
             </ListItem>
