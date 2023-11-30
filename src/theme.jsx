@@ -126,6 +126,8 @@ const theme = extendTheme({
     body: 'Advent Pro, sans-serif',
     heading: 'Fira Sans, sans-serif',
     mono: 'Menlo, monospace',
+    new: 'Space Grotesk',
+    newer: 'Allerta Stencil',
   },
   fontSizes: {
     xs: '0.75rem',

@@ -70,7 +70,7 @@ const Home = () => (
         >
           We are committed to helping you set and clarify your financial goals.
         </Text>
-        <Link as={RouterLink} to="/investment">
+        <Link as={RouterLink} to="/login">
           <Flex
             m={3}
             p={3}
@@ -94,8 +94,8 @@ const Home = () => (
             <Text
               mx={2}
               my={3}
-              fontFamily="Menlo"
-              fontSize="sm"
+              fontFamily="Space Grotesk"
+              fontSize="18px"
             >
               Let&apos;s Get Started
             </Text>
@@ -107,20 +107,24 @@ const Home = () => (
       bgImage={bgsvg}
       w="100%"
       height="7xl"
+      fontFamily="Space Grotesk"
+      lineHeight="1.43"
+      fontSize="18px"
     >
       <Grid
         h="100%"
         w="100%"
         p={{ base: 8, lg: 12 }}
-        templateRows={{ base: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
+        templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
         templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
-        gap={10}
+        gap={6}
       >
         <GridItem
           colSpan={2}
           bg="papayawhip"
           borderRadius={21}
           w="100%"
+          h="fit-content"
           p={12}
         >
           <Box>
@@ -155,24 +159,33 @@ const Home = () => (
         <GridItem
           colSpan={{ base: '2', md: '4' }}
           rowSpan={4}
-          bg="tomato"
+          bg="#1F5283"
           borderRadius={21}
           padding={12}
+          h="fit-content"
+          color="white"
         >
           <Box m="0 auto" textAlign="center">
-            <h2>WE MAKE BANKING EASY!</h2>
+            <Text fontSize="25px" fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" mb={2}>We Make Banking Easy!</Text>
             <Img
               src={finegal}
               width={40}
               height={40}
               borderRadius="50%"
-              m={{ base: '0 auto', md: '', lg: '' }}
+              m={{ base: '0 auto', md: '3 3', lg: '' }}
+              mb={3}
             />
-            <Text>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
+            <Text fontSize="18px" fontWeight="normal" lineHeight="1.42" py={5}>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
           </Box>
-          <List spacing={3} textAlign="center">
+          <List spacing={8} p="0" textAlign="center" fontFamily="Space Grotesk" fontWeight="bold">
+            <ListItem>
+              <Link href="/account">Open Account</Link>
+            </ListItem>
             <ListItem>
               <Link href="/account">Savings</Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/investment">Investment</Link>
             </ListItem>
             <ListItem>
               <Link href="/mortgages">Mortgages</Link>
@@ -180,28 +193,10 @@ const Home = () => (
             <ListItem>
               <Link href="/investment">Loans</Link>
             </ListItem>
-            <ListItem>
-              <Link href="/investment">Investment</Link>
-            </ListItem>
           </List>
         </GridItem>
       </Grid>
     </Box>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
