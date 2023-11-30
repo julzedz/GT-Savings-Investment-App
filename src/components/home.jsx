@@ -19,6 +19,8 @@ import { ArrowDownIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
 import finegal from '../assets/blondesmilephone.jpg';
+import suitgrey from '../assets/suitgrey.jpeg';
+import elder from '../assets/elder-couple1.jpg';
 
 const Home = () => (
   <>
@@ -106,7 +108,7 @@ const Home = () => (
     <Box
       bgImage={bgsvg}
       w="100%"
-      height="7xl"
+      height="fit-content"
       fontFamily="Space Grotesk"
       lineHeight="1.43"
       fontSize="18px"
@@ -115,30 +117,33 @@ const Home = () => (
         h="100%"
         w="100%"
         p={{ base: 8, lg: 12 }}
-        templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
+        templateRows={{ base: 'auto', md: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
         templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
         gap={6}
       >
         <GridItem
           colSpan={2}
-          bg="papayawhip"
-          borderRadius={21}
+          bg="transparent"
+          // borderRadius={21}
           w="100%"
           h="fit-content"
-          p={12}
+          // p={12}
+          pt={4}
         >
-          <Box>
-            Hello World
-          </Box>
-          <Box>
-            Hello World
-          </Box>
-          <Box>
-            <h3>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h3>
-            <Text>Now offering higher rate with minimum of $25,000 for Customers.</Text>
+          <Img
+            src={elder}
+            width="100%"
+            height="fit-content"
+            m={{ base: '0 auto', md: '3 3', lg: '' }}
+            mb={3}
+            borderRadius={5}
+          />
+          <Box color="white" p={4}>
+            <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
+            <Text py={4}>Now offering higher rate with minimum new deposit of $25,000 for Private Banking Customers. Ready to take the first steps towards financial freedom?</Text>
             <Button
-              mx={2}
-              bg="gunmetal"
+              mx="auto"
+              bg="applegreen"
               borderRadius="20px"
               height="auto"
               width="auto"
@@ -146,16 +151,47 @@ const Home = () => (
               p={3}
               _hover={{ bg: 'applegreen', color: 'black' }}
             >
-              OPEN ACCOUNT
+              OPEN AN ACCOUNT
             </Button>
           </Box>
         </GridItem>
         <GridItem
           colSpan={2}
-          bg="papayawhip"
-          borderRadius={21}
+          bg="transparent"
+          // borderRadius={21}
           w="100%"
-        />
+          pt={4}
+          // h="fit-content"
+          // padding={12}
+        >
+          <Img
+            src={suitgrey}
+            width="100%"
+            height="fit-content"
+            m={{ base: '0 auto', md: '3 3', lg: '' }}
+            mb={3}
+            borderRadius={5}
+          />
+          <Box color="white" p={4}>
+            <h2>SET AMBITIOUS GOALS. WE WILL MAKE IT WORK.</h2>
+            <Text py={4}>
+              Choose from a range of Investment Portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
+              {/* Explore ways the Team at GT Savings Bank can help with setting and prioritizing your financial goals. */}
+            </Text>
+            <Button
+              bg="applegreen"
+              alignItems="center"
+              borderRadius="20px"
+              height="auto"
+              width="auto"
+              color="white"
+              p={3}
+              _hover={{ bg: 'applegreen', color: 'black' }}
+            >
+              VIEW INVESTMENT OPTIONS
+            </Button>
+          </Box>
+        </GridItem>
         <GridItem
           colSpan={{ base: '2', md: '4' }}
           rowSpan={4}
@@ -169,8 +205,8 @@ const Home = () => (
             <Text fontSize="25px" fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" mb={2}>We Make Banking Easy!</Text>
             <Img
               src={finegal}
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               borderRadius="50%"
               m={{ base: '0 auto', md: '3 3', lg: '' }}
               mb={3}
