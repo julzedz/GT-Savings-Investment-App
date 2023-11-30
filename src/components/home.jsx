@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import {
   Box,
@@ -7,11 +8,16 @@ import {
   Button,
   Grid,
   GridItem,
+  ListItem,
+  List,
+  Link,
   Flex,
+  Img,
 } from '@chakra-ui/react';
 import { ArrowDownIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
+import finegal from '../assets/blondesmilephone.jpg';
 
 const Home = () => (
   <>
@@ -149,7 +155,34 @@ const Home = () => (
           rowSpan={4}
           bg="tomato"
           borderRadius={21}
-        />
+          padding={12}
+        >
+          <Box m="0 auto" textAlign="center">
+            <h2>WE MAKE BANKING EASY!</h2>
+            <Img
+              src={finegal}
+              width={40}
+              height={40}
+              borderRadius="50%"
+              m={{ base: '0 auto', md: '', lg: '' }}
+            />
+            <Text>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
+          </Box>
+          <List spacing={3}>
+            <ListItem>
+              <Link href="/account">Savings</Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/mortgages">Mortgages</Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/investment">Loans</Link>
+            </ListItem>
+            <ListItem>
+              <Link href="/investment">Investment</Link>
+            </ListItem>
+          </List>
+        </GridItem>
       </Grid>
     </Box>
     <h1>Dashboard</h1>
