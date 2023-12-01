@@ -21,6 +21,7 @@ import bgsvg from '../assets/ColoredShapes.svg';
 import finegal from '../assets/blondesmilephone.jpg';
 import banker from '../assets/banker.jpg';
 import elder from '../assets/elder-couple1.jpg';
+import greycircles from '../assets/Mass Circles.svg';
 
 const Home = () => (
   <>
@@ -117,7 +118,7 @@ const Home = () => (
         h="100%"
         w="100%"
         p={{ base: 8, lg: 12 }}
-        templateRows={{ base: 'auto', md: 'repeat(3, 1fr)', lg: 'repeat(2, 1fr)' }}
+        templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
         templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
         gap={6}
       >
@@ -194,17 +195,16 @@ const Home = () => (
         </GridItem>
         <GridItem
           colSpan={{ base: '2', md: '4' }}
-          rowSpan={4}
           bg="navyblue"
           borderRadius="xl"
-          padding={{ base: '12', md: '', slg: '0' }}
+          padding={{ base: '8', md: '', slg: '0' }}
           h="fit-content"
           color="white"
         >
           <Flex w="100%" justifyContent="space-between">
-            <Box p={6} flexBasis={{ base: 'auto', slg: '49%' }}>
+            <Box p={{ base: 3, lg: 6 }} flexBasis={{ base: 'auto', slg: '49%' }}>
               <Box m={{ base: '0 auto', slg: '0' }} textAlign={{ base: 'center', slg: 'left' }}>
-                <Text fontSize={{ base: '25px', slg: '28px' }} fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" textAlign={{ slg: 'center' }} mb={2}>We Make Banking Easy!</Text>
+                <Text fontSize={{ base: '25px', slg: '28px', xl: '4xl' }} fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" textAlign={{ slg: 'center' }} mb={2}>We Make Banking Easy!</Text>
                 <Img
                   src={finegal}
                   width={44}
@@ -216,11 +216,11 @@ const Home = () => (
                 />
                 <Text fontSize="18px" fontWeight="normal" lineHeight="1.42" py={5}>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
               </Box>
-              <List spacing={8} p="0" m={{ base: '', slg: '' }} w={{ base: 'auto', slg: '45%' }} fontFamily="Space Grotesk" textAlign={{ base: 'center', slg: 'left' }} fontWeight="bold">
+              <List spacing={8} p="0" m={{ base: '', slg: '' }} fontFamily="Space Grotesk" textAlign={{ base: 'center', slg: 'left' }} fontWeight="bold">
                 <ListItem>
                   <Link href="/account">
                     {' '}
-                    <ArrowForwardIcon ml={4} />
+                    <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
                     {' '}
                     Open Account
                   </Link>
@@ -228,7 +228,7 @@ const Home = () => (
                 <ListItem>
                   <Link href="/account">
                     {' '}
-                    <ArrowForwardIcon ml={4} />
+                    <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
                     {' '}
                     Savings
                   </Link>
@@ -236,7 +236,7 @@ const Home = () => (
                 <ListItem>
                   <Link href="/investment">
                     {' '}
-                    <ArrowForwardIcon ml={4} />
+                    <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
                     {' '}
                     Investment
                   </Link>
@@ -244,7 +244,7 @@ const Home = () => (
                 <ListItem>
                   <Link href="/mortgages">
                     {' '}
-                    <ArrowForwardIcon ml={4} />
+                    <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
                     {' '}
                     Mortgages
                   </Link>
@@ -252,7 +252,7 @@ const Home = () => (
                 <ListItem>
                   <Link href="/investment">
                     {' '}
-                    <ArrowForwardIcon ml={4} />
+                    <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
                     {' '}
                     Loans
                   </Link>
@@ -263,7 +263,7 @@ const Home = () => (
               src={finegal}
               width="calc(65vw * 2/3)"
               objectFit="cover"
-              borderRadius="xl"
+              borderRadius="0 12px 12px 0"
               m={{
                 base: '0 auto', md: '3 3', lg: '', slg: '0',
               }}
@@ -275,7 +275,11 @@ const Home = () => (
         </GridItem>
       </Grid>
     </Box>
-    <h1>Dashboard</h1>
+    <Box
+      bgImage={greycircles}
+    >
+      <h1>Dashboard</h1>
+    </Box>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
