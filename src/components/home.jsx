@@ -15,7 +15,7 @@ import {
   Img,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowDownIcon } from '@chakra-ui/icons';
+import { ArrowDownIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
 import finegal from '../assets/blondesmilephone.jpg';
@@ -196,15 +196,15 @@ const Home = () => (
           colSpan={{ base: '2', md: '4' }}
           rowSpan={4}
           bg="navyblue"
-          borderRadius={21}
-          padding={12}
+          borderRadius="xl"
+          padding={{ base: '12', md: '', slg: '0' }}
           h="fit-content"
           color="white"
         >
-          <Flex>
-            <Box>
-              <Box m={{ base: '0 auto', slg: '0' }} textAlign={{ base: 'center', slg: 'center' }} w={{ base: 'auto', slg: '60%' }}>
-                <Text fontSize="25px" fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" mb={2}>We Make Banking Easy!</Text>
+          <Flex w="100%" justifyContent="space-between">
+            <Box p={6} flexBasis={{ base: 'auto', slg: '49%' }}>
+              <Box m={{ base: '0 auto', slg: '0' }} textAlign={{ base: 'center', slg: 'left' }}>
+                <Text fontSize={{ base: '25px', slg: '28px' }} fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" textAlign={{ slg: 'center' }} mb={2}>We Make Banking Easy!</Text>
                 <Img
                   src={finegal}
                   width={44}
@@ -216,31 +216,58 @@ const Home = () => (
                 />
                 <Text fontSize="18px" fontWeight="normal" lineHeight="1.42" py={5}>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
               </Box>
-              <List spacing={8} p="0" m={{ base: '', slg: '' }} w={{ base: 'auto', slg: '45%' }} textAlign={{ base: 'center' }} fontFamily="Space Grotesk" fontWeight="bold">
+              <List spacing={8} p="0" m={{ base: '', slg: '' }} w={{ base: 'auto', slg: '45%' }} fontFamily="Space Grotesk" textAlign={{ base: 'center', slg: 'left' }} fontWeight="bold">
                 <ListItem>
-                  <Link href="/account">Open Account</Link>
+                  <Link href="/account">
+                    {' '}
+                    <ArrowForwardIcon ml={4} />
+                    {' '}
+                    Open Account
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/account">Savings</Link>
+                  <Link href="/account">
+                    {' '}
+                    <ArrowForwardIcon ml={4} />
+                    {' '}
+                    Savings
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/investment">Investment</Link>
+                  <Link href="/investment">
+                    {' '}
+                    <ArrowForwardIcon ml={4} />
+                    {' '}
+                    Investment
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/mortgages">Mortgages</Link>
+                  <Link href="/mortgages">
+                    {' '}
+                    <ArrowForwardIcon ml={4} />
+                    {' '}
+                    Mortgages
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/investment">Loans</Link>
+                  <Link href="/investment">
+                    {' '}
+                    <ArrowForwardIcon ml={4} />
+                    {' '}
+                    Loans
+                  </Link>
                 </ListItem>
               </List>
             </Box>
             <Img
               src={finegal}
-              width="calc(50vw * 2/3)"
-              borderRadius="md"
+              width="calc(65vw * 2/3)"
+              objectFit="cover"
+              borderRadius="xl"
               m={{
                 base: '0 auto', md: '3 3', lg: '', slg: '0',
               }}
+              p={0}
               mb={{ base: '3', slg: '0' }}
               display={{ base: 'none', slg: 'block' }}
             />
