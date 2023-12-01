@@ -195,41 +195,56 @@ const Home = () => (
         <GridItem
           colSpan={{ base: '2', md: '4' }}
           rowSpan={4}
-          bg="#1F5283"
+          bg="navyblue"
           borderRadius={21}
           padding={12}
           h="fit-content"
           color="white"
         >
-          <Box m="0 auto" textAlign="center">
-            <Text fontSize="25px" fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" mb={2}>We Make Banking Easy!</Text>
+          <Flex>
+            <Box>
+              <Box m={{ base: '0 auto', slg: '0' }} textAlign={{ base: 'center', slg: 'center' }} w={{ base: 'auto', slg: '60%' }}>
+                <Text fontSize="25px" fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" mb={2}>We Make Banking Easy!</Text>
+                <Img
+                  src={finegal}
+                  width={44}
+                  height={44}
+                  borderRadius="50%"
+                  m={{ base: '0 auto', md: '3 3', lg: '' }}
+                  mb={3}
+                  display={{ base: '', slg: 'none' }}
+                />
+                <Text fontSize="18px" fontWeight="normal" lineHeight="1.42" py={5}>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
+              </Box>
+              <List spacing={8} p="0" m={{ base: '', slg: '' }} w={{ base: 'auto', slg: '45%' }} textAlign={{ base: 'center' }} fontFamily="Space Grotesk" fontWeight="bold">
+                <ListItem>
+                  <Link href="/account">Open Account</Link>
+                </ListItem>
+                <ListItem>
+                  <Link href="/account">Savings</Link>
+                </ListItem>
+                <ListItem>
+                  <Link href="/investment">Investment</Link>
+                </ListItem>
+                <ListItem>
+                  <Link href="/mortgages">Mortgages</Link>
+                </ListItem>
+                <ListItem>
+                  <Link href="/investment">Loans</Link>
+                </ListItem>
+              </List>
+            </Box>
             <Img
               src={finegal}
-              width={44}
-              height={44}
-              borderRadius="50%"
-              m={{ base: '0 auto', md: '3 3', lg: '' }}
-              mb={3}
+              width="calc(50vw * 2/3)"
+              borderRadius="md"
+              m={{
+                base: '0 auto', md: '3 3', lg: '', slg: '0',
+              }}
+              mb={{ base: '3', slg: '0' }}
+              display={{ base: 'none', slg: 'block' }}
             />
-            <Text fontSize="18px" fontWeight="normal" lineHeight="1.42" py={5}>From opening an account online to applying for a mortgage, loan, or making investments, we make banking easy!</Text>
-          </Box>
-          <List spacing={8} p="0" textAlign="center" fontFamily="Space Grotesk" fontWeight="bold">
-            <ListItem>
-              <Link href="/account">Open Account</Link>
-            </ListItem>
-            <ListItem>
-              <Link href="/account">Savings</Link>
-            </ListItem>
-            <ListItem>
-              <Link href="/investment">Investment</Link>
-            </ListItem>
-            <ListItem>
-              <Link href="/mortgages">Mortgages</Link>
-            </ListItem>
-            <ListItem>
-              <Link href="/investment">Loans</Link>
-            </ListItem>
-          </List>
+          </Flex>
         </GridItem>
       </Grid>
     </Box>

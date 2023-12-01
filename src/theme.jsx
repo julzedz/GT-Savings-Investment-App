@@ -5,6 +5,7 @@ const breakpoints = {
   sm: '30em',
   md: '48em',
   lg: '56em',
+  slg: '60em',
   xl: '80em',
   '2xl': '96em',
 };
@@ -110,6 +111,7 @@ const colors = {
   black: '#000',
   white: '#fff',
   cerulean: '#027F99',
+  navyblue: '#1F5283',
   persianred: '#BB4430',
   gunmetal: '#1F2829',
   transparent: 'transparent',
