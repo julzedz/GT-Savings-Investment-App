@@ -19,7 +19,7 @@ import { ArrowDownIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
 import finegal from '../assets/blondesmilephone.jpg';
-import suitgrey from '../assets/suitgrey.jpeg';
+import banker from '../assets/banker.jpg';
 import elder from '../assets/elder-couple1.jpg';
 
 const Home = () => (
@@ -133,7 +133,7 @@ const Home = () => (
           <Img
             src={elder}
             width="100%"
-            height="fit-content"
+            height={{ base: 'auto', md: 'calc(45vw * 2/3)' }}
             m={{ base: '0 auto', md: '3 3', lg: '' }}
             mb={3}
             borderRadius={5}
@@ -146,7 +146,7 @@ const Home = () => (
               bg="applegreen"
               borderRadius="20px"
               height="auto"
-              width="auto"
+              width="100%"
               color="white"
               p={3}
               _hover={{ bg: 'applegreen', color: 'black' }}
@@ -165,9 +165,9 @@ const Home = () => (
           // padding={12}
         >
           <Img
-            src={suitgrey}
+            src={banker}
             width="100%"
-            height="fit-content"
+            height={{ base: 'auto', md: 'calc(45vw * 2/3)' }}
             m={{ base: '0 auto', md: '3 3', lg: '' }}
             mb={3}
             borderRadius={5}
@@ -183,7 +183,7 @@ const Home = () => (
               alignItems="center"
               borderRadius="20px"
               height="auto"
-              width="auto"
+              width="100%"
               color="white"
               p={3}
               _hover={{ bg: 'applegreen', color: 'black' }}
