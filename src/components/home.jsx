@@ -10,6 +10,7 @@ import {
   GridItem,
   List,
   ListItem,
+  UnorderedList,
   Link,
   Flex,
   Img,
@@ -278,6 +279,31 @@ const Home = () => (
     <Box
       bgImage={greycircles}
     >
+      <Flex>
+        <img src="" alt="" />
+        <Box>
+          <Text>WHO WE ARE</Text>
+          <Text>GT Savings Bank is a modern, tech-driven investment bank and broker-dealer platform.</Text>
+          <Text>GT Savings Bank is a full-service investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
+          <Text>Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
+          <Text>
+            GT Savings Bank is a member of
+            {' '}
+            <span>FINRA</span>
+            {' '}
+            and
+            {' '}
+            <span>SIPC</span>
+            .
+          </Text>
+          <Text>Our bankers:</Text>
+          <UnorderedList>
+            <ListItem>Raise equity and debt capital (primary and secondary)</ListItem>
+            <ListItem>Execute upon business sale, acquisition and divestiture transactions (M&A)</ListItem>
+            <ListItem>Advise on both the sell and buy side</ListItem>
+          </UnorderedList>
+        </Box>
+      </Flex>
       <h1>Dashboard</h1>
     </Box>
     <h1>Dashboard</h1>
