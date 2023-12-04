@@ -23,6 +23,7 @@ import finegal from '../assets/blondesmilephone.jpg';
 import banker from '../assets/banker.jpg';
 import elder from '../assets/elder-couple1.jpg';
 import greycircles from '../assets/Mass Circles.svg';
+import meeting from '../assets/meeting.jpg';
 
 const Home = () => (
   <>
@@ -277,9 +278,15 @@ const Home = () => (
       fontSize="18px"
       fontFamily="newer"
     >
-      <h1>Heading</h1>
-      <Flex>
-        <img src="" alt="" />
+      <Flex flexDirection={{ base: 'column', lg: 'row' }}>
+        <Img
+          src={meeting}
+          alt=""
+          width={44}
+          height={44}
+          // borderRadius="lg"
+          m={{ base: 'auto', md: '3 3', lg: '' }}
+        />
         <Box>
           <Text>WHO WE ARE</Text>
           <Text>GT Savings Bank is a modern, tech-driven investment bank and broker-dealer platform.</Text>
