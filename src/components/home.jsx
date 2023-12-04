@@ -142,7 +142,7 @@ const Home = () => (
           />
           <Box color="white" p={4}>
             <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
-            <Text py={4}>Now offering higher rate with minimum new deposit of $25,000 for Private Banking Customers. Ready to take the first steps towards financial freedom?</Text>
+            <Text py={4}>With a low minimum deposit required, start earning interest at competitive rates that are compounded daily. Ready to take the first steps towards financial freedom?</Text>
             <Button
               mx="auto"
               bg="applegreen"
@@ -160,11 +160,8 @@ const Home = () => (
         <GridItem
           colSpan={2}
           bg="transparent"
-          // borderRadius={21}
           w="100%"
           pt={4}
-          // h="fit-content"
-          // padding={12}
         >
           <Img
             src={banker}
@@ -178,7 +175,6 @@ const Home = () => (
             <h2>SET AMBITIOUS GOALS. WE WILL MAKE IT WORK.</h2>
             <Text py={4}>
               Choose from a range of Investment Portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
-              {/* Explore ways the Team at GT Savings Bank can help with setting and prioritizing your financial goals. */}
             </Text>
             <Button
               bg="applegreen"
@@ -278,7 +274,10 @@ const Home = () => (
     </Box>
     <Box
       bgImage={greycircles}
+      fontSize="18px"
+      fontFamily="newer"
     >
+      <h1>Heading</h1>
       <Flex>
         <img src="" alt="" />
         <Box>
@@ -289,11 +288,11 @@ const Home = () => (
           <Text>
             GT Savings Bank is a member of
             {' '}
-            <span>FINRA</span>
+            <Box display="inline" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
             {' '}
             and
             {' '}
-            <span>SIPC</span>
+            <Box display="inline" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
             .
           </Text>
           <Text>Our bankers:</Text>
@@ -302,9 +301,24 @@ const Home = () => (
             <ListItem>Execute upon business sale, acquisition and divestiture transactions (M&A)</ListItem>
             <ListItem>Advise on both the sell and buy side</ListItem>
           </UnorderedList>
+          <Text>
+            Learn more about us
+            <Button
+              as={RouterLink}
+              to="/support"
+              mx={2}
+              bg="transparent"
+              variant="outline"
+              borderRadius="50%"
+              height="60px"
+              width="60px"
+              _hover={{ bg: 'applegreen' }}
+            >
+              <ArrowForwardIcon color="gunmetal" borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
+            </Button>
+          </Text>
         </Box>
       </Flex>
-      <h1>Dashboard</h1>
     </Box>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
