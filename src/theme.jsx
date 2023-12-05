@@ -130,6 +130,7 @@ const theme = extendTheme({
     mono: 'Menlo, monospace',
     new: 'Space Grotesk',
     newer: 'Allerta Stencil',
+    lit: 'Archivo',
   },
   fontSizes: {
     xs: '0.75rem',

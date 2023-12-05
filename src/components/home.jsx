@@ -71,7 +71,6 @@ const Home = () => (
           fontSize={{ base: '2xl', lg: '3xl' }}
           fontWeight={{ base: 'bold', lg: 'black' }}
           letterSpacing="wide"
-          // color="applegreen"
         >
           We are committed to helping you set and clarify your financial goals.
         </Text>
@@ -94,7 +93,7 @@ const Home = () => (
               width="60px"
               _hover={{ bg: 'applegreen' }}
             >
-              <ArrowDownIcon color="white" _hover={{ color: 'gunmetal' }} />
+              <ArrowDownIcon boxSize={6} color="white" _hover={{ color: 'gunmetal' }} />
             </Button>
             <Text
               mx={2}
@@ -202,7 +201,7 @@ const Home = () => (
           <Flex w="100%" justifyContent="space-between">
             <Box p={{ base: 3, lg: 6 }} flexBasis={{ base: 'auto', slg: '49%' }}>
               <Box m={{ base: '0 auto', slg: '0' }} textAlign={{ base: 'center', slg: 'left' }}>
-                <Text fontSize={{ base: '25px', slg: '28px', xl: '4xl' }} fontWeight="800" fontFamily="Allerta Stencil" textTransform="uppercase" textAlign={{ slg: 'center' }} mb={2}>We Make Banking Easy!</Text>
+                <Text fontSize={{ base: '25px', slg: '28px', xl: '4xl' }} fontWeight="800" fontFamily="newer" textTransform="uppercase" textAlign={{ slg: 'center' }} mb={2}>We Make Banking Easy!</Text>
                 <Img
                   src={finegal}
                   width={44}
@@ -278,17 +277,21 @@ const Home = () => (
       fontSize="18px"
       fontFamily="newer"
     >
-      <Flex flexDirection={{ base: 'column', lg: 'row' }}>
+      <Flex
+        flexDirection={{ base: 'column', slg: 'row' }}
+        width="100%"
+        p={8}
+        gap={8}
+      >
         <Img
           src={meeting}
           alt=""
-          width={44}
-          height={44}
-          // borderRadius="lg"
+          width={{ base: '100%', slg: '50%' }}
+          height={{ base: 'auto' }}
           m={{ base: 'auto', md: '3 3', lg: '' }}
         />
-        <Box>
-          <Text>WHO WE ARE</Text>
+        <Box textAlign={{ base: 'center', slg: 'left' }}>
+          <Text fontSize="sm" fontFamily="lit" fontWeight="thin" letterSpacing="widest" lineHeight="short" textAlign="center">WHO WE ARE</Text>
           <Text>GT Savings Bank is a modern, tech-driven investment bank and broker-dealer platform.</Text>
           <Text>GT Savings Bank is a full-service investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
           <Text>Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
@@ -317,11 +320,12 @@ const Home = () => (
               bg="transparent"
               variant="outline"
               borderRadius="50%"
+              colorScheme="black"
               height="60px"
               width="60px"
               _hover={{ bg: 'applegreen' }}
             >
-              <ArrowForwardIcon color="gunmetal" borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
+              <ArrowForwardIcon color="gunmetal" boxSize={6} borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
             </Button>
           </Text>
         </Box>
