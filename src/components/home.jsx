@@ -278,7 +278,7 @@ const Home = () => (
       fontFamily="newer"
     >
       <Flex
-        flexDirection={{ base: 'column', slg: 'row' }}
+        flexDirection={{ base: 'column', xl: 'row' }}
         width="100%"
         p={8}
         gap={8}
@@ -286,32 +286,49 @@ const Home = () => (
         <Img
           src={meeting}
           alt=""
-          width={{ base: '100%', slg: '50%' }}
+          width={{ base: '100%', slg: '60%', xl: '50%' }}
           height={{ base: 'auto' }}
           m={{ base: 'auto', md: '3 3', lg: '' }}
         />
         <Box textAlign={{ base: 'center', slg: 'left' }}>
-          <Text fontSize="sm" fontFamily="lit" fontWeight="thin" letterSpacing="widest" lineHeight="short" textAlign="center">WHO WE ARE</Text>
-          <Text>GT Savings Bank is a modern, tech-driven investment bank and broker-dealer platform.</Text>
-          <Text>GT Savings Bank is a full-service investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
-          <Text>Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
-          <Text>
+          <Text
+            fontSize="sm"
+            fontFamily="lit"
+            fontWeight="thin"
+            letterSpacing="widest"
+            lineHeight="short"
+            textAlign="center"
+          >
+            WHO WE ARE
+          </Text>
+          <Text
+            my={8}
+            fontSize="3xl"
+            fontFamily="Fira Sans"
+            fontWeight="normal"
+            textAlign={{ base: 'center', xl: 'left' }}
+          >
+            GT Savings Bank is a modern, tech-driven savings and investment banking platform.
+          </Text>
+          <Text letterSpacing="wide">GT Savings Bank is a full-service savings and investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
+          <Text letterSpacing="wide">Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
+          <Text letterSpacing="wide">
             GT Savings Bank is a member of
             {' '}
-            <Box display="inline" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
+            <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
             {' '}
             and
             {' '}
-            <Box display="inline" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
+            <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
             .
           </Text>
-          <Text>Our bankers:</Text>
-          <UnorderedList>
+          <Text letterSpacing="wide">Our bankers:</Text>
+          <UnorderedList letterSpacing="wide">
             <ListItem>Raise equity and debt capital (primary and secondary)</ListItem>
             <ListItem>Execute upon business sale, acquisition and divestiture transactions (M&A)</ListItem>
             <ListItem>Advise on both the sell and buy side</ListItem>
           </UnorderedList>
-          <Text>
+          <Text letterSpacing="wide">
             Learn more about us
             <Button
               as={RouterLink}
@@ -331,11 +348,6 @@ const Home = () => (
         </Box>
       </Flex>
     </Box>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
-    <h1>Dashboard</h1>
     <h1>Dashboard</h1>
     <h1>Dashboard</h1>
   </>
