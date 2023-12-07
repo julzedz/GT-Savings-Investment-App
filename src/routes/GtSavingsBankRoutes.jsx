@@ -8,6 +8,7 @@ import Profile from '../components/profile';
 import Account from '../components/account';
 import Insurance from '../components/insurance';
 import Login from '../components/login';
+import Footer from '../components/footer';
 
 const GtSavingsBankRoutes = () => (
   <div className="app-container">
@@ -25,6 +26,7 @@ const GtSavingsBankRoutes = () => (
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>
+    <Footer />
   </div>
 );
 
