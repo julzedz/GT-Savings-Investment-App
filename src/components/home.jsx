@@ -10,13 +10,14 @@ import {
   GridItem,
   List,
   ListItem,
+  ListIcon,
   UnorderedList,
   Link,
   Flex,
   Img,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { ArrowDownIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { ArrowDownIcon, ArrowForwardIcon, CheckCircleIcon } from '@chakra-ui/icons';
 import coverImage from '../assets/skyscraper2.jpg';
 import bgsvg from '../assets/ColoredShapes.svg';
 import finegal from '../assets/blondesmilephone.jpg';
@@ -24,6 +25,8 @@ import banker from '../assets/banker.jpg';
 import elder from '../assets/elder-couple1.jpg';
 import greycircles from '../assets/Mass Circles.svg';
 import meeting from '../assets/meeting.jpg';
+import building1 from '../assets/building1.jpg';
+import streetfast from '../assets/street-fast.jpg';
 
 const Home = () => (
   <>
@@ -334,12 +337,172 @@ const Home = () => (
               as={RouterLink}
               to="/support"
               mx={2}
-              bg="transparent"
               variant="outline"
               borderRadius="50%"
-              colorScheme="black"
-              height="60px"
-              width="60px"
+              colorScheme="cerulean"
+              height="50px"
+              width="50px"
+              _hover={{ bg: 'applegreen' }}
+            >
+              <ArrowForwardIcon color="gunmetal" boxSize={6} borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
+            </Button>
+          </Text>
+        </Box>
+      </Flex>
+    </Box>
+    <Box
+      fontSize="18px"
+      fontFamily="newer"
+    >
+      <Text
+        fontSize="sm"
+        fontFamily="lit"
+        fontWeight="thin"
+        letterSpacing="widest"
+        lineHeight="short"
+        textAlign="center"
+        mt={20}
+      >
+        WHAT WE DO
+      </Text>
+      <Text
+        my={2}
+        fontSize="2xl"
+        fontFamily="Fira Sans"
+        fontWeight="normal"
+        textAlign={{ base: 'center' }}
+      >
+        Banking Services
+      </Text>
+      <Flex
+        flexDirection={{ base: 'column', slg: 'row' }}
+        width="100%"
+        p={8}
+        gap={8}
+      >
+        <Img
+          src={building1}
+          alt=""
+          width={{
+            base: '80%', md: '60%', slg: '45%', xl: '35%',
+          }}
+          alignSelf="center"
+          height={{ base: 'auto', lg: 'calc(46vw * 2/3)' }}
+          objectFit={{ base: 'cover', lg: 'contain' }}
+          m={{ base: '0 auto', md: '', lg: '' }}
+        />
+        <Box
+          textAlign={{ base: 'center', slg: 'left' }}
+          flexBasis={{ base: 'auto', slg: '48%' }}
+          alignSelf="center"
+        >
+          <Text letterSpacing="wide">On the GT Savings Bank platform we help you:</Text>
+          <List letterSpacing="wide" spacing={4} textAlign="left">
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Earn more as you save more with interest that&apos;s compounded daily on your balance.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Execute upon business sale, acquisition and divestiture transactions (M&A)
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Build your savings with our competitive annual percentage yields (APY) and wide range of term lengths.
+              Start earning more with GT Savings Bank.
+            </ListItem>
+          </List>
+          <Text letterSpacing="wide">
+            Learn more
+            <Button
+              as={RouterLink}
+              to="/support"
+              mx={2}
+              variant="outline"
+              borderRadius="50%"
+              colorScheme="cerulean"
+              height="50px"
+              width="50px"
+              _hover={{ bg: 'applegreen' }}
+            >
+              <ArrowForwardIcon color="gunmetal" boxSize={6} borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
+            </Button>
+          </Text>
+        </Box>
+      </Flex>
+    </Box>
+    <Box
+      fontSize="18px"
+      fontFamily="newer"
+    >
+      <Text
+        fontSize="sm"
+        fontFamily="lit"
+        fontWeight="thin"
+        letterSpacing="widest"
+        lineHeight="short"
+        textAlign="center"
+        mt={20}
+      >
+        WHAT WE DO
+      </Text>
+      <Text
+        my={2}
+        fontSize="2xl"
+        fontFamily="Fira Sans"
+        fontWeight="normal"
+        textAlign={{ base: 'center' }}
+      >
+        Investment Services
+      </Text>
+      <Flex
+        flexDirection={{ base: 'column', slg: 'row' }}
+        width="100%"
+        p={8}
+        gap={8}
+      >
+        <Img
+          src={streetfast}
+          alt=""
+          width={{
+            base: '80%', md: '60%', slg: '45%', xl: '35%',
+          }}
+          alignSelf="center"
+          height={{ base: 'auto', lg: 'calc(46vw * 2/3)' }}
+          objectFit={{ base: 'cover', lg: 'contain' }}
+          m={{ base: '0 auto', md: '', lg: '' }}
+        />
+        <Box
+          textAlign={{ base: 'center', slg: 'left' }}
+          flexBasis={{ base: 'auto', slg: '48%' }}
+          alignSelf="center"
+        >
+          <Text letterSpacing="wide">Our team of experts help invest your savings in real estate, private equity, highly-rated S&P 500 company stocks, including corporate and sovereign debt, equities, currencies and various derivatives. Many qualities sets our institution apart including:</Text>
+          <List letterSpacing="wide" spacing={4} textAlign="left">
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              A track record of strong investment returns - We publish returns on each of our matured investment. More than $300 million since inception.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Our team of 25+ investment professionals analyse billions of dollars in deals each year - approving less than 10% of all opportunities they evaluate.
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Rolling your maturing investments directly into new opportunities by compounding your daily interests to maximize returns.
+            </ListItem>
+          </List>
+          <Text letterSpacing="wide">
+            Learn more
+            <Button
+              as={RouterLink}
+              to="/investment"
+              mx={2}
+              variant="outline"
+              borderRadius="50%"
+              colorScheme="cerulean"
+              height="50px"
+              width="50px"
               _hover={{ bg: 'applegreen' }}
             >
               <ArrowForwardIcon color="gunmetal" boxSize={6} borderColor="gunmetal" _hover={{ color: 'gunmetal' }} />
