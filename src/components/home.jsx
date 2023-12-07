@@ -400,16 +400,16 @@ const Home = () => (
           <List letterSpacing="wide" spacing={4} textAlign="left">
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Earn more as you save more with interest that&apos;s compounded daily on your balance.
+              Earn more as you save more with interest that&apos;s compounded daily on your balance
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Execute upon business sale, acquisition and divestiture transactions (M&A)
+              Build your savings with our competitive annual percentage yields (APY) and wide range of term lengths
+              Start earning more with GT Savings Bank
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Build your savings with our competitive annual percentage yields (APY) and wide range of term lengths.
-              Start earning more with GT Savings Bank.
+              Secure personal loans for the things you want and need or consolidate for lower monthly payments
             </ListItem>
           </List>
           <Text letterSpacing="wide">
@@ -481,15 +481,19 @@ const Home = () => (
           <List letterSpacing="wide" spacing={4} textAlign="left">
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              A track record of strong investment returns - We publish returns on each of our matured investment. More than $300 million since inception.
+              We help you build a robust portfolio for superior risk-adjusted returns and enhanced investment performance
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Our team of 25+ investment professionals analyse billions of dollars in deals each year - approving less than 10% of all opportunities they evaluate.
+              A track record of strong investment returns - We publish returns on each of our matured investment. More than $300 million since inception
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Rolling your maturing investments directly into new opportunities by compounding your daily interests to maximize returns.
+              Our team of 25+ investment professionals analyse billions of dollars in deals each year - approving less than 10% of all opportunities they evaluate
+            </ListItem>
+            <ListItem>
+              <ListIcon as={CheckCircleIcon} color="applegreen" />
+              Rolling your maturing investments directly into new opportunities by compounding your daily interests to maximize returns
             </ListItem>
           </List>
           <Text letterSpacing="wide">
