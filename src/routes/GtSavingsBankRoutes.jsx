@@ -7,6 +7,7 @@ import Support from '../components/support';
 import Profile from '../components/profile';
 import Account from '../components/account';
 import Insurance from '../components/insurance';
+import Login from '../components/login';
 
 const GtSavingsBankRoutes = () => (
   <div className="app-container">
@@ -21,6 +22,7 @@ const GtSavingsBankRoutes = () => (
         <Route path="/profile" element={<Profile />} />
         <Route path="/account" element={<Account />} />
         <Route path="/insurance" element={<Insurance />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   </div>

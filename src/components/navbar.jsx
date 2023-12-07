@@ -33,6 +33,11 @@ const Navbar = () => {
         align="center"
         justify="space-between"
         boxShadow="md"
+        pos="fixed"
+        zIndex="sticky"
+        width="100%"
+        top={0}
+        left={0}
       >
         {/* Logo */}
         <Box py={{ base: 3 }}>
@@ -94,6 +99,12 @@ const Navbar = () => {
           bg="gunmetal"
           height={{ base: '90vh', lg: 'auto' }}
           display={{ base: 'flex', lg: 'none' }}
+          pos="fixed"
+          zIndex="sticky"
+          mt={16}
+          top={0}
+          left={0}
+          right={0}
         >
           <SearchBar />
           <NavLink href="/">HOME</NavLink>
