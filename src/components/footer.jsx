@@ -1,6 +1,9 @@
 /* eslint-disable max-len */
-import { Box, Text, Button } from '@chakra-ui/react';
+import {
+  Box, Text, Button, Flex, Image,
+} from '@chakra-ui/react';
 import skyscraper from '../assets/blackandwhite.jpg';
+import logo from '../assets/bank-leaf.png';
 
 const Footer = () => (
   <>
@@ -11,7 +14,7 @@ const Footer = () => (
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${skyscraper})`}
+      backgroundImage={`linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(${skyscraper})`}
       bgSize="cover"
       minHeight={32}
       bgPos="center"
@@ -34,14 +37,63 @@ const Footer = () => (
       >
         We&apos;d love to speak with you.
       </Text>
-      <Text>
-        Please call us at 800-947-6438, email us at info@gtsavingsbank.net or click the button below to access our contact form.
+      <Text
+        fontFamily="new"
+        fontSize="lg"
+        textAlign="center"
+      >
+        Please call us at
+        <Box display="inline" color="applegreen" fontFamily="new" fontSize="lg"> 800-947-6438</Box>
+        , email us at
+        <Box display="inline" color="applegreen" fontFamily="new" fontSize="lg"> info@gtsavingsbank.net </Box>
+        or click the button below to access our contact form.
       </Text>
       <Button
         m={5}
+        p={7}
+        fontFamily="new"
+        bgColor="applegreen"
+        _hover={{ color: 'gunmetal', bgColor: 'white' }}
       >
         Contact Us
       </Button>
+    </Box>
+    <Box>
+      <Box py={{ base: 3 }}>
+        <Flex align="center" justifyContent="center" className="logo-group" href="/">
+
+          <Image src={logo} alt="Logo" boxSize="30px" />
+          <div>
+            <Text
+              fontSize="lg"
+              fontWeight="bold"
+              color="gunmetal"
+              fontFamily="Atomic Age"
+              align="center"
+              my={0}
+            >
+              GT Savings Bank
+              <Text
+                color="applegreen"
+                display="inline"
+              >
+                .
+              </Text>
+            </Text>
+          </div>
+        </Flex>
+        <Flex>
+          <Text>
+            Routing #309803757
+          </Text>
+          <Text>
+            P.O. Box 2400 | Los Angeles CA 90097
+          </Text>
+          <Box>
+            
+          </Box>
+        </Flex>
+      </Box>
     </Box>
   </>
 );
