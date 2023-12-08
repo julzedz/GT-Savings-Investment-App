@@ -1,7 +1,10 @@
 /* eslint-disable max-len */
 import {
-  Box, Text, Button, Flex, Image,
+  Box, Text, Button, Flex, Image, Icon,
 } from '@chakra-ui/react';
+import {
+  FaInstagram, FaFacebookF, FaLinkedin, FaYoutube,
+} from 'react-icons/fa';
 import skyscraper from '../assets/blackandwhite.jpg';
 import logo from '../assets/bank-leaf.png';
 
@@ -82,7 +85,7 @@ const Footer = () => (
             </Text>
           </div>
         </Flex>
-        <Flex>
+        <Flex flexDir="column">
           <Text>
             Routing #309803757
           </Text>
@@ -90,7 +93,10 @@ const Footer = () => (
             P.O. Box 2400 | Los Angeles CA 90097
           </Text>
           <Box>
-            
+            <Icon as={FaFacebookF} boxSize={6} color="gunmetal" />
+            <Icon as={FaInstagram} boxSize={6} color="gunmetal" />
+            <Icon as={FaLinkedin} boxSize={6} color="gunmetal" />
+            <Icon as={FaYoutube} boxSize={6} color="gunmetal" />
           </Box>
         </Flex>
       </Box>
