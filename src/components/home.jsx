@@ -32,7 +32,7 @@ const Home = () => (
   <>
     <Box
       position="relative"
-      mt={{ base: 16, lg: 0 }}
+      mt={{ base: 13, lg: 0 }}
       height={{ base: 'auto', lg: '3xl' }}
     >
       <Box

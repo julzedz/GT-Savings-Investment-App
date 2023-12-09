@@ -61,9 +61,15 @@ const Footer = () => (
         Contact Us
       </Button>
     </Box>
-    <Box>
+    <Box bgColor="#dcdfe0">
       <Box py={{ base: 3 }}>
-        <Flex my={5} align="center" justifyContent="center" className="logo-group" href="/">
+        <Flex
+          my={5}
+          align="center"
+          justifyContent="center"
+          className="logo-group"
+          href="/"
+        >
 
           <Image src={logo} alt="Logo" boxSize="30px" />
           <div>
@@ -93,10 +99,10 @@ const Footer = () => (
             P.O. Box 2400 | Los Angeles CA 90097
           </Text>
           <Box margin="0 auto" display="flex" justifyContent="space-between" width="30%" alignItems="center">
-            <Icon as={FaFacebookF} boxSize={6} color="gunmetal" />
-            <Icon as={FaInstagram} boxSize={6} color="gunmetal" />
-            <Icon as={FaLinkedin} boxSize={6} color="gunmetal" />
-            <Icon as={FaYoutube} boxSize={6} color="gunmetal" />
+            <Icon as={FaFacebookF} boxSize={5} color="gunmetal" />
+            <Icon as={FaInstagram} boxSize={5} color="gunmetal" />
+            <Icon as={FaLinkedin} boxSize={5} color="gunmetal" />
+            <Icon as={FaYoutube} boxSize={5} color="gunmetal" />
           </Box>
         </Flex>
       </Box>
