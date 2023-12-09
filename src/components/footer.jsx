@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 import {
-  Box, Text, Button, Flex, Image, Icon,
+  Box, Text, Button, Flex, Image, Icon, Img,
 } from '@chakra-ui/react';
 import {
   FaInstagram, FaFacebookF, FaLinkedin, FaYoutube,
 } from 'react-icons/fa';
 import skyscraper from '../assets/blackandwhite.jpg';
 import logo from '../assets/bank-leaf.png';
+import fdic from '../assets/FDIC.svg';
 
 const Footer = () => (
   <>
@@ -91,7 +92,7 @@ const Footer = () => (
             </Text>
           </div>
         </Flex>
-        <Flex flexDir="column" textAlign="center" fontFamily="heading" fontSize="sm" mt={4}>
+        <Flex flexDir="column" textAlign="center" fontFamily="heading" fontSize="sm" mt={4} color="#0C3C61">
           <Text m={0}>
             Routing #309803757
           </Text>
@@ -105,6 +106,34 @@ const Footer = () => (
             <Icon as={FaYoutube} boxSize={5} color="gunmetal" />
           </Box>
         </Flex>
+        <Box
+          textAlign="center"
+          m={5}
+          fontFamily="heading"
+          color="#0C3C61"
+        >
+          <Text m={0}>
+            About Us
+          </Text>
+          <Text m={0}>
+            Contact Us
+          </Text>
+        </Box>
+        <Box
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          fontFamily="heading"
+          fontSize="sm"
+        >
+          <Img src={fdic} h={9} maxWidth={40} m={2} />
+          <Text m={0}>Member FDIC</Text>
+          <Text m={0}>NMLS #423168</Text>
+        </Box>
+        <Box textAlign="center" mt={8} mb={3} fontFamily="heading" fontSize="sm" color="#0C3C61">
+          2023 © GT Savings Bank. All rights reserved.
+        </Box>
       </Box>
     </Box>
   </>

@@ -37,7 +37,7 @@ const DropdownMenu = ({ label, children, isActive }) => {
       </MenuButton>
       <MenuList
         bg="gunmetal"
-        mt={-4}
+        mt={-2}
         width="xs"
         color="white"
         borderRadius="base"
