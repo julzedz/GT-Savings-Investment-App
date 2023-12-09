@@ -111,11 +111,12 @@ const Footer = () => (
           m={5}
           fontFamily="heading"
           color="#0C3C61"
+          fontSize="sm"
         >
-          <Text m={0}>
+          <Text m={0} p={2}>
             About Us
           </Text>
-          <Text m={0}>
+          <Text m={0} p={2}>
             Contact Us
           </Text>
         </Box>
