@@ -113,10 +113,10 @@ const Footer = () => (
           color="#0C3C61"
           fontSize="sm"
         >
-          <Text m={0} p={2}>
+          <Text m={0} p={{ base: 0, lg: 2 }}>
             About Us
           </Text>
-          <Text m={0} p={2}>
+          <Text m={0} p={{ base: 0, lg: 2 }}>
             Contact Us
           </Text>
         </Box>
