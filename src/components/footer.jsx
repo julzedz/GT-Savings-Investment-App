@@ -13,7 +13,7 @@ const Footer = () => (
   <>
     <Box
       p={8}
-      w="100%"
+      w={{ base: '100%' }}
       display="flex"
       flexDirection="column"
       alignItems="center"
