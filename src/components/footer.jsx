@@ -63,7 +63,7 @@ const Footer = () => (
       </Button>
     </Box>
     <Box bgColor="#dcdfe0">
-      <Box py={{ base: 3 }}>
+      <Box py={{ base: 3 }} display={{ base: '', md: 'none' }}>
         <Flex
           my={5}
           align="center"
@@ -132,9 +132,82 @@ const Footer = () => (
           <Text m={0}>Member FDIC</Text>
           <Text m={0}>NMLS #423168</Text>
         </Box>
-        <Box textAlign="center" mt={8} mb={3} fontFamily="heading" fontSize="sm" color="#0C3C61">
-          2023 © GT Savings Bank. All rights reserved.
+      </Box>
+      <Box p={4} display={{ base: 'none', md: 'flex' }} alignItems="center" justifyContent="space-evenly" flexWrap="wrap" gap={8}>
+        <Flex
+          my={5}
+          align="center"
+          justifyContent="center"
+          className="logo-group"
+          href="/"
+        >
+
+          <Image src={logo} alt="Logo" boxSize="30px" />
+          <div>
+            <Text
+              fontSize="lg"
+              fontWeight="bold"
+              color="gunmetal"
+              fontFamily="Atomic Age"
+              align="center"
+              my={0}
+            >
+              GT Savings Bank
+              <Text
+                color="applegreen"
+                display="inline"
+              >
+                .
+              </Text>
+            </Text>
+          </div>
+        </Flex>
+        <Flex flexDir="column" textAlign="center" fontFamily="heading" fontSize="sm" mt={4} color="#0C3C61">
+          <Text m={0}>
+            Routing #309803757
+          </Text>
+          <Text>
+            P.O. Box 2400 | Los Angeles CA 90097
+          </Text>
+          <Box margin="0 auto" display="flex" justifyContent="space-between" width="80%" alignItems="center">
+            <Icon as={FaFacebookF} boxSize={5} color="gunmetal" />
+            <Icon as={FaInstagram} boxSize={5} color="gunmetal" />
+            <Icon as={FaLinkedin} boxSize={5} color="gunmetal" />
+            <Icon as={FaYoutube} boxSize={5} color="gunmetal" />
+          </Box>
+        </Flex>
+        <Box
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          fontFamily="heading"
+          fontSize="sm"
+        >
+          <Img src={fdic} h={9} maxWidth={40} m={2} />
+          <Text m={0}>Member FDIC</Text>
+          <Text m={0}>NMLS #423168</Text>
         </Box>
+        <Box
+          textAlign="center"
+          m={5}
+          fontFamily="heading"
+          color="#0C3C61"
+          fontSize="sm"
+        >
+          <Text color="black" fontSize="lg" letterSpacing="wider" m={0} p={{ base: 0, md: 3 }}>
+            COMPANY
+          </Text>
+          <Text m={0} p={{ base: 0, lg: 2 }}>
+            About Us
+          </Text>
+          <Text m={0} p={{ base: 0, lg: 2 }}>
+            Contact Us
+          </Text>
+        </Box>
+      </Box>
+      <Box textAlign="center" pt={4} pb={3} fontFamily="heading" fontSize="sm" color="#0C3C61">
+        2023 © GT Savings Bank. All rights reserved.
       </Box>
     </Box>
   </>
