@@ -8,45 +8,55 @@ import {
   Flex,
   Text,
   useDisclosure,
+  Box,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
 
 const DropdownMenu = ({ label, children, isActive }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Menu isOpen={isOpen} onToggle={onToggle}>
-      <MenuButton
-        as={Link}
-        fontSize="lg"
-        fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
-        color={isActive ? 'applegreen' : 'white'}
-        bg={isActive ? 'gunmetal' : 'black'}
-        px={4}
-        py={6}
-        mb={0}
-        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
-        transition="background 0.4s"
-        onMouseEnter={() => onToggle(true)}
-        onMouseLeave={() => onToggle(false)}
-      >
-        <Flex align="center" justify="space-between">
-          <Text my={0}>{label}</Text>
-          <ChevronDownIcon />
-        </Flex>
-      </MenuButton>
-      <MenuList
-        bg="gunmetal"
-        mt={-2}
-        width="xs"
-        color="white"
-        borderRadius="base"
-        border="none"
-        _hover={{ bg: 'gunmetal' }}
-      >
-        {children}
-      </MenuList>
-    </Menu>
+    <Box
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      px={5}
+      m={0}
+    >
+      <Menu isOpen={isOpen || isHovered} onToggle={onToggle}>
+        <MenuButton
+          as={Link}
+          fontSize="lg"
+          fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
+          color={isActive ? 'applegreen' : 'white'}
+          bg={isActive ? 'gunmetal' : 'black'}
+          px={4}
+          py={0}
+          mb={0}
+          _hover={{ bg: 'gunmetal', color: 'applegreen' }}
+          transition="background 0.4s"
+          onMouseEnter={() => onToggle(true)}
+          onMouseLeave={() => onToggle(false)}
+        >
+          <Flex align="center" justify="space-between">
+            <Text my={0}>{label}</Text>
+            <ChevronDownIcon />
+          </Flex>
+        </MenuButton>
+        <MenuList
+          bg="gunmetal"
+          mt={-1.5}
+          width="xs"
+          color="white"
+          borderRadius="base"
+          border="none"
+          _hover={{ bg: 'gunmetal' }}
+        >
+          {children}
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 
