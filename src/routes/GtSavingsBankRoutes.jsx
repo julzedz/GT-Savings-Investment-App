@@ -15,8 +15,9 @@ import Sidebar from '../components/sidebar';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
-  const showNavbar = ['/home', '/banking', '/investment', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showNavbar = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
   const showSidebar = ['/account', '/profile', '/investment', '/transactions', '/settings'].includes(location.pathname);
+  const showFooter = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
 
   return (
     <>
@@ -36,7 +37,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
-        <Footer />
+        {showFooter && <Footer />}
       </div>
     </>
   );
