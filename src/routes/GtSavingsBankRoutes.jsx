@@ -21,9 +21,8 @@ const GtSavingsBankRoutes = () => {
   return (
     <>
       <div className="app-container">
-        <Navbar />
-        ||
-        <Sidebar />
+        {showNavbar && <Navbar />}
+        {showSidebar && <Sidebar />}
         <div className="tabs-container">
           <Routes>
             <Route path="/home" element={<Home />} />
