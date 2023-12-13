@@ -29,15 +29,20 @@ const DropdownMenu = ({ label, children, isActive }) => {
           as={Link}
           fontSize="lg"
           fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
-          color={isActive ? 'applegreen' : 'white'}
-          bg={isActive ? 'gunmetal' : 'black'}
           px={4}
           py={0}
           mb={0}
-          _hover={{ bg: 'gunmetal', color: 'applegreen' }}
           transition="background 0.4s"
           onMouseEnter={() => onToggle(true)}
           onMouseLeave={() => onToggle(false)}
+          sx={{
+            color: isActive ? 'applegreen' : 'white',
+            bg: isActive ? 'gunmetal' : 'black',
+            '&:hover': {
+              bg: 'gunmetal',
+              color: 'applegreen',
+            },
+          }}
         >
           <Flex align="center" justify="space-between">
             <Text my={0}>{label}</Text>
