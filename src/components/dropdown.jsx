@@ -29,7 +29,7 @@ const DropdownMenu = ({ label, children, isActive }) => {
           as={Link}
           fontSize="lg"
           fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
-          px={4}
+          px={0}
           py={0}
           mb={0}
           transition="background 0.4s"
@@ -37,11 +37,14 @@ const DropdownMenu = ({ label, children, isActive }) => {
           onMouseLeave={() => onToggle(false)}
           sx={{
             color: isActive ? 'applegreen' : 'white',
-            bg: isActive ? 'gunmetal' : 'black',
+            bg: isActive ? 'gunmetal' : 'red',
             '&:hover': {
               bg: 'gunmetal',
               color: 'applegreen',
             },
+            width: '100%',
+            height: '100%',
+            justifyContent: 'flex-start',
           }}
         >
           <Flex align="center" justify="space-between">
@@ -79,7 +82,7 @@ const DropdownItem = ({ href, children }) => (
     href={href}
     bg="gunmetal"
     fontSize="md"
-    _hover={{ border: 'none', bg: 'persianred', color: 'applegreen' }}
+    _hover={{ border: 'none', bg: 'black', color: 'applegreen' }}
   >
     {children}
   </MenuItem>
