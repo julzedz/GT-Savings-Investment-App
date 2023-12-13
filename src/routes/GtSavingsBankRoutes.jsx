@@ -11,23 +11,27 @@ import Login from '../components/login';
 import Footer from '../components/footer';
 
 const GtSavingsBankRoutes = () => (
-  <div className="app-container">
-    <Navbar />
-    <div className="tabs-container">
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/banking" element={<Banking />} />
-        <Route path="/investment" element={<Investment />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/insurance" element={<Insurance />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+  <>
+    <div className="app-container">
+      <Navbar />
+      ||
+      <Sidebar />
+      <div className="tabs-container">
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/banking" element={<Banking />} />
+          <Route path="/investment" element={<Investment />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/insurance" element={<Insurance />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
+  </>
 );
 
 export default GtSavingsBankRoutes;
