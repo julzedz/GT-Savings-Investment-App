@@ -15,7 +15,7 @@ import {
   FiDollarSign,
 } from 'react-icons/fi';
 import { IoPawOutline } from 'react-icons/io5';
-import NavItem from '../components/navitem';
+import NavItem from './navitem';
 
 const Sidebar = () => {
   const [navSize, changeNavSize] = useState('large');
@@ -50,6 +50,7 @@ const Sidebar = () => {
             }
           }}
         />
+        <NavItem navSize={navSize} />
       </Flex>
       <Flex
         p="5%"
