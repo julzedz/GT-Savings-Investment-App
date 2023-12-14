@@ -14,7 +14,7 @@ import {
   FiUser,
   FiDollarSign,
 } from 'react-icons/fi';
-import { IoPawOutline } from 'react-icons/io5';
+// import { IoPawOutline } from 'react-icons/io5';
 import NavItem from './navitem';
 
 const Sidebar = () => {
@@ -51,8 +51,9 @@ const Sidebar = () => {
           }}
         />
         <NavItem navSize={navSize} icon={FiHome} title="Dashboard" />
-        <NavItem navSize={navSize} icon={FiCalendar} title="Transactions" />
+        <NavItem navSize={navSize} icon={FiCalendar} title="Transactions" active />
         <NavItem navSize={navSize} icon={FiDollarSign} title="Investment" />
+        <NavItem navSize={navSize} icon={FiUser} title="Profile" />
       </Flex>
       <Flex
         p="5%"

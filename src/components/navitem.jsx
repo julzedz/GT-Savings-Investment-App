@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Flex,
   Text,
@@ -9,7 +9,7 @@ import {
   MenuList,
 } from 'chakra-ui/react';
 
-const NavItem = ({ navSize, icon, title }) => {
+const NavItem = ({ navSize, icon, title, active }) => {
   return (
     <Flex
       mt={30}
@@ -18,7 +18,13 @@ const NavItem = ({ navSize, icon, title }) => {
       alignItems={navSize === 'small' ? center : 'flex-start'}
     >
       <Menu placement="right">
-        <Link>
+        <Link
+          bg={active && 'gunmetal'}
+          p={3}
+          borderRadius={8}
+          _hover={{ textDecoration: none, bg: 'persianred' }}
+          width={navSize === 'large' && '100%'}
+        >
           <MenuButton>
             <Flex>
               <Icon as={icon} />
