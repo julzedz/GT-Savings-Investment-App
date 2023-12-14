@@ -5,8 +5,8 @@ import {
   MenuList,
   MenuItem,
   Link,
-  Flex,
-  Text,
+  // Flex,
+  // Text,
   useDisclosure,
   Box,
 } from '@chakra-ui/react';
@@ -21,7 +21,6 @@ const DropdownMenu = ({ label, children, isActive }) => {
     <Box
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      px={5}
       m={0}
     >
       <Menu isOpen={isOpen || isHovered} onToggle={onToggle}>
@@ -29,34 +28,34 @@ const DropdownMenu = ({ label, children, isActive }) => {
           as={Link}
           fontSize="lg"
           fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
-          px={0}
-          py={0}
-          mb={0}
+          px={5}
+          py={6}
+          m={0}
           transition="background 0.4s"
           onMouseEnter={() => onToggle(true)}
           onMouseLeave={() => onToggle(false)}
           sx={{
+            display: 'flex',
             color: isActive ? 'applegreen' : 'white',
             bg: isActive ? 'gunmetal' : 'black',
-            '&:hover': {
+            '&:hover, &:focus': {
               bg: 'gunmetal',
+              textDecoration: 'none',
               color: 'applegreen',
             },
             width: '100%',
-            justifyContent: 'flex-start',
+            alignItems: 'center',
           }}
         >
-          <Flex align="center" justify="space-between">
-            <Text my={0}>{label}</Text>
-            <ChevronDownIcon />
-          </Flex>
+          {label}
+          <ChevronDownIcon m={0} p={0} />
         </MenuButton>
         <MenuList
           bg="black"
-          mt={0}
+          mt={-2}
           width="xs"
           color="white"
-          borderRadius="base"
+          borderRadius="none"
           border="none"
         >
           {children}

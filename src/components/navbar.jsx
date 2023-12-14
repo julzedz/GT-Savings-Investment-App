@@ -66,10 +66,10 @@ const Navbar = () => {
         </Box>
 
         {/* Nav Links */}
-        <Flex align="center" className="nav-menu" mx={10} display={{ base: 'none', lg: 'flex' }}>
+        <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', lg: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
-            <DropdownItem href="/banking" border="none">Online Banking</DropdownItem>
+            <DropdownItem href="/banking">Online Banking</DropdownItem>
             <DropdownItem href="/loans">Loans</DropdownItem>
             <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
