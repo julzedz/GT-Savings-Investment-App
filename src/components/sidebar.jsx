@@ -17,37 +17,57 @@ import {
 import { IoPawOutline } from 'react-icons/io5';
 import NavItem from '../components/navitem';
 
-const Sidebar = () => (
-  <Flex
-    pos="sticky"
-    left="5"
-    h="95vh"
-    mt="2.5vh"
-    boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-    w="200px"
-    flexDir="column"
-    justifyContent="space-between"
-  >
-    <Flex>
-
-    </Flex>
+const Sidebar = () => {
+  const [navSize, changeNavSize] = useState('large');
+  return (
     <Flex
-      p="5%"
+      pos="sticky"
+      left="5"
+      h="95vh"
+      mt="2.5vh"
+      boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
+      w="200px"
       flexDir="column"
-      w="100%"
-      alignItems="flex-start"
-      mb={4}
+      justifyContent="space-between"
     >
-      <Divider />
-      <Flex>
-        <Avatar size="sm" />
-        <Flex flexDir="column" ml={4}>
-          <Heading>Alex Dumeje</Heading>
-          <Text>Admin</Text>
+      <Flex
+        p="5%"
+        flexDir="column"
+        alignItems="flex-start"
+        as="nav"
+      >
+        <IconButton
+          bg="none"
+          mt={5}
+          _hover={{ bg: 'none' }}
+          icon={<FiMenu />}
+          onClick={() => {
+            if (navSize === 'small') {
+              changeNavSize('large');
+            } else {
+              changeNavSize('small');
+            }
+          }}
+        />
+      </Flex>
+      <Flex
+        p="5%"
+        flexDir="column"
+        w="100%"
+        alignItems="flex-start"
+        mb={4}
+      >
+        <Divider />
+        <Flex mt={4} align="center">
+          <Avatar size="sm" />
+          <Flex flexDir="column" ml={4}>
+            <Heading as="h3" size="sm">Alex Dumeje</Heading>
+            <Text color="grey">Admin</Text>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 export default Sidebar;
