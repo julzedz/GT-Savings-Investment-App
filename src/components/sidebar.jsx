@@ -26,14 +26,15 @@ const Sidebar = () => {
       h="95vh"
       mt="2.5vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-      w="200px"
+      w={navSize === 'small' ? '75px' : '200px'}
+      borderRadius={navSize === 'small' ? '15px' : '30px'}
       flexDir="column"
       justifyContent="space-between"
     >
       <Flex
         p="5%"
         flexDir="column"
-        alignItems="flex-start"
+        alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         as="nav"
       >
         <IconButton
@@ -54,13 +55,13 @@ const Sidebar = () => {
         p="5%"
         flexDir="column"
         w="100%"
-        alignItems="flex-start"
+        alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         mb={4}
       >
-        <Divider />
+        <Divider display={navSize === 'small' ? 'none' : 'flex'} />
         <Flex mt={4} align="center">
           <Avatar size="sm" />
-          <Flex flexDir="column" ml={4}>
+          <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
             <Heading as="h3" size="sm">Alex Dumeje</Heading>
             <Text color="grey">Admin</Text>
           </Flex>
