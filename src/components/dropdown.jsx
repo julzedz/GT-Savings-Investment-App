@@ -37,13 +37,12 @@ const DropdownMenu = ({ label, children, isActive }) => {
           onMouseLeave={() => onToggle(false)}
           sx={{
             color: isActive ? 'applegreen' : 'white',
-            bg: isActive ? 'gunmetal' : 'red',
+            bg: isActive ? 'gunmetal' : 'black',
             '&:hover': {
               bg: 'gunmetal',
               color: 'applegreen',
             },
             width: '100%',
-            height: '100%',
             justifyContent: 'flex-start',
           }}
         >
@@ -53,13 +52,12 @@ const DropdownMenu = ({ label, children, isActive }) => {
           </Flex>
         </MenuButton>
         <MenuList
-          bg="gunmetal"
-          mt={-1.5}
+          bg="black"
+          mt={0}
           width="xs"
           color="white"
           borderRadius="base"
           border="none"
-          _hover={{ bg: 'gunmetal' }}
         >
           {children}
         </MenuList>
@@ -80,9 +78,12 @@ const DropdownItem = ({ href, children }) => (
     py={3}
     px={5}
     href={href}
-    bg="gunmetal"
+    bg="black"
     fontSize="md"
-    _hover={{ border: 'none', bg: 'black', color: 'applegreen' }}
+    _hover={{
+      border: 'none', bg: 'gunmetal', color: 'applegreen', textDecoration: 'none', outline: 'none',
+    }}
+    _focus={{ boxShadow: 'none' }}
   >
     {children}
   </MenuItem>
