@@ -50,7 +50,9 @@ const Sidebar = () => {
             }
           }}
         />
-        <NavItem navSize={navSize} />
+        <NavItem navSize={navSize} icon={FiHome} title="Dashboard" />
+        <NavItem navSize={navSize} icon={FiCalendar} title="Transactions" />
+        <NavItem navSize={navSize} icon={FiDollarSign} title="Investment" />
       </Flex>
       <Flex
         p="5%"

@@ -9,15 +9,24 @@ import {
   MenuList,
 } from 'chakra-ui/react';
 
-const NavItem = ({ navSize }) => {
+const NavItem = ({ navSize, icon, title }) => {
   return (
     <Flex
       mt={30}
       flexDir="column"
       width="100%"
-      alignItems="center"
+      alignItems={navSize === 'small' ? center : 'flex-start'}
     >
-
+      <Menu placement="right">
+        <Link>
+          <MenuButton>
+            <Flex>
+              <Icon as={icon} />
+              <Text>{title}</Text>
+            </Flex>
+          </MenuButton>
+        </Link>
+      </Menu>
     </Flex>
   );
 }
