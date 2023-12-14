@@ -57,6 +57,7 @@ const DropdownMenu = ({ label, children, isActive }) => {
           color="white"
           borderRadius="none"
           border="none"
+          p={0}
         >
           {children}
         </MenuList>
