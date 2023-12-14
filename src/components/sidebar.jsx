@@ -28,13 +28,24 @@ const Sidebar = () => (
     flexDir="column"
     justifyContent="space-between"
   >
-    <Flex></Flex>
+    <Flex>
+
+    </Flex>
     <Flex
       p="5%"
       flexDir="column"
       w="100%"
+      alignItems="flex-start"
+      mb={4}
     >
-
+      <Divider />
+      <Flex>
+        <Avatar size="sm" />
+        <Flex flexDir="column" ml={4}>
+          <Heading>Alex Dumeje</Heading>
+          <Text>Admin</Text>
+        </Flex>
+      </Flex>
     </Flex>
   </Flex>
 );
