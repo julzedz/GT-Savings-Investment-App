@@ -6,7 +6,7 @@ import {
   Link,
   Menu,
   MenuButton,
-  MenuList,
+  // MenuList,
 } from 'chakra-ui/react';
 
 const NavItem = ({ navSize, icon, title, active }) => {
@@ -25,10 +25,10 @@ const NavItem = ({ navSize, icon, title, active }) => {
           _hover={{ textDecoration: none, bg: 'persianred' }}
           width={navSize === 'large' && '100%'}
         >
-          <MenuButton>
+          <MenuButton w="100%">
             <Flex>
-              <Icon as={icon} />
-              <Text>{title}</Text>
+              <Icon as={icon} fontSize="xl" color={active ? 'gunmetal' : 'gray.500'} />
+              <Text ml={5} display={navSize === 'small' ? 'none' : 'flex'}>{title}</Text>
             </Flex>
           </MenuButton>
         </Link>
