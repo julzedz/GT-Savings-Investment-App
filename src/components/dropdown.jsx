@@ -5,46 +5,64 @@ import {
   MenuList,
   MenuItem,
   Link,
-  Flex,
-  Text,
+  // Flex,
+  // Text,
   useDisclosure,
+  Box,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import { useState } from 'react';
 
 const DropdownMenu = ({ label, children, isActive }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Menu isOpen={isOpen} onToggle={onToggle}>
-      <MenuButton
-        as={Link}
-        fontSize="lg"
-        fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
-        color={isActive ? 'applegreen' : 'white'}
-        bg={isActive ? 'gunmetal' : 'black'}
-        px={4}
-        py={6}
-        _hover={{ bg: 'gunmetal', color: 'applegreen' }}
-        transition="background 0.4s"
-        onMouseEnter={() => onToggle(true)}
-        onMouseLeave={() => onToggle(false)}
-      >
-        <Flex align="center" justify="space-between">
-          <Text my={0}>{label}</Text>
-          <ChevronDownIcon />
-        </Flex>
-      </MenuButton>
-      <MenuList
-        bg="gunmetal"
-        width="xs"
-        color="white"
-        borderRadius="base"
-        border="none"
-        _hover={{ bg: 'gunmetal' }}
-      >
-        {children}
-      </MenuList>
-    </Menu>
+    <Box
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      m={0}
+    >
+      <Menu isOpen={isOpen || isHovered} onToggle={onToggle}>
+        <MenuButton
+          as={Link}
+          fontSize="lg"
+          fontWeight={{ base: 'semibold', lg: isActive ? 'semibold' : 'normal' }}
+          px={5}
+          py={6}
+          m={0}
+          transition="background 0.4s"
+          onMouseEnter={() => onToggle(true)}
+          onMouseLeave={() => onToggle(false)}
+          sx={{
+            display: 'flex',
+            color: isActive ? 'applegreen' : 'white',
+            bg: isActive ? 'gunmetal' : 'black',
+            '&:hover, &:focus': {
+              bg: 'gunmetal',
+              textDecoration: 'none',
+              color: 'applegreen',
+            },
+            width: '100%',
+            alignItems: 'center',
+          }}
+        >
+          {label}
+          <ChevronDownIcon m={0} p={0} />
+        </MenuButton>
+        <MenuList
+          bg="black"
+          mt={-2}
+          width="xs"
+          color="white"
+          borderRadius="none"
+          border="none"
+          p={0}
+        >
+          {children}
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 
@@ -60,9 +78,12 @@ const DropdownItem = ({ href, children }) => (
     py={3}
     px={5}
     href={href}
-    bg="gunmetal"
+    bg="black"
     fontSize="md"
-    _hover={{ border: 'none', bg: 'persianred', color: 'applegreen' }}
+    _hover={{
+      border: 'none', bg: 'gunmetal', color: 'applegreen', textDecoration: 'none', outline: 'none',
+    }}
+    _focus={{ boxShadow: 'none' }}
   >
     {children}
   </MenuItem>
