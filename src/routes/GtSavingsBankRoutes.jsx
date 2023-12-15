@@ -11,19 +11,21 @@ import Account from '../components/account';
 import Insurance from '../components/insurance';
 import Login from '../components/login';
 import Footer from '../components/footer';
-import Sidebar from '../components/sidebar';
+// import Sidebar from '../components/sidebar';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
   const showNavbar = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
-  const showSidebar = ['/account', '/profile', '/investment', '/transactions', '/settings'].includes(location.pathname);
+  // const showSidebar = [
+  //   '/account', '/profile', '/investment', '/transactions', '/settings'
+  // ].includes(location.pathname);
   const showFooter = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
 
   return (
     <>
       <div className="app-container">
         {showNavbar && <Navbar />}
-        {showSidebar && <Sidebar />}
+        {/* {showSidebar && <Sidebar />} */}
         <div className="tabs-container">
           <Routes>
             <Route path="/home" element={<Home />} />

@@ -14,25 +14,26 @@ import {
   FiUser,
   FiDollarSign,
 } from 'react-icons/fi';
-// import { IoPawOutline } from 'react-icons/io5';
 import NavItem from './navitem';
 
 const Sidebar = () => {
   const [navSize, changeNavSize] = useState('large');
   return (
     <Flex
-      pos="sticky"
-      left="5"
-      h="95vh"
-      mt="2.5vh"
+      pos="fixed"
+      left="0"
+      h="100vh"
+      // mt="2.5vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-      w={navSize === 'small' ? '75px' : '200px'}
-      borderRadius={navSize === 'small' ? '15px' : '30px'}
+      w={navSize === 'small' ? '75px' : '300px'}
+      borderRadius={navSize === 'small' ? '15px' : '3px'}
       flexDir="column"
       justifyContent="space-between"
+      bgColor="applegreen"
+      color="white"
     >
       <Flex
-        p="5%"
+        p="15px"
         flexDir="column"
         alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         as="nav"

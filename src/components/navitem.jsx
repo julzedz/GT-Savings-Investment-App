@@ -6,7 +6,6 @@ import {
   Link,
   Menu,
   MenuButton,
-  // MenuList,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
@@ -18,6 +17,7 @@ const NavItem = ({
     flexDir="column"
     width="100%"
     alignItems={navSize === 'small' ? 'center' : 'flex-start'}
+    color="white"
   >
     <Menu placement="right">
       <Link
@@ -30,7 +30,7 @@ const NavItem = ({
       >
         <MenuButton w="100%">
           <Flex>
-            <Icon as={icon} fontSize="xl" color={active ? 'gunmetal' : 'gray.500'} />
+            <Icon as={icon} fontSize="xl" color={active ? 'white' : 'gray.300'} />
             <Text ml={5} display={navSize === 'small' ? 'none' : 'flex'}>{title}</Text>
           </Flex>
         </MenuButton>
