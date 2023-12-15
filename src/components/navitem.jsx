@@ -25,7 +25,7 @@ const NavItem = ({
         bg={active && 'gunmetal'}
         p={3}
         borderRadius={8}
-        _hover={{ textDecoration: 'none', bg: 'persianred' }}
+        _hover={{ textDecoration: 'none', bg: 'gunmetal' }}
         width={navSize === 'large' && '100%'}
       >
         <MenuButton w="100%">

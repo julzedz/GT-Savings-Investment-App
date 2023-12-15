@@ -8,7 +8,7 @@ const Account = () => (
       color="white"
     >
       <Sidebar />
-      <Flex flexDir="column">
+      <Flex flexDir="column" pos="relative" left="80">
         <h2>Account Page</h2>
         <h3>My Wallet</h3>
         <h5>Hi User</h5>

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {
-  Box, Text, Button, Flex, Image, Icon, Img,
+  Box, Text, Button, Flex, Image, Icon, Img, Link,
 } from '@chakra-ui/react';
 import {
   FaInstagram, FaFacebookF, FaLinkedin, FaYoutube,
@@ -65,11 +65,15 @@ const Footer = () => (
     <Box bgColor="#dcdfe0">
       <Box py={{ base: 3 }} display={{ base: '', md: 'none' }}>
         <Flex
+          as={Link}
+          // _hover={{ textDecoration: 'none' }}
+          // cursor="pointer"
           my={5}
           align="center"
           justifyContent="center"
           className="logo-group"
-          href="/"
+          href="/home"
+          bgColor="red"
         >
 
           <Image src={logo} alt="Logo" boxSize="30px" />
