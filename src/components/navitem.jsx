@@ -7,7 +7,7 @@ import {
   Menu,
   MenuButton,
   // MenuList,
-} from 'chakra-ui/react';
+} from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 const NavItem = ({
