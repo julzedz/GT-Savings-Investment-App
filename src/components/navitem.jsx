@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 
 const NavItem = ({
-  navSize, icon, title, active, href, isActive,
+  navSize, icon, title, href, isActive,
 }) => (
   <Flex
     mt={30}
@@ -30,7 +30,7 @@ const NavItem = ({
       >
         <MenuButton w="100%">
           <Flex>
-            <Icon as={icon} fontSize="xl" color={active ? 'white' : 'gray.300'} />
+            <Icon as={icon} fontSize="xl" color={isActive ? 'white' : 'gray.300'} />
             <Text ml={5} display={navSize === 'small' ? 'none' : 'flex'}>{title}</Text>
           </Flex>
         </MenuButton>
@@ -43,7 +43,6 @@ NavItem.propTypes = {
   navSize: PropTypes.string.isRequired,
   icon: PropTypes.elementType.isRequired,
   title: PropTypes.string.isRequired,
-  active: PropTypes.bool.isRequired,
   href: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
 };
