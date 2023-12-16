@@ -6,6 +6,7 @@ import {
   Divider,
   Avatar,
   Heading,
+  Image,
 } from '@chakra-ui/react';
 import {
   FiMenu,
@@ -16,6 +17,7 @@ import {
 } from 'react-icons/fi';
 import { useLocation } from 'react-router';
 import NavItem from './navitem';
+import logo from '../assets/bank-leaf.png';
 
 const Sidebar = () => {
   const [navSize, changeNavSize] = useState('large');
@@ -40,20 +42,54 @@ const Sidebar = () => {
         alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         as="nav"
       >
-        <IconButton
-          bg="none"
-          mt={5}
-          _hover={{ bg: 'none' }}
-          icon={<FiMenu />}
-          onClick={() => {
-            if (navSize === 'small') {
-              changeNavSize('large');
-            } else {
-              changeNavSize('small');
-            }
-          }}
-        />
-        <NavItem href="/account" isActive={isActive('/account')} navSize={navSize} icon={FiHome} title="Dashboard" />
+        <Flex>
+          <IconButton
+            bg="none"
+            mt={5}
+            _hover={{ bg: 'none' }}
+            display={{ base: 'flex', sm: 'none' }}
+            icon={<FiMenu />}
+            onClick={() => {
+              if (navSize === 'small') {
+                changeNavSize('large');
+              } else {
+                changeNavSize('small');
+              }
+            }}
+          />
+          <Flex
+            display={navSize === 'small' ? 'none' : 'flex'}
+            my={5}
+            align="center"
+            justifyContent="center"
+            className="logo-group"
+            href="/dashboard"
+            cursor="pointer"
+            as="Link"
+          >
+
+            <Image src={logo} alt="Logo" boxSize="30px" />
+            <div>
+              <Text
+                fontSize="lg"
+                fontWeight="bold"
+                color="gunmetal"
+                fontFamily="Atomic Age"
+                align="center"
+                my={0}
+              >
+                GT Savings Bank
+                <Text
+                  color="applegreen"
+                  display="inline"
+                >
+                  .
+                </Text>
+              </Text>
+            </div>
+          </Flex>
+        </Flex>
+        <NavItem href="/dashboard" isActive={isActive('/dashboard')} navSize={navSize} icon={FiHome} title="Dashboard" />
         <NavItem href="/transaction" isActive={isActive('/transaction')} navSize={navSize} icon={FiCalendar} title="Transactions" active />
         <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={FiDollarSign} title="Investment" />
         <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />

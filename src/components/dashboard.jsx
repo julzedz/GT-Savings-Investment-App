@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import Sidebar from './sidebar';
 
-const Account = () => (
+const Dashboard = () => (
   <>
     <Flex
       bgColor="gunmetal"
@@ -35,4 +35,4 @@ const Account = () => (
   </>
 );
 
-export default Account;
+export default Dashboard;

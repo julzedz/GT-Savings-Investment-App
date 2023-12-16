@@ -7,12 +7,11 @@ import Banking from '../components/banking';
 import Investment from '../components/investment';
 import Support from '../components/support';
 import Profile from '../components/profile';
-import Account from '../components/account';
+import Dashboard from '../components/dashboard';
 import Insurance from '../components/insurance';
 import Login from '../components/login';
 import Footer from '../components/footer';
 import Transaction from '../components/transaction';
-// import Sidebar from '../components/sidebar';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -35,7 +34,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/investment" element={<Investment />} />
             <Route path="/support" element={<Support />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/login" element={<Login />} />
             <Route path="/transaction" element={<Transaction />} />

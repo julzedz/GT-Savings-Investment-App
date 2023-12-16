@@ -27,6 +27,7 @@ const NavItem = ({
         borderRadius={8}
         _hover={{ textDecoration: 'none', bg: 'gunmetal' }}
         width={navSize === 'large' && '100%'}
+        fontFamily="heading"
       >
         <MenuButton w="100%">
           <Flex>
