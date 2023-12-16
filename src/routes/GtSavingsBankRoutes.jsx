@@ -11,6 +11,7 @@ import Account from '../components/account';
 import Insurance from '../components/insurance';
 import Login from '../components/login';
 import Footer from '../components/footer';
+import Transaction from '../components/transaction';
 // import Sidebar from '../components/sidebar';
 
 const GtSavingsBankRoutes = () => {
@@ -37,6 +38,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/account" element={<Account />} />
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/transaction" element={<Transaction />} />
           </Routes>
         </div>
         {showFooter && <Footer />}

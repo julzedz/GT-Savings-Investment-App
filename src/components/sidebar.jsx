@@ -55,7 +55,7 @@ const Sidebar = () => {
           }}
         />
         <NavItem href="/account" isActive={isActive('/account')} navSize={navSize} icon={FiHome} title="Dashboard" />
-        <NavItem href="/transactions" navSize={navSize} icon={FiCalendar} title="Transactions" active />
+        <NavItem href="/transaction" navSize={navSize} icon={FiCalendar} title="Transactions" active />
         <NavItem href="/investment" navSize={navSize} icon={FiDollarSign} title="Investment" />
         <NavItem navSize={navSize} icon={FiUser} title="Profile" />
       </Flex>
