@@ -14,10 +14,13 @@ import {
   FiUser,
   FiDollarSign,
 } from 'react-icons/fi';
+import { useLocation } from 'react-router';
 import NavItem from './navitem';
 
 const Sidebar = () => {
   const [navSize, changeNavSize] = useState('large');
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
   return (
     <Flex
       pos="fixed"
@@ -51,7 +54,7 @@ const Sidebar = () => {
             }
           }}
         />
-        <NavItem href="/account" navSize={navSize} icon={FiHome} title="Dashboard" />
+        <NavItem href="/account" isActive={isActive('/account')} navSize={navSize} icon={FiHome} title="Dashboard" />
         <NavItem href="/transactions" navSize={navSize} icon={FiCalendar} title="Transactions" active />
         <NavItem href="/investment" navSize={navSize} icon={FiDollarSign} title="Investment" />
         <NavItem navSize={navSize} icon={FiUser} title="Profile" />

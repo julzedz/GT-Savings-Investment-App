@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 
 const NavItem = ({
-  navSize, icon, title, active, href,
+  navSize, icon, title, active, href, isActive,
 }) => (
   <Flex
     mt={30}
@@ -22,7 +22,7 @@ const NavItem = ({
     <Menu placement="right">
       <Link
         href={href}
-        bg={active && 'gunmetal'}
+        bg={isActive && 'gunmetal'}
         p={3}
         borderRadius={8}
         _hover={{ textDecoration: 'none', bg: 'gunmetal' }}
@@ -45,6 +45,7 @@ NavItem.propTypes = {
   title: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
   href: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
 };
 
 export default NavItem;
