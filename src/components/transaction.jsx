@@ -5,7 +5,10 @@ import Sidebar from './sidebar';
 
 const Transaction = () => (
   <>
-    <Flex>
+    <Flex
+      bgColor="gunmetal"
+      color="white"
+    >
       <Sidebar />
       <Flex>
         <Box>
@@ -14,6 +17,7 @@ const Transaction = () => (
             <Thead>
               <Tr>
                 <Th>Transaction ID</Th>
+                <Th>Name</Th>
                 <Th>Transaction Type</Th>
                 <Th>Amount</Th>
                 <Th>Date</Th>
@@ -21,16 +25,39 @@ const Transaction = () => (
             </Thead>
             <Tbody>
               <Tr>
-                <Td>1</Td>
+                <Td>874201569</Td>
+                <Td>Clifford Mgbeojikwe</Td>
                 <Td>Deposit</Td>
-                <Td>$100.00</Td>
+                <Td>$1250.00</Td>
                 <Td>1/1/2021</Td>
               </Tr>
               <Tr>
-                <Td>2</Td>
+                <Td>326987415</Td>
+                <Td>Hyginus Mbonu</Td>
                 <Td>Withdrawal</Td>
-                <Td>$50.00</Td>
+                <Td>$55,000.00</Td>
                 <Td>1/2/2021</Td>
+              </Tr>
+              <Tr>
+                <Td>590134682</Td>
+                <Td>Ozumba Mbadiwe</Td>
+                <Td>Deposit</Td>
+                <Td>$15,340.00</Td>
+                <Td>1/5/2021</Td>
+              </Tr>
+              <Tr>
+                <Td>712465839</Td>
+                <Td>Ojo Maduekwe</Td>
+                <Td>Withdrawal</Td>
+                <Td>$5,000.00</Td>
+                <Td>11/2/2021</Td>
+              </Tr>
+              <Tr>
+                <Td>945803216</Td>
+                <Td>Sabinus Okafo</Td>
+                <Td>Withdrawal</Td>
+                <Td>$3,720.00</Td>
+                <Td>13/5/2021</Td>
               </Tr>
             </Tbody>
           </Table>
