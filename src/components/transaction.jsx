@@ -10,7 +10,10 @@ const Transaction = () => (
       color="white"
     >
       <Sidebar />
-      <Flex>
+      <Flex
+        pos="relative"
+        left="80"
+      >
         <Box>
           <Text>Transactions</Text>
           <Table>

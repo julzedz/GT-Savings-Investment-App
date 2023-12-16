@@ -26,10 +26,9 @@ const Sidebar = () => {
       pos="fixed"
       left="0"
       h="100vh"
-      // mt="2.5vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
       w={navSize === 'small' ? '75px' : '300px'}
-      borderRadius={navSize === 'small' ? '15px' : '3px'}
+      borderRadius={navSize === 'small' ? '2px' : '3px'}
       flexDir="column"
       justifyContent="space-between"
       bgColor="applegreen"
@@ -55,9 +54,9 @@ const Sidebar = () => {
           }}
         />
         <NavItem href="/account" isActive={isActive('/account')} navSize={navSize} icon={FiHome} title="Dashboard" />
-        <NavItem href="/transaction" navSize={navSize} icon={FiCalendar} title="Transactions" active />
-        <NavItem href="/investment" navSize={navSize} icon={FiDollarSign} title="Investment" />
-        <NavItem navSize={navSize} icon={FiUser} title="Profile" />
+        <NavItem href="/transaction" isActive={isActive('/transaction')} navSize={navSize} icon={FiCalendar} title="Transactions" active />
+        <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={FiDollarSign} title="Investment" />
+        <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
       </Flex>
       <Flex
         p="5%"
