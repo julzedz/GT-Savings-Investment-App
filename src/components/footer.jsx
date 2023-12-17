@@ -73,7 +73,6 @@ const Footer = () => (
           justifyContent="center"
           className="logo-group"
           href="/home"
-          bgColor="red"
         >
 
           <Image src={logo} alt="Logo" boxSize="30px" />

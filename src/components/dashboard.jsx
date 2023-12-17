@@ -9,7 +9,15 @@ const Dashboard = () => (
       w="100%"
     >
       <Sidebar />
-      <Flex flexDir="column" minHeight="3xl" p={5} pos="relative" left={{ base: 20, md: 80 }} overflowY="scroll">
+      <Flex
+        ml={4}
+        flexDir="column"
+        minHeight="3xl"
+        p={5}
+        pos="relative"
+        left={{ base: 20, md: 80 }}
+        overflowY="scroll"
+      >
         <h2>Dashboard</h2>
         <h3>My Wallet</h3>
         <h5>Hi User</h5>

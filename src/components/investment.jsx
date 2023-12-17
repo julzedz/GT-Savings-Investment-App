@@ -11,9 +11,8 @@ const Investment = () => (
       <Sidebar />
       <Flex
         flexDir="column"
+        ml={4}
         p={5}
-        width="78%"
-        bgColor="persianred"
         pos="relative"
         left={{ base: 20, md: 80 }}
         minHeight="4xl"

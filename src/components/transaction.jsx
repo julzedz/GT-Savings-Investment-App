@@ -12,9 +12,9 @@ const Transaction = () => (
       <Sidebar />
       <Flex
         pos="relative"
-        p={5}
-        flex="1"
         left={{ base: 20, md: 80 }}
+        ml={4}
+        p={5}
         minHeight="3xl"
       >
         <Box>
