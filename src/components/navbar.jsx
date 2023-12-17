@@ -69,7 +69,7 @@ const Navbar = () => {
         <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', lg: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
-            <DropdownItem href="/account">Online Banking</DropdownItem>
+            <DropdownItem href="/dashboard">Online Banking</DropdownItem>
             <DropdownItem href="/loans">Loans</DropdownItem>
             <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>

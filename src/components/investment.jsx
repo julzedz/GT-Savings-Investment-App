@@ -6,13 +6,17 @@ const Investment = () => (
     <Flex
       bgColor="gunmetal"
       color="white"
+      width="100%"
     >
       <Sidebar />
       <Flex
         flexDir="column"
+        p={5}
+        width="78%"
+        bgColor="persianred"
         pos="relative"
-        left="80"
-        minHeight="3xl"
+        left={{ base: 20, md: 80 }}
+        minHeight="4xl"
       >
         <h2>Investment Services</h2>
         <h3>Investments</h3>

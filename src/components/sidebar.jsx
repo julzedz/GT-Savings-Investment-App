@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Flex,
   Text,
@@ -7,6 +7,7 @@ import {
   Avatar,
   Heading,
   Image,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import {
   FiMenu,
@@ -20,17 +21,28 @@ import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 
 const Sidebar = () => {
-  const [navSize, changeNavSize] = useState('large');
+  // const navSize = useBreakpointValue({ base: 'small', md: 'large' });
+  const breakpointNavSize = useBreakpointValue({ base: 'small', md: 'large' });
+  const [navSize, setNavSize] = useState(breakpointNavSize);
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
+
+  useEffect(() => {
+    setNavSize(breakpointNavSize);
+  }, [breakpointNavSize]);
+
+  const toggleNavSize = () => {
+    setNavSize(navSize === 'small' ? 'large' : 'small');
+  };
   return (
     <Flex
       pos="fixed"
-      left="0"
+      zIndex="sticky"
+      breakpointNavSize
       h="100vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-      w={navSize === 'small' ? '75px' : '300px'}
-      borderRadius={navSize === 'small' ? '2px' : '3px'}
+      w={navSize === 'small' ? 20 : 80}
+      borderRadius={navSize === 'small' ? '2px' : '0 10px'}
       flexDir="column"
       justifyContent="space-between"
       bgColor="applegreen"
@@ -47,15 +59,9 @@ const Sidebar = () => {
             bg="none"
             mt={5}
             _hover={{ bg: 'none' }}
-            display={{ base: 'flex', sm: 'none' }}
+            display={{ base: 'flex', md: 'none' }}
             icon={<FiMenu />}
-            onClick={() => {
-              if (navSize === 'small') {
-                changeNavSize('large');
-              } else {
-                changeNavSize('small');
-              }
-            }}
+            onClick={toggleNavSize}
           />
           <Flex
             display={navSize === 'small' ? 'none' : 'flex'}

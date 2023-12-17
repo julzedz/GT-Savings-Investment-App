@@ -12,7 +12,10 @@ const Transaction = () => (
       <Sidebar />
       <Flex
         pos="relative"
-        left="80"
+        p={5}
+        flex="1"
+        left={{ base: 20, md: 80 }}
+        minHeight="3xl"
       >
         <Box>
           <Text>Transactions</Text>
@@ -28,86 +31,6 @@ const Transaction = () => (
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>874201569</Td>
-                <Td>Clifford Mgbeojikwe</Td>
-                <Td>Deposit</Td>
-                <Td>1/1/2021</Td>
-                <Td>Completed</Td>
-                <Td>$1250.00</Td>
-              </Tr>
-              <Tr>
-                <Td>326987415</Td>
-                <Td>Hyginus Mbonu</Td>
-                <Td>Withdrawal</Td>
-                <Td>1/2/2021</Td>
-                <Td>Completed</Td>
-                <Td>$55,000.00</Td>
-              </Tr>
-              <Tr>
-                <Td>590134682</Td>
-                <Td>Ozumba Mbadiwe</Td>
-                <Td>Deposit</Td>
-                <Td>1/5/2021</Td>
-                <Td>Completed</Td>
-                <Td>$15,340.00</Td>
-              </Tr>
-              <Tr>
-                <Td>712465839</Td>
-                <Td>Ojo Maduekwe</Td>
-                <Td>Withdrawal</Td>
-                <Td>11/2/2021</Td>
-                <Td>Completed</Td>
-                <Td>$5,000.00</Td>
-              </Tr>
-              <Tr>
-                <Td>945803216</Td>
-                <Td>Sabinus Okafo</Td>
-                <Td>Withdrawal</Td>
-                <Td>13/5/2021</Td>
-                <Td>Completed</Td>
-                <Td>$3,720.00</Td>
-              </Tr>
-              <Tr>
-                <Td>874201569</Td>
-                <Td>Clifford Mgbeojikwe</Td>
-                <Td>Deposit</Td>
-                <Td>1/1/2021</Td>
-                <Td>Completed</Td>
-                <Td>$1250.00</Td>
-              </Tr>
-              <Tr>
-                <Td>326987415</Td>
-                <Td>Hyginus Mbonu</Td>
-                <Td>Withdrawal</Td>
-                <Td>1/2/2021</Td>
-                <Td>Completed</Td>
-                <Td>$55,000.00</Td>
-              </Tr>
-              <Tr>
-                <Td>590134682</Td>
-                <Td>Ozumba Mbadiwe</Td>
-                <Td>Deposit</Td>
-                <Td>1/5/2021</Td>
-                <Td>Completed</Td>
-                <Td>$15,340.00</Td>
-              </Tr>
-              <Tr>
-                <Td>712465839</Td>
-                <Td>Ojo Maduekwe</Td>
-                <Td>Withdrawal</Td>
-                <Td>11/2/2021</Td>
-                <Td>Completed</Td>
-                <Td>$5,000.00</Td>
-              </Tr>
-              <Tr>
-                <Td>945803216</Td>
-                <Td>Sabinus Okafo</Td>
-                <Td>Withdrawal</Td>
-                <Td>13/5/2021</Td>
-                <Td>Completed</Td>
-                <Td>$3,720.00</Td>
-              </Tr>
               <Tr>
                 <Td>874201569</Td>
                 <Td>Clifford Mgbeojikwe</Td>

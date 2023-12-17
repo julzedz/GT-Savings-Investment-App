@@ -11,7 +11,8 @@ const Profile = () => (
       <Flex
         flexDir="column"
         pos="relative"
-        left="80"
+        p={5}
+        left={{ base: 20, md: 80 }}
         minHeight="3xl"
       >
         <h2>Profile </h2>
