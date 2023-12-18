@@ -22,11 +22,11 @@ const Dashboard = () => (
         bgColor="green"
       >
         <Flex bgColor="blue" alignItems="center" justifyContent="flex-start">
-          <Box fontFamily="lit" pr={5}>
+          <Box fontFamily="lit" pr={8}>
             Welcome Firstname!
           </Box>
-          <Divider />
-          <Flex>
+          <Divider orientation="vertical" />
+          <Flex px={8} gap={8} bgColor="darkgrey">
             <Flex m={0} flexDir="column">
               <Text m={0}>User ID</Text>
               <Text>123456789</Text>

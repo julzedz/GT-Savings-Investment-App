@@ -131,6 +131,7 @@ const theme = extendTheme({
     new: 'Space Grotesk',
     newer: 'Allerta Stencil',
     lit: 'Archivo',
+    noto: 'Noto Sans',
   },
   fontSizes: {
     xs: '0.75rem',
