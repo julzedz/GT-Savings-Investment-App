@@ -24,17 +24,17 @@ const Dashboard = () => (
         overflowY="scroll"
         fontFamily="noto"
       >
-        <Flex mb={8} alignItems="center" justifyContent="flex-start">
-          <Text m={0} fontSize="2xl" fontWeight="medium" pr={8}>
+        <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
+          <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8}>
             Welcome Rob!
           </Text>
-          <Divider w="1px" color="#eaecef" orientation="vertical" />
-          <Flex fontSize="sm" lineHeight="shorter" alignItems="center" px={8}>
-            <Flex alignItems="center" justifyContent="center" m={0} mr={12} flexDir="column">
+          <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
+          <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
+            <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
               <Text color="#929aa5" m={0} mb={1}>User ID</Text>
               <Text m={0}>123456789</Text>
             </Flex>
-            <Flex alignItems="center" justifyContent="center" m={0} mr={12} flexDir="column">
+            <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
               <Text color="#929aa5" m={0} mb={1}>User Type</Text>
               <Text m={0}>Personal</Text>
             </Flex>
@@ -45,7 +45,7 @@ const Dashboard = () => (
           // bgColor="blue"
           maxWidth="60rem"
           borderRadius="2xl"
-          borderWidth="1px"
+          borderWidth={{ base: 'none', slg: '1px' }}
           borderColor="#eaecef"
           p={6}
           mb={6}
@@ -56,7 +56,7 @@ const Dashboard = () => (
               <ViewIcon />
               <ViewOffIcon display="none" />
             </Flex>
-            <Flex p={0} m={0} gap={3}>
+            <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
               <Button
                 fontSize="sm"
                 fontWeight="600"
@@ -99,6 +99,41 @@ const Dashboard = () => (
               Today&apos;s PnL
               <Text display="inline" ml="3" color="green">+ $152.50(0.2%)</Text>
             </Text>
+          </Flex>
+          <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
+            <Button
+              fontSize="sm"
+              fontWeight="600"
+              lineHeight="short"
+              colorScheme="gray"
+              size="sm"
+              width={{ base: '30%', lg: 'auto' }}
+              variant="solid"
+            >
+              Deposit
+            </Button>
+            <Button
+              colorScheme="gray"
+              size="sm"
+              variant="solid"
+              fontSize="sm"
+              fontWeight="600"
+              lineHeight="short"
+              width={{ base: '30%', lg: 'auto' }}
+            >
+              Withdraw
+            </Button>
+            <Button
+              colorScheme="gray"
+              size="sm"
+              variant="solid"
+              fontSize="sm"
+              fontWeight="600"
+              lineHeight="short"
+              width={{ base: '30%', lg: 'auto' }}
+            >
+              Transfer
+            </Button>
           </Flex>
         </Flex>
         <h3>Transaction history</h3>
