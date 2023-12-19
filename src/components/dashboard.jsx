@@ -1,6 +1,8 @@
 import {
   Flex, Text, Divider,
 } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
 import Sidebar from './sidebar';
 
 const Dashboard = () => (
@@ -25,16 +27,23 @@ const Dashboard = () => (
           <Text m={0} fontSize="2xl" fontWeight="medium" pr={8}>
             Welcome Rob!
           </Text>
-          <Divider height="80%" color="lightgray" orientation="vertical" />
+          <Divider w="1px" color="#eaecef" orientation="vertical" />
           <Flex fontSize="sm" lineHeight="shorter" alignItems="center" px={8}>
             <Flex alignItems="center" justifyContent="center" m={0} mr={12} flexDir="column">
-              <Text m={0}>User ID</Text>
+              <Text color="#929aa5" m={0} mb={1}>User ID</Text>
               <Text m={0}>123456789</Text>
             </Flex>
             <Flex alignItems="center" justifyContent="center" m={0} mr={12} flexDir="column">
-              <Text m={0}>User Type</Text>
+              <Text color="#929aa5" m={0} mb={1}>User Type</Text>
               <Text m={0}>Personal</Text>
             </Flex>
+          </Flex>
+        </Flex>
+        <Flex>
+          <Flex>
+            <Text> Estimated Balance</Text>
+            <ViewIcon />
+            <ViewOffIcon display="none" />
           </Flex>
         </Flex>
         <h3>My Wallet</h3>
