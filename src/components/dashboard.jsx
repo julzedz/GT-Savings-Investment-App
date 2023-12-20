@@ -25,8 +25,8 @@ const Dashboard = () => (
         fontFamily="noto"
       >
         <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
-          <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8}>
-            Welcome Rob!
+          <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }}>
+            Welcome Rob! 👋
           </Text>
           <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
           <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
@@ -90,7 +90,7 @@ const Dashboard = () => (
             </Flex>
           </Flex>
           <Flex width="fit-content">
-            <Text fontSize="2rem" fontWeight="semibold" m={0}>355,760.32</Text>
+            <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>355,760.32</Text>
             <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
           </Flex>
           <Flex flexDir="column" mt={3}>
@@ -100,14 +100,14 @@ const Dashboard = () => (
               <Text display="inline" ml="3" color="green">+ $152.50(0.2%)</Text>
             </Text>
           </Flex>
-          <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
+          <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
             <Button
               fontSize="sm"
               fontWeight="600"
               lineHeight="short"
               colorScheme="gray"
               size="sm"
-              width={{ base: '30%', lg: 'auto' }}
+              width={{ base: '30%', slg: 'auto' }}
               variant="solid"
             >
               Deposit
@@ -119,7 +119,7 @@ const Dashboard = () => (
               fontSize="sm"
               fontWeight="600"
               lineHeight="short"
-              width={{ base: '30%', lg: 'auto' }}
+              width={{ base: '30%', slg: 'auto' }}
             >
               Withdraw
             </Button>
@@ -130,7 +130,7 @@ const Dashboard = () => (
               fontSize="sm"
               fontWeight="600"
               lineHeight="short"
-              width={{ base: '30%', lg: 'auto' }}
+              width={{ base: '30%', slg: 'auto' }}
             >
               Transfer
             </Button>
