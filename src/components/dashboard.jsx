@@ -153,6 +153,8 @@ const Dashboard = () => (
               alignItems="center"
               justifyContent="space-between"
               w="100%"
+              fontSize="2xl"
+              fontWeight="bold"
             >
               <Text m={0}>Recent Transactions</Text>
               <Button
