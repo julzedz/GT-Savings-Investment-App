@@ -147,13 +147,20 @@ const Dashboard = () => (
           mb={6}
         >
           <Flex>
-            <Flex>
-              <Text>Recent Transactions</Text>
+            <Flex
+              p={0}
+              m={0}
+              alignItems="center"
+              justifyContent="space-between"
+              w="100%"
+            >
+              <Text m={0}>Recent Transactions</Text>
               <Button
                 colorScheme="none"
                 variant="ghost"
-                rightIcon={<ChevronRightIcon p={0} m={-1} />}
+                rightIcon={<ChevronRightIcon alignSelf="center" p={0} m={-2} />}
                 fontSize="sm"
+                textAlign="center"
                 p={0}
                 m={0}
               >
