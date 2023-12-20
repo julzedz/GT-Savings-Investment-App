@@ -1,7 +1,7 @@
 import {
   Flex, Text, Divider, Button,
 } from '@chakra-ui/react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 import Sidebar from './sidebar';
 
@@ -136,7 +136,33 @@ const Dashboard = () => (
             </Button>
           </Flex>
         </Flex>
-        <h3>Transaction history</h3>
+        <Flex
+          flexDir="column"
+          // bgColor="blue"
+          maxWidth="60rem"
+          borderRadius="2xl"
+          borderWidth={{ base: 'none', slg: '1px' }}
+          borderColor="#eaecef"
+          p={6}
+          mb={6}
+        >
+          <Flex>
+            <Flex>
+              <Text>Recent Transactions</Text>
+              <Button
+                colorScheme="none"
+                variant="ghost"
+                rightIcon={<ChevronRightIcon p={0} m={-1} />}
+                fontSize="sm"
+                p={0}
+                m={0}
+              >
+                More
+              </Button>
+            </Flex>
+            <Flex />
+          </Flex>
+        </Flex>
       </Flex>
     </Flex>
   </>
