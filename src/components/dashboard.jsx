@@ -1,8 +1,8 @@
 import {
-  Flex, Text, Divider, Button, Table, Thead, Tr, Th,
+  Flex, Text, Divider, Button, Table, Thead, Tbody, Tr, Th, Td,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
-
+import { RiDownload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
 
 const Dashboard = () => (
@@ -157,6 +157,7 @@ const Dashboard = () => (
               w="100%"
               fontSize="2xl"
               fontWeight="bold"
+              mb={6}
             >
               <Text m={0}>Recent Transactions</Text>
               <Button
@@ -184,6 +185,8 @@ const Dashboard = () => (
                       textAlign="left"
                       textTransform="Capitalized"
                       fontWeight="100"
+                      p={0}
+                      borderBottom={0}
                     >
                       Transactions
                     </Th>
@@ -192,6 +195,7 @@ const Dashboard = () => (
                       textAlign="right"
                       textTransform="Capitalized"
                       fontWeight="100"
+                      p={0}
                     >
                       Amount
                     </Th>
@@ -200,6 +204,7 @@ const Dashboard = () => (
                       textAlign="right"
                       textTransform="Capitalized"
                       fontWeight="100"
+                      p={0}
                     >
                       Date
                     </Th>
@@ -208,11 +213,25 @@ const Dashboard = () => (
                       textAlign="right"
                       textTransform="Capitalized"
                       fontWeight="100"
+                      p={0}
                     >
                       Status
                     </Th>
                   </Tr>
                 </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td px={0} w="40%">
+                      <Flex px={0} align="center" alignItems="center" justifyContent="flex-start">
+                        <RiDownload2Line p={0} />
+                        <Text m={0} ml={4} textAlign="center">Deposit</Text>
+                      </Flex>
+                    </Td>
+                    <Td px={0} textAlign="right">$1250.00</Td>
+                    <Td px={0} textAlign="right">2021-12-15</Td>
+                    <Td px={0} textAlign="right">Completed</Td>
+                  </Tr>
+                </Tbody>
               </Table>
             </Flex>
           </Flex>
