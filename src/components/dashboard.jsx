@@ -2,7 +2,7 @@ import {
   Flex, Text, Divider, Button, Icon, Table, Thead, Tbody, Tr, Th, Td,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { RiDownload2Line } from 'react-icons/ri';
+import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
 
 const Dashboard = () => (
@@ -228,12 +228,38 @@ const Dashboard = () => (
                   >
                     <Td borderBottom={0} py={6} px={1}>
                       <Flex>
+                        <Icon as={RiUpload2Line} boxSize={6} />
+                        <Text m={0} ml={4}>Withdraw USDT</Text>
+                      </Flex>
+                    </Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">- 21250.75</Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">2023-11-18 19:42:31</Td>
+                    <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
+                  </Tr>
+                  <Tr
+                    _hover={{ bgColor: '#f5f5f5' }}
+                  >
+                    <Td borderBottom={0} py={6} px={1}>
+                      <Flex>
                         <Icon as={RiDownload2Line} boxSize={6} />
                         <Text m={0} ml={4}>Deposit USDT</Text>
                       </Flex>
                     </Td>
                     <Td borderBottom={0} py={6} px={0} textAlign="right">+ 16250.57</Td>
-                    <Td borderBottom={0} py={6} px={0} textAlign="right">2021-12-15 19:42:31</Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">2023-09-15 19:42:31</Td>
+                    <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
+                  </Tr>
+                  <Tr
+                    _hover={{ bgColor: '#f5f5f5' }}
+                  >
+                    <Td borderBottom={0} py={6} px={1}>
+                      <Flex>
+                        <Icon as={RiDownload2Line} boxSize={6} />
+                        <Text m={0} ml={4}>Deposit USDT</Text>
+                      </Flex>
+                    </Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">+ 45490.38</Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">2023-08-21 19:42:31</Td>
                     <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
                   </Tr>
                 </Tbody>
