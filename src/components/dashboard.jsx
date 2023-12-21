@@ -1,5 +1,5 @@
 import {
-  Flex, Text, Divider, Button, Table, Thead, Tbody, Tr, Th, Td,
+  Flex, Text, Divider, Button, Icon, Table, Thead, Tbody, Tr, Th, Td,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiDownload2Line } from 'react-icons/ri';
@@ -185,7 +185,7 @@ const Dashboard = () => (
                       fontWeight="100"
                       p={0}
                       borderBottom={0}
-                      w="45%"
+                      w="40%"
                     >
                       Transactions
                     </Th>
@@ -226,15 +226,15 @@ const Dashboard = () => (
                   <Tr
                     bgColor="honeydew"
                   >
-                    <Td px={1}>
-                      <Flex px={0} align="center" alignItems="center" justifyContent="flex-start">
-                        <RiDownload2Line size="20" p={0} />
-                        <Text m={0} ml={4} textAlign="center">Deposit</Text>
+                    <Td py={6} px={1}>
+                      <Flex>
+                        <Icon as={RiDownload2Line} boxSize={6} />
+                        <Text m={0} ml={4}>Deposit</Text>
                       </Flex>
                     </Td>
-                    <Td px={0} textAlign="right">+ $1250.00</Td>
-                    <Td px={0} textAlign="right">2021-12-15 19:42:31</Td>
-                    <Td px={1} textAlign="right">Completed</Td>
+                    <Td py={6} px={0} textAlign="right">+ $1250.00</Td>
+                    <Td py={6} px={0} textAlign="right">2021-12-15 19:42:31</Td>
+                    <Td py={6} px={1} textAlign="right">Completed</Td>
                   </Tr>
                 </Tbody>
               </Table>
