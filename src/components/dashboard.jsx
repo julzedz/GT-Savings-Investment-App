@@ -172,9 +172,7 @@ const Dashboard = () => (
                 More
               </Button>
             </Flex>
-            <Flex
-              w="inherit"
-            >
+            <Flex>
               <Table
                 w="100%"
               >
@@ -187,6 +185,7 @@ const Dashboard = () => (
                       fontWeight="100"
                       p={0}
                       borderBottom={0}
+                      w="45%"
                     >
                       Transactions
                     </Th>
@@ -196,6 +195,7 @@ const Dashboard = () => (
                       textTransform="Capitalized"
                       fontWeight="100"
                       p={0}
+                      borderBottom={0}
                     >
                       Amount
                     </Th>
@@ -205,6 +205,7 @@ const Dashboard = () => (
                       textTransform="Capitalized"
                       fontWeight="100"
                       p={0}
+                      borderBottom={0}
                     >
                       Date
                     </Th>
@@ -214,22 +215,26 @@ const Dashboard = () => (
                       textTransform="Capitalized"
                       fontWeight="100"
                       p={0}
+                      borderBottom={0}
+                      w="22%"
                     >
                       Status
                     </Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td px={0} w="40%">
+                  <Tr
+                    bgColor="honeydew"
+                  >
+                    <Td px={1}>
                       <Flex px={0} align="center" alignItems="center" justifyContent="flex-start">
-                        <RiDownload2Line p={0} />
+                        <RiDownload2Line size="20" p={0} />
                         <Text m={0} ml={4} textAlign="center">Deposit</Text>
                       </Flex>
                     </Td>
-                    <Td px={0} textAlign="right">$1250.00</Td>
-                    <Td px={0} textAlign="right">2021-12-15</Td>
-                    <Td px={0} textAlign="right">Completed</Td>
+                    <Td px={0} textAlign="right">+ $1250.00</Td>
+                    <Td px={0} textAlign="right">2021-12-15 19:42:31</Td>
+                    <Td px={1} textAlign="right">Completed</Td>
                   </Tr>
                 </Tbody>
               </Table>
