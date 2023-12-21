@@ -224,17 +224,17 @@ const Dashboard = () => (
                 </Thead>
                 <Tbody>
                   <Tr
-                    bgColor="honeydew"
+                    _hover={{ bgColor: '#f5f5f5' }}
                   >
-                    <Td py={6} px={1}>
+                    <Td borderBottom={0} py={6} px={1}>
                       <Flex>
                         <Icon as={RiDownload2Line} boxSize={6} />
-                        <Text m={0} ml={4}>Deposit</Text>
+                        <Text m={0} ml={4}>Deposit USDT</Text>
                       </Flex>
                     </Td>
-                    <Td py={6} px={0} textAlign="right">+ $1250.00</Td>
-                    <Td py={6} px={0} textAlign="right">2021-12-15 19:42:31</Td>
-                    <Td py={6} px={1} textAlign="right">Completed</Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">+ 16250.57</Td>
+                    <Td borderBottom={0} py={6} px={0} textAlign="right">2021-12-15 19:42:31</Td>
+                    <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
                   </Tr>
                 </Tbody>
               </Table>
