@@ -1,5 +1,5 @@
 import {
-  Flex, Text, Divider, Button,
+  Flex, Text, Divider, Button, Table, Thead, Tr, Th,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -146,7 +146,9 @@ const Dashboard = () => (
           p={6}
           mb={6}
         >
-          <Flex>
+          <Flex
+            flexDir="column"
+          >
             <Flex
               p={0}
               m={0}
@@ -169,7 +171,50 @@ const Dashboard = () => (
                 More
               </Button>
             </Flex>
-            <Flex />
+            <Flex
+              w="inherit"
+            >
+              <Table
+                w="100%"
+              >
+                <Thead>
+                  <Tr>
+                    <Th
+                      justifySelf="flex-start"
+                      textAlign="left"
+                      textTransform="Capitalized"
+                      fontWeight="100"
+                    >
+                      Transactions
+                    </Th>
+                    <Th
+                      justifySelf="flex-end"
+                      textAlign="right"
+                      textTransform="Capitalized"
+                      fontWeight="100"
+                    >
+                      Amount
+                    </Th>
+                    <Th
+                      justifySelf="flex-end"
+                      textAlign="right"
+                      textTransform="Capitalized"
+                      fontWeight="100"
+                    >
+                      Date
+                    </Th>
+                    <Th
+                      justifySelf="flex-end"
+                      textAlign="right"
+                      textTransform="Capitalized"
+                      fontWeight="100"
+                    >
+                      Status
+                    </Th>
+                  </Tr>
+                </Thead>
+              </Table>
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
