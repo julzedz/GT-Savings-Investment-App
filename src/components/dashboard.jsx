@@ -1,5 +1,5 @@
 import {
-  Flex, Text, Divider, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td, Link,
+  Flex, Text, Divider, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -148,7 +148,8 @@ const Dashboard = () => (
           justifyContent="space-between"
         >
           <Flex
-            as={Link}
+            as={ReactRouterLink}
+            to="/investment"
             _hover={{ textDecoration: 'none' }}
             borderWidth="1px"
             borderRadius="2xl"
@@ -164,7 +165,7 @@ const Dashboard = () => (
               <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
               <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
                 APR up to
-                <Text m={0} display="inline" color="green"> 10%</Text>
+                <Text m={0} display="inline" fontWeight="medium" color="green"> 7.5%</Text>
               </Text>
               <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
             </Flex>
@@ -189,7 +190,8 @@ const Dashboard = () => (
             <Flex flexDir="column" w="80%">
               <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
               <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
-                Diversify your portfolio
+                S&P 500
+                <Text display="inline" fontWeight="medium" color="green"> + 48.40</Text>
               </Text>
               <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Securities</Text>
             </Flex>
