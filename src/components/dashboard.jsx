@@ -1,10 +1,13 @@
 import {
-  Flex, Text, Divider, Button, Icon, Table, Thead, Tbody, Tr, Th, Td,
+  Flex, Text, Divider, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td, Link,
 } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
+import earn from '../assets/earn.svg';
+import margin from '../assets/margin.svg';
 
 const Dashboard = () => (
   <>
@@ -43,7 +46,6 @@ const Dashboard = () => (
         </Flex>
         <Flex
           flexDir="column"
-          // bgColor="blue"
           maxWidth="60rem"
           borderRadius="2xl"
           borderWidth={{ base: 'none', slg: '1px' }}
@@ -138,6 +140,65 @@ const Dashboard = () => (
           </Flex>
         </Flex>
         <Flex
+          maxWidth="60rem"
+          p={0}
+          m={0}
+          mb={6}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Flex
+            as={Link}
+            _hover={{ textDecoration: 'none' }}
+            borderWidth="1px"
+            borderRadius="2xl"
+            borderColor="#e5e7eb"
+            w="49%"
+            p={6}
+            m={0}
+            alignItems="center"
+            justifyContent="space-between"
+            cursor="pointer"
+          >
+            <Flex flexDir="column" w="80%">
+              <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
+              <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
+                APR up to
+                <Text m={0} display="inline" color="green"> 10%</Text>
+              </Text>
+              <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
+            </Flex>
+            <Flex>
+              <Image src={earn} boxSize={20} />
+            </Flex>
+          </Flex>
+          <Flex
+            as={ReactRouterLink}
+            to="/investment"
+            _hover={{ textDecoration: 'none' }}
+            borderWidth="1px"
+            borderRadius="2xl"
+            borderColor="#e5e7eb"
+            w="49%"
+            p={6}
+            m={0}
+            alignItems="center"
+            justifyContent="space-between"
+            cursor="pointer"
+          >
+            <Flex flexDir="column" w="80%">
+              <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
+              <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
+                Diversify your portfolio
+              </Text>
+              <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Securities</Text>
+            </Flex>
+            <Flex>
+              <Image src={margin} boxSize={20} />
+            </Flex>
+          </Flex>
+        </Flex>
+        <Flex
           flexDir="column"
           // bgColor="blue"
           maxWidth="60rem"
@@ -162,6 +223,8 @@ const Dashboard = () => (
             >
               <Text m={0}>Recent Transactions</Text>
               <Button
+                as={ReactRouterLink}
+                to="/transaction"
                 colorScheme="none"
                 variant="ghost"
                 rightIcon={<ChevronRightIcon alignSelf="center" p={0} m={-2} />}
