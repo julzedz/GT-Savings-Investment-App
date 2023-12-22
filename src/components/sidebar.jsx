@@ -12,10 +12,10 @@ import {
 import {
   FiMenu,
   FiHome,
-  FiCalendar,
   FiUser,
   FiDollarSign,
 } from 'react-icons/fi';
+import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
@@ -96,8 +96,8 @@ const Sidebar = () => {
           </Flex>
         </Flex>
         <NavItem href="/dashboard" isActive={isActive('/dashboard')} navSize={navSize} icon={FiHome} title="Dashboard" />
-        <NavItem href="/transaction" isActive={isActive('/transaction')} navSize={navSize} icon={FiCalendar} title="Transactions" active />
-        <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={FiDollarSign} title="Investment" />
+        <NavItem href="/transaction" isActive={isActive('/transaction')} navSize={navSize} icon={FiDollarSign} title="Transactions" active />
+        <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={BsGraphUpArrow} title="Investment" />
         <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
       </Flex>
       <Flex
