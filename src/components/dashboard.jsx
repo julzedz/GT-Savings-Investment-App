@@ -4,6 +4,7 @@ import {
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
+import AccountFooter from './accountfooter';
 
 const Dashboard = () => (
   <>
@@ -267,6 +268,7 @@ const Dashboard = () => (
             </Flex>
           </Flex>
         </Flex>
+        <AccountFooter />
       </Flex>
     </Flex>
   </>
