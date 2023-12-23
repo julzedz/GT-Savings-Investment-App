@@ -38,6 +38,18 @@ const Dashboard = () => {
     },
   ];
 
+  const transactions = [
+    {
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2023-11-18 19:42:31', status: 'Completed',
+    },
+    {
+      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+16250.57', date: '2023-09-15 19:42:31', status: 'Completed',
+    },
+    {
+      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-08-21 19:42:31', status: 'Completed',
+    },
+  ];
+
   return (
     <>
       <Flex
@@ -139,7 +151,7 @@ const Dashboard = () => {
               </Text>
               <Text fontSize="sm" lineHeight="short" mb={3}>
                 Today&apos;s PnL
-                <Text display="inline" ml="3" color="green">{isVisible ? '+ $152.50(0.2%)' : '****'}</Text>
+                <Text display="inline" ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
               </Text>
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
@@ -243,7 +255,6 @@ const Dashboard = () => {
           </Flex>
           <Flex
             flexDir="column"
-          // bgColor="blue"
             maxWidth="60rem"
             borderRadius="2xl"
             borderWidth={{ base: 'none', slg: '1px' }}
@@ -299,7 +310,7 @@ const Dashboard = () => {
                     <Tr>
                       {headers.map((header) => (
                         <Th
-                          key={`header-${header.text}`}
+                          key={header.id}
                           justifySelf={header.justify}
                           textAlign={header.textAlign}
                           textTransform="capitalize"
@@ -313,45 +324,19 @@ const Dashboard = () => {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    <Tr
-                      _hover={{ bgColor: '#f5f5f5' }}
-                    >
-                      <Td py={6} px={1}>
-                        <Flex>
-                          <Icon as={RiUpload2Line} boxSize={6} />
-                          <Text m={0} ml={4}>Withdraw USDT</Text>
-                        </Flex>
-                      </Td>
-                      <Td py={6} px={0} textAlign="right">-21250.75</Td>
-                      <Td py={6} px={0} textAlign="right">2023-11-18 19:42:31</Td>
-                      <Td py={6} px={1} textAlign="right">Completed</Td>
-                    </Tr>
-                    <Tr
-                      _hover={{ bgColor: '#f5f5f5' }}
-                    >
-                      <Td py={6} px={1}>
-                        <Flex>
-                          <Icon as={RiDownload2Line} boxSize={6} />
-                          <Text m={0} ml={4}>Deposit USDT</Text>
-                        </Flex>
-                      </Td>
-                      <Td py={6} px={0} textAlign="right">+16250.57</Td>
-                      <Td py={6} px={0} textAlign="right">2023-09-15 19:42:31</Td>
-                      <Td py={6} px={1} textAlign="right">Completed</Td>
-                    </Tr>
-                    <Tr
-                      _hover={{ bgColor: '#f5f5f5' }}
-                    >
-                      <Td py={6} px={1}>
-                        <Flex>
-                          <Icon as={RiDownload2Line} boxSize={6} />
-                          <Text m={0} ml={4}>Deposit USDT</Text>
-                        </Flex>
-                      </Td>
-                      <Td py={6} px={0} textAlign="right">+45490.38</Td>
-                      <Td py={6} px={0} textAlign="right">2023-08-21 19:42:31</Td>
-                      <Td py={6} px={1} textAlign="right">Completed</Td>
-                    </Tr>
+                    {transactions.map((transaction) => (
+                      <Tr key={transaction.id} _hover={{ bgColor: '#f5f5f5' }}>
+                        <Td py={6} px={1}>
+                          <Flex>
+                            <Icon as={transaction.icon} boxSize={6} />
+                            <Text m={0} ml={4}>{transaction.action}</Text>
+                          </Flex>
+                        </Td>
+                        <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
+                        <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
+                        <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
+                      </Tr>
+                    ))}
                   </Tbody>
                 </Table>
               </Flex>
