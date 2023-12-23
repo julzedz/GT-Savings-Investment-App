@@ -174,6 +174,8 @@ const Dashboard = () => {
             mb={6}
             alignItems="center"
             justifyContent="space-between"
+            gap={{ base: '6', slg: 'none' }}
+            flexDir={{ base: 'column', slg: 'row' }}
           >
             <Flex
               as={ReactRouterLink}
@@ -182,7 +184,7 @@ const Dashboard = () => {
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
-              w="49%"
+              w={{ base: '100%', slg: '49%' }}
               p={6}
               m={0}
               alignItems="center"
@@ -208,7 +210,7 @@ const Dashboard = () => {
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
-              w="49%"
+              w={{ base: '100%', slg: '49%' }}
               p={6}
               m={0}
               alignItems="center"
