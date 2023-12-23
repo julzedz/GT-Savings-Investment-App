@@ -1,6 +1,8 @@
+import React from 'react';
 import {
-  Flex, Divider, Box, Text, Table, Thead, Tbody, Tr, Th, Td,
+  Flex, Divider, Box, Text, Table, Thead, Tbody, Tr, Th, Td, Select,
 } from '@chakra-ui/react';
+import { MdArrowDropDown } from 'react-icons/md';
 import Sidebar from './sidebar';
 
 const Transaction = () => (
@@ -37,8 +39,29 @@ const Transaction = () => (
             </Flex>
           </Flex>
         </Flex>
+        <Text
+          p={0}
+          m={0}
+          alignItems="center"
+          justifyContent="space-between"
+          w="100%"
+          fontSize={{ base: 'lg', xl: '2xl' }}
+          fontWeight="bold"
+          mb={6}
+        >
+          Transaction History
+        </Text>
+        <Flex gap={6} mt={3}>
+          <Select variant="filled" w={32} textOverflow="ellipsis" icon={<MdArrowDropDown />} placeholder="Past 7 days">
+            <option value="option2">Past 30 days</option>
+            <option value="option3">Past 90 days</option>
+          </Select>
+          <Select mb={12} variant="filled" w={32} textOverflow="ellipsis" icon={<MdArrowDropDown />} placeholder="All">
+            <option value="option3">Deposit</option>
+            <option value="option3">Withdrawal</option>
+          </Select>
+        </Flex>
         <Box>
-          <Text>Transaction History</Text>
           <Table>
             <Thead>
               <Tr>
