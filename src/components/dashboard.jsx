@@ -281,6 +281,7 @@ const Dashboard = () => {
               <Flex>
                 <Table
                   w="100%"
+                  variant="unstyled"
                 >
                   <Thead>
                     <Tr>
@@ -290,7 +291,6 @@ const Dashboard = () => {
                         textTransform="Capitalized"
                         fontWeight="100"
                         p={0}
-                        borderBottom={0}
                         w="40%"
                       >
                         Transactions
@@ -301,7 +301,6 @@ const Dashboard = () => {
                         textTransform="Capitalized"
                         fontWeight="100"
                         p={0}
-                        borderBottom={0}
                       >
                         Amount
                       </Th>
@@ -311,7 +310,6 @@ const Dashboard = () => {
                         textTransform="Capitalized"
                         fontWeight="100"
                         p={0}
-                        borderBottom={0}
                       >
                         Date
                       </Th>
@@ -321,7 +319,6 @@ const Dashboard = () => {
                         textTransform="Capitalized"
                         fontWeight="100"
                         p={0}
-                        borderBottom={0}
                         w="22%"
                       >
                         Status
@@ -332,41 +329,41 @@ const Dashboard = () => {
                     <Tr
                       _hover={{ bgColor: '#f5f5f5' }}
                     >
-                      <Td borderBottom={0} py={6} px={1}>
+                      <Td py={6} px={1}>
                         <Flex>
                           <Icon as={RiUpload2Line} boxSize={6} />
                           <Text m={0} ml={4}>Withdraw USDT</Text>
                         </Flex>
                       </Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">- 21250.75</Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">2023-11-18 19:42:31</Td>
-                      <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
+                      <Td py={6} px={0} textAlign="right">- 21250.75</Td>
+                      <Td py={6} px={0} textAlign="right">2023-11-18 19:42:31</Td>
+                      <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
                     <Tr
                       _hover={{ bgColor: '#f5f5f5' }}
                     >
-                      <Td borderBottom={0} py={6} px={1}>
+                      <Td py={6} px={1}>
                         <Flex>
                           <Icon as={RiDownload2Line} boxSize={6} />
                           <Text m={0} ml={4}>Deposit USDT</Text>
                         </Flex>
                       </Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">+ 16250.57</Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">2023-09-15 19:42:31</Td>
-                      <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
+                      <Td py={6} px={0} textAlign="right">+ 16250.57</Td>
+                      <Td py={6} px={0} textAlign="right">2023-09-15 19:42:31</Td>
+                      <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
                     <Tr
                       _hover={{ bgColor: '#f5f5f5' }}
                     >
-                      <Td borderBottom={0} py={6} px={1}>
+                      <Td py={6} px={1}>
                         <Flex>
                           <Icon as={RiDownload2Line} boxSize={6} />
                           <Text m={0} ml={4}>Deposit USDT</Text>
                         </Flex>
                       </Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">+ 45490.38</Td>
-                      <Td borderBottom={0} py={6} px={0} textAlign="right">2023-08-21 19:42:31</Td>
-                      <Td borderBottom={0} py={6} px={1} textAlign="right">Completed</Td>
+                      <Td py={6} px={0} textAlign="right">+ 45490.38</Td>
+                      <Td py={6} px={0} textAlign="right">2023-08-21 19:42:31</Td>
+                      <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
                   </Tbody>
                 </Table>
