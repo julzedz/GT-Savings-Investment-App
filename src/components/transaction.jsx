@@ -6,16 +6,20 @@ import Sidebar from './sidebar';
 const Transaction = () => (
   <>
     <Flex
-      bgColor="gunmetal"
-      color="white"
+      // bgColor="gunmetal"
+      // color="white"
+      color="black"
+      w="100%"
     >
       <Sidebar />
       <Flex
-        pos="relative"
-        left={{ base: 20, md: 80 }}
         ml={4}
-        p={5}
+        flexDir="column"
         minHeight="3xl"
+        p={5}
+        flex="1"
+        marginLeft={{ base: 20, md: '21rem' }}
+        fontFamily="noto"
       >
         <Box>
           <Text>Transactions</Text>
