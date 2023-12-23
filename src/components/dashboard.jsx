@@ -27,6 +27,17 @@ const Dashboard = () => {
     setIsVisible(!isVisible);
   };
 
+  const headers = [
+    {
+      text: 'Transactions', justify: 'flex-start', textAlign: 'left', width: '40%',
+    },
+    { text: 'Amount', justify: 'center', textAlign: 'right' },
+    { text: 'Date', justify: 'center', textAlign: 'right' },
+    {
+      text: 'Status', justify: 'center', textAlign: 'right', width: '22%',
+    },
+  ];
+
   return (
     <>
       <Flex
@@ -249,7 +260,7 @@ const Dashboard = () => {
                 alignItems="center"
                 justifyContent="space-between"
                 w="100%"
-                fontSize="2xl"
+                fontSize={{ base: 'lg', xl: '2xl' }}
                 fontWeight="bold"
                 mb={6}
               >
@@ -282,47 +293,23 @@ const Dashboard = () => {
                 <Table
                   w="100%"
                   variant="unstyled"
+                  size={{ base: 'sm', xl: 'md' }}
                 >
                   <Thead>
                     <Tr>
-                      <Th
-                        justifySelf="flex-start"
-                        textAlign="left"
-                        textTransform="Capitalized"
-                        fontWeight="100"
-                        p={0}
-                        w="40%"
-                      >
-                        Transactions
-                      </Th>
-                      <Th
-                        justifySelf="flex-end"
-                        textAlign="right"
-                        textTransform="Capitalized"
-                        fontWeight="100"
-                        p={0}
-                      >
-                        Amount
-                      </Th>
-                      <Th
-                        justifySelf="flex-end"
-                        textAlign="right"
-                        textTransform="Capitalized"
-                        fontWeight="100"
-                        p={0}
-                      >
-                        Date
-                      </Th>
-                      <Th
-                        justifySelf="flex-end"
-                        textAlign="right"
-                        textTransform="Capitalized"
-                        fontWeight="100"
-                        p={0}
-                        w="22%"
-                      >
-                        Status
-                      </Th>
+                      {headers.map((header) => (
+                        <Th
+                          key={`header-${header.text}`}
+                          justifySelf={header.justify}
+                          textAlign={header.textAlign}
+                          textTransform="capitalize"
+                          fontWeight="100"
+                          p={0}
+                          w={header.width}
+                        >
+                          {header.text}
+                        </Th>
+                      ))}
                     </Tr>
                   </Thead>
                   <Tbody>
@@ -335,7 +322,7 @@ const Dashboard = () => {
                           <Text m={0} ml={4}>Withdraw USDT</Text>
                         </Flex>
                       </Td>
-                      <Td py={6} px={0} textAlign="right">- 21250.75</Td>
+                      <Td py={6} px={0} textAlign="right">-21250.75</Td>
                       <Td py={6} px={0} textAlign="right">2023-11-18 19:42:31</Td>
                       <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
@@ -348,7 +335,7 @@ const Dashboard = () => {
                           <Text m={0} ml={4}>Deposit USDT</Text>
                         </Flex>
                       </Td>
-                      <Td py={6} px={0} textAlign="right">+ 16250.57</Td>
+                      <Td py={6} px={0} textAlign="right">+16250.57</Td>
                       <Td py={6} px={0} textAlign="right">2023-09-15 19:42:31</Td>
                       <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
@@ -361,7 +348,7 @@ const Dashboard = () => {
                           <Text m={0} ml={4}>Deposit USDT</Text>
                         </Flex>
                       </Td>
-                      <Td py={6} px={0} textAlign="right">+ 45490.38</Td>
+                      <Td py={6} px={0} textAlign="right">+45490.38</Td>
                       <Td py={6} px={0} textAlign="right">2023-08-21 19:42:31</Td>
                       <Td py={6} px={1} textAlign="right">Completed</Td>
                     </Tr>
