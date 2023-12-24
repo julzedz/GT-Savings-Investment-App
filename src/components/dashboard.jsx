@@ -146,7 +146,7 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? '≈ 8.2734883' : '****'}
+                {isVisible ? '≈ 8.2734883 ' : '****'}
                 BTC
               </Text>
               <Text fontSize="sm" lineHeight="short" mb={3}>
