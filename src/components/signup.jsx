@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 
 const Signup = () => (
-  <Flex>Signup Here!!!</Flex>
+  <Flex minHeight={72}>Signup Here!!!</Flex>
 );
 
 export default Signup;
