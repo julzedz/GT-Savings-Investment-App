@@ -12,10 +12,11 @@ import Insurance from '../components/insurance';
 import Login from '../components/login';
 import Footer from '../components/footer';
 import Transaction from '../components/transaction';
+import InvestmentPlans from '../components/investmentplans';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
-  const showNavbar = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showNavbar = ['/home', '/banking', 'investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
   // const showSidebar = [
   //   '/account', '/profile', '/investment', '/transactions', '/settings'
   // ].includes(location.pathname);
@@ -38,6 +39,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/login" element={<Login />} />
             <Route path="/transaction" element={<Transaction />} />
+            <Route path="/investmentplans" element={<InvestmentPlans />} />
           </Routes>
         </div>
         {showFooter && <Footer />}
