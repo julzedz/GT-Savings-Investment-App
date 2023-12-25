@@ -16,11 +16,11 @@ import InvestmentPlans from '../components/investmentplans';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
-  const showNavbar = ['/home', '/banking', 'investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showNavbar = ['/home', '/banking', '/investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
   // const showSidebar = [
   //   '/account', '/profile', '/investment', '/transactions', '/settings'
   // ].includes(location.pathname);
-  const showFooter = ['/home', '/banking', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showFooter = ['/home', '/banking', '/investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
 
   return (
     <>

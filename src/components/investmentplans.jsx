@@ -1,7 +1,7 @@
-import Flex from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 const InvestmentPlans = () => (
-  <Flex>Hello World!</Flex>
+  <Flex minHeight={72}>Hello World!</Flex>
 );
 
 export default InvestmentPlans;
