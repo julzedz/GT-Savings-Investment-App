@@ -180,6 +180,8 @@ const Home = () => (
               Choose from a range of Investment Portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
             </Text>
             <Button
+              as={RouterLink}
+              to="/investmentplans"
               bg="applegreen"
               alignItems="center"
               borderRadius="20px"
