@@ -147,6 +147,8 @@ const Home = () => (
             <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
             <Text py={4}>With a low minimum deposit required, start earning interest at competitive rates that are compounded daily. Ready to take the first steps towards financial freedom?</Text>
             <Button
+              as={RouterLink}
+              to="/signup"
               mx="auto"
               bg="applegreen"
               borderRadius="20px"

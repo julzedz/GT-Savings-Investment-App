@@ -13,14 +13,15 @@ import Login from '../components/login';
 import Footer from '../components/footer';
 import Transaction from '../components/transaction';
 import InvestmentPlans from '../components/investmentplans';
+import Signup from '../components/signup';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
-  const showNavbar = ['/home', '/banking', '/investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showNavbar = ['/home', '/banking', '/investmentplans', '/signup', '/support', '/insurance', '/login'].includes(location.pathname);
   // const showSidebar = [
   //   '/account', '/profile', '/investment', '/transactions', '/settings'
   // ].includes(location.pathname);
-  const showFooter = ['/home', '/banking', '/investmentplans', '/support', '/insurance', '/login'].includes(location.pathname);
+  const showFooter = ['/home', '/banking', '/investmentplans', '/signup', '/support', '/insurance', '/login'].includes(location.pathname);
 
   return (
     <>
@@ -40,6 +41,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/investmentplans" element={<InvestmentPlans />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>
         {showFooter && <Footer />}

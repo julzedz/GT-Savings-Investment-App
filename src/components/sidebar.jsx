@@ -21,7 +21,6 @@ import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 
 const Sidebar = () => {
-  // const navSize = useBreakpointValue({ base: 'small', md: 'large' });
   const breakpointNavSize = useBreakpointValue({ base: 'small', md: 'large' });
   const [navSize, setNavSize] = useState(breakpointNavSize);
   const location = useLocation();
