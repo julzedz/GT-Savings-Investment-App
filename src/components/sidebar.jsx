@@ -17,6 +17,7 @@ import {
 } from 'react-icons/fi';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 
@@ -68,9 +69,9 @@ const Sidebar = () => {
             align="center"
             justifyContent="center"
             className="logo-group"
-            href="/dashboard"
             cursor="pointer"
-            as="Link"
+            as={ReactRouterLink}
+            to="/dashboard"
           >
 
             <Image src={logo} alt="Logo" boxSize="30px" />
