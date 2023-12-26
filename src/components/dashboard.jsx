@@ -109,6 +109,8 @@ const Dashboard = () => {
               </Flex>
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
+                  as={ReactRouterLink}
+                  to="/deposit"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
@@ -119,6 +121,8 @@ const Dashboard = () => {
                   Deposit
                 </Button>
                 <Button
+                  as={ReactRouterLink}
+                  to="/withdrawal"
                   colorScheme="gray"
                   size="sm"
                   variant="solid"
@@ -228,7 +232,7 @@ const Dashboard = () => {
             </Flex>
             <Flex
               as={ReactRouterLink}
-              to="/investment"
+              to="/investmentplans"
               _hover={{ textDecoration: 'none' }}
               borderWidth="1px"
               borderRadius="2xl"
