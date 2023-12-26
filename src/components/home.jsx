@@ -327,7 +327,7 @@ const Home = () => (
             Learn more about us
             <Button
               as={RouterLink}
-              to="/support"
+              to="/about"
               mx={2}
               variant="outline"
               borderRadius="50%"
@@ -410,7 +410,7 @@ const Home = () => (
             Learn more
             <Button
               as={RouterLink}
-              to="/support"
+              to="/about"
               mx={2}
               variant="outline"
               borderRadius="50%"

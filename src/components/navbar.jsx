@@ -77,8 +77,8 @@ const Navbar = () => {
             <DropdownItem href="/investment">Investment</DropdownItem>
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
-          <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
-            <DropdownItem href="/support">Contact Us</DropdownItem>
+          <DropdownMenu label="Support" isActive={isActive('/about' || '/appointment' || 'contactform')}>
+            <DropdownItem href="/contactform">Contact Us</DropdownItem>
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
@@ -219,7 +219,7 @@ const Navbar = () => {
                   px={2}
                   py={4}
                 >
-                  <AccordionLink href="/support">Contact Us</AccordionLink>
+                  <AccordionLink href="/contactform">Contact Us</AccordionLink>
                   <AccordionLink href="/about">About Us</AccordionLink>
                   <AccordionLink href="/appointment">Make an Appointment</AccordionLink>
                 </Flex>

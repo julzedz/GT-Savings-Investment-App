@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import {
-  Box, Text, Button, Flex, Image, Icon, Img, Link,
+  Box, Text, Button, Flex, Image, Icon, Img,
 } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import {
   FaInstagram, FaFacebookF, FaLinkedin, FaYoutube,
 } from 'react-icons/fa';
@@ -53,6 +54,8 @@ const Footer = () => (
         or click the button below to access our contact form.
       </Text>
       <Button
+        as={ReactRouterLink}
+        to="/contactform"
         m={5}
         p={7}
         fontFamily="new"
@@ -65,14 +68,12 @@ const Footer = () => (
     <Box bgColor="#dcdfe0">
       <Box py={{ base: 3 }} display={{ base: '', md: 'none' }}>
         <Flex
-          as={Link}
-          // _hover={{ textDecoration: 'none' }}
-          // cursor="pointer"
+          as={ReactRouterLink}
+          to="/"
           my={5}
           align="center"
           justifyContent="center"
           className="logo-group"
-          href="/home"
         >
 
           <Image src={logo} alt="Logo" boxSize="30px" />
@@ -116,10 +117,10 @@ const Footer = () => (
           color="#0C3C61"
           fontSize="sm"
         >
-          <Text m={0} p={{ base: 0, lg: 2 }}>
+          <Text as={ReactRouterLink} to="/about" m={0} p={{ base: 0, lg: 2 }}>
             About Us
           </Text>
-          <Text m={0} p={{ base: 0, lg: 2 }}>
+          <Text as={ReactRouterLink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
             Contact Us
           </Text>
         </Box>
@@ -138,6 +139,8 @@ const Footer = () => (
       </Box>
       <Box p={4} display={{ base: 'none', md: 'flex' }} alignItems="center" justifyContent="space-evenly" flexWrap="wrap" gap={8}>
         <Flex
+          as={ReactRouterLink}
+          to="/"
           my={5}
           align="center"
           justifyContent="center"
@@ -201,10 +204,15 @@ const Footer = () => (
           <Text color="black" fontSize="lg" letterSpacing="wider" m={0} p={{ base: 0, md: 3 }}>
             COMPANY
           </Text>
-          <Text m={0} p={{ base: 0, lg: 2 }}>
+          <Text
+            as={ReactRouterLink}
+            to="/about"
+            m={0}
+            p={{ base: 0, lg: 2 }}
+          >
             About Us
           </Text>
-          <Text m={0} p={{ base: 0, lg: 2 }}>
+          <Text display="block" as={ReactRouterLink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
             Contact Us
           </Text>
         </Box>
