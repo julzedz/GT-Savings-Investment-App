@@ -129,10 +129,8 @@ const Home = () => (
         <GridItem
           colSpan={2}
           bg="transparent"
-          // borderRadius={21}
           w="100%"
           h="fit-content"
-          // p={12}
           pt={4}
         >
           <Img
@@ -145,7 +143,10 @@ const Home = () => (
           />
           <Box color="white" p={4}>
             <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
-            <Text py={4}>With a low minimum deposit required, start earning interest at competitive rates that are compounded daily. Ready to take the first steps towards financial freedom?</Text>
+            <Text py={4}>
+              With a low minimum deposit required, start earning interest at competitive rates
+              that are compounded daily. Ready to take the first steps towards financial freedom?
+            </Text>
             <Button
               as={RouterLink}
               to="/signup"
@@ -179,7 +180,7 @@ const Home = () => (
           <Box color="white" p={4}>
             <h2>SET AMBITIOUS GOALS. WE WILL MAKE IT WORK.</h2>
             <Text py={4}>
-              Choose from a range of Investment Portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
+              Choose from a range of investment portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
             </Text>
             <Button
               as={RouterLink}
@@ -222,42 +223,32 @@ const Home = () => (
               </Box>
               <List spacing={8} p="0" m={{ base: '', slg: '' }} fontFamily="Space Grotesk" textAlign={{ base: 'center', slg: 'left' }} fontWeight="bold">
                 <ListItem>
-                  <Link href="/account">
-                    {' '}
+                  <Link as={RouterLink} to="/signup">
                     <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
-                    {' '}
                     Open Account
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/account">
-                    {' '}
+                  <Link as={RouterLink} to="/dashboard">
                     <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
-                    {' '}
                     Savings
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href="/investment">
-                    {' '}
+                  <Link as={RouterLink} to="/investment">
                     <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
-                    {' '}
                     Investment
                   </Link>
                 </ListItem>
                 <ListItem>
                   <Link href="/mortgages">
-                    {' '}
                     <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
-                    {' '}
                     Mortgages
                   </Link>
                 </ListItem>
                 <ListItem>
                   <Link href="/investment">
-                    {' '}
                     <ArrowForwardIcon mx={4} display={{ base: 'none', slg: 'inline' }} />
-                    {' '}
                     Loans
                   </Link>
                 </ListItem>
@@ -321,11 +312,8 @@ const Home = () => (
           <Text letterSpacing="wide">Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
           <Text letterSpacing="wide">
             GT Savings Bank is a member of
-            {' '}
             <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
-            {' '}
             and
-            {' '}
             <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
             .
           </Text>
@@ -408,12 +396,14 @@ const Home = () => (
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Build your savings with our competitive annual percentage yields (APY) and wide range of term lengths
+              Build your savings with our competitive annual percentage yields (APY)
+              and wide range of term lengths.
               Start earning more with GT Savings Bank
             </ListItem>
             <ListItem>
               <ListIcon as={CheckCircleIcon} color="applegreen" />
-              Secure personal loans for the things you want and need or consolidate for lower monthly payments
+              Secure personal loans for the things you want and need or consolidate
+              for lower monthly payments
             </ListItem>
           </List>
           <Text letterSpacing="wide">

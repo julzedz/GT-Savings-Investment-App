@@ -111,7 +111,7 @@ const Sidebar = () => {
         <Flex mt={4} align="center">
           <Avatar size="sm" />
           <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-            <Heading as="h3" size="sm">Alex Dumeje</Heading>
+            <Heading as="h3" size="sm">Rob Smith</Heading>
             <Text color="grey">Admin</Text>
           </Flex>
         </Flex>

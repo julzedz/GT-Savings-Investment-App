@@ -11,7 +11,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link as ReactRouterLink } from 'react-router-dom';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
@@ -41,7 +41,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Box py={{ base: 3 }}>
-          <Flex align="center" className="logo-group" href="/">
+          <Flex align="center" className="logo-group" as={ReactRouterLink} to="/">
 
             <Image src={logo} alt="Logo" boxSize="40px" />
             <div>
