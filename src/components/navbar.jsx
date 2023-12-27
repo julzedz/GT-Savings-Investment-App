@@ -11,7 +11,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link as ReactRouterLink } from 'react-router-dom';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
@@ -41,7 +41,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Box py={{ base: 3 }}>
-          <Flex align="center" className="logo-group" href="/">
+          <Flex align="center" className="logo-group" as={ReactRouterLink} to="/">
 
             <Image src={logo} alt="Logo" boxSize="40px" />
             <div>
@@ -69,7 +69,7 @@ const Navbar = () => {
         <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', lg: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
-            <DropdownItem href="/banking">Online Banking</DropdownItem>
+            <DropdownItem href="/dashboard">Online Banking</DropdownItem>
             <DropdownItem href="/loans">Loans</DropdownItem>
             <DropdownItem href="/mortgages">Mortgages</DropdownItem>
           </DropdownMenu>
@@ -77,8 +77,8 @@ const Navbar = () => {
             <DropdownItem href="/investment">Investment</DropdownItem>
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
-          <DropdownMenu label="Support" isActive={isActive('/support' || '/appointment' || 'contact')}>
-            <DropdownItem href="/support">Contact Us</DropdownItem>
+          <DropdownMenu label="Support" isActive={isActive('/about' || '/appointment' || 'contactform')}>
+            <DropdownItem href="/contactform">Contact Us</DropdownItem>
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
@@ -219,7 +219,7 @@ const Navbar = () => {
                   px={2}
                   py={4}
                 >
-                  <AccordionLink href="/support">Contact Us</AccordionLink>
+                  <AccordionLink href="/contactform">Contact Us</AccordionLink>
                   <AccordionLink href="/about">About Us</AccordionLink>
                   <AccordionLink href="/appointment">Make an Appointment</AccordionLink>
                 </Flex>
