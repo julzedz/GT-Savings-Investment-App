@@ -85,7 +85,7 @@ const Home = () => {
           >
             We are committed to helping you set and clarify your financial goals.
           </Text>
-          <Link as={RouterLink} to="/login" _hover={{ textDecoration: 'none', color: 'applegreen' }}>
+          <Link href="#signupSection" _hover={{ textDecoration: 'none', color: 'applegreen' }}>
             <Flex
               m={3}
               p={3}
@@ -135,6 +135,7 @@ const Home = () => {
           gap={6}
         >
           <GridItem
+            id="signupSection"
             colSpan={2}
             bg="transparent"
             w="100%"
