@@ -21,7 +21,7 @@ import ContactForm from '../components/contactform';
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
   const showNavbar = ['/home', '/banking', '/about', '/contactform', '/investmentplans', '/signup', '/insurance', '/login'].includes(location.pathname);
-  const showFooter = ['/home', '/banking', '/about', '/contactform', '/investmentplans', '/signup', '/insurance', '/login'].includes(location.pathname);
+  const showFooter = ['/home', '/banking', '/about', '/contactform', '/investmentplans', '/insurance'].includes(location.pathname);
 
   return (
     <>
