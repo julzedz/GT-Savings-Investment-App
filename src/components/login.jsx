@@ -1,7 +1,10 @@
-// import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import React from 'react';
 import {
-  Image, Text, Flex, Input, InputGroup, InputLeftElement, InputRightElement, Icon, Stack,
+  Image, Text, Flex,
+  Input, Button, InputGroup,
+  InputLeftElement, InputRightElement,
+  Icon, Stack, Checkbox, Link,
 } from '@chakra-ui/react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -15,7 +18,7 @@ const Login = () => {
 
   return (
     <>
-      <Flex h="2xl" mt={16} flexDir="column" bgColor="#f2f2f2">
+      <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2">
         <Flex
           my={5}
           align="center"
@@ -57,8 +60,11 @@ const Login = () => {
           pt={8}
           pb={12}
           w={{
-            base: '80%', md: '50%', lg: '35%', xl: '30%',
+            base: '80%', md: 'lg',
           }}
+          borderRadius="0.5rem"
+          borderWidth="1px"
+          borderColor="gray.200"
         >
           <Text
             fontSize={{ base: 'lg', xl: '2xl' }}
@@ -67,7 +73,7 @@ const Login = () => {
           >
             Login
           </Text>
-          <Stack spacing={4}>
+          <Stack spacing={6}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FaUser} />
@@ -86,8 +92,38 @@ const Login = () => {
                 />
               </InputRightElement>
             </InputGroup>
+            <Checkbox colorScheme="green" w="fit-content">Remember my username</Checkbox>
+            <Button colorScheme="green" variant="solid">
+              Login
+            </Button>
+            <Text
+              as={Link}
+              mt={4}
+              textDecoration="underline"
+              _hover={{ color: 'applegreen' }}
+              w="fit-content"
+            >
+              Forgot username or password?
+            </Text>
           </Stack>
         </Flex>
+        <Text
+          fontFamily="mono"
+          alignSelf="center"
+          justifySelf="center"
+          mt={8}
+        >
+          New to GT Savings Bank?
+          <span> </span>
+          <Link
+            as={ReactRouterLink}
+            to="/signup"
+            textDecoration="underline"
+            _hover={{ color: 'applegreen' }}
+          >
+            Open an account.
+          </Link>
+        </Text>
         <Flex />
       </Flex>
       <AccountFooter />
