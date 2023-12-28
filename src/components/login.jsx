@@ -87,6 +87,7 @@ const Login = () => {
               <Input type={isVisible ? 'text' : 'password'} variant="filled" placeholder="Password" />
               <InputRightElement>
                 <Icon
+                  cursor="pointer"
                   as={isVisible ? ViewOffIcon : ViewIcon}
                   onClick={toggleVisibility}
                 />
