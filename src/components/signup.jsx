@@ -2,7 +2,7 @@
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import {
-  Image, Text, Flex, FormControl,
+  Image, Text, Flex, FormControl, Select,
   FormLabel, Input, FormErrorMessage,
   Button,
 } from '@chakra-ui/react';
@@ -17,11 +17,12 @@ const validationSchema = Yup.object({
   ssn: Yup.number().typeError('SSN must be a number').required('Provide a Social Security Number').test('len', 'Must be exactly 9 digits', (val) => val.toString().length === 9),
   dob: Yup.date().required('Provide date of birth'),
   citizenship: Yup.string().required('Select a country of citizenship'),
-  mobile: Yup.number().typeError('Mobile number must be a number').required('Provide a mobile number'),
+  mobile: Yup.number().typeError('Mobile number must be a number').required('Provide a mobile number').min(10, 'Provide a mobile number'),
   email: Yup.string().email('Invalid email address').required('Provide an email address'),
-  address: Yup.string().required('Provide an address'),
   city: Yup.string().required('Provide a city'),
   state: Yup.string().required('Provide a state'),
+  password: Yup.string().required('Provide a password'),
+  confirmPassword: Yup.string().required('Please confirm your password').oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
 const Signup = () => (
@@ -56,7 +57,7 @@ const Signup = () => (
           </Text>
         </div>
       </Flex>
-      <Flex fontFamily="noto">
+      <Flex fontFamily="noto" justifyContent="center" w="100%">
         <Formik
           initialValues={{
             firstName: '',
@@ -67,9 +68,10 @@ const Signup = () => (
             citizenship: '',
             mobile: '',
             email: '',
-            address: '',
             city: '',
             state: '',
+            password: '',
+            confirmPassword: '',
           }}
           validationSchema={validationSchema}
           onSubmit={(values, actions) => {
@@ -79,63 +81,191 @@ const Signup = () => (
           }}
         >
           {(props) => (
-            <Form>
-              <Field name="firstName">
+            <Form style={{ backgroundColor: 'blue' }}>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" bgColor="red">Full name</FormLabel>
+                <Field name="firstName">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
+                      <FormLabel htmlFor="firstName">First name</FormLabel>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="firstName"
+                      />
+                      <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+                <Field name="lastName">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
+                      <FormLabel htmlFor="lastName">Last name</FormLabel>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="lastName"
+                      />
+                      <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="36%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="ssn">Social Security number</FormLabel>
+                <Field name="ssn">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.ssn && form.touched.ssn}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="ssn"
+                        type="text"
+                        maxLength={9}
+                        w="50%"
+                      />
+                      <FormErrorMessage>{form.errors.ssn}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="dob">Date of birth</FormLabel>
+                <Field name="dob">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.dob && form.touched.dob}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="dob"
+                        type="date"
+                      />
+                      <FormErrorMessage>{form.errors.dob}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="citizenship">Citizenship</FormLabel>
+                <Field name="citizenship">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.citizenship && form.touched.citizenship}>
+                      <Select
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="citizenship"
+                        placeholder="Select a country"
+                      >
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                      </Select>
+                      <FormErrorMessage>{form.errors.citizenship}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Field name="mobile">
                 {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
-                    <FormLabel htmlFor="firstName">First name</FormLabel>
+                  <FormControl isInvalid={form.errors.mobile && form.touched.mobile}>
+                    <FormLabel htmlFor="mobile">Mobile number</FormLabel>
                     <Input
                       value={field.value}
                       onChange={field.onChange}
                       onBlur={field.onBlur}
-                      id="firstName"
+                      id="mobile"
+                      type="tel"
                     />
-                    <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
+                    <FormErrorMessage>{form.errors.mobile}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
-              <Field name="lastName">
+              <Field name="email">
                 {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
-                    <FormLabel htmlFor="lastName">Last name</FormLabel>
+                  <FormControl isInvalid={form.errors.email && form.touched.email}>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                       value={field.value}
                       onChange={field.onChange}
                       onBlur={field.onBlur}
-                      id="lastName"
+                      id="email"
+                      type="email"
                     />
-                    <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
+                    <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
-              <Field name="ssn">
+              <Field name="city">
                 {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.ssn && form.touched.ssn}>
-                    <FormLabel htmlFor="ssn">Social Security number</FormLabel>
+                  <FormControl isInvalid={form.errors.city && form.touched.city}>
+                    <FormLabel htmlFor="city">City</FormLabel>
                     <Input
                       value={field.value}
                       onChange={field.onChange}
                       onBlur={field.onBlur}
-                      id="ssn"
+                      id="city"
                       type="text"
-                      maxLength={9}
                     />
-                    <FormErrorMessage>{form.errors.ssn}</FormErrorMessage>
+                    <FormErrorMessage>{form.errors.city}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
-              <Field name="dob">
+              <Field name="state">
                 {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.dob && form.touched.dob}>
-                    <FormLabel htmlFor="dob">Date of birth</FormLabel>
+                  <FormControl isInvalid={form.errors.state && form.touched.state}>
+                    <FormLabel htmlFor="state">State</FormLabel>
                     <Input
                       value={field.value}
                       onChange={field.onChange}
                       onBlur={field.onBlur}
-                      id="dob"
-                      type="date"
+                      id="state"
+                      type="text"
                     />
-                    <FormErrorMessage>{form.errors.dob}</FormErrorMessage>
+                    <FormErrorMessage>{form.errors.state}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="password">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.password && form.touched.password}>
+                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="password"
+                      type="password"
+                    />
+                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="password">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.password && form.touched.password}>
+                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="password"
+                      type="password"
+                    />
+                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
