@@ -11,17 +11,17 @@ import logo from '../assets/bank-leaf.png';
 import AccountFooter from './accountfooter';
 
 const validationSchema = Yup.object({
-  firstName: Yup.string().required('Required'),
-  lastName: Yup.string().required('Required'),
+  firstName: Yup.string().required('Provide a first name'),
+  lastName: Yup.string().required('Provide a first name'),
   middleName: Yup.string(),
-  ssn: Yup.string().required('Required'),
-  dob: Yup.date().required('Required'),
-  citizenship: Yup.string().required('Required'),
-  mobile: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
-  address: Yup.string().required('Required'),
-  city: Yup.string().required('Required'),
-  state: Yup.string().required('Required'),
+  ssn: Yup.number().typeError('SSN must be a number').required('Provide a Social Security Number').test('len', 'Must be exactly 9 digits', (val) => val.toString().length === 9),
+  dob: Yup.date().required('Provide date of birth'),
+  citizenship: Yup.string().required('Select a country of citizenship'),
+  mobile: Yup.number().typeError('Mobile number must be a number').required('Provide a mobile number'),
+  email: Yup.string().email('Invalid email address').required('Provide an email address'),
+  address: Yup.string().required('Provide an address'),
+  city: Yup.string().required('Provide a city'),
+  state: Yup.string().required('Provide a state'),
 });
 
 const Signup = () => (
@@ -56,58 +56,104 @@ const Signup = () => (
           </Text>
         </div>
       </Flex>
-      <Formik
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          middleName: '',
-          ssn: '',
-          dob: '',
-          citizenship: '',
-          mobile: '',
-          email: '',
-          address: '',
-          city: '',
-          state: '',
-        }}
-        validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 1));
+      <Flex fontFamily="noto">
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            middleName: '',
+            ssn: '',
+            dob: '',
+            citizenship: '',
+            mobile: '',
+            email: '',
+            address: '',
+            city: '',
+            state: '',
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values, actions) => {
+            alert(`First Name: ${values.firstName}`);
             actions.setSubmitting(false);
-          }, 1000);
           // handle form submission here
-        }}
-      >
-        {(props) => (
-          <Form>
-            <Field name="firstName">
-              {({ field, form }) => (
-                <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
-                  <FormLabel htmlFor="firstName">First Name</FormLabel>
-                  <Input
-                    value={field.value}
-                    onChange={field.onChange}
-                    onBlur={field.onBlur}
-                    id="firstName"
-                  />
-                  <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-            {/* Repeat the above Field component for each field in the form */}
-            <Button
-              mt={4}
-              colorScheme="green"
-              isLoading={props.isSubmitting}
-              disabled={props.isSubmitting}
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
+          }}
+        >
+          {(props) => (
+            <Form>
+              <Field name="firstName">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
+                    <FormLabel htmlFor="firstName">First name</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="firstName"
+                    />
+                    <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="lastName">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
+                    <FormLabel htmlFor="lastName">Last name</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="lastName"
+                    />
+                    <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="ssn">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.ssn && form.touched.ssn}>
+                    <FormLabel htmlFor="ssn">Social Security number</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="ssn"
+                      type="text"
+                      maxLength={9}
+                    />
+                    <FormErrorMessage>{form.errors.ssn}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="dob">
+                {({ field, form }) => (
+                  <FormControl isInvalid={form.errors.dob && form.touched.dob}>
+                    <FormLabel htmlFor="dob">Date of birth</FormLabel>
+                    <Input
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      id="dob"
+                      type="date"
+                    />
+                    <FormErrorMessage>{form.errors.dob}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              {/* Repeat the above Field component for each field in the form */}
+              <Button
+                mt={4}
+                colorScheme="green"
+                isLoading={props.isSubmitting}
+              // disabled={props.isSubmitting}
+                type="submit"
+                fontFamily="noto"
+              >
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Flex>
     </Flex>
     <AccountFooter />
   </>
