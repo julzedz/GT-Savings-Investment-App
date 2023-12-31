@@ -88,13 +88,13 @@ const Signup = () => (
           }}
         >
           {(props) => (
-            <Form style={{ backgroundColor: 'blue' }}>
+            <Form style={{ backgroundColor: '' }}>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" bgColor="red">Full name</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short">Full name</FormLabel>
                 <Field name="firstName">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
-                      <FormLabel htmlFor="firstName">First name</FormLabel>
+                      <FormLabel fontSize="xs" lineHeight="short" htmlFor="firstName">First name</FormLabel>
                       <Input
                         value={field.value}
                         onChange={field.onChange}
@@ -108,7 +108,7 @@ const Signup = () => (
                 <Field name="lastName">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.lastName && form.touched.lastName}>
-                      <FormLabel htmlFor="lastName">Last name</FormLabel>
+                      <FormLabel fontSize="xs" lineHeight="short" htmlFor="lastName">Last name</FormLabel>
                       <Input
                         value={field.value}
                         onChange={field.onChange}
@@ -121,7 +121,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="36%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="ssn">Social Security number</FormLabel>
+                <FormLabel w="36%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="ssn">Social Security number</FormLabel>
                 <Field name="ssn">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.ssn && form.touched.ssn}>
@@ -140,7 +140,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="dob">Date of birth</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="dob">Date of birth</FormLabel>
                 <Field name="dob">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.dob && form.touched.dob}>
@@ -157,7 +157,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="citizenship">Citizenship</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="citizenship">Citizenship</FormLabel>
                 <Field name="citizenship">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.citizenship && form.touched.citizenship}>
@@ -187,7 +187,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="mobile">Mobile number</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="mobile">Mobile number</FormLabel>
                 <Field name="mobile">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.mobile && form.touched.mobile}>
@@ -204,7 +204,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="email">Email</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="email">Email</FormLabel>
                 <Field name="email">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.email && form.touched.email}>
@@ -221,7 +221,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="city">City</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="city">City</FormLabel>
                 <Field name="city">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.city && form.touched.city}>
@@ -238,7 +238,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="state">State</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="state">State</FormLabel>
                 <Field name="state">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.state && form.touched.state}>
@@ -255,7 +255,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="password">Password</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="password">Password</FormLabel>
                 <Field name="password">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.password && form.touched.password}>
@@ -272,7 +272,7 @@ const Signup = () => (
                 </Field>
               </Flex>
               <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="confirmPassword">Confirm password</FormLabel>
+                <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="confirmPassword">Confirm password</FormLabel>
                 <Field name="confirmPassword">
                   {({ field, form }) => (
                     <FormControl
@@ -298,6 +298,8 @@ const Signup = () => (
               // disabled={props.isSubmitting}
                 type="submit"
                 fontFamily="noto"
+                w="100%"
+                p={6}
               >
                 Submit
               </Button>
