@@ -11,9 +11,8 @@ import logo from '../assets/bank-leaf.png';
 import AccountFooter from './accountfooter';
 
 const validationSchema = Yup.object({
-  firstName: Yup.string().required('Provide a first name'),
-  lastName: Yup.string().required('Provide a first name'),
-  middleName: Yup.string(),
+  firstName: Yup.string().required('Provide a first name').min(3, 'Name must be at least 3 characters'),
+  lastName: Yup.string().required('Provide a last name').min(3, 'Name must be at least 3 characters'),
   ssn: Yup.number().typeError('SSN must be a number').required('Provide a Social Security Number').test('len', 'Must be exactly 9 digits', (val) => val.toString().length === 9),
   dob: Yup.date().required('Provide date of birth'),
   citizenship: Yup.string().required('Select a country of citizenship'),
@@ -21,13 +20,22 @@ const validationSchema = Yup.object({
   email: Yup.string().email('Invalid email address').required('Provide an email address'),
   city: Yup.string().required('Provide a city'),
   state: Yup.string().required('Provide a state'),
-  password: Yup.string().required('Provide a password'),
-  confirmPassword: Yup.string().required('Please confirm your password').oneOf([Yup.ref('password'), null], 'Passwords must match'),
+  password: Yup.string().required('Provide a password').matches(
+    /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+    'Password must contain at least 8 characters, one uppercase, one number and one special case character',
+  ),
+  confirmPassword: Yup
+    .string()
+    .required('Please confirm your password')
+    .when('password', {
+      is: (password) => (!!(password && password.length > 0)),
+      then: Yup.string().oneOf([Yup.ref('password')], "Password doesn't match"),
+    }),
 });
 
 const Signup = () => (
   <>
-    <Flex h="2xl" mt={16} flexDir="column" bgColor="#f2f2f2">
+    <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2" pb={40}>
       <Flex
         my={5}
         align="center"
@@ -62,7 +70,6 @@ const Signup = () => (
           initialValues={{
             firstName: '',
             lastName: '',
-            middleName: '',
             ssn: '',
             dob: '',
             citizenship: '',
@@ -179,36 +186,40 @@ const Signup = () => (
                   )}
                 </Field>
               </Flex>
-              <Field name="mobile">
-                {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.mobile && form.touched.mobile}>
-                    <FormLabel htmlFor="mobile">Mobile number</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="mobile"
-                      type="tel"
-                    />
-                    <FormErrorMessage>{form.errors.mobile}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
-              <Field name="email">
-                {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.email && form.touched.email}>
-                    <FormLabel htmlFor="email">Email</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="email"
-                      type="email"
-                    />
-                    <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="mobile">Mobile number</FormLabel>
+                <Field name="mobile">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.mobile && form.touched.mobile}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="mobile"
+                        type="tel"
+                      />
+                      <FormErrorMessage>{form.errors.mobile}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="email">Email</FormLabel>
+                <Field name="email">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.email && form.touched.email}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="email"
+                        type="email"
+                      />
+                      <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
               <Field name="city">
                 {({ field, form }) => (
                   <FormControl isInvalid={form.errors.city && form.touched.city}>
@@ -254,18 +265,20 @@ const Signup = () => (
                   </FormControl>
                 )}
               </Field>
-              <Field name="password">
+              <Field name="confirmPassword">
                 {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.password && form.touched.password}>
-                    <FormLabel htmlFor="password">Password</FormLabel>
+                  <FormControl
+                    isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
+                  >
+                    <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
                     <Input
                       value={field.value}
                       onChange={field.onChange}
                       onBlur={field.onBlur}
-                      id="password"
+                      id="confirmPassword"
                       type="password"
                     />
-                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                    <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
