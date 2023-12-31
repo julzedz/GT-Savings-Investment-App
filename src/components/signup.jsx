@@ -220,68 +220,76 @@ const Signup = () => (
                   )}
                 </Field>
               </Flex>
-              <Field name="city">
-                {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.city && form.touched.city}>
-                    <FormLabel htmlFor="city">City</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="city"
-                      type="text"
-                    />
-                    <FormErrorMessage>{form.errors.city}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
-              <Field name="state">
-                {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.state && form.touched.state}>
-                    <FormLabel htmlFor="state">State</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="state"
-                      type="text"
-                    />
-                    <FormErrorMessage>{form.errors.state}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
-              <Field name="password">
-                {({ field, form }) => (
-                  <FormControl isInvalid={form.errors.password && form.touched.password}>
-                    <FormLabel htmlFor="password">Password</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="password"
-                      type="password"
-                    />
-                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
-              <Field name="confirmPassword">
-                {({ field, form }) => (
-                  <FormControl
-                    isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
-                  >
-                    <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
-                    <Input
-                      value={field.value}
-                      onChange={field.onChange}
-                      onBlur={field.onBlur}
-                      id="confirmPassword"
-                      type="password"
-                    />
-                    <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
-                  </FormControl>
-                )}
-              </Field>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="city">City</FormLabel>
+                <Field name="city">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.city && form.touched.city}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="city"
+                        type="text"
+                      />
+                      <FormErrorMessage>{form.errors.city}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="state">State</FormLabel>
+                <Field name="state">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.state && form.touched.state}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="state"
+                        type="text"
+                      />
+                      <FormErrorMessage>{form.errors.state}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="password">Password</FormLabel>
+                <Field name="password">
+                  {({ field, form }) => (
+                    <FormControl isInvalid={form.errors.password && form.touched.password}>
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="password"
+                        type="password"
+                      />
+                      <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
+              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+                <FormLabel bgColor="red" w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="confirmPassword">Confirm password</FormLabel>
+                <Field name="confirmPassword">
+                  {({ field, form }) => (
+                    <FormControl
+                      isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
+                    >
+                      <Input
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        id="confirmPassword"
+                        type="password"
+                      />
+                      <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
+                    </FormControl>
+                  )}
+                </Field>
+              </Flex>
               {/* Repeat the above Field component for each field in the form */}
               <Button
                 mt={4}
