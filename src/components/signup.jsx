@@ -2,12 +2,11 @@
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import {
-  Image, Text, Flex, FormControl, Select,
+  Flex, FormControl, Select,
   FormLabel, Input, FormErrorMessage,
   Button,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import logo from '../assets/bank-leaf.png';
 import AccountFooter from './accountfooter';
 
 const validationSchema = Yup.object({
@@ -36,36 +35,7 @@ const validationSchema = Yup.object({
 const Signup = () => (
   <>
     <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2" pb={40}>
-      <Flex
-        my={5}
-        align="center"
-        justifyContent="center"
-        className="logo-group"
-        href="/"
-        mt={12}
-      >
-
-        <Image src={logo} alt="Logo" boxSize="30px" />
-        <div>
-          <Text
-            fontSize="lg"
-            fontWeight="bold"
-            color="gunmetal"
-            fontFamily="Atomic Age"
-            align="center"
-            my={0}
-          >
-            GT Savings Bank
-            <Text
-              color="applegreen"
-              display="inline"
-            >
-              .
-            </Text>
-          </Text>
-        </div>
-      </Flex>
-      <Flex fontFamily="noto" justifyContent="center" w="100%">
+      <Flex mt={12} fontFamily="noto" justifyContent="center" w="100%">
         <Formik
           initialValues={{
             firstName: '',
