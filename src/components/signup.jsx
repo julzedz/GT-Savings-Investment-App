@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import AccountFooter from './accountfooter';
+import FormNavbar from './formnavbar';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('Provide a first name').min(3, 'Name must be at least 3 characters'),
@@ -34,6 +35,7 @@ const validationSchema = Yup.object({
 
 const Signup = () => (
   <>
+    <FormNavbar />
     <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2" pb={40}>
       <Flex mt={12} fontFamily="noto" justifyContent="center" w="100%">
         <Formik

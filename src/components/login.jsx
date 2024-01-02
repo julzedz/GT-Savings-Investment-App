@@ -2,15 +2,14 @@
 import { Link as ReactRouterLink } from 'react-router-dom';
 import React from 'react';
 import {
-  Image, Text, Flex,
+  Text, Flex,
   Input, Button, InputGroup,
   InputLeftElement, InputRightElement,
   Icon, Stack, Checkbox, Link,
 } from '@chakra-ui/react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-
-import logo from '../assets/bank-leaf.png';
+import FormNavbar from './formnavbar';
 import AccountFooter from './accountfooter';
 
 const Login = () => {
@@ -19,36 +18,8 @@ const Login = () => {
 
   return (
     <>
+      <FormNavbar />
       <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2">
-        <Flex
-          my={5}
-          align="center"
-          justifyContent="center"
-          className="logo-group"
-          href="/"
-          mt={12}
-        >
-
-          <Image src={logo} alt="Logo" boxSize="30px" />
-          <div>
-            <Text
-              fontSize="lg"
-              fontWeight="bold"
-              color="gunmetal"
-              fontFamily="Atomic Age"
-              align="center"
-              my={0}
-            >
-              GT Savings Bank
-              <Text
-                color="applegreen"
-                display="inline"
-              >
-                .
-              </Text>
-            </Text>
-          </div>
-        </Flex>
         <Flex
           fontFamily="mono"
           alignSelf="center"
@@ -57,6 +28,7 @@ const Login = () => {
           bgColor="white"
           minWidth={48}
           minHeight={48}
+          mt={12}
           px={8}
           pt={8}
           pb={12}
