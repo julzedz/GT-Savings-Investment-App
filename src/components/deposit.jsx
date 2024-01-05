@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react';
+import {
+  Flex, Text, FormControl, Select, FormLabel,
+} from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 
@@ -25,7 +27,20 @@ const Deposit = () => (
           >
             Fund your account
           </Text>
-          <Text>Deposit</Text>
+          <FormControl>
+            <FormLabel fontSize="xs" htmlFor="payment">Payment Method</FormLabel>
+            <Select
+              value=""
+              id="payment"
+              placeholder="Select payment method"
+            >
+              <option value="USDT">USDT</option>
+              <option value="USDC">USDC</option>
+              <option value="BTC">BTC</option>
+              <option value="ETH">Ethereum</option>
+              <option value="Germany">Germany</option>
+            </Select>
+          </FormControl>
         </Flex>
         <AccountFooter />
       </Flex>
