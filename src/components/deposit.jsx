@@ -2,7 +2,7 @@
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip, Image,
+  ListItem, Tooltip, Image, FormHelperText,
 } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
@@ -59,7 +59,9 @@ const Deposit = () => {
                   Icons8
                 </a>
                 <option value="USDC">USDC</option>
-                <option value="BTC">BTC</option>
+                <option value="BTC">
+                  BTC
+                </option>
                 <option value="ETH">Ethereum</option>
                 <option value="cashapp">Cashapp</option>
                 <option value="venmo">Venmo</option>
@@ -70,12 +72,13 @@ const Deposit = () => {
             <FormControl w="60%" mb={6}>
               <FormLabel fontSize="xs">Amount</FormLabel>
               <NumberInput step={1000} min={1000}>
-                <NumberInputField placeholder="Min. deposit 1000 USDT" />
+                <NumberInputField placeholder="Enter amount" />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
+              <FormHelperText fontSize="xs">Minimum Deposit ≈1000 USDT</FormHelperText>
             </FormControl>
 
             <Text>Note</Text>
@@ -102,7 +105,7 @@ const Deposit = () => {
                     </Text>
                   </Flex>
                   <Tooltip label="Click to copy" fontFamily="new" fontSize="xs">
-                    <Icon as={FaCopy} padding="2px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
+                    <Icon as={FaCopy} boxSize={5} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
                   </Tooltip>
                 </Flex>
               </Flex>
