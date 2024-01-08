@@ -1,11 +1,12 @@
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip,
+  ListItem, Tooltip, Image,
 } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
+import qrcode from '../assets/qrcode.jpg';
 // import Tether from '../assets/icons8-tether.svg';
 
 const Deposit = () => (
@@ -29,7 +30,7 @@ const Deposit = () => (
             fontWeight="bold"
             mb={6}
           >
-            Fund your account
+            Fund Account
           </Text>
           <FormControl w="60%" mb={6}>
             <FormLabel fontSize="xs">Payment Method</FormLabel>
@@ -76,12 +77,22 @@ const Deposit = () => (
 
           <FormControl w="60%" mb={6}>
             <FormLabel fontSize="xs">Deposit Address</FormLabel>
-            <Text fontSize="14px" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start">
-              0x3bF71E4250631076269426d735F4Ea37c10C7256
-            </Text>
-            <Tooltip label="Click to copy" fontFamily="new" fontSize="xs">
-              <Icon as={FaCopy} cursor="pointer" ml={1} display="inline" />
-            </Tooltip>
+            <Flex alignItems="center" justifyContent="space-between" bgColor="#fafafa" borderRadius="5px" p={5} minH="10rem" gap="5%" w="100%">
+              <Flex alignItems="center" justifyContent="center">
+                <Image src={qrcode} boxSize="100px" />
+              </Flex>
+              <Flex alignItems="center" justifyContent="center">
+                <Flex flexDir="column">
+                  <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
+                  <Text fontSize="md" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start" textOverflow="ellipsis">
+                    0x3bF71E4250631076269426d735F4Ea37c10C7256
+                  </Text>
+                </Flex>
+                <Tooltip label="Click to copy" fontFamily="new" fontSize="xs">
+                  <Icon as={FaCopy} color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={1} display="inline" />
+                </Tooltip>
+              </Flex>
+            </Flex>
           </FormControl>
         </Flex>
         <AccountFooter />
