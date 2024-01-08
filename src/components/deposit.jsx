@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
+import React, { useState } from 'react';
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip, Image, FormHelperText,
+  ListItem, Tooltip, Image, FormHelperText, Input,
 } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
@@ -12,6 +13,7 @@ import qrcode from '../assets/qrcode.jpg';
 
 const Deposit = () => {
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
+  const [file, setFile] = useState(null);
 
   const handleCopy = async () => {
     try {
@@ -20,6 +22,11 @@ const Deposit = () => {
     } catch (err) {
       console.log('Failed to copy address', err);
     }
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    // send file into database
   };
 
   return (
@@ -78,16 +85,20 @@ const Deposit = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <FormHelperText fontSize="xs">Minimum Deposit ≈1000 USDT</FormHelperText>
+              <FormHelperText fontSize="xs">Minimum deposit ≈1000 USDT</FormHelperText>
             </FormControl>
 
-            <Text>Note</Text>
-            <UnorderedList fontSize="xs" spacing={3} mb={6}>
+            {/* <Text>Note</Text> */}
+            <UnorderedList w="60%" textColor="#707a8a" fontSize="xs" spacing={3} mb={6}>
               <ListItem>Please make deposit before submitting the form.</ListItem>
               <ListItem>
                 Deposits will be credited and available on dashboard after 1 confirmation.
               </ListItem>
               <ListItem>Crypto deposits are faster and preferable.</ListItem>
+              <ListItem>
+                Deposits may be via any of the supported networks:
+                Tron (TRC20), BSC (BEP20), ETH (ERC20), Polygon, Arbitrum Network.
+              </ListItem>
               <ListItem>Do not send NFTs to this address.</ListItem>
             </UnorderedList>
 
@@ -97,7 +108,7 @@ const Deposit = () => {
                 <Flex alignItems="center" justifyContent="center">
                   <Image src={qrcode} boxSize="100px" />
                 </Flex>
-                <Flex alignItems="center" justifyContent="center">
+                <Flex alignItems="center" justifyContent="center" position="relative">
                   <Flex flexDir="column">
                     <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
                     <Text fontSize="md" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start" textOverflow="ellipsis">
@@ -109,6 +120,10 @@ const Deposit = () => {
                   </Tooltip>
                 </Flex>
               </Flex>
+            </FormControl>
+            <FormControl w="60%" mb={6}>
+              <FormLabel fontSize="xs">Payment Receipt</FormLabel>
+              <Input type="file" accept="image/*" onChange={handleFileChange} />
             </FormControl>
           </Flex>
           <AccountFooter />
