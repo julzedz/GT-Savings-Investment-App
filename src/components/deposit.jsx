@@ -29,6 +29,18 @@ const Deposit = () => {
     // send file into database
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch('https:///api.3xtradehub.com/api/v1/deposit', {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <>
       <Flex>
