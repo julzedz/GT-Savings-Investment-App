@@ -77,15 +77,8 @@ const Deposit = () => {
                 placeholder="Select payment method"
               >
                 <option value="USDT">USDT</option>
-                <a href="https://icons8.com/icon/U8V97McJaXmr/tether">Tether</a>
-                icon by
-                <a href="https://icons8.com">
-                  Icons8
-                </a>
                 <option value="USDC">USDC</option>
-                <option value="BTC">
-                  BTC
-                </option>
+                <option value="BTC">BTC</option>
                 <option value="ETH">Ethereum</option>
                 <option value="cashapp">Cashapp</option>
                 <option value="venmo">Venmo</option>
