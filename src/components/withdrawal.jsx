@@ -97,13 +97,20 @@ const Withdrawal = () => (
             <option value="Arbitrum">Arbitrum One</option>
           </Select>
         </FormControl>
-        <Flex justifyContent="space-between" fontFamily="new" width="30%" mb={9}>
+        <Flex
+          justifyContent="space-between"
+          fontFamily="new"
+          width={{
+            base: '70%', sm: '70%', md: '60%', lg: '50%', slg: '40%', xl: '30%',
+          }}
+          mb={9}
+        >
           <Flex flexDir="column">
-            <Text fontSize="xs" color="gray">Wallet balance</Text>
+            <Text fontSize="xs" mb={1} color="gray">Wallet balance</Text>
             <Text>355,760.32 USDT</Text>
           </Flex>
           <Flex flexDir="column">
-            <Text fontSize="xs" color="gray">Minimum withdrawal</Text>
+            <Text fontSize="xs" mb={1} color="gray">Minimum withdrawal</Text>
             <Text>500 USDT</Text>
           </Flex>
         </Flex>
