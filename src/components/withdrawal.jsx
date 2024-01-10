@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Flex, Text, FormControl, FormLabel, Select,
+  Flex, Text, FormControl, FormLabel, Select, NumberInput, NumberInputField, NumberInputStepper,
+  NumberIncrementStepper, NumberDecrementStepper, Input, Button, ListItem, UnorderedList,
 } from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
@@ -48,6 +49,95 @@ const Withdrawal = () => (
             <option value="ETH">Ethereum</option>
           </Select>
         </FormControl>
+        <FormControl
+          w={{
+            base: '100%', md: '80%', lg: '70%', slg: '60%',
+          }}
+          mb={6}
+        >
+          <FormLabel fontSize="xs">Withdraw amount</FormLabel>
+          <NumberInput step={100} min={500}>
+            <NumberInputField placeholder="Enter amount" />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
+        <FormControl
+          w={{
+            base: '100%', md: '80%', lg: '70%', slg: '60%',
+          }}
+          mb={6}
+        >
+          <FormLabel fontSize="xs">Send To: Address</FormLabel>
+          <Input
+            value=""
+            onChange=""
+            type="text"
+            placeholder="Enter address"
+          />
+        </FormControl>
+        <FormControl
+          w={{
+            base: '100%', md: '80%', lg: '70%', slg: '60%',
+          }}
+          mb={6}
+        >
+          <FormLabel fontSize="xs">Select network</FormLabel>
+          <Select
+              // value=""
+            id="networks"
+            placeholder="Network"
+          >
+            <option value="BSC">BSC (BEP20)</option>
+            <option value="ETH">Ethereum (ERC20)</option>
+            <option value="MATIC">Polygon</option>
+            <option value="Tron">Tron (TRC20)</option>
+            <option value="Arbitrum">Arbitrum One</option>
+          </Select>
+        </FormControl>
+        <Flex justifyContent="space-between" fontFamily="new" width="30%" mb={9}>
+          <Flex flexDir="column">
+            <Text fontSize="xs" color="gray">Wallet balance</Text>
+            <Text>355,760.32 USDT</Text>
+          </Flex>
+          <Flex flexDir="column">
+            <Text fontSize="xs" color="gray">Minimum withdrawal</Text>
+            <Text>500 USDT</Text>
+          </Flex>
+        </Flex>
+        <UnorderedList
+          w={{
+            base: '100%', md: '80%', lg: '70%', slg: '60%',
+          }}
+          textColor="#707a8a"
+          fontSize="xs"
+          spacing={3}
+          mb={6}
+        >
+          <ListItem>Arrival time is typically ≈10 mins</ListItem>
+          <ListItem>
+            Please ensure your receiving platform supports the token
+            and network you are withdrawing.
+          </ListItem>
+          <ListItem>Crypto deposits are faster and preferable.</ListItem>
+        </UnorderedList>
+        <Button
+          mt={4}
+          mb={20}
+          colorScheme="green"
+              // isLoading={props.isSubmitting}
+              // disabled={props.isSubmitting}
+          type="submit"
+          fontFamily="noto"
+          w="40%"
+          alignSelf="center"
+          p={6}
+          // onClick={handleSubmit}
+        >
+          Submit
+        </Button>
       </Flex>
       <AccountFooter />
     </Flex>
