@@ -42,7 +42,7 @@ const Sidebar = () => {
       h="100vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
       w={navSize === 'small' ? 20 : 80}
-      borderRadius={navSize === 'small' ? '2px' : '0 10px'}
+      borderRadius={navSize === 'small' ? '2px' : '0'}
       flexDir="column"
       justifyContent="space-between"
       bgColor="applegreen"
