@@ -141,12 +141,12 @@ const Deposit = () => {
               <FormLabel fontSize="xs">Deposit Address</FormLabel>
               <Flex alignItems="center" justifyContent="space-between" bgColor="#fafafa" borderRadius="5px" p={5} minH="10rem" gap="5%" w="100%">
                 <Flex alignItems="center" justifyContent="center">
-                  <Image src={qrcode} boxSize="100px" />
+                  <Image src={qrcode} boxSize="100px" minW="100px" />
                 </Flex>
                 <Flex alignItems="center" justifyContent="center" position="relative">
                   <Flex flexDir="column">
                     <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
-                    <Text fontSize="md" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start" textOverflow="ellipsis">
+                    <Text fontSize="md" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start">
                       {address}
                     </Text>
                   </Flex>
