@@ -64,7 +64,12 @@ const Deposit = () => {
             >
               Fund Account
             </Text>
-            <FormControl w="60%" mb={6}>
+            <FormControl
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              mb={6}
+            >
               <FormLabel fontSize="xs">Payment Method</FormLabel>
               <Select
               // value=""
@@ -88,7 +93,12 @@ const Deposit = () => {
                 <option value="zelle">Zelle</option>
               </Select>
             </FormControl>
-            <FormControl w="60%" mb={6}>
+            <FormControl
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              mb={6}
+            >
               <FormLabel fontSize="xs">Amount</FormLabel>
               <NumberInput step={500} min={1000}>
                 <NumberInputField placeholder="Enter amount" />
@@ -101,7 +111,15 @@ const Deposit = () => {
             </FormControl>
 
             {/* <Text>Note</Text> */}
-            <UnorderedList w="60%" textColor="#707a8a" fontSize="xs" spacing={3} mb={6}>
+            <UnorderedList
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              textColor="#707a8a"
+              fontSize="xs"
+              spacing={3}
+              mb={6}
+            >
               <ListItem>Please make deposit before submitting the form.</ListItem>
               <ListItem>
                 Deposits will be credited and available on dashboard after 1 confirmation.
@@ -114,7 +132,12 @@ const Deposit = () => {
               <ListItem>Do not send NFTs to this address.</ListItem>
             </UnorderedList>
 
-            <FormControl w="60%" mb={6}>
+            <FormControl
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              mb={6}
+            >
               <FormLabel fontSize="xs">Deposit Address</FormLabel>
               <Flex alignItems="center" justifyContent="space-between" bgColor="#fafafa" borderRadius="5px" p={5} minH="10rem" gap="5%" w="100%">
                 <Flex alignItems="center" justifyContent="center">
@@ -128,18 +151,24 @@ const Deposit = () => {
                     </Text>
                   </Flex>
                   <Tooltip label="Click to copy" fontFamily="new" fontSize="xs">
-                    <Icon as={FaCopy} boxSize={5} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
+                    <Icon as={FaCopy} boxSize={7} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
                   </Tooltip>
                 </Flex>
               </Flex>
             </FormControl>
-            <FormControl w="60%" mb={6}>
+            <FormControl
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              mb={6}
+            >
               <FormLabel fontSize="xs">Payment Receipt</FormLabel>
               <Input type="file" accept="image/*" onChange={handleFileChange} />
             </FormControl>
 
             <Button
-              my={4}
+              mt={4}
+              mb={20}
               colorScheme="green"
               // isLoading={props.isSubmitting}
               // disabled={props.isSubmitting}
