@@ -2,6 +2,7 @@ import {
   Box, Heading, Flex, Text, Button, Image,
 } from '@chakra-ui/react';
 import building from '../assets/building2.jpg';
+import moneytree from '../assets/money-tree.jpg';
 
 const InvestmentPlans = () => (
   <>
@@ -28,8 +29,8 @@ const InvestmentPlans = () => (
         Investment Plans
       </Heading>
     </Box>
-    <Box>
-      <Flex>
+    <Flex w="100%" bgColor="red">
+      <Flex w="50%" flexDir="column">
         <Text>Maximize Your Returns</Text>
         <Text>With Our Investment Products</Text>
         <Button
@@ -39,16 +40,16 @@ const InvestmentPlans = () => (
               // disabled={props.isSubmitting}
           type="submit"
           fontFamily="noto"
-          w="100%"
+          w="30%"
           p={6}
         >
           Click To Invest
         </Button>
       </Flex>
-      <Flex>
-        <Image src={} boxSize={20}/>
+      <Flex w="50%">
+        <Image objectFit="cover" w="100%" src={moneytree} boxSize={40} />
       </Flex>
-    </Box>
+    </Flex>
   </>
 );
 
