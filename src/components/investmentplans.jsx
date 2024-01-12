@@ -29,13 +29,24 @@ const InvestmentPlans = () => (
         Investment Plans
       </Heading>
     </Box>
-    <Flex w="100%" bgColor="applegreen" justifyContent="center" alignItems="center">
-      <Flex w="50%" textAlign="left" justifySelf="center" flexDir="column">
-        <Heading fontSize="4rem" lineHeight="122%" maxW="455px" m={0} color="gunmetal">Maximize Your Returns</Heading>
-        <Heading mt="0.3rem" color="white" lineHeight="4.2rem" fontSize="1.7rem">With Our Investment Products</Heading>
+    <Flex w="100%" bgColor="applegreen" justifyContent="center" alignItems="center" flexDir={{ base: 'column', slg: 'row' }}>
+      <Flex w={{ base: '100%', slg: '50%' }} p={{ base: 6, slg: 0 }} order={{ base: 2, slg: 1 }} textAlign={{ base: 'center', slg: 'left' }} justifySelf="center" flexDir="column" pl={9}>
+        <Heading
+          fontSize={{
+            base: '', md: '2rem', slg: '3rem', xl: '4rem',
+          }}
+          lineHeight="122%"
+          maxW={{ base: '100%', slg: '455px' }}
+          m={0}
+          color="gunmetal"
+        >
+          Maximize Your Returns
+        </Heading>
+        <Heading mt="0.3rem" color="white" lineHeight={{ base: '1.5em', slg: '4.2em' }} fontSize={{ base: '1.3em', slg: '1.7rem' }}>With Our Investment Products</Heading>
         <Button
           mt={4}
           colorScheme="gray"
+          alignSelf={{ base: 'center', slg: 'auto' }}
                 // isLoading={props.isSubmitting}
               // disabled={props.isSubmitting}
           type="submit"
@@ -46,7 +57,7 @@ const InvestmentPlans = () => (
           Click To Invest
         </Button>
       </Flex>
-      <Flex w="50%">
+      <Flex w={{ base: '', slg: '50%' }} order={{ base: 1, slg: 2 }}>
         <Image objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
