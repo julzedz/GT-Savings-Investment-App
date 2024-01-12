@@ -1,5 +1,5 @@
 import {
-  Box, Heading, Flex, Text, Button, Image,
+  Box, Heading, Flex, Button, Image,
 } from '@chakra-ui/react';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
@@ -29,13 +29,13 @@ const InvestmentPlans = () => (
         Investment Plans
       </Heading>
     </Box>
-    <Flex w="100%" bgColor="red">
-      <Flex w="50%" flexDir="column">
-        <Text>Maximize Your Returns</Text>
-        <Text>With Our Investment Products</Text>
+    <Flex w="100%" bgColor="applegreen" justifyContent="center" alignItems="center">
+      <Flex w="50%" textAlign="left" justifySelf="center" flexDir="column">
+        <Heading fontSize="4rem" lineHeight="122%" maxW="455px" m={0} color="gunmetal">Maximize Your Returns</Heading>
+        <Heading mt="0.3rem" color="white" lineHeight="4.2rem" fontSize="1.7rem">With Our Investment Products</Heading>
         <Button
           mt={4}
-          colorScheme="green"
+          colorScheme="gray"
                 // isLoading={props.isSubmitting}
               // disabled={props.isSubmitting}
           type="submit"
@@ -47,7 +47,7 @@ const InvestmentPlans = () => (
         </Button>
       </Flex>
       <Flex w="50%">
-        <Image objectFit="cover" w="100%" src={moneytree} boxSize={40} />
+        <Image objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
   </>
