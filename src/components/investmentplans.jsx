@@ -51,16 +51,25 @@ const InvestmentPlans = () => (
           w="30%"
           p={6}
         >
-          Click To Invest
+          Click to Invest
         </Button>
       </Flex>
       <Flex w={{ base: '100%', slg: '50%' }} order={{ base: 1, slg: 2 }}>
         <Image maxH={{ base: 'xs', slg: 'auto' }} objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
-    <Box bgColor="#e9ecef" textAlign="center">
+    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} minH="sm">
       <Heading fontSize="1.2em" p="1em 2em" letterSpacing="0.5em">OUR PRODUCTS</Heading>
-      <Heading>Choose How You Want To Invest</Heading>
+      <Heading
+        fontSize={{
+          base: '', md: '2rem', slg: '3rem', xl: '4rem',
+        }}
+        lineHeight="102%"
+        color="gunmetal"
+      >
+        Choose How You Want To Invest
+
+      </Heading>
     </Box>
   </>
 );
