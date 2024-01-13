@@ -42,9 +42,8 @@ const InvestmentPlans = () => (
         >
           Maximize Your Returns
         </Heading>
-        <Heading mt="0.3rem" color="white" lineHeight={{ base: '1.5em', slg: '2.3em' }} fontSize={{ base: '1.3em', slg: '1.7rem' }}>With Our Investment Products</Heading>
+        <Heading mt="0.3rem" color="white" lineHeight={{ base: '1.5em', slg: '2em' }} fontSize={{ base: '1.3em', slg: '1.7rem' }}>With Our Investment Products</Heading>
         <Button
-          // mt={4}
           colorScheme="gray"
           alignSelf={{ base: 'center', slg: 'auto' }}
           type="submit"
@@ -59,6 +58,10 @@ const InvestmentPlans = () => (
         <Image maxH={{ base: 'xs', slg: 'auto' }} objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
+    <Box bgColor="#e9ecef" textAlign="center">
+      <Heading fontSize="1.2em" p="1em 2em" letterSpacing="0.5em">OUR PRODUCTS</Heading>
+      <Heading>Choose How You Want To Invest</Heading>
+    </Box>
   </>
 );
 
