@@ -3,6 +3,7 @@ import {
 } from '@chakra-ui/react';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
+import stock from '../assets/trading-otc-new.svg';
 
 const InvestmentPlans = () => (
   <>
@@ -58,7 +59,7 @@ const InvestmentPlans = () => (
         <Image maxH={{ base: 'xs', slg: 'auto' }} objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
-    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} minH="sm">
+    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} pb={6} minH="sm">
       <Heading fontSize="1.2em" p="1em 2em" letterSpacing="0.5em">OUR PRODUCTS</Heading>
       <Heading
         fontSize={{
@@ -70,6 +71,12 @@ const InvestmentPlans = () => (
         Choose How You Want To Invest
 
       </Heading>
+      <Flex mt="9rem">
+        <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em">
+          <Image alignSelf="center" src={stock} boxSize="100px" p={6} />
+          <Heading>Money Market Fund</Heading>
+        </Flex>
+      </Flex>
     </Box>
   </>
 );
