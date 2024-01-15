@@ -1,6 +1,7 @@
 import {
   Box, Heading, Flex, Button, Image, Text,
 } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
 import stock from '../assets/trading-otc-new.svg';
@@ -71,26 +72,34 @@ const InvestmentPlans = () => (
         Choose How You Want To Invest
 
       </Heading>
-      <Flex mt="9rem">
-        <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em">
+      <Flex mt="9rem" flexWrap="wrap" justifyContent="center" gap={8}>
+        <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em" w="26rem">
           <Image alignSelf="center" src={stock} boxSize="100px" p={6} />
-          <Heading mb={6}>Money Market Fund</Heading>
+          <Heading mb={6}>Real Estate</Heading>
           <Flex fontWeight="semibold" borderBottom="1px solid gray" py="1rem" justifyContent="space-between">
             <Text m={0}>Min. Investment</Text>
-            <Text m={0}>$10k</Text>
+            <Text m={0}>$50,000</Text>
           </Flex>
           <Flex borderBottom="1px solid gray" py="1rem" fontWeight="semibold" justifyContent="space-between">
             <Text m={0}>Term</Text>
-            <Text m={0}>6 months</Text>
+            <Text m={0}>3  years</Text>
           </Flex>
           <Flex borderBottom="1px solid gray" py="1em" fontWeight="semibold" justifyContent="space-between">
             <Text m={0}>ROI</Text>
-            <Text m={0}>20%</Text>
+            <Text m={0}>40%</Text>
           </Flex>
-          <Flex borderBottom="1px solid gray" py="1em" fontWeight="semibold" justifyContent="space-between">
+          <Flex py="1em" fontWeight="semibold" justifyContent="space-between">
             <Text m={0}>Payment Schedule</Text>
             <Text m={0}>monthly</Text>
           </Flex>
+          <Button
+            variant="outline"
+            as={ReactRouterLink}
+            to="/"
+            mt={6}
+          >
+            Get Started
+          </Button>
         </Flex>
       </Flex>
     </Box>
