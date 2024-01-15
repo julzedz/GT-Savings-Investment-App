@@ -59,7 +59,7 @@ const InvestmentPlans = () => (
         <Image maxH={{ base: 'xs', slg: 'auto' }} objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
-    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} pb={6} minH="sm" fontFamily="new">
+    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} pb={6} px={6} minH="sm" fontFamily="new">
       <Heading fontSize="1.2em" p="1em 2em" letterSpacing="0.5em">OUR PRODUCTS</Heading>
       <Heading
         fontSize={{
@@ -75,21 +75,21 @@ const InvestmentPlans = () => (
         <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em">
           <Image alignSelf="center" src={stock} boxSize="100px" p={6} />
           <Heading mb={6}>Money Market Fund</Heading>
-          <Flex fontWeight="semibold" borderBottom="1px solid gray" justifyContent="space-between">
-            <Text>Min. Investment</Text>
-            <Text>$10k</Text>
+          <Flex fontWeight="semibold" borderBottom="1px solid gray" py="1rem" justifyContent="space-between">
+            <Text m={0}>Min. Investment</Text>
+            <Text m={0}>$10k</Text>
           </Flex>
-          <Flex borderBottom="1px solid gray" mt="1em" fontWeight="semibold" justifyContent="space-between">
-            <Text>Term</Text>
-            <Text>6 months</Text>
+          <Flex borderBottom="1px solid gray" py="1rem" fontWeight="semibold" justifyContent="space-between">
+            <Text m={0}>Term</Text>
+            <Text m={0}>6 months</Text>
           </Flex>
-          <Flex borderBottom="1px solid gray" mt="1em" fontWeight="semibold" justifyContent="space-between">
-            <Text>ROI</Text>
-            <Text>20%</Text>
+          <Flex borderBottom="1px solid gray" py="1em" fontWeight="semibold" justifyContent="space-between">
+            <Text m={0}>ROI</Text>
+            <Text m={0}>20%</Text>
           </Flex>
-          <Flex borderBottom="1px solid gray" my="1em" fontWeight="semibold" justifyContent="space-between">
-            <Text>Payment Schedule</Text>
-            <Text>monthly</Text>
+          <Flex borderBottom="1px solid gray" py="1em" fontWeight="semibold" justifyContent="space-between">
+            <Text m={0}>Payment Schedule</Text>
+            <Text m={0}>monthly</Text>
           </Flex>
         </Flex>
       </Flex>
