@@ -1,5 +1,5 @@
 import {
-  Box, Heading, Flex, Button, Image,
+  Box, Heading, Flex, Button, Image, Text,
 } from '@chakra-ui/react';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
@@ -59,7 +59,7 @@ const InvestmentPlans = () => (
         <Image maxH={{ base: 'xs', slg: 'auto' }} objectFit="cover" w="100%" src={moneytree} />
       </Flex>
     </Flex>
-    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} pb={6} minH="sm">
+    <Box bgColor="#e9ecef" textAlign="center" m={0} p={0} pb={6} minH="sm" fontFamily="new">
       <Heading fontSize="1.2em" p="1em 2em" letterSpacing="0.5em">OUR PRODUCTS</Heading>
       <Heading
         fontSize={{
@@ -74,7 +74,23 @@ const InvestmentPlans = () => (
       <Flex mt="9rem">
         <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em">
           <Image alignSelf="center" src={stock} boxSize="100px" p={6} />
-          <Heading>Money Market Fund</Heading>
+          <Heading mb={6}>Money Market Fund</Heading>
+          <Flex fontWeight="semibold" borderBottom="1px solid gray" justifyContent="space-between">
+            <Text>Min. Investment</Text>
+            <Text>$10k</Text>
+          </Flex>
+          <Flex borderBottom="1px solid gray" mt="1em" fontWeight="semibold" justifyContent="space-between">
+            <Text>Term</Text>
+            <Text>6 months</Text>
+          </Flex>
+          <Flex borderBottom="1px solid gray" mt="1em" fontWeight="semibold" justifyContent="space-between">
+            <Text>ROI</Text>
+            <Text>20%</Text>
+          </Flex>
+          <Flex borderBottom="1px solid gray" my="1em" fontWeight="semibold" justifyContent="space-between">
+            <Text>Payment Schedule</Text>
+            <Text>monthly</Text>
+          </Flex>
         </Flex>
       </Flex>
     </Box>
