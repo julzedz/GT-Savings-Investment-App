@@ -10,20 +10,20 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.717 23.4882C18.1801 23.4882 23.434 18.2357 23.434 11.7441C23.434 5.25253 18.1936 0 11.717 0C5.24039 0 0 5.25253 0 11.7441C0 18.2357 5.24039 23.4882 11.717 23.4882ZM11.717 7.05723L7.0275 11.7576L11.717 16.4579L16.4065 11.7576L11.717 7.05723Z" fill="url(#paint4_linear_464_14091)"/>
 <defs>
 <linearGradient id="paint0_linear_464_14091" x1="6.48991" y1="57.0102" x2="6.48991" y2="43.0304" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F0B90B"/>
-<stop offset="1" stop-color="#F8D33A"/>
+<stop stop-color="#9fA722"/>
+<stop offset="1" stop-color="#9fA722"/>
 </linearGradient>
 <linearGradient id="paint1_linear_464_14091" x1="23.9176" y1="63.9866" x2="23.9176" y2="43.0304" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F0B90B"/>
-<stop offset="1" stop-color="#F8D33A"/>
+<stop stop-color="#9fA722"/>
+<stop offset="1" stop-color="#9fA722"/>
 </linearGradient>
 <linearGradient id="paint2_linear_464_14091" x1="41.3451" y1="63.9866" x2="41.3451" y2="29.0506" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F0B90B"/>
-<stop offset="1" stop-color="#F8D33A"/>
+<stop stop-color="#9fA722"/>
+<stop offset="1" stop-color="#9fA722"/>
 </linearGradient>
 <linearGradient id="paint3_linear_464_14091" x1="58.7729" y1="63.9866" x2="58.7729" y2="11.5826" gradientUnits="userSpaceOnUse">
-<stop stop-color="#F0B90B"/>
-<stop offset="1" stop-color="#F8D33A"/>
+<stop stop-color="#9fA722"/>
+<stop offset="1" stop-color="#9fA722"/>
 </linearGradient>
 <linearGradient id="paint4_linear_464_14091" x1="11.717" y1="23.5017" x2="11.717" y2="0.0134681" gradientUnits="userSpaceOnUse">
 <stop stop-color="#F0B90B"/>
