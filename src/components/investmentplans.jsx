@@ -4,7 +4,7 @@ import {
 import { Link as ReactRouterLink } from 'react-router-dom';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
-import stock from '../assets/trading-otc-new.svg';
+import estate from '../assets/solutions-bg-new.svg';
 
 const InvestmentPlans = () => (
   <>
@@ -74,7 +74,7 @@ const InvestmentPlans = () => (
       </Heading>
       <Flex mt="9rem" flexWrap="wrap" justifyContent="center" gap={8}>
         <Flex bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em" w="26rem">
-          <Image alignSelf="center" src={stock} boxSize="100px" p={6} />
+          <Image alignSelf="center" boxSize="100px" src={estate} m={6} mt={0} />
           <Heading mb={6}>Real Estate</Heading>
           <Flex fontWeight="semibold" borderBottom="1px solid gray" py="1rem" justifyContent="space-between">
             <Text m={0}>Min. Investment</Text>
