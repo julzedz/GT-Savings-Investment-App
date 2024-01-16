@@ -98,7 +98,7 @@ const Login = () => {
             Open an account.
           </Link>
         </Text>
-        <Text color="gray.400" fontFamily="noto" mt={32} fontSize="xs" lineHeight="short" mb={3}>
+        <Text color="gray.400" fontFamily="noto" mt={32} fontSize="xs" p={3} lineHeight="short" mb={3}>
           Use of this site involves the electronic transmission of personal financial information.
           <Text m={0}> Using this product is consent to such transmission of this information; such consent is effective at all times when using this site. GT Savings supports 128-bit browser encryption.</Text>
           <Text m={0}>Usage of GT Savings online trading services constitutes agreement of the Electronic Services Customer Agreement and License Agreement.</Text>

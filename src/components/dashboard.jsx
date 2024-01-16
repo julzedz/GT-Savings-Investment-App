@@ -221,8 +221,8 @@ const Dashboard = () => {
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
                 <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
-                  APR up to
-                  <Text m={0} display="inline" fontWeight="medium" color="green"> 7.5%</Text>
+                  ROI up to
+                  <Text m={0} display="inline" fontWeight="medium" color="green"> 40%</Text>
                 </Text>
                 <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
               </Flex>
