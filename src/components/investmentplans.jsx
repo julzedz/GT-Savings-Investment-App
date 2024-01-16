@@ -16,13 +16,13 @@ const InvestmentPlans = () => {
       icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'monthly', link: '/',
     },
     {
-      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'yearly', link: '/',
-    },
-    {
       icon: stocks, heading: 'Stocks', minInvestment: '$5,000', term: '18 months', roi: '20%', paymentSchedule: 'monthly', link: '/',
     },
     {
       icon: forex, heading: 'Forex', minInvestment: '$3,000', term: '2 years', roi: '25%', paymentSchedule: 'monthly', link: '/',
+    },
+    {
+      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'yearly', link: '/',
     },
     {
       icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '6 months', roi: '35%', paymentSchedule: 'monthly', link: '/',
