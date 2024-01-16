@@ -1,19 +1,26 @@
 import {
-  Box, Heading, Flex, Button, Image, Text,
+  Box, Heading, Flex, Button, Image, Text, UnorderedList, ListItem,
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import building from '../assets/building2.jpg';
-import moneytree from '../assets/money-tree.jpg';
+import moneytree from '../assets/money2.jpg';
 import estate from '../assets/institution.svg';
 import stocks from '../assets/liquidity-program-new.svg';
 import crypto from '../assets/btc.svg';
 import forex from '../assets/trading-otc-new.svg';
 import art from '../assets/capital-introductions2-g.svg';
+import nfp from '../assets/liquid-swap.svg';
 
 const InvestmentPlans = () => {
   const plans = [
     {
-      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'monthly', link: '/',
+      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'quarterly', link: '/',
+    },
+    {
+      icon: nfp, heading: 'NFP', minInvestment: '$20,000', term: '6 months', roi: '30%', paymentSchedule: 'monthly', link: '/',
+    },
+    {
+      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'quarterly', link: '/',
     },
     {
       icon: stocks, heading: 'Stocks', minInvestment: '$5,000', term: '18 months', roi: '20%', paymentSchedule: 'monthly', link: '/',
@@ -22,10 +29,7 @@ const InvestmentPlans = () => {
       icon: forex, heading: 'Forex', minInvestment: '$3,000', term: '2 years', roi: '25%', paymentSchedule: 'monthly', link: '/',
     },
     {
-      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'yearly', link: '/',
-    },
-    {
-      icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '6 months', roi: '35%', paymentSchedule: 'monthly', link: '/',
+      icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '3 months', roi: '35%', paymentSchedule: 'weekly', link: '/',
     },
   ];
 
@@ -95,7 +99,7 @@ const InvestmentPlans = () => {
           Choose How You Want To Invest
 
         </Heading>
-        <Flex mt="9rem" flexWrap="wrap" justifyContent="center" gap={8}>
+        <Flex mt={24} flexWrap="wrap" justifyContent="center" gap={8}>
           {plans.map((plan) => (
             <Flex key={plan.icon} bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em" w="26rem">
               <Image alignSelf="center" boxSize="100px" src={plan.icon} m={6} mt={0} />
@@ -127,6 +131,40 @@ const InvestmentPlans = () => {
             </Flex>
           ))}
         </Flex>
+        <Box mt={24} textAlign="left" pl={14}>
+          <Text fontSize="1.125rem" fontWeight="700" fontStyle="normal" lineHeight="1.25rem">Important Information for your review</Text>
+
+          <UnorderedList
+            w={{
+              base: '100%', md: '80%', lg: '70%', slg: '60%',
+            }}
+            textColor="#000"
+            fontSize="xs"
+            lineHeight="short"
+            spacing={2}
+            mb={6}
+            fontFamily="noto"
+          >
+            <ListItem>Advisory fee: 0.70%, or $35 for every $5,000 you have invested.</ListItem>
+            <ListItem>
+              Please note, GT Savings LLC
+              recommends clients diversify and rebalance their investments across multiple asset
+              classes and sectors in an effort to minimize risk.
+            </ListItem>
+            <ListItem>
+              There is no minimum required to open an account;
+              however, in order for us to invest your money according
+              to the investment strategy you&apos;ve chosen, your account
+              balance must be at least $1000.
+            </ListItem>
+            <ListItem>
+              Before investing, consider the funds&apos;
+              investment objectives, risks, charges, and expenses.
+            </ListItem>
+
+          </UnorderedList>
+
+        </Box>
       </Box>
     </>
   );
