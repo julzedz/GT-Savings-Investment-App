@@ -5,11 +5,23 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money-tree.jpg';
 import estate from '../assets/solutions-bg-new.svg';
+import stocks from '../assets/liquidity-program-new.svg';
+import crypto from '../assets/btc.svg';
+import forex from '../assets/trading-otc-new.svg';
 
 const InvestmentPlans = () => {
   const plans = [
     {
-      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '40%', paymentSchedule: 'monthly', link: '/', as: ReactRouterLink,
+      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'monthly', link: '/',
+    },
+    {
+      icon: stocks, heading: 'Stocks', minInvestment: '$5,000', term: '18 months', roi: '20%', paymentSchedule: 'monthly', link: '/',
+    },
+    {
+      icon: forex, heading: 'Forex', minInvestment: '$3,000', term: '2 years', roi: '25%', paymentSchedule: 'monthly', link: '/',
+    },
+    {
+      icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '6 months', roi: '35%', paymentSchedule: 'monthly', link: '/',
     },
   ];
 
