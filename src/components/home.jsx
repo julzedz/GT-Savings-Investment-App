@@ -153,8 +153,7 @@ const Home = () => {
             <Box color="white" p={4}>
               <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
               <Text py={4}>
-                With a low minimum deposit required, start earning interest at competitive rates
-                that are compounded daily. Ready to take the first steps towards financial freedom?
+                With a low minimum deposit required, start earning interest at competitive rates. Ready to take the first steps towards financial freedom?
               </Text>
               <Button
                 as={RouterLink}
@@ -302,7 +301,7 @@ const Home = () => {
             >
               GT Savings Bank is a modern, tech-driven savings and investment banking platform.
             </Text>
-            <Text letterSpacing="wide">GT Savings Bank is a full-service savings and investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
+            <Text letterSpacing="wide">GT Savings Bank is a full-service savings and investment banking platform for personalized portfolios of choice investment opportunities managed by a team of professionals, with tax-smart investing techniques.</Text>
             <Text letterSpacing="wide">Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
             <Text letterSpacing="wide">
               GT Savings Bank is a member of
@@ -313,9 +312,9 @@ const Home = () => {
             </Text>
             <Text letterSpacing="wide">Our bankers:</Text>
             <UnorderedList letterSpacing="wide">
-              <ListItem>Raise equity and debt capital (primary and secondary)</ListItem>
-              <ListItem>Execute upon business sale, acquisition and divestiture transactions (M&A)</ListItem>
-              <ListItem>Advise on both the sell and buy side</ListItem>
+              <ListItem>Build your portfolio, based on an approach you&apos;ve selected and your investment preferences.</ListItem>
+              <ListItem>Use fractional shares to build a portfolio which seeks to meet a specific investment objective, which will vary by strategy.</ListItem>
+              <ListItem>Keep you informed as to how your account is performing.</ListItem>
             </UnorderedList>
             <Text letterSpacing="wide">
               Learn more about us
@@ -386,7 +385,7 @@ const Home = () => {
             <List letterSpacing="wide" spacing={4} textAlign="left">
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
-                Earn more as you save more with interest that&apos;s compounded daily on your balance
+                Earn more as you save more with interest that&apos;s compounded on your balance
               </ListItem>
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
@@ -465,7 +464,7 @@ const Home = () => {
             flexBasis={{ base: 'auto', slg: '48%' }}
             alignSelf="center"
           >
-            <Text letterSpacing="wide">Our team of experts help invest your savings in real estate, private equity, highly-rated S&P 500 company stocks, including corporate and sovereign debt, equities, currencies and various derivatives. Many qualities sets our institution apart including:</Text>
+            <Text letterSpacing="wide">Our team of experts help invest your savings in real estate, private equity, highly-rated S&P 500 company stocks, including corporate and sovereign debt, equities, currencies, and various derivatives. Many qualities sets our institution apart including:</Text>
             <List letterSpacing="wide" spacing={4} textAlign="left">
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
@@ -481,7 +480,7 @@ const Home = () => {
               </ListItem>
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
-                Rolling your maturing investments directly into new opportunities by compounding your daily interests to maximize returns
+                Rolling your maturing investments directly into new opportunities by compounding your interests to maximize returns
               </ListItem>
             </List>
             <Text letterSpacing="wide">
