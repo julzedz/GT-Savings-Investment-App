@@ -14,22 +14,22 @@ import nfp from '../assets/liquid-swap.svg';
 const InvestmentPlans = () => {
   const plans = [
     {
-      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'quarterly', link: '/',
+      icon: estate, heading: 'Real Estate', minInvestment: '$50,000', term: '3 years', roi: '30%', paymentSchedule: 'quarterly', link: '/invest-deposit',
     },
     {
-      icon: nfp, heading: 'NFP', minInvestment: '$20,000', term: '6 months', roi: '30%', paymentSchedule: 'monthly', link: '/',
+      icon: nfp, heading: 'NFP', minInvestment: '$20,000', term: '6 months', roi: '30%', paymentSchedule: 'monthly', link: '/invest-deposit',
     },
     {
-      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'quarterly', link: '/',
+      icon: art, heading: 'Art', minInvestment: '$10,000', term: '2 years', roi: '40%', paymentSchedule: 'quarterly', link: '/invest-deposit',
     },
     {
-      icon: stocks, heading: 'Stocks', minInvestment: '$5,000', term: '18 months', roi: '20%', paymentSchedule: 'monthly', link: '/',
+      icon: stocks, heading: 'Stocks', minInvestment: '$5,000', term: '18 months', roi: '20%', paymentSchedule: 'monthly', link: '/invest-deposit',
     },
     {
-      icon: forex, heading: 'Forex', minInvestment: '$3,000', term: '2 years', roi: '25%', paymentSchedule: 'monthly', link: '/',
+      icon: forex, heading: 'Forex', minInvestment: '$3,000', term: '2 years', roi: '25%', paymentSchedule: 'monthly', link: '/invest-deposit',
     },
     {
-      icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '3 months', roi: '35%', paymentSchedule: 'weekly', link: '/',
+      icon: crypto, heading: 'Cryptocurrency', minInvestment: '$1,000', term: '3 months', roi: '35%', paymentSchedule: 'weekly', link: '/invest-deposit',
     },
   ];
 
@@ -73,6 +73,8 @@ const InvestmentPlans = () => {
           </Heading>
           <Heading mt="0.3rem" color="white" lineHeight={{ base: '1.5em', slg: '2em' }} fontSize={{ base: '1.3em', slg: '1.7rem' }}>With Our Investment Products</Heading>
           <Button
+            as={ReactRouterLink}
+            to="/invest-deposit"
             colorScheme="gray"
             alignSelf={{ base: 'center', slg: 'auto' }}
             type="submit"
