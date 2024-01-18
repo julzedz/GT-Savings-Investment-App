@@ -206,7 +206,7 @@ const Dashboard = () => {
           >
             <Flex
               as={ReactRouterLink}
-              to="/investment"
+              to="/investmentplans"
               _hover={{ textDecoration: 'none' }}
               borderWidth="1px"
               borderRadius="2xl"

@@ -26,7 +26,7 @@ import elder from '../assets/elder-couple1.jpg';
 import greycircles from '../assets/Mass Circles.svg';
 import meeting from '../assets/meeting.jpg';
 import building1 from '../assets/building1.jpg';
-import streetfast from '../assets/street-fast.jpg';
+import streetfast from '../assets/street-fast-transformed.jpeg';
 
 const Home = () => {
   const listItems = [
