@@ -146,7 +146,7 @@ const Navbar = () => {
                   px={2}
                   py={4}
                 >
-                  <AccordionLink href="/banking">Online Banking</AccordionLink>
+                  <AccordionLink href="/dashboard">Online Banking</AccordionLink>
                   <AccordionLink href="/loans">Loans</AccordionLink>
                   <AccordionLink href="/mortgages">Mortgages</AccordionLink>
                 </Flex>
