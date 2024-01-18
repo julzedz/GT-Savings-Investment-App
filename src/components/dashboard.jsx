@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import {
-  Flex,
-  Text,
-  Divider,
-  Tooltip,
-  Button,
-  Icon,
-  Image,
-  Table,
-  Thead,
-  Tbody,
-  Tr, Th, Td,
+  Flex, Text, Divider, Tooltip, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
+  Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
+  FormControl, FormLabel, NumberInput, NumberDecrementStepper, NumberInputStepper,
+  NumberInputField, NumberIncrementStepper, FormHelperText, useDisclosure,
 } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -22,6 +15,8 @@ import margin from '../assets/margin.svg';
 
 const Dashboard = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -139,11 +134,41 @@ const Dashboard = () => {
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
+                  onClick={onOpen}
                 >
                   Transfer
                 </Button>
               </Flex>
             </Flex>
+            <Modal
+              initialFocusRef={initialRef}
+              isOpen={isOpen}
+              onClose={onClose}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader fontFamily="noto">Transfer</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody fontFamily="noto" pb={6}>
+                  <FormControl>
+                    <FormLabel fontSize="xs">Savings Account</FormLabel>
+                    <NumberInput ref={initialRef} step={500} min={100}>
+                      <NumberInputField placeholder="Enter amount" />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                    <FormHelperText fontSize="xs">Transfer amount to your Investment Account</FormHelperText>
+                  </FormControl>
+                </ModalBody>
+                <ModalFooter>
+                  <Button fontFamily="noto" colorScheme="green">
+                    Send
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <Flex width="fit-content">
               <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '355,760.32' : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
