@@ -305,9 +305,9 @@ const Home = () => {
             <Text letterSpacing="wide">Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
             <Text letterSpacing="wide">
               GT Savings Bank is a member of
-              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
+              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/"> FINRA </Box>
               and
-              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
+              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/"> SIPC </Box>
               .
             </Text>
             <Text letterSpacing="wide">Our bankers:</Text>
