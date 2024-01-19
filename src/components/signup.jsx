@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import AccountFooter from './accountfooter';
 import FormNavbar from './formnavbar';
 import building from '../assets/building2.jpg';
+// import bgsvg from '../assets/ColoredShapes.svg';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('Provide a first name').min(3, 'Name must be at least 3 characters'),
