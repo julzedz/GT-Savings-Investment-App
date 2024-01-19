@@ -171,7 +171,6 @@ const Investment = () => {
             <Flex
               as={ReactRouterLink}
               to="/investment"
-              _hover={{ textDecoration: 'none' }}
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
@@ -181,6 +180,8 @@ const Investment = () => {
               alignItems="center"
               justifyContent="space-between"
               cursor="pointer"
+              transition="transform 0.01s ease-in-out"
+              _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
@@ -197,7 +198,6 @@ const Investment = () => {
             <Flex
               as={ReactRouterLink}
               to="/investmentplans"
-              _hover={{ textDecoration: 'none' }}
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
@@ -207,6 +207,8 @@ const Investment = () => {
               alignItems="center"
               justifyContent="space-between"
               cursor="pointer"
+              transition="transform 0.01s ease-in-out"
+              _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
