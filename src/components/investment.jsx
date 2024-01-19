@@ -179,8 +179,8 @@ const Investment = () => {
                 </Text>
                 <Text fontSize="sm" color="gray">US Markets Overview</Text>
               </Flex>
-              <Divider />
-              <Flex>
+              <Divider colorScheme="red" />
+              <Flex mt={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
                   <Text>DJIA</Text>
                   <Text>+309.75 (+1.85%)</Text>
@@ -195,6 +195,11 @@ const Investment = () => {
                   <Text>S&P 500</Text>
                   <Text>-1.61 (-0.07%)</Text>
                   <Text>4,780.74</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text>AAPL</Text>
+                  <Text>+5.95 (+2.07%)</Text>
+                  <Text>188.64</Text>
                 </Flex>
               </Flex>
               <Divider display={{ base: 'none', lg: 'inline' }} w="5px" color="black" />
