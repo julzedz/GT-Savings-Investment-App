@@ -335,7 +335,7 @@ const Dashboard = () => {
                   More
                 </Button>
               </Flex>
-              <Flex>
+              <Flex overflowX={{ base: 'scroll' }}>
                 <Table
                   w="100%"
                   variant="unstyled"
