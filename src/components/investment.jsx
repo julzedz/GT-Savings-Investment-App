@@ -203,21 +203,21 @@ const Investment = () => {
                 </Flex>
               </Flex>
               <Divider />
-              <Flex>
-                <Flex>
-                  <Text>Crude Oil</Text>
-                  <Text>44.85</Text>
-                  <Text>-3.47%</Text>
+              <Flex gap={4}>
+                <Flex gap={2}>
+                  <Text color="#0E67A9" m={0}>Crude Oil</Text>
+                  <Text m={0}>44.85</Text>
+                  <Text color="red" m={0}>-3.47%</Text>
                 </Flex>
-                <Flex>
-                  <Text>Gold</Text>
-                  <Text>1270.80</Text>
-                  <Text>-0.40%</Text>
+                <Flex gap={2}>
+                  <Text color="#0E67A9" m={0}>Gold</Text>
+                  <Text m={0}>1270.80</Text>
+                  <Text color="red" m={0}>-0.40%</Text>
                 </Flex>
-                <Flex>
-                  <Text>US 10 Year</Text>
-                  <Text>4.145</Text>
-                  <Text>+0.07%</Text>
+                <Flex gap={2}>
+                  <Text color="#0E67A9" m={0}>US 10 Year</Text>
+                  <Text m={0}>4.145</Text>
+                  <Text color="green" m={0}>+0.07%</Text>
                 </Flex>
               </Flex>
               <Divider />
