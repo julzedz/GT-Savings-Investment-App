@@ -108,11 +108,11 @@ const Sidebar = () => {
         mb={4}
       >
         <Divider display={navSize === 'small' ? 'none' : 'flex'} />
-        <Flex mt={4} align="center">
+        <Flex mt={4} alignItems="center" as={ReactRouterLink} to="/profile" _hover={{ textDecoration: 'none' }}>
           <Avatar size="sm" />
           <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-            <Heading as="h3" size="sm">Rob Smith</Heading>
-            <Text color="grey">Admin</Text>
+            <Heading as="h3" size="sm" mb={0}>Rob Smith</Heading>
+            <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">Admin</Text>
           </Flex>
         </Flex>
       </Flex>
