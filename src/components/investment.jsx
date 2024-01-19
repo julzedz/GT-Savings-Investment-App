@@ -198,18 +198,18 @@ const Investment = () => {
                 {isVisible ? '≈ 4.2734883 ' : '****'}
                 BTC
               </Text>
-              <Flex justifyContent="space-around" gap={6} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w="fit-content" textAlign="center">
-                <Text fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>
+              <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>
+                <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Stakes
-                  <Text fontSize="sm" ml="3">{isVisible ? '$112,512.91' : '****'}</Text>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$112,512.91' : '****'}</Box>
                 </Text>
-                <Text fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>
+                <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Earnings
-                  <Text fontSize="sm" ml="3">{isVisible ? '$32,512.91' : '****'}</Text>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$32,512.91' : '****'}</Box>
                 </Text>
-                <Text fontSize="sm" lineHeight={6} mb={3}>
+                <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
-                  <Text ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Box>
                 </Text>
               </Flex>
             </Flex>
