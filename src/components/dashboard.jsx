@@ -232,7 +232,7 @@ const Dashboard = () => {
           >
             <Flex
               as={ReactRouterLink}
-              to="/investmentplans"
+              to="/invest-deposit"
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
