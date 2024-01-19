@@ -159,9 +159,91 @@ const Investment = () => {
               </Button>
             </Flex>
           </Flex>
-          <Box>
-            {/* <Text></Text> */}
-          </Box>
+          <Flex
+            maxWidth="60rem"
+            p={0}
+            m={0}
+            bgColor="#f5f5f5"
+            flexDir="column"
+            mb={6}
+            borderRadius={4}
+            // alignItems="center"
+            // justifyContent="space-between"
+          >
+            <Flex flexDir="column">
+              <Flex>
+                <Text>Today&apos;s Markets</Text>
+                <Text>US Markets Overview</Text>
+              </Flex>
+              <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="horizontal" />
+              <Flex>
+                <Flex flexDir="column">
+                  <Text>DJIA</Text>
+                  <Text>+309.75 (+1.85%)</Text>
+                  <Text>21,284.85</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text>NASDAQ</Text>
+                  <Text>-6.5 (-0.10%)</Text>
+                  <Text>6,214.11</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text>S&P 500</Text>
+                  <Text>-1.61 (-0.07%)</Text>
+                  <Text>4,780.74</Text>
+                </Flex>
+              </Flex>
+              <Divider display={{ base: 'none', lg: 'inline' }} w="5px" color="black" />
+              <Flex>
+                <Flex>
+                  <Text>Crude Oil</Text>
+                  <Text>44.85</Text>
+                  <Text>-3.47%</Text>
+                </Flex>
+                <Flex>
+                  <Text>Gold</Text>
+                  <Text>1270.80</Text>
+                  <Text>-0.40%</Text>
+                </Flex>
+                <Flex>
+                  <Text>US 10 Year</Text>
+                  <Text>4.145</Text>
+                  <Text>+0.07%</Text>
+                </Flex>
+              </Flex>
+            </Flex>
+            <Flex flexDir="column">
+              <Box>Top News</Box>
+              <Flex flexDir="column">
+                <Text>Fed raises rate, gives details on balance sheet reduction.</Text>
+                <Flex>
+                  <Text>MarketWatch</Text>
+                  <Text>12h ago</Text>
+                </Flex>
+              </Flex>
+              <Flex flexDir="column">
+                <Text>US STOCKS-S&P 500 ends higher as AI optimism lifts chip stocks</Text>
+                <Flex>
+                  <Text>Reuters</Text>
+                  <Text>11h ago</Text>
+                </Flex>
+              </Flex>
+              <Flex flexDir="column">
+                <Text>Will Big Tech be the market&apos;s hero after a rocky 2024 start?</Text>
+                <Flex>
+                  <Text>Associated Press</Text>
+                  <Text>2h ago</Text>
+                </Flex>
+              </Flex>
+              <Flex flexDir="column">
+                <Text>Dow futures waver as market awaits further earnings</Text>
+                <Flex>
+                  <Text>Investing.com</Text>
+                  <Text>16h ago</Text>
+                </Flex>
+              </Flex>
+            </Flex>
+          </Flex>
           <Flex
             maxWidth="60rem"
             p={0}
