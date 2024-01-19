@@ -161,21 +161,25 @@ const Investment = () => {
           </Flex>
           <Flex
             maxWidth="60rem"
-            p={0}
+            p={6}
             m={0}
             bgColor="#f5f5f5"
             flexDir="column"
             mb={6}
             borderRadius={4}
-            // alignItems="center"
-            // justifyContent="space-between"
           >
             <Flex flexDir="column">
-              <Flex>
-                <Text>Today&apos;s Markets</Text>
-                <Text>US Markets Overview</Text>
+              <Flex flexDir="column">
+                <Text
+                  fontSize={{ base: 'lg', xl: '2xl' }}
+                  fontWeight="bold"
+                  m={0}
+                >
+                  Today&apos;s Markets
+                </Text>
+                <Text fontSize="sm" color="gray">US Markets Overview</Text>
               </Flex>
-              <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="horizontal" />
+              <Divider />
               <Flex>
                 <Flex flexDir="column">
                   <Text>DJIA</Text>
