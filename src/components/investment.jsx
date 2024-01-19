@@ -261,7 +261,7 @@ const Investment = () => {
           >
             <Flex
               as={ReactRouterLink}
-              to="/investment"
+              to="/invest-deposit"
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
