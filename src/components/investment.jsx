@@ -180,29 +180,29 @@ const Investment = () => {
                 <Text fontSize="sm" color="gray">US Markets Overview</Text>
               </Flex>
               <Divider colorScheme="red" />
-              <Flex mt={4} alignItems="center" justifyContent="space-between">
+              <Flex fontSize="lg" mt={4} alignItems="center" justifyContent="space-between">
                 <Flex flexDir="column">
-                  <Text>DJIA</Text>
-                  <Text>+309.75 (+1.85%)</Text>
-                  <Text>21,284.85</Text>
+                  <Text mb={2} color="#0E67A9">DJIA</Text>
+                  <Text mb={1} color="green">+201.75 (+1.85%)</Text>
+                  <Text color="green">21,284.85</Text>
                 </Flex>
                 <Flex flexDir="column">
-                  <Text>NASDAQ</Text>
-                  <Text>-6.5 (-0.10%)</Text>
-                  <Text>6,214.11</Text>
+                  <Text mb={2} color="#0E67A9">NASDAQ</Text>
+                  <Text color="red" mb={1}>-6.5 (-0.10%)</Text>
+                  <Text color="red">6,214.11</Text>
                 </Flex>
                 <Flex flexDir="column">
-                  <Text>S&P 500</Text>
-                  <Text>-1.61 (-0.07%)</Text>
-                  <Text>4,780.74</Text>
+                  <Text mb={2} color="#0E67A9">S&P 500</Text>
+                  <Text color="green" mb={1}>+41.73 (+1.04%)</Text>
+                  <Text color="green">4,780.74</Text>
                 </Flex>
                 <Flex flexDir="column">
-                  <Text>AAPL</Text>
-                  <Text>+5.95 (+2.07%)</Text>
-                  <Text>188.64</Text>
+                  <Text mb={2} color="#0E67A9">AAPL</Text>
+                  <Text mb={1} color="green">+5.95 (+2.07%)</Text>
+                  <Text color="green">188.64</Text>
                 </Flex>
               </Flex>
-              <Divider display={{ base: 'none', lg: 'inline' }} w="5px" color="black" />
+              <Divider />
               <Flex>
                 <Flex>
                   <Text>Crude Oil</Text>
@@ -220,6 +220,7 @@ const Investment = () => {
                   <Text>+0.07%</Text>
                 </Flex>
               </Flex>
+              <Divider />
             </Flex>
             <Flex flexDir="column">
               <Box>Top News</Box>
