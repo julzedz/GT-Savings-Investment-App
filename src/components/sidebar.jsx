@@ -71,7 +71,10 @@ const Sidebar = () => {
             className="logo-group"
             cursor="pointer"
             as={ReactRouterLink}
-            to="/dashboard"
+            to="/home"
+            bgColor="black"
+            p={2}
+            borderRadius={8}
           >
 
             <Image src={logo} alt="Logo" boxSize="30px" />
@@ -79,7 +82,7 @@ const Sidebar = () => {
               <Text
                 fontSize="lg"
                 fontWeight="bold"
-                color="gunmetal"
+                color="white"
                 fontFamily="Atomic Age"
                 align="center"
                 my={0}

@@ -2,13 +2,14 @@
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import {
-  Flex, FormControl, Select,
+  Flex, FormControl, Select, Box, Heading,
   FormLabel, Input, FormErrorMessage,
   Button,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 import AccountFooter from './accountfooter';
 import FormNavbar from './formnavbar';
+import building from '../assets/building2.jpg';
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required('Provide a first name').min(3, 'Name must be at least 3 characters'),
@@ -36,7 +37,30 @@ const validationSchema = Yup.object({
 const Signup = () => (
   <>
     <FormNavbar />
-    <Flex minH="2xl" mt={16} flexDir="column" bgColor="#f2f2f2" pb={40}>
+    <Box
+      display="flex"
+      mt={{ base: 13, lg: 0 }}
+      minH={{ base: '10rem', lg: '2xs' }}
+      maxH={{ base: 'xs', lg: 'xs' }}
+      backgroundImage={`linear-gradient(to right, #000000 25%, #0087d430 100%), url(${building})`}
+      bgSize="cover"
+      opacity="0.93"
+      bgColor="transparent"
+      alignItems="flex-end"
+    >
+      <Heading
+        m={3}
+        p={4}
+        textAlign={{ base: 'center', lg: 'left' }}
+        fontSize={{ base: '5xl', lg: '7xl' }}
+        fontWeight={{ base: 'bold', lg: 'black' }}
+        width={{ base: '100%', lg: '80%' }}
+        textColor="white"
+      >
+        Signup
+      </Heading>
+    </Box>
+    <Flex minH="2xl" flexDir="column" bgColor="#f2f2f2" pb={40}>
       <Flex mt={12} fontFamily="noto" justifyContent="center" w="100%">
         <Formik
           initialValues={{
