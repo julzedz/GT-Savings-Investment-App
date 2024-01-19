@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import {
-  Flex, Text, Divider, Button, Tooltip, Image, Box, Link, useDisclosure,
+  Flex, Text, Divider, Button, Tooltip, Image, Box, Link as LinkRoute, useDisclosure,
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
   FormControl, FormLabel, NumberInput, NumberDecrementStepper,
   NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText,
@@ -21,7 +21,7 @@ const Investment = () => {
   const initialRef = React.useRef(null);
 
   const scroll = keyframes`
-  0% { transform: translateX(10%); }
+  0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
 `;
 
@@ -78,6 +78,7 @@ const Investment = () => {
           p={5}
           flex="1"
           marginLeft={{ base: 20, md: '21rem' }}
+          overflowY="scroll"
           fontFamily="noto"
         >
           <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
@@ -338,26 +339,26 @@ const Investment = () => {
                 <Text fontSize="sm" color="gray">US Markets Overview</Text>
               </Flex>
               <Divider colorScheme="red" />
-              <Flex fontSize="lg" alignItems="center" justifyContent="space-between">
-                <Flex flexDir="column">
+              <Flex fontSize="lg" alignItems="center" justifyContent="space-between" flexDir={{ base: 'column', lg: 'row' }}>
+                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
                   <Text mb={2} color="#0E67A9">DJIA</Text>
-                  <Text mb={1} color="green">+201.75 (+1.85%)</Text>
-                  <Text color="green">21,284.85</Text>
+                  <Text mb={1} fontSize={{ base: 'sm', slg: 'lg' }} color="green">+201.75 (+1.85%)</Text>
+                  <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>21,284.85</Text>
                 </Flex>
-                <Flex flexDir="column">
+                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
                   <Text mb={2} color="#0E67A9">NASDAQ</Text>
-                  <Text color="red" mb={1}>-6.5 (-0.10%)</Text>
-                  <Text color="red">6,214.11</Text>
+                  <Text color="red" mb={1} fontSize={{ base: 'sm', slg: 'lg' }}>-6.5 (-0.10%)</Text>
+                  <Text color="red" fontSize={{ base: 'sm', slg: 'lg' }}>6,214.11</Text>
                 </Flex>
-                <Flex flexDir="column">
+                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
                   <Text mb={2} color="#0E67A9">S&P 500</Text>
-                  <Text color="green" mb={1}>+41.73 (+1.04%)</Text>
-                  <Text color="green">4,780.74</Text>
+                  <Text color="green" mb={1} fontSize={{ base: 'sm', slg: 'lg' }}>+41.73 (+1.04%)</Text>
+                  <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>4,780.74</Text>
                 </Flex>
-                <Flex flexDir="column">
+                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }} justifySelf={{ base: '', lg: 'auto' }}>
                   <Text mb={2} color="#0E67A9">AAPL</Text>
-                  <Text mb={1} color="green">+5.95 (+2.07%)</Text>
-                  <Text color="green">188.64</Text>
+                  <Text mb={1} color="green" fontSize={{ base: 'sm', slg: 'lg' }}>+5.95 (+2.07%)</Text>
+                  <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>188.64</Text>
                 </Flex>
               </Flex>
               <Divider />
@@ -394,7 +395,7 @@ const Investment = () => {
               </Text>
               {topNews.map((item, i) => (
                 <Flex key={i} flexDir="column" mb={4}>
-                  <Box w="fit-content" as={Link} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Box>
+                  <Box w="fit-content" as={LinkRoute} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Box>
                   <Flex color="gray" fontSize="sm" gap={4}>
                     <Box>{item.source}</Box>
                     <Box>{item.time}</Box>
