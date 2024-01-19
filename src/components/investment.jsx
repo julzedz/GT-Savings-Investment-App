@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import {
-  Flex, Text, Divider, Button, Tooltip, Image, Box,
+  Flex, Text, Divider, Button, Tooltip, Image, Box, Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
@@ -31,6 +31,21 @@ const Investment = () => {
     },
     {
       name: 'US 10 Year', price: '4.145', change: '+0.07%', color: 'green',
+    },
+  ];
+
+  const topNews = [
+    {
+      title: 'Dow futures waver as market awaits further earnings', source: 'Investing.com', time: '16h ago', link: 'https://www.investing.com/',
+    },
+    {
+      title: 'Fed raises rate, gives details on balance sheet reduction', source: 'MarketWatch', time: '12h ago', link: 'https://www.marketwatch.com/',
+    },
+    {
+      title: 'US STOCKS-S&P 500 ends higher as AI optimism lifts chip stocks', source: 'Reuters', time: '11h ago', link: 'https://www.reuters.com/',
+    },
+    {
+      title: 'Will Big Tech be the markets hero after a rocky 2024 start?', source: 'Associated Press', time: '2h ago', link: 'https://www.associatedpress.com/',
     },
   ];
 
@@ -184,110 +199,6 @@ const Investment = () => {
           </Flex>
           <Flex
             maxWidth="60rem"
-            w="100%"
-            p={6}
-            m={0}
-            bgColor="#f5f5f5"
-            flexDir="column"
-            mb={6}
-            borderRadius={4}
-            css={{
-              overflowX: 'hidden',
-            }}
-          >
-            <Flex flexDir="column">
-              <Flex flexDir="column">
-                <Text
-                  fontSize={{ base: 'lg', xl: '2xl' }}
-                  fontWeight="bold"
-                  m={0}
-                >
-                  Today&apos;s Markets
-                </Text>
-                <Text fontSize="sm" color="gray">US Markets Overview</Text>
-              </Flex>
-              <Divider colorScheme="red" />
-              <Flex fontSize="lg" mt={4} alignItems="center" justifyContent="space-between">
-                <Flex flexDir="column">
-                  <Text mb={2} color="#0E67A9">DJIA</Text>
-                  <Text mb={1} color="green">+201.75 (+1.85%)</Text>
-                  <Text color="green">21,284.85</Text>
-                </Flex>
-                <Flex flexDir="column">
-                  <Text mb={2} color="#0E67A9">NASDAQ</Text>
-                  <Text color="red" mb={1}>-6.5 (-0.10%)</Text>
-                  <Text color="red">6,214.11</Text>
-                </Flex>
-                <Flex flexDir="column">
-                  <Text mb={2} color="#0E67A9">S&P 500</Text>
-                  <Text color="green" mb={1}>+41.73 (+1.04%)</Text>
-                  <Text color="green">4,780.74</Text>
-                </Flex>
-                <Flex flexDir="column">
-                  <Text mb={2} color="#0E67A9">AAPL</Text>
-                  <Text mb={1} color="green">+5.95 (+2.07%)</Text>
-                  <Text color="green">188.64</Text>
-                </Flex>
-              </Flex>
-              <Divider />
-              <Box
-                display="flex"
-                gap={4}
-                css={{
-                  // overflow: 'hidden',
-                  whiteSpace: 'nowrap',
-                  animation: `${scroll} 50s linear infinite`,
-                }}
-              >
-                {[...Array(2)].map((_, index) => (
-                  <React.Fragment key={index}>
-                    {assetItems.map((assets, i) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <Flex gap={1.5} key={i}>
-                        <Text color="#0E67A9" m={0}>{assets.name}</Text>
-                        <Text m={0}>{assets.price}</Text>
-                        <Text color={assets.color} m={0}>{assets.change}</Text>
-                      </Flex>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </Box>
-              <Divider />
-            </Flex>
-            <Flex flexDir="column">
-              <Box>Top News</Box>
-              <Flex flexDir="column">
-                <Text>Fed raises rate, gives details on balance sheet reduction.</Text>
-                <Flex>
-                  <Text>MarketWatch</Text>
-                  <Text>12h ago</Text>
-                </Flex>
-              </Flex>
-              <Flex flexDir="column">
-                <Text>US STOCKS-S&P 500 ends higher as AI optimism lifts chip stocks</Text>
-                <Flex>
-                  <Text>Reuters</Text>
-                  <Text>11h ago</Text>
-                </Flex>
-              </Flex>
-              <Flex flexDir="column">
-                <Text>Will Big Tech be the market&apos;s hero after a rocky 2024 start?</Text>
-                <Flex>
-                  <Text>Associated Press</Text>
-                  <Text>2h ago</Text>
-                </Flex>
-              </Flex>
-              <Flex flexDir="column">
-                <Text>Dow futures waver as market awaits further earnings</Text>
-                <Flex>
-                  <Text>Investing.com</Text>
-                  <Text>16h ago</Text>
-                </Flex>
-              </Flex>
-            </Flex>
-          </Flex>
-          <Flex
-            maxWidth="60rem"
             p={0}
             m={0}
             mb={6}
@@ -349,6 +260,97 @@ const Investment = () => {
               <Flex>
                 <Image src={margin} boxSize={20} />
               </Flex>
+            </Flex>
+          </Flex>
+          <Flex
+            maxWidth="60rem"
+            w="100%"
+            p={6}
+            m={0}
+            bgColor="#f5f5f5"
+            flexDir="column"
+            mb={6}
+            borderRadius={4}
+            css={{
+              overflowX: 'hidden',
+            }}
+          >
+            <Flex flexDir="column">
+              <Flex flexDir="column">
+                <Text
+                  fontSize={{ base: 'lg', xl: '2xl' }}
+                  fontWeight="bold"
+                  m={0}
+                >
+                  Today&apos;s Markets
+                </Text>
+                <Text fontSize="sm" color="gray">US Markets Overview</Text>
+              </Flex>
+              <Divider colorScheme="red" />
+              <Flex fontSize="lg" alignItems="center" justifyContent="space-between">
+                <Flex flexDir="column">
+                  <Text mb={2} color="#0E67A9">DJIA</Text>
+                  <Text mb={1} color="green">+201.75 (+1.85%)</Text>
+                  <Text color="green">21,284.85</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text mb={2} color="#0E67A9">NASDAQ</Text>
+                  <Text color="red" mb={1}>-6.5 (-0.10%)</Text>
+                  <Text color="red">6,214.11</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text mb={2} color="#0E67A9">S&P 500</Text>
+                  <Text color="green" mb={1}>+41.73 (+1.04%)</Text>
+                  <Text color="green">4,780.74</Text>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text mb={2} color="#0E67A9">AAPL</Text>
+                  <Text mb={1} color="green">+5.95 (+2.07%)</Text>
+                  <Text color="green">188.64</Text>
+                </Flex>
+              </Flex>
+              <Divider />
+              <Box
+                display="flex"
+                gap={4}
+                css={{
+                  // overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  animation: `${scroll} 50s linear infinite`,
+                }}
+              >
+                {[...Array(2)].map((_, index) => (
+                  <React.Fragment key={index}>
+                    {assetItems.map((asset, i) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <Flex gap={1.5} key={i}>
+                        <Text color="#0E67A9" m={0}>{asset.name}</Text>
+                        <Text m={0}>{asset.price}</Text>
+                        <Text color={asset.color} m={0}>{asset.change}</Text>
+                      </Flex>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </Box>
+              <Divider />
+            </Flex>
+            <Flex flexDir="column">
+              <Text
+                fontSize={{ base: 'lg', xl: '2xl' }}
+                fontWeight="bold"
+              >
+                Top News
+              </Text>
+              {topNews.map((item, i) => (
+                <Flex key={i} flexDir="column" mb={4}>
+                  <Box w="fit-content" as={Link} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Box>
+                  <Flex color="gray" fontSize="sm" gap={4}>
+                    <Box>{item.source}</Box>
+                    <Box>{item.time}</Box>
+                  </Flex>
+                </Flex>
+
+              ))}
             </Flex>
           </Flex>
         </Flex>
