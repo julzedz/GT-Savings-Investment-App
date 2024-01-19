@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import {
   Flex, Text, Divider, Button, Tooltip, Image, Box,
@@ -12,9 +13,26 @@ import margin from '../assets/margin.svg';
 const Investment = () => {
   const [isVisible, setIsVisible] = useState(true);
   const scroll = keyframes`
-  0% { transform: translateX(100%); }
+  0% { transform: translateX(10%); }
   100% { transform: translateX(-100%); }
 `;
+  const assetItems = [
+    {
+      name: 'Crude Oil', price: '44.85', change: '-3.47%', color: 'red',
+    },
+    {
+      name: 'Gold', price: '1270.80', change: '-0.40%', color: 'red',
+    },
+    {
+      name: 'Bitcoin', price: '41381.61', change: '-2.74%', color: 'red',
+    },
+    {
+      name: 'Ethereum', price: '2489.80', change: '-1.40%', color: 'red',
+    },
+    {
+      name: 'US 10 Year', price: '4.145', change: '+0.07%', color: 'green',
+    },
+  ];
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -216,39 +234,21 @@ const Investment = () => {
                 display="flex"
                 gap={4}
                 css={{
-                  overflow: 'hidden',
+                  // overflow: 'hidden',
                   whiteSpace: 'nowrap',
-                  animation: `${scroll} 60s linear infinite`,
+                  animation: `${scroll} 50s linear infinite`,
                 }}
               >
-                {[...Array(2)].map((_, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <React.Fragment key={i}>
-                    <Flex gap={1.5}>
-                      <Text color="#0E67A9" m={0}>Crude Oil</Text>
-                      <Text m={0}>44.85</Text>
-                      <Text color="red" m={0}>-3.47%</Text>
-                    </Flex>
-                    <Flex gap={1.5}>
-                      <Text color="#0E67A9" m={0}>Gold</Text>
-                      <Text m={0}>1270.80</Text>
-                      <Text color="red" m={0}>-0.40%</Text>
-                    </Flex>
-                    <Flex gap={1.5}>
-                      <Text color="#0E67A9" m={0}>Bitcoin</Text>
-                      <Text m={0}>41381.61</Text>
-                      <Text color="red" m={0}>-2.74%</Text>
-                    </Flex>
-                    <Flex gap={1.5}>
-                      <Text color="#0E67A9" m={0}>Ethereum</Text>
-                      <Text m={0}>2489.80</Text>
-                      <Text color="red" m={0}>-1.40%</Text>
-                    </Flex>
-                    <Flex gap={1.5}>
-                      <Text color="#0E67A9" m={0}>US 10 Year</Text>
-                      <Text m={0}>4.145</Text>
-                      <Text color="green" m={0}>+0.07%</Text>
-                    </Flex>
+                {[...Array(2)].map((_, index) => (
+                  <React.Fragment key={index}>
+                    {assetItems.map((assets, i) => (
+                      // eslint-disable-next-line react/no-array-index-key
+                      <Flex gap={1.5} key={i}>
+                        <Text color="#0E67A9" m={0}>{assets.name}</Text>
+                        <Text m={0}>{assets.price}</Text>
+                        <Text color={assets.color} m={0}>{assets.change}</Text>
+                      </Flex>
+                    ))}
                   </React.Fragment>
                 ))}
               </Box>
