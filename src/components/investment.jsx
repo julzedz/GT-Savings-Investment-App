@@ -4,12 +4,17 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { keyframes } from '@emotion/react';
 import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 
 const Investment = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const scroll = keyframes`
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+`;
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -161,12 +166,16 @@ const Investment = () => {
           </Flex>
           <Flex
             maxWidth="60rem"
+            w="100%"
             p={6}
             m={0}
             bgColor="#f5f5f5"
             flexDir="column"
             mb={6}
             borderRadius={4}
+            css={{
+              overflowX: 'hidden',
+            }}
           >
             <Flex flexDir="column">
               <Flex flexDir="column">
@@ -203,23 +212,46 @@ const Investment = () => {
                 </Flex>
               </Flex>
               <Divider />
-              <Flex gap={4}>
-                <Flex gap={2}>
-                  <Text color="#0E67A9" m={0}>Crude Oil</Text>
-                  <Text m={0}>44.85</Text>
-                  <Text color="red" m={0}>-3.47%</Text>
-                </Flex>
-                <Flex gap={2}>
-                  <Text color="#0E67A9" m={0}>Gold</Text>
-                  <Text m={0}>1270.80</Text>
-                  <Text color="red" m={0}>-0.40%</Text>
-                </Flex>
-                <Flex gap={2}>
-                  <Text color="#0E67A9" m={0}>US 10 Year</Text>
-                  <Text m={0}>4.145</Text>
-                  <Text color="green" m={0}>+0.07%</Text>
-                </Flex>
-              </Flex>
+              <Box
+                display="flex"
+                gap={4}
+                css={{
+                  overflow: 'hidden',
+                  whiteSpace: 'nowrap',
+                  animation: `${scroll} 60s linear infinite`,
+                }}
+              >
+                {[...Array(2)].map((_, i) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <React.Fragment key={i}>
+                    <Flex gap={1.5}>
+                      <Text color="#0E67A9" m={0}>Crude Oil</Text>
+                      <Text m={0}>44.85</Text>
+                      <Text color="red" m={0}>-3.47%</Text>
+                    </Flex>
+                    <Flex gap={1.5}>
+                      <Text color="#0E67A9" m={0}>Gold</Text>
+                      <Text m={0}>1270.80</Text>
+                      <Text color="red" m={0}>-0.40%</Text>
+                    </Flex>
+                    <Flex gap={1.5}>
+                      <Text color="#0E67A9" m={0}>Bitcoin</Text>
+                      <Text m={0}>41381.61</Text>
+                      <Text color="red" m={0}>-2.74%</Text>
+                    </Flex>
+                    <Flex gap={1.5}>
+                      <Text color="#0E67A9" m={0}>Ethereum</Text>
+                      <Text m={0}>2489.80</Text>
+                      <Text color="red" m={0}>-1.40%</Text>
+                    </Flex>
+                    <Flex gap={1.5}>
+                      <Text color="#0E67A9" m={0}>US 10 Year</Text>
+                      <Text m={0}>4.145</Text>
+                      <Text color="green" m={0}>+0.07%</Text>
+                    </Flex>
+                  </React.Fragment>
+                ))}
+              </Box>
               <Divider />
             </Flex>
             <Flex flexDir="column">
