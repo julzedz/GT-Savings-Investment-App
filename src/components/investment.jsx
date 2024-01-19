@@ -1,7 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import {
-  Flex, Text, Divider, Button, Tooltip, Image, Box, Link,
+  Flex, Text, Divider, Button, Tooltip, Image, Box, Link, useDisclosure,
+  Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
+  FormControl, FormLabel, NumberInput, NumberDecrementStepper,
+  NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
@@ -9,13 +12,19 @@ import { keyframes } from '@emotion/react';
 import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
+import AccountFooter from './accountfooter';
 
 const Investment = () => {
   const [isVisible, setIsVisible] = useState(true);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
+
   const scroll = keyframes`
   0% { transform: translateX(10%); }
   100% { transform: translateX(-100%); }
 `;
+
   const assetItems = [
     {
       name: 'Crude Oil', price: '44.85', change: '-3.47%', color: 'red',
@@ -142,11 +151,43 @@ const Investment = () => {
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
+                  onClick={onOpen}
                 >
                   Transfer
                 </Button>
               </Flex>
             </Flex>
+            <Modal
+              initialFocusRef={initialRef}
+              isOpen={isOpen}
+              onClose={onClose}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader fontFamily="noto">
+                  Transfer
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody fontFamily="noto" pb={6}>
+                  <FormControl>
+                    <FormLabel fontSize="xs">Investment Account</FormLabel>
+                    <NumberInput ref={initialRef} step={500} min={100}>
+                      <NumberInputField placeholder="Enter amount" />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                    <FormHelperText fontSize="xs">Transfer amount to your Savings Account</FormHelperText>
+                  </FormControl>
+                </ModalBody>
+                <ModalFooter>
+                  <Button fontFamily="noto" colorScheme="green">
+                    Send
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <Flex width="fit-content">
               <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,760.32' : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
@@ -363,6 +404,7 @@ const Investment = () => {
               ))}
             </Flex>
           </Flex>
+          <AccountFooter />
         </Flex>
       </Flex>
     </>
