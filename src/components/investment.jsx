@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Flex, Text, Divider, Button, Tooltip, Image,
+  Flex, Text, Divider, Button, Tooltip, Image, Box,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
@@ -18,7 +18,7 @@ const Investment = () => {
   return (
     <>
       <Flex
-      // bgColor="gunmetal"
+        // bgColor="#dcdfe0"
       // color="white"
         color="black"
         w="100%"
@@ -57,6 +57,7 @@ const Investment = () => {
             borderColor="#eaecef"
             p={6}
             mb={6}
+            bgColor="#f5f5f5"
           >
             <Flex justifyContent="space-between">
               <Flex p={0} gap={1.5} alignItems="center" mb={0.5} justifyContent="space-evenly">
@@ -78,7 +79,7 @@ const Investment = () => {
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                 >
@@ -87,7 +88,7 @@ const Investment = () => {
                 <Button
                   as={ReactRouterLink}
                   to="/withdrawal"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
@@ -97,7 +98,7 @@ const Investment = () => {
                   Withdraw
                 </Button>
                 <Button
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
@@ -127,7 +128,7 @@ const Investment = () => {
                 fontSize="sm"
                 fontWeight="600"
                 lineHeight="short"
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 width={{ base: '30%', slg: 'auto' }}
                 variant="solid"
@@ -135,7 +136,7 @@ const Investment = () => {
                 Deposit
               </Button>
               <Button
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
                 fontSize="sm"
@@ -146,7 +147,7 @@ const Investment = () => {
                 Withdraw
               </Button>
               <Button
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
                 fontSize="sm"
@@ -158,6 +159,9 @@ const Investment = () => {
               </Button>
             </Flex>
           </Flex>
+          <Box>
+            {/* <Text></Text> */}
+          </Box>
           <Flex
             maxWidth="60rem"
             p={0}

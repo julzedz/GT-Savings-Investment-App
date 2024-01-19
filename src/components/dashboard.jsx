@@ -88,6 +88,7 @@ const Dashboard = () => {
             borderColor="#eaecef"
             p={6}
             mb={6}
+            bgColor="#f5f5f5"
           >
             <Flex justifyContent="space-between">
               <Flex p={0} gap={1.5} alignItems="center" mb={0.5} justifyContent="space-evenly">
@@ -109,7 +110,7 @@ const Dashboard = () => {
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                 >
@@ -118,7 +119,7 @@ const Dashboard = () => {
                 <Button
                   as={ReactRouterLink}
                   to="/withdrawal"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
@@ -128,7 +129,7 @@ const Dashboard = () => {
                   Withdraw
                 </Button>
                 <Button
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
@@ -188,7 +189,7 @@ const Dashboard = () => {
                 fontSize="sm"
                 fontWeight="600"
                 lineHeight="short"
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 width={{ base: '30%', slg: 'auto' }}
                 variant="solid"
@@ -196,7 +197,7 @@ const Dashboard = () => {
                 Deposit
               </Button>
               <Button
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
                 fontSize="sm"
@@ -207,7 +208,7 @@ const Dashboard = () => {
                 Withdraw
               </Button>
               <Button
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
                 fontSize="sm"
@@ -243,6 +244,7 @@ const Dashboard = () => {
               cursor="pointer"
               transition="transform 0.01s ease-in-out"
               _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
@@ -270,6 +272,7 @@ const Dashboard = () => {
               cursor="pointer"
               transition="transform 0.01s ease-in-out"
               _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
@@ -292,6 +295,7 @@ const Dashboard = () => {
             borderColor="#eaecef"
             p={6}
             mb={6}
+            bgColor="#f5f5f5"
           >
             <Flex
               flexDir="column"
