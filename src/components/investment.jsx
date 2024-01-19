@@ -148,18 +148,28 @@ const Investment = () => {
               </Flex>
             </Flex>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '355,760.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,760.32' : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? '≈ 8.2734883 ' : '****'}
+                {isVisible ? '≈ 4.2734883 ' : '****'}
                 BTC
               </Text>
-              <Text fontSize="sm" lineHeight="short" mb={3}>
-                Today&apos;s PnL
-                <Text display="inline" ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
-              </Text>
+              <Flex justifyContent="space-around" gap={6} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w="fit-content" textAlign="center">
+                <Text fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>
+                  Stakes
+                  <Text fontSize="sm" ml="3">{isVisible ? '$112,512.91' : '****'}</Text>
+                </Text>
+                <Text fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>
+                  Earnings
+                  <Text fontSize="sm" ml="3">{isVisible ? '$32,512.91' : '****'}</Text>
+                </Text>
+                <Text fontSize="sm" lineHeight={6} mb={3}>
+                  Today&apos;s PnL
+                  <Text ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
+                </Text>
+              </Flex>
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
@@ -221,6 +231,7 @@ const Investment = () => {
               cursor="pointer"
               transition="transform 0.01s ease-in-out"
               _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
@@ -248,6 +259,7 @@ const Investment = () => {
               cursor="pointer"
               transition="transform 0.01s ease-in-out"
               _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
                 <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
@@ -271,9 +283,7 @@ const Investment = () => {
             flexDir="column"
             mb={6}
             borderRadius={4}
-            css={{
-              overflowX: 'hidden',
-            }}
+            overflowX={{ base: 'hidden' }}
           >
             <Flex flexDir="column">
               <Flex flexDir="column">
