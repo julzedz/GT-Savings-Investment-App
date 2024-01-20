@@ -186,6 +186,8 @@ const Dashboard = () => {
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
+                as={ReactRouterLink}
+                to="/deposit"
                 fontSize="sm"
                 fontWeight="600"
                 lineHeight="short"
@@ -197,6 +199,8 @@ const Dashboard = () => {
                 Deposit
               </Button>
               <Button
+                as={ReactRouterLink}
+                to="/withdrawal"
                 colorScheme="green"
                 size="sm"
                 variant="solid"
