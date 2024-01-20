@@ -18,7 +18,6 @@ import AccountFooter from './accountfooter';
 const Investment = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [price, setPrice] = useState(null);
-  const [error, setError] = useState(null);
   const getFormattedDate = () => {
     const today = new Date();
     const year = today.getFullYear();
@@ -43,9 +42,11 @@ const Investment = () => {
         setPrice(price);
       })
       .catch((error) => {
-        setError(error.message);
+        const errorMessage = 'Loading...';
+        const updatedError = { ...error, message: errorMessage };
+        throw updatedError;
       });
-  }, [apiKey, error.message, todayFormatted]);
+  }, [apiKey, todayFormatted]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
