@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Flex,
-  Text,
-  IconButton,
-  Divider,
-  Avatar,
-  Heading,
-  Image,
-  useBreakpointValue,
+  Flex, Text, IconButton, Divider, Avatar, Heading, Image, Button, useBreakpointValue,
 } from '@chakra-ui/react';
 import {
   FiMenu,
@@ -18,6 +11,7 @@ import {
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 
@@ -103,6 +97,7 @@ const Sidebar = () => {
         <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={BsGraphUpArrow} title="Investment" />
         <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
       </Flex>
+      <Button alignSelf="flex-start" as="ReactRouterLink" to="" fontFamily="noto" textDecoration="underline" fontSize="md" p leftIcon={<ArrowBackIcon />} colorScheme="white" variant="link">Logout</Button>
       <Flex
         p="5%"
         flexDir="column"
