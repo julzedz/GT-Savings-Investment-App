@@ -215,6 +215,7 @@ const Dashboard = () => {
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
+                onClick={onOpen}
               >
                 Transfer
               </Button>

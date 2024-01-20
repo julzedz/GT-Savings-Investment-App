@@ -215,6 +215,8 @@ const Investment = () => {
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, slg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
+                as={ReactRouterLink}
+                to="/deposit"
                 fontSize="sm"
                 fontWeight="600"
                 lineHeight="short"
@@ -227,6 +229,8 @@ const Investment = () => {
               </Button>
               <Button
                 colorScheme="green"
+                as={ReactRouterLink}
+                to="/withdrawal"
                 size="sm"
                 variant="solid"
                 fontSize="sm"
@@ -244,6 +248,7 @@ const Investment = () => {
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
+                onClick={onOpen}
               >
                 Transfer
               </Button>
