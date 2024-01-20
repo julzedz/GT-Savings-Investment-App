@@ -139,7 +139,7 @@ const Deposit = () => {
                 <Flex alignItems="center" justifyContent="center" position="relative">
                   <Flex flexDir="column">
                     <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
-                    <Text fontSize="md" lineHeight="20px" fontWeight="500" color="#1e2329" wordBreak="break-word" textAlign="start">
+                    <Text fontSize={{ base: 'xs', sm: 'md' }} lineHeight={{ base: 'shorter', sm: '16px' }} fontWeight={{ base: '400', sm: '500' }} color="#1e2329" wordBreak="break-word" textAlign="start">
                       {address}
                     </Text>
                   </Flex>
