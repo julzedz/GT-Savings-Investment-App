@@ -52,8 +52,8 @@ const Signup = () => (
       <Heading
         m={3}
         p={4}
-        textAlign={{ base: 'center', lg: 'left' }}
-        fontSize={{ base: '5xl', lg: '7xl' }}
+        textAlign={{ base: 'left', lg: 'left' }}
+        fontSize={{ base: '3xl', sm: '5xl', lg: '7xl' }}
         fontWeight={{ base: 'bold', lg: 'black' }}
         width={{ base: '100%', lg: '80%' }}
         textColor="white"
@@ -85,14 +85,15 @@ const Signup = () => (
           }}
         >
           {(props) => (
-            <Form style={{ backgroundColor: '' }}>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+            <Form style={{ backgroundColor: '', textAlign: 'center' }}>
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short">Full name</FormLabel>
                 <Field name="firstName">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.firstName && form.touched.firstName}>
                       <FormLabel fontSize="xs" lineHeight="short" htmlFor="firstName">First name</FormLabel>
                       <Input
+                        borderColor="black"
                         value={field.value}
                         onChange={field.onChange}
                         onBlur={field.onBlur}
@@ -111,14 +112,32 @@ const Signup = () => (
                         onChange={field.onChange}
                         onBlur={field.onBlur}
                         id="lastName"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
-                <FormLabel w="36%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="ssn">Social Security number</FormLabel>
+              {/* <Flex
+                mb={6}
+                width="100%"
+                gap={6}
+                px={{ base: 6, sm: 1 }}
+                justifyContent="center"
+                alignItems="flex-end"
+              >
+                <FormLabel
+                  w="36%"
+                  m={0}
+                  mb={3}
+                  fontSize="xs"
+                  lineHeight="short"
+                  htmlFor="ssn"
+                >
+                  Social Security number
+
+                </FormLabel>
                 <Field name="ssn">
                   {({ field, form }) => (
                     <FormControl isInvalid={form.errors.ssn && form.touched.ssn}>
@@ -129,14 +148,15 @@ const Signup = () => (
                         id="ssn"
                         type="text"
                         maxLength={9}
-                        w="50%"
+                        w={{ base: '100%', sm: '50%' }}
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.ssn}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
-              </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              </Flex> */}
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="dob">Date of birth</FormLabel>
                 <Field name="dob">
                   {({ field, form }) => (
@@ -147,13 +167,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="dob"
                         type="date"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.dob}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="citizenship">Citizenship</FormLabel>
                 <Field name="citizenship">
                   {({ field, form }) => (
@@ -164,6 +185,7 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="citizenship"
                         placeholder="Select a country"
+                        borderColor="black"
                       >
                         <option value="Australia">Australia</option>
                         <option value="Austria">Austria</option>
@@ -183,7 +205,7 @@ const Signup = () => (
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="mobile">Mobile number</FormLabel>
                 <Field name="mobile">
                   {({ field, form }) => (
@@ -194,13 +216,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="mobile"
                         type="tel"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.mobile}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="email">Email</FormLabel>
                 <Field name="email">
                   {({ field, form }) => (
@@ -211,13 +234,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="email"
                         type="email"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="city">City</FormLabel>
                 <Field name="city">
                   {({ field, form }) => (
@@ -228,13 +252,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="city"
                         type="text"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.city}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="state">State</FormLabel>
                 <Field name="state">
                   {({ field, form }) => (
@@ -245,13 +270,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="state"
                         type="text"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.state}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="password">Password</FormLabel>
                 <Field name="password">
                   {({ field, form }) => (
@@ -262,13 +288,14 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="password"
                         type="password"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                     </FormControl>
                   )}
                 </Field>
               </Flex>
-              <Flex mb={6} width="100%" gap={6} justifyContent="center" alignItems="flex-end">
+              <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                 <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short" htmlFor="confirmPassword">Confirm password</FormLabel>
                 <Field name="confirmPassword">
                   {({ field, form }) => (
@@ -281,6 +308,7 @@ const Signup = () => (
                         onBlur={field.onBlur}
                         id="confirmPassword"
                         type="password"
+                        borderColor="black"
                       />
                       <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
                     </FormControl>
@@ -295,7 +323,11 @@ const Signup = () => (
               // disabled={props.isSubmitting}
                 type="submit"
                 fontFamily="noto"
-                w="100%"
+                w={{ base: '60%', sm: '80%' }}
+                mx="auto"
+                justifySelf="center"
+                alignSelf="center"
+                textAlign="center"
                 p={6}
               >
                 Submit
