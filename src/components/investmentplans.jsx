@@ -49,8 +49,8 @@ const InvestmentPlans = () => {
         <Heading
           m={3}
           p={4}
-          textAlign={{ base: 'center', lg: 'left' }}
-          fontSize={{ base: '5xl', lg: '7xl' }}
+          textAlign={{ base: 'left', lg: 'left' }}
+          fontSize={{ base: '3xl', sm: '5xl', lg: '7xl' }}
           fontWeight={{ base: 'bold', lg: 'black' }}
           width={{ base: '100%', lg: '80%' }}
           textColor="white"
@@ -79,7 +79,7 @@ const InvestmentPlans = () => {
             alignSelf={{ base: 'center', slg: 'auto' }}
             type="submit"
             fontFamily="noto"
-            w="30%"
+            w={{ base: '50%', sm: '35%' }}
             p={6}
           >
             Click to Invest
@@ -101,7 +101,7 @@ const InvestmentPlans = () => {
           Choose How You Want To Invest
 
         </Heading>
-        <Flex mt={24} flexWrap="wrap" justifyContent="center" gap={8}>
+        <Flex mt={{ base: 16, sm: 24 }} flexWrap="wrap" justifyContent="center" gap={8}>
           {plans.map((plan) => (
             <Flex key={plan.icon} bgColor="rgba(159, 167, 34, 0.6)" flexDir="column" borderRadius="0.6em" padding="2.6em" w="26rem">
               <Image alignSelf="center" boxSize="100px" src={plan.icon} m={6} mt={0} />
@@ -133,7 +133,7 @@ const InvestmentPlans = () => {
             </Flex>
           ))}
         </Flex>
-        <Box mt={24} textAlign="left" pl={14}>
+        <Box mt={24} textAlign="left" pl={{ base: 0, sm: 14 }}>
           <Text fontSize="1.125rem" fontWeight="700" fontStyle="normal" lineHeight="1.25rem">Important Information for your review</Text>
 
           <UnorderedList
@@ -150,22 +150,19 @@ const InvestmentPlans = () => {
             <ListItem>Advisory fee: 0.70%, or $35 for every $5,000 you have invested.</ListItem>
             <ListItem>
               Please note, GT Savings LLC
-              recommends clients diversify and rebalance their investments across multiple asset
-              classes and sectors in an effort to minimize risk.
+              recommends clients diversify their investments across multiple asset
+              classes and sectors to minimize risk.
             </ListItem>
             <ListItem>
               There is no minimum required to open an account;
-              however, in order for us to invest your money according
-              to the investment strategy you&apos;ve chosen, your account
+              however, in order for us to invest your money, your account
               balance must be at least $1000.
             </ListItem>
             <ListItem>
               Before investing, consider the funds&apos;
               investment objectives, risks, charges, and expenses.
             </ListItem>
-
           </UnorderedList>
-
         </Box>
       </Box>
     </>
