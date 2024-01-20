@@ -360,7 +360,7 @@ const Dashboard = () => {
                   </Thead>
                   <Tbody>
                     {transactions.map((transaction) => (
-                      <Tr key={transaction.id} _hover={{ bgColor: '#f5f5f5' }}>
+                      <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
                         <Td py={6} px={1}>
                           <Flex>
                             <Icon as={transaction.icon} boxSize={6} />
