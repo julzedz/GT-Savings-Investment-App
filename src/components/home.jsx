@@ -129,7 +129,7 @@ const Home = () => {
         <Grid
           h="100%"
           w="100%"
-          p={{ base: 8, lg: 12 }}
+          p={{ base: 4, sm: 8, lg: 12 }}
           templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
           templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
           gap={6}
