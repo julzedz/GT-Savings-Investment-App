@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import {
-  Flex, Text, Divider, Button, Tooltip, Image, Box, Link as LinkRoute, useDisclosure,
+  Flex, Text, Divider, Button, Tooltip, Image, Box, useDisclosure,
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
   FormControl, FormLabel, NumberInput, NumberDecrementStepper,
-  NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText,
+  NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText, Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
@@ -400,13 +400,12 @@ const Investment = () => {
               </Text>
               {topNews.map((item, i) => (
                 <Flex key={i} flexDir="column" mb={4}>
-                  <Box w="fit-content" as={LinkRoute} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Box>
+                  <Link w="fit-content" as={ReactRouterLink} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Link>
                   <Flex color="gray" fontSize="sm" gap={4}>
                     <Box>{item.source}</Box>
                     <Box>{item.time}</Box>
                   </Flex>
                 </Flex>
-
               ))}
             </Flex>
           </Flex>
