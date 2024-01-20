@@ -136,7 +136,6 @@ const Signup = () => (
                   htmlFor="ssn"
                 >
                   Social Security number
-
                 </FormLabel>
                 <Field name="ssn">
                   {({ field, form }) => (

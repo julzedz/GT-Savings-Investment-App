@@ -1,15 +1,7 @@
 import { React, useState } from 'react';
 import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Collapse,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+  Box, Flex, Image, Text, Collapse, Accordion, AccordionItem, AccordionButton,
+  AccordionPanel, AccordionIcon, Button,
 } from '@chakra-ui/react';
 import { useLocation, Link as ReactRouterLink } from 'react-router-dom';
 import { Squeeze } from 'hamburger-react';
@@ -64,6 +56,22 @@ const Navbar = () => {
             </div>
           </Flex>
         </Box>
+
+        {/* Login */}
+        <Button
+          as={ReactRouterLink}
+          to="/login"
+          bg="applegreen"
+          alignItems="center"
+          height="auto"
+          color="white"
+          px={4}
+          py={2}
+          _hover={{ bg: 'applegreen', color: 'black' }}
+          fontFamily="new"
+        >
+          Login
+        </Button>
 
         {/* Nav Links */}
         <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', lg: 'flex' }}>
