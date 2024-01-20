@@ -4,6 +4,7 @@ import {
 } from '@chakra-ui/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import Sidebar from './sidebar';
+import AccountFooter from './accountfooter';
 
 const Transaction = () => (
   <>
@@ -17,7 +18,7 @@ const Transaction = () => (
       <Flex
         ml={4}
         flexDir="column"
-        minHeight="3xl"
+        minHeight="xl"
         p={5}
         flex="1"
         marginLeft={{ base: 20, md: '21rem' }}
@@ -61,7 +62,7 @@ const Transaction = () => (
             <option value="option3">Withdrawal</option>
           </Select>
         </Flex>
-        <Box>
+        <Box overflowX={{ base: 'scroll' }}>
           <Table>
             <Thead>
               <Tr>
@@ -105,6 +106,7 @@ const Transaction = () => (
             </Tbody>
           </Table>
         </Box>
+        <AccountFooter />
       </Flex>
     </Flex>
   </>

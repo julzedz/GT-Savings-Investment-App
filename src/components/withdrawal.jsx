@@ -101,7 +101,7 @@ const Withdrawal = () => (
           justifyContent="space-between"
           fontFamily="new"
           width={{
-            base: '70%', sm: '70%', md: '60%', lg: '50%', slg: '40%', xl: '30%',
+            base: '100%', sm: '70%', md: '60%', lg: '50%', slg: '40%', xl: '30%',
           }}
           mb={9}
         >
