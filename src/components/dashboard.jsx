@@ -188,7 +188,7 @@ const Dashboard = () => {
               <Button
                 as={ReactRouterLink}
                 to="/deposit"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 colorScheme="green"
@@ -204,7 +204,7 @@ const Dashboard = () => {
                 colorScheme="green"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
@@ -215,7 +215,7 @@ const Dashboard = () => {
                 colorScheme="green"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
@@ -252,7 +252,7 @@ const Dashboard = () => {
               bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
+                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
                 <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
                   ROI up to
                   <Text m={0} display="inline" fontWeight="medium" color="green"> 40%</Text>
@@ -260,7 +260,7 @@ const Dashboard = () => {
                 <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
               </Flex>
               <Flex>
-                <Image src={earn} boxSize={20} />
+                <Image src={earn} boxSize={{ base: 14, sm: 20 }} />
               </Flex>
             </Flex>
             <Flex
@@ -280,7 +280,7 @@ const Dashboard = () => {
               bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
+                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
                 <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
                   S&P 500
                   <Text display="inline" fontWeight="medium" color="green"> + 48.40</Text>
@@ -288,7 +288,7 @@ const Dashboard = () => {
                 <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Securities</Text>
               </Flex>
               <Flex>
-                <Image src={margin} boxSize={20} />
+                <Image src={margin} boxSize={{ base: 14, sm: 20 }} />
               </Flex>
             </Flex>
           </Flex>

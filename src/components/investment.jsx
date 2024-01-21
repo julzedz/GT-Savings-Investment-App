@@ -221,7 +221,7 @@ const Investment = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,760.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,761.32' : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
