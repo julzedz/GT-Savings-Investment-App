@@ -1,4 +1,6 @@
-import { Flex, Divider, Text } from '@chakra-ui/react';
+import {
+  Flex, Divider, Text, Box,
+} from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 
@@ -35,10 +37,23 @@ const Profile = () => (
             </Flex>
           </Flex>
         </Flex>
-        <h3>Email</h3>
-        <h3>Transfer</h3>
-        <h3>Settings</h3>
-        <h3>Login settings</h3>
+        <h3>Contact Information</h3>
+        <h4>Rob Smith</h4>
+        <Flex flexDir="column">
+          <Flex flexDir="column">
+            <Box>Email</Box>
+            <Box>robsmith@gmail.com</Box>
+          </Flex>
+          <Flex flexDir="column">
+            <Box>Phone Number</Box>
+            <Box>+1(234)56789</Box>
+          </Flex>
+          <Flex flexDir="column">
+            <Box>Created At</Box>
+            <Box>2023-12-19</Box>
+          </Flex>
+        </Flex>
+
         <AccountFooter />
       </Flex>
     </Flex>
