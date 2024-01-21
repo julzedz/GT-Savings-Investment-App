@@ -1,8 +1,9 @@
 import {
-  Flex, Divider, Text, Box,
+  Flex, Divider, Text, Box, Image, Button, Link as ReactRouterLink,
 } from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
+import avatar from '../assets/avatar-icon.webp';
 
 const Profile = () => (
   <>
@@ -37,21 +38,71 @@ const Profile = () => (
             </Flex>
           </Flex>
         </Flex>
-        <h3>Contact Information</h3>
-        <h4>Rob Smith</h4>
-        <Flex flexDir="column">
-          <Flex flexDir="column">
-            <Box>Email</Box>
-            <Box>robsmith@gmail.com</Box>
+        {/* <h3>Contact Information</h3> */}
+        <Flex flexDir="column" bgColor="#f5f5f5" pb={16}>
+          <Image
+            borderRadius="full"
+            boxSize="200px"
+            src="https://bit.ly/dan-abramov"
+            alt="Dan Abramov"
+            alignSelf="center"
+            fallbackSrc={avatar}
+            m={6}
+          />
+          <Text
+            textAlign="center"
+            fontFamily="noto"
+            fontSize={{ base: 'lg', xl: '2xl' }}
+            fontWeight="bold"
+          >
+            Rob Smith
+
+          </Text>
+
+          <Text alignSelf="center" textAlign="center" fontFamily="noto" padding={2} bgColor="rgba(159, 167, 34, 0.6)" color="applegreen" fontWeight="semibold" width="80px" borderRadius="50">User</Text>
+          <Flex
+            fontFamily="new"
+            textAlign="left"
+          // maxW="md"
+            minW={{ base: '2xs', md: 'md', lg: 'lg' }}
+            alignSelf="center"
+            my={6}
+            p={6}
+            flexDir="column"
+          >
+            <Flex px={6} pb={2} flexDir="column">
+              <Box color="applegreen" fontWeight="semibold">Email</Box>
+              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">robsmith@hotmail.com</Box>
+            </Flex>
+            <Divider />
+            <Flex px={6} pb={2} flexDir="column">
+              <Box color="applegreen" fontWeight="semibold">Phone Number</Box>
+              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">+1(234)56789</Box>
+            </Flex>
+            <Divider />
+            <Flex px={6} pb={2} flexDir="column">
+              <Box color="applegreen" fontWeight="semibold">Address</Box>
+              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">Illinois, United States of America</Box>
+            </Flex>
+            <Divider />
+            <Flex px={6} pb={4} flexDir="column">
+              <Box color="applegreen" fontWeight="semibold">Created At</Box>
+              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">2023-12-19</Box>
+            </Flex>
           </Flex>
-          <Flex flexDir="column">
-            <Box>Phone Number</Box>
-            <Box>+1(234)56789</Box>
-          </Flex>
-          <Flex flexDir="column">
-            <Box>Created At</Box>
-            <Box>2023-12-19</Box>
-          </Flex>
+          <Button
+            w="200px"
+            alignSelf="center"
+            m={5}
+            p={7}
+            fontFamily="new"
+            bgColor="applegreen"
+            as={ReactRouterLink}
+            to=""
+            _hover={{ color: 'white', bgColor: 'gunmetal' }}
+          >
+            Reset Password
+          </Button>
         </Flex>
 
         <AccountFooter />
