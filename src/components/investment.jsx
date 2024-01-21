@@ -248,7 +248,7 @@ const Investment = () => {
               <Button
                 as={ReactRouterLink}
                 to="/deposit"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 colorScheme="green"
@@ -264,7 +264,7 @@ const Investment = () => {
                 to="/withdrawal"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
@@ -275,7 +275,7 @@ const Investment = () => {
                 colorScheme="green"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
@@ -375,24 +375,24 @@ const Investment = () => {
                 <Text fontSize="sm" color="gray">US Markets Overview</Text>
               </Flex>
               <Divider colorScheme="red" />
-              <Flex fontSize="lg" alignItems="center" justifyContent="space-between" flexDir={{ base: 'column', lg: 'row' }}>
-                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
-                  <Text mb={2} color="#0E67A9">DJIA</Text>
+              <Flex fontSize="lg" alignItems={{ base: 'left', sm: 'center' }} justifyContent="space-between" flexDir={{ base: 'column', lg: 'row' }}>
+                <Flex gap={{ base: 1, sm: 2 }} flexDir={{ base: 'row', lg: 'column' }}>
+                  <Text mb={2} fontSize={{ base: 'md', sm: 'unset' }} color="#0E67A9">DJIA</Text>
                   <Text mb={1} fontSize={{ base: 'sm', slg: 'lg' }} color="green">+201.75 (+1.85%)</Text>
                   <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>21,284.85</Text>
                 </Flex>
-                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
-                  <Text mb={2} color="#0E67A9">NASDAQ</Text>
+                <Flex gap={{ base: 1, sm: 2 }} flexDir={{ base: 'row', lg: 'column' }}>
+                  <Text mb={2} fontSize={{ base: 'md', sm: 'unset' }} color="#0E67A9">NASDAQ</Text>
                   <Text color="red" mb={1} fontSize={{ base: 'sm', slg: 'lg' }}>-6.5 (-0.10%)</Text>
                   <Text color="red" fontSize={{ base: 'sm', slg: 'lg' }}>6,214.11</Text>
                 </Flex>
-                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }}>
-                  <Text mb={2} color="#0E67A9">S&P 500</Text>
+                <Flex gap={{ base: 1, sm: 2 }} flexDir={{ base: 'row', lg: 'column' }}>
+                  <Text mb={2} fontSize={{ base: 'sm', sm: 'unset' }} color="#0E67A9">S&P 500</Text>
                   <Text color="green" mb={1} fontSize={{ base: 'sm', slg: 'lg' }}>+41.73 (+1.04%)</Text>
                   <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>4,780.74</Text>
                 </Flex>
-                <Flex gap={2} flexDir={{ base: 'row', lg: 'column' }} justifySelf={{ base: '', lg: 'auto' }}>
-                  <Text mb={2} color="#0E67A9">AAPL</Text>
+                <Flex gap={{ base: 1, sm: 2 }} flexDir={{ base: 'row', lg: 'column' }} justifySelf={{ base: '', lg: 'auto' }}>
+                  <Text mb={2} fontSize={{ base: 'md', sm: 'unset' }} color="#0E67A9">AAPL</Text>
                   <Text mb={1} color="green" fontSize={{ base: 'sm', slg: 'lg' }}>+5.95 (+2.07%)</Text>
                   <Text color="green" fontSize={{ base: 'sm', slg: 'lg' }}>188.64</Text>
                 </Flex>
@@ -431,7 +431,7 @@ const Investment = () => {
               </Text>
               {topNews.map((item, i) => (
                 <Flex key={i} flexDir="column" mb={4}>
-                  <Link w="fit-content" as={ReactRouterLink} to={item.link} color="#0E67A9" fontSize="lg" fontWeight="semibold">{item.title}</Link>
+                  <Link w="fit-content" as={ReactRouterLink} to={item.link} color="#0E67A9" fontSize={{ base: 'sm', sm: 'lg' }} fontWeight="semibold">{item.title}</Link>
                   <Flex color="gray" fontSize="sm" gap={4}>
                     <Box>{item.source}</Box>
                     <Box>{item.time}</Box>
