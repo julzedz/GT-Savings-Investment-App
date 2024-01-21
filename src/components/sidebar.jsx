@@ -97,8 +97,23 @@ const Sidebar = () => {
         <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={BsGraphUpArrow} title="Investment" />
         <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
       </Flex>
-      <Button display={{ base: 'block', md: 'none' }} alignSelf="flex-start" as="ReactRouterLink" to="" fontFamily="noto" textDecoration="underline" fontSize="sm" p leftIcon={<ArrowBackIcon boxSize={6} />} colorScheme="white" variant="link"> </Button>
-      <Button alignSelf="flex-start" as="ReactRouterLink" display={{ base: 'none', md: 'block' }} to="" fontFamily="noto" textDecoration="underline" fontSize="sm" p leftIcon={<ArrowBackIcon />} colorScheme="white" variant="link">Logout</Button>
+      <Button display={{ base: 'block', md: 'none' }} alignSelf="flex-start" as="ReactRouterLink" to="" fontFamily="noto" textDecoration="underline" fontSize="sm" p leftIcon={<ArrowBackIcon _hover={{ color: 'black' }} boxSize={6} />} colorScheme="white" variant="link"> </Button>
+      <Button
+        alignSelf="flex-start"
+        as="ReactRouterLink"
+        display={{ base: 'none', md: 'block' }}
+        to=""
+        fontFamily="noto"
+        fontSize="sm"
+        p
+        leftIcon={<ArrowBackIcon />}
+        colorScheme="white"
+        variant="link"
+        isCentered
+      >
+        Logout
+
+      </Button>
       <Flex
         p="5%"
         flexDir="column"
