@@ -72,30 +72,31 @@ const Profile = () => (
           >
             <Flex px={6} pb={2} flexDir="column">
               <Box color="applegreen" fontWeight="semibold">Email</Box>
-              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">robsmith@hotmail.com</Box>
+              <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">robsmith@hotmail.com</Box>
             </Flex>
             <Divider />
             <Flex px={6} pb={2} flexDir="column">
               <Box color="applegreen" fontWeight="semibold">Phone Number</Box>
-              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">+1(234)56789</Box>
+              <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">+1(234)56789</Box>
             </Flex>
             <Divider />
             <Flex px={6} pb={2} flexDir="column">
               <Box color="applegreen" fontWeight="semibold">Address</Box>
-              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">Illinois, United States of America</Box>
+              <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">Illinois, United States of America</Box>
             </Flex>
             <Divider />
             <Flex px={6} pb={4} flexDir="column">
               <Box color="applegreen" fontWeight="semibold">Created At</Box>
-              <Box fontSize={{ base: 'md', md: 'lg' }} fontWeight="medium">2023-12-19</Box>
+              <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">2023-12-19</Box>
             </Flex>
           </Flex>
           <Button
-            w="200px"
+            w={{ base: '120px', sm: '200px' }}
             alignSelf="center"
             m={5}
             p={7}
             fontFamily="new"
+            fontSize={{ base: 'xs', sm: 'unset' }}
             bgColor="applegreen"
             as={ReactRouterLink}
             to=""
