@@ -4,8 +4,8 @@ import Sidebar from './sidebar';
 const Profile = () => (
   <>
     <Flex
-      bgColor="gunmetal"
-      color="white"
+      color="black"
+      w="100%"
     >
       <Sidebar />
       <Flex
@@ -14,6 +14,11 @@ const Profile = () => (
         p={5}
         left={{ base: 20, md: 80 }}
         minHeight="3xl"
+        ml={4}
+        flex="1"
+        marginLeft={{ base: 20, md: '21rem' }}
+        overflowY="scroll"
+        fontFamily="noto"
       >
         <h2>Profile </h2>
         <h3>Inbox</h3>
