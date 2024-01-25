@@ -5,7 +5,7 @@ import {
   FormControl, FormLabel, NumberInput, NumberDecrementStepper, NumberInputStepper,
   NumberInputField, NumberIncrementStepper, FormHelperText, useDisclosure,
 } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
@@ -14,6 +14,7 @@ import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
 
 const Dashboard = () => {
+  const balance = '355,760.32';
   const [isVisible, setIsVisible] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
@@ -105,7 +106,7 @@ const Dashboard = () => {
               </Flex>
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/deposit"
                   fontSize="sm"
                   fontWeight="600"
@@ -117,7 +118,7 @@ const Dashboard = () => {
                   Deposit
                 </Button>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/withdrawal"
                   colorScheme="green"
                   size="sm"
@@ -171,7 +172,7 @@ const Dashboard = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '355,760.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? balance : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
@@ -186,7 +187,7 @@ const Dashboard = () => {
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
-                as={ReactRouterLink}
+                as={reactrouterlink}
                 to="/deposit"
                 fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
@@ -199,7 +200,7 @@ const Dashboard = () => {
                 Deposit
               </Button>
               <Button
-                as={ReactRouterLink}
+                as={reactrouterlink}
                 to="/withdrawal"
                 colorScheme="green"
                 size="sm"
@@ -236,7 +237,7 @@ const Dashboard = () => {
             flexDir={{ base: 'column', slg: 'row' }}
           >
             <Flex
-              as={ReactRouterLink}
+              as={reactrouterlink}
               to="/invest-deposit"
               borderWidth="1px"
               borderRadius="2xl"
@@ -264,7 +265,7 @@ const Dashboard = () => {
               </Flex>
             </Flex>
             <Flex
-              as={ReactRouterLink}
+              as={reactrouterlink}
               to="/investmentplans"
               borderWidth="1px"
               borderRadius="2xl"
@@ -317,7 +318,7 @@ const Dashboard = () => {
               >
                 <Text m={0}>Recent Transactions</Text>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/transaction"
                   colorScheme="none"
                   variant="ghost"

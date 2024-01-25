@@ -319,7 +319,6 @@ const Signup = () => (
                 mt={4}
                 colorScheme="green"
                 isLoading={props.isSubmitting}
-              // disabled={props.isSubmitting}
                 type="submit"
                 fontFamily="noto"
                 w={{ base: '60%', sm: '80%' }}
@@ -341,7 +340,11 @@ const Signup = () => (
 );
 
 Signup.propTypes = {
-  isSubmitting: PropTypes.bool.isRequired,
+  isSubmitting: PropTypes.bool,
+};
+
+Signup.defaultProps = {
+  isSubmitting: false,
 };
 
 export default Signup;

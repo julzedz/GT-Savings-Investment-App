@@ -17,7 +17,6 @@ root.render(
         {/* <QueryClientProvider client={queryClient}> */}
         <App />
         {/* </QueryClientProvider> */}
-        <App />
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,

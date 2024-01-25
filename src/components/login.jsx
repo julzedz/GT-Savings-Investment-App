@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import React from 'react';
 import {
   Text, Flex,
@@ -90,7 +90,7 @@ const Login = () => {
           New to GT Savings Bank?
           <span> </span>
           <Link
-            as={ReactRouterLink}
+            as={reactrouterlink}
             to="/signup"
             textDecoration="underline"
             _hover={{ color: 'applegreen' }}

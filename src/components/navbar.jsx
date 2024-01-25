@@ -3,7 +3,7 @@ import {
   Box, Flex, Image, Text, Collapse, Accordion, AccordionItem, AccordionButton,
   AccordionPanel, AccordionIcon, Button,
 } from '@chakra-ui/react';
-import { useLocation, Link as ReactRouterLink } from 'react-router-dom';
+import { useLocation, Link as reactrouterlink } from 'react-router-dom';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
@@ -33,7 +33,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Box py={{ base: 3 }}>
-          <Flex align="center" className="logo-group" as={ReactRouterLink} to="/">
+          <Flex align="center" className="logo-group" as={reactrouterlink} to="/">
 
             <Image src={logo} alt="Logo" boxSize="40px" />
             <div>
@@ -59,7 +59,7 @@ const Navbar = () => {
 
         {/* Login */}
         <Button
-          as={ReactRouterLink}
+          as={reactrouterlink}
           to="/login"
           order={{ base: 2, slg: 3 }}
           bg="applegreen"
@@ -93,7 +93,7 @@ const Navbar = () => {
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
           <Button
-            as={ReactRouterLink}
+            as={reactrouterlink}
             to="/login"
             bg="applegreen"
             alignItems="center"

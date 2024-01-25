@@ -1,5 +1,5 @@
 import {
-  Flex, Divider, Text, Box, Image, Button, Link as ReactRouterLink,
+  Flex, Divider, Text, Box, Image, Button, Link as reactrouterlink,
 } from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
@@ -98,7 +98,7 @@ const Profile = () => (
             fontFamily="new"
             fontSize={{ base: 'xs', sm: 'unset' }}
             bgColor="applegreen"
-            as={ReactRouterLink}
+            as={reactrouterlink}
             to=""
             _hover={{ color: 'white', bgColor: 'gunmetal' }}
           >

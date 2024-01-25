@@ -163,8 +163,6 @@ const Deposit = () => {
               mt={4}
               mb={20}
               colorScheme="green"
-              // isLoading={props.isSubmitting}
-              // disabled={props.isSubmitting}
               type="submit"
               fontFamily="noto"
               w="40%"

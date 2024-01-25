@@ -1,7 +1,7 @@
 import {
   Box, Heading, Flex, Button, Image, Text, UnorderedList, ListItem,
 } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import building from '../assets/building2.jpg';
 import moneytree from '../assets/money2.jpg';
 import estate from '../assets/institution.svg';
@@ -73,7 +73,7 @@ const InvestmentPlans = () => {
           </Heading>
           <Heading mt="0.3rem" color="white" lineHeight={{ base: '1.5em', slg: '2em' }} fontSize={{ base: '1.3em', slg: '1.7rem' }}>With Our Investment Products</Heading>
           <Button
-            as={ReactRouterLink}
+            as={reactrouterlink}
             to="/invest-deposit"
             colorScheme="gray"
             alignSelf={{ base: 'center', slg: 'auto' }}
@@ -124,7 +124,7 @@ const InvestmentPlans = () => {
               </Flex>
               <Button
                 variant="outline"
-                as={ReactRouterLink}
+                as={reactrouterlink}
                 to={plan.link}
                 mt={6}
               >

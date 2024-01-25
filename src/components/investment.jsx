@@ -7,7 +7,7 @@ import {
   NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText, Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import axios from 'axios';
 import earn from '../assets/earn.svg';
@@ -153,7 +153,7 @@ const Investment = () => {
               </Flex>
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/deposit"
                   fontSize="sm"
                   fontWeight="600"
@@ -165,7 +165,7 @@ const Investment = () => {
                   Deposit
                 </Button>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/withdrawal"
                   colorScheme="green"
                   size="sm"
@@ -246,7 +246,7 @@ const Investment = () => {
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, slg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
-                as={ReactRouterLink}
+                as={reactrouterlink}
                 to="/deposit"
                 fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
@@ -260,7 +260,7 @@ const Investment = () => {
               </Button>
               <Button
                 colorScheme="green"
-                as={ReactRouterLink}
+                as={reactrouterlink}
                 to="/withdrawal"
                 size="sm"
                 variant="solid"
@@ -296,7 +296,7 @@ const Investment = () => {
             flexDir={{ base: 'column', slg: 'row' }}
           >
             <Flex
-              as={ReactRouterLink}
+              as={reactrouterlink}
               to="/invest-deposit"
               borderWidth="1px"
               borderRadius="2xl"
@@ -324,7 +324,7 @@ const Investment = () => {
               </Flex>
             </Flex>
             <Flex
-              as={ReactRouterLink}
+              as={reactrouterlink}
               to="/investmentplans"
               borderWidth="1px"
               borderRadius="2xl"
@@ -431,7 +431,7 @@ const Investment = () => {
               </Text>
               {topNews.map((item, i) => (
                 <Flex key={i} flexDir="column" mb={4}>
-                  <Link w="fit-content" as={ReactRouterLink} to={item.link} color="#0E67A9" fontSize={{ base: 'sm', sm: 'lg' }} fontWeight="semibold">{item.title}</Link>
+                  <Link w="fit-content" as={reactrouterlink} to={item.link} color="#0E67A9" fontSize={{ base: 'sm', sm: 'lg' }} fontWeight="semibold">{item.title}</Link>
                   <Flex color="gray" fontSize="sm" gap={4}>
                     <Box>{item.source}</Box>
                     <Box>{item.time}</Box>
