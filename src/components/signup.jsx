@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import { Formik, Field, Form } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import {
@@ -40,7 +40,7 @@ const validationSchema = Yup.object({
 });
 
 const Signup = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState(false);
 
   return (
@@ -105,7 +105,7 @@ const Signup = () => {
                   console.log('User created:', response.data);
                   setSuccessMessage(true);
                   setTimeout(() => {
-                    history.push('/login'); // Redirect to login page
+                    navigate('/login'); // Redirect to login page
                   }, 3000); // After 3 seconds
                 })
                 .catch((error) => {
@@ -286,7 +286,7 @@ const Signup = () => {
                           type="password"
                           borderColor="black"
                         />
-                        <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                        <FormErrorMessage fontSize="xs" p={0} m={0}>{form.errors.password}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
