@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import {
   Flex, Text, Divider, Tooltip, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
@@ -12,9 +13,35 @@ import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
+import api from '../api';
 
 const Dashboard = () => {
-  const balance = '355,760.32';
+  const [user, setUser] = useState(null);
+
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/5');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
+
+    fetchUserData();
+  }, []);
+
+  let balance = null;
+  if (user && user.account) {
+    balance = user.account.savings_account;
+  }
   const [isVisible, setIsVisible] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
@@ -73,7 +100,9 @@ const Dashboard = () => {
             <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                <Text m={0}>123456789</Text>
+                {user && (
+                  <Text m={0}>{user.account_number}</Text>
+                )}
               </Flex>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User Type</Text>
@@ -172,12 +201,12 @@ const Dashboard = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? balance : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${balance}` : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? '≈ 8.2734883 ' : '****'}
+                {isVisible ? `${balance / 40000} ` : '****'}
                 BTC
               </Text>
               <Text fontSize="sm" lineHeight="short" mb={3}>
