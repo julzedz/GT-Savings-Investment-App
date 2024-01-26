@@ -206,7 +206,7 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `${balance / 40000} ` : '****'}
+                {isVisible ? `${(balance / 40000).toFixed(8)} ` : '****'}
                 BTC
               </Text>
               <Text fontSize="sm" lineHeight="short" mb={3}>
