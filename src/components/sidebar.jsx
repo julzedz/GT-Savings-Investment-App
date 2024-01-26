@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Flex,
-  Text,
-  IconButton,
-  Divider,
-  Avatar,
-  Heading,
-  Image,
-  useBreakpointValue,
+  Flex, Text, IconButton, Divider, Avatar, Heading, Image, Button, useBreakpointValue,
 } from '@chakra-ui/react';
 import {
   FiMenu,
@@ -17,19 +10,20 @@ import {
 } from 'react-icons/fi';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 
 const Sidebar = () => {
-  const breakpointNavSize = useBreakpointValue({ base: 'small', md: 'large' });
-  const [navSize, setNavSize] = useState(breakpointNavSize);
+  const breakpointnavsize = useBreakpointValue({ base: 'small', md: 'large' });
+  const [navSize, setNavSize] = useState(breakpointnavsize);
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
 
   useEffect(() => {
-    setNavSize(breakpointNavSize);
-  }, [breakpointNavSize]);
+    setNavSize(breakpointnavsize);
+  }, [breakpointnavsize]);
 
   const toggleNavSize = () => {
     setNavSize(navSize === 'small' ? 'large' : 'small');
@@ -38,11 +32,11 @@ const Sidebar = () => {
     <Flex
       pos="fixed"
       zIndex="sticky"
-      breakpointNavSize
+      breakpointnavsize="true"
       h="100vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
       w={navSize === 'small' ? 20 : 80}
-      borderRadius={navSize === 'small' ? '2px' : '0 10px'}
+      borderRadius={navSize === 'small' ? '2px' : '0'}
       flexDir="column"
       justifyContent="space-between"
       bgColor="applegreen"
@@ -70,8 +64,11 @@ const Sidebar = () => {
             justifyContent="center"
             className="logo-group"
             cursor="pointer"
-            as={ReactRouterLink}
-            to="/dashboard"
+            as={reactrouterlink}
+            to="/home"
+            bgColor="black"
+            p={2}
+            borderRadius={8}
           >
 
             <Image src={logo} alt="Logo" boxSize="30px" />
@@ -79,7 +76,7 @@ const Sidebar = () => {
               <Text
                 fontSize="lg"
                 fontWeight="bold"
-                color="gunmetal"
+                color="white"
                 fontFamily="Atomic Age"
                 align="center"
                 my={0}
@@ -100,6 +97,23 @@ const Sidebar = () => {
         <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={BsGraphUpArrow} title="Investment" />
         <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
       </Flex>
+      <Button display={{ base: 'block', md: 'none' }} alignSelf="flex-start" as="reactrouterlink" to="" fontFamily="noto" textDecoration="underline" fontSize="sm" p leftIcon={<ArrowBackIcon _hover={{ color: 'black' }} boxSize={6} />} colorScheme="white" variant="link"> </Button>
+      <Button
+        alignSelf="flex-start"
+        as="reactrouterlink"
+        display={{ base: 'none', md: 'block' }}
+        to=""
+        fontFamily="noto"
+        fontSize="sm"
+        p
+        leftIcon={<ArrowBackIcon />}
+        colorScheme="white"
+        variant="link"
+        iscentered="true"
+      >
+        Logout
+
+      </Button>
       <Flex
         p="5%"
         flexDir="column"
@@ -108,11 +122,11 @@ const Sidebar = () => {
         mb={4}
       >
         <Divider display={navSize === 'small' ? 'none' : 'flex'} />
-        <Flex mt={4} align="center">
+        <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
           <Avatar size="sm" />
           <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-            <Heading as="h3" size="sm">Rob Smith</Heading>
-            <Text color="grey">Admin</Text>
+            <Heading as="h3" size="sm" mb={0}>Rob Smith</Heading>
+            <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">Admin</Text>
           </Flex>
         </Flex>
       </Flex>

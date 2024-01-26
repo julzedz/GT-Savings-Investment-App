@@ -1,17 +1,9 @@
 import { React, useState } from 'react';
 import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Collapse,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
+  Box, Flex, Image, Text, Collapse, Accordion, AccordionItem, AccordionButton,
+  AccordionPanel, AccordionIcon, Button,
 } from '@chakra-ui/react';
-import { useLocation, Link as ReactRouterLink } from 'react-router-dom';
+import { useLocation, Link as reactrouterlink } from 'react-router-dom';
 import { Squeeze } from 'hamburger-react';
 import logo from '../assets/bank-leaf.png';
 import '../styles/navbar.css';
@@ -41,7 +33,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Box py={{ base: 3 }}>
-          <Flex align="center" className="logo-group" as={ReactRouterLink} to="/">
+          <Flex align="center" className="logo-group" as={reactrouterlink} to="/">
 
             <Image src={logo} alt="Logo" boxSize="40px" />
             <div>
@@ -65,8 +57,26 @@ const Navbar = () => {
           </Flex>
         </Box>
 
+        {/* Login */}
+        <Button
+          as={reactrouterlink}
+          to="/login"
+          order={{ base: 2, slg: 3 }}
+          bg="applegreen"
+          alignItems="center"
+          height="auto"
+          color="white"
+          px={4}
+          py={3}
+          _hover={{ bg: 'applegreen', color: 'black' }}
+          fontFamily="new"
+          display={{ base: 'block', xl: 'none' }}
+        >
+          Login
+        </Button>
+
         {/* Nav Links */}
-        <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', lg: 'flex' }}>
+        <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', slg: 'flex' }}>
           <NavLink href="/" isActive={isActive('/home')}>Home</NavLink>
           <DropdownMenu label="Banking & Borrowing" isActive={isActive('/banking' || '/loans' || 'mortgage')}>
             <DropdownItem href="/dashboard">Online Banking</DropdownItem>
@@ -82,9 +92,24 @@ const Navbar = () => {
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
+          <Button
+            as={reactrouterlink}
+            to="/login"
+            bg="applegreen"
+            alignItems="center"
+            height="auto"
+            color="white"
+            px={4}
+            py={3}
+            _hover={{ bg: 'applegreen', color: 'black' }}
+            fontFamily="new"
+            display={{ base: 'none', xl: 'block' }}
+          >
+            Login
+          </Button>
         </Flex>
 
-        <Flex display={{ base: 'flex', lg: 'none' }}>
+        <Flex display={{ base: 'flex', slg: 'none' }} order={{ base: 3 }}>
           <Squeeze easing="ease-in" rounded toggled={isOpen} toggle={setOpen} color="#97A722" label="Navigation" />
         </Flex>
       </Flex>
@@ -146,7 +171,7 @@ const Navbar = () => {
                   px={2}
                   py={4}
                 >
-                  <AccordionLink href="/banking">Online Banking</AccordionLink>
+                  <AccordionLink href="/dashboard">Online Banking</AccordionLink>
                   <AccordionLink href="/loans">Loans</AccordionLink>
                   <AccordionLink href="/mortgages">Mortgages</AccordionLink>
                 </Flex>

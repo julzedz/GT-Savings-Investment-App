@@ -26,7 +26,7 @@ import elder from '../assets/elder-couple1.jpg';
 import greycircles from '../assets/Mass Circles.svg';
 import meeting from '../assets/meeting.jpg';
 import building1 from '../assets/building1.jpg';
-import streetfast from '../assets/street-fast.jpg';
+import streetfast from '../assets/street-fast-transformed.jpeg';
 
 const Home = () => {
   const listItems = [
@@ -129,7 +129,7 @@ const Home = () => {
         <Grid
           h="100%"
           w="100%"
-          p={{ base: 8, lg: 12 }}
+          p={{ base: 4, sm: 8, lg: 12 }}
           templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
           templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
           gap={6}
@@ -153,8 +153,7 @@ const Home = () => {
             <Box color="white" p={4}>
               <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
               <Text py={4}>
-                With a low minimum deposit required, start earning interest at competitive rates
-                that are compounded daily. Ready to take the first steps towards financial freedom?
+                With a low minimum deposit required, start earning interest at competitive rates. Ready to take the first steps towards financial freedom?
               </Text>
               <Button
                 as={RouterLink}
@@ -302,20 +301,20 @@ const Home = () => {
             >
               GT Savings Bank is a modern, tech-driven savings and investment banking platform.
             </Text>
-            <Text letterSpacing="wide">GT Savings Bank is a full-service savings and investment banking platform on which Independent Investment Bankers, M&A Advisors and global and domestic Institutional Financiers transact deals.</Text>
+            <Text letterSpacing="wide">GT Savings Bank is a full-service savings and investment banking platform for personalized portfolios of choice investment opportunities managed by a team of professionals, with tax-smart investing techniques.</Text>
             <Text letterSpacing="wide">Over 300 transactions, representing an aggregate deal value of greater than $4.5 billion, have been completed on our platform.</Text>
             <Text letterSpacing="wide">
               GT Savings Bank is a member of
-              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/">FINRA</Box>
+              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.finra.org/"> FINRA </Box>
               and
-              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/">SIPC</Box>
+              <Box display="inline" color="cerulean" as={RouterLink} to="https://www.sipc.org/"> SIPC </Box>
               .
             </Text>
             <Text letterSpacing="wide">Our bankers:</Text>
             <UnorderedList letterSpacing="wide">
-              <ListItem>Raise equity and debt capital (primary and secondary)</ListItem>
-              <ListItem>Execute upon business sale, acquisition and divestiture transactions (M&A)</ListItem>
-              <ListItem>Advise on both the sell and buy side</ListItem>
+              <ListItem>Build your portfolio, based on an approach you&apos;ve selected and your investment preferences.</ListItem>
+              <ListItem>Use fractional shares to build a portfolio which seeks to meet a specific investment objective, which will vary by strategy.</ListItem>
+              <ListItem>Keep you informed as to how your account is performing.</ListItem>
             </UnorderedList>
             <Text letterSpacing="wide">
               Learn more about us
@@ -386,7 +385,7 @@ const Home = () => {
             <List letterSpacing="wide" spacing={4} textAlign="left">
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
-                Earn more as you save more with interest that&apos;s compounded daily on your balance
+                Earn more as you save more with interest that&apos;s compounded on your balance
               </ListItem>
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
@@ -465,7 +464,7 @@ const Home = () => {
             flexBasis={{ base: 'auto', slg: '48%' }}
             alignSelf="center"
           >
-            <Text letterSpacing="wide">Our team of experts help invest your savings in real estate, private equity, highly-rated S&P 500 company stocks, including corporate and sovereign debt, equities, currencies and various derivatives. Many qualities sets our institution apart including:</Text>
+            <Text letterSpacing="wide">Our team of experts help invest your savings in real estate, private equity, highly-rated S&P 500 company stocks, including corporate and sovereign debt, equities, currencies, and various derivatives. Many qualities sets our institution apart including:</Text>
             <List letterSpacing="wide" spacing={4} textAlign="left">
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
@@ -481,7 +480,7 @@ const Home = () => {
               </ListItem>
               <ListItem>
                 <ListIcon as={CheckCircleIcon} color="applegreen" />
-                Rolling your maturing investments directly into new opportunities by compounding your daily interests to maximize returns
+                Rolling your maturing investments directly into new opportunities by compounding your interests to maximize returns
               </ListItem>
             </List>
             <Text letterSpacing="wide">

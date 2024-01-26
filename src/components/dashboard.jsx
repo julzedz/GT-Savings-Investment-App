@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Flex,
-  Text,
-  Divider,
-  Tooltip,
-  Button,
-  Icon,
-  Image,
-  Table,
-  Thead,
-  Tbody,
-  Tr, Th, Td,
+  Flex, Text, Divider, Tooltip, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
+  Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
+  FormControl, FormLabel, NumberInput, NumberDecrementStepper, NumberInputStepper,
+  NumberInputField, NumberIncrementStepper, FormHelperText, useDisclosure,
 } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
@@ -21,7 +14,10 @@ import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
 
 const Dashboard = () => {
+  const balance = '355,760.32';
   const [isVisible, setIsVisible] = useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -93,6 +89,7 @@ const Dashboard = () => {
             borderColor="#eaecef"
             p={6}
             mb={6}
+            bgColor="#f5f5f5"
           >
             <Flex justifyContent="space-between">
               <Flex p={0} gap={1.5} alignItems="center" mb={0.5} justifyContent="space-evenly">
@@ -109,21 +106,21 @@ const Dashboard = () => {
               </Flex>
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/deposit"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                 >
                   Deposit
                 </Button>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/withdrawal"
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
@@ -133,19 +130,49 @@ const Dashboard = () => {
                   Withdraw
                 </Button>
                 <Button
-                  colorScheme="gray"
+                  colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
+                  onClick={onOpen}
                 >
                   Transfer
                 </Button>
               </Flex>
             </Flex>
+            <Modal
+              initialFocusRef={initialRef}
+              isOpen={isOpen}
+              onClose={onClose}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader fontFamily="noto">Transfer</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody fontFamily="noto" pb={6}>
+                  <FormControl>
+                    <FormLabel fontSize="xs">Savings Account</FormLabel>
+                    <NumberInput ref={initialRef} step={500} min={100}>
+                      <NumberInputField placeholder="Enter amount" />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                    <FormHelperText fontSize="xs">Transfer amount to your Investment Account</FormHelperText>
+                  </FormControl>
+                </ModalBody>
+                <ModalFooter>
+                  <Button fontFamily="noto" colorScheme="green">
+                    Send
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '355,760.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? balance : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
@@ -160,10 +187,12 @@ const Dashboard = () => {
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
-                fontSize="sm"
+                as={reactrouterlink}
+                to="/deposit"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 width={{ base: '30%', slg: 'auto' }}
                 variant="solid"
@@ -171,10 +200,12 @@ const Dashboard = () => {
                 Deposit
               </Button>
               <Button
-                colorScheme="gray"
+                as={reactrouterlink}
+                to="/withdrawal"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
@@ -182,13 +213,14 @@ const Dashboard = () => {
                 Withdraw
               </Button>
               <Button
-                colorScheme="gray"
+                colorScheme="green"
                 size="sm"
                 variant="solid"
-                fontSize="sm"
+                fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
                 width={{ base: '30%', slg: 'auto' }}
+                onClick={onOpen}
               >
                 Transfer
               </Button>
@@ -205,9 +237,8 @@ const Dashboard = () => {
             flexDir={{ base: 'column', slg: 'row' }}
           >
             <Flex
-              as={ReactRouterLink}
-              to="/investment"
-              _hover={{ textDecoration: 'none' }}
+              as={reactrouterlink}
+              to="/invest-deposit"
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
@@ -217,23 +248,25 @@ const Dashboard = () => {
               alignItems="center"
               justifyContent="space-between"
               cursor="pointer"
+              transition="transform 0.01s ease-in-out"
+              _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
+                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
                 <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
-                  APR up to
-                  <Text m={0} display="inline" fontWeight="medium" color="green"> 7.5%</Text>
+                  ROI up to
+                  <Text m={0} display="inline" fontWeight="medium" color="green"> 40%</Text>
                 </Text>
                 <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
               </Flex>
               <Flex>
-                <Image src={earn} boxSize={20} />
+                <Image src={earn} boxSize={{ base: 14, sm: 20 }} />
               </Flex>
             </Flex>
             <Flex
-              as={ReactRouterLink}
+              as={reactrouterlink}
               to="/investmentplans"
-              _hover={{ textDecoration: 'none' }}
               borderWidth="1px"
               borderRadius="2xl"
               borderColor="#e5e7eb"
@@ -243,9 +276,12 @@ const Dashboard = () => {
               alignItems="center"
               justifyContent="space-between"
               cursor="pointer"
+              transition="transform 0.01s ease-in-out"
+              _hover={{ textDecoration: 'none', transform: 'translateX(-1px)' }}
+              bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize="md" fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
+                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
                 <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
                   S&P 500
                   <Text display="inline" fontWeight="medium" color="green"> + 48.40</Text>
@@ -253,7 +289,7 @@ const Dashboard = () => {
                 <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Securities</Text>
               </Flex>
               <Flex>
-                <Image src={margin} boxSize={20} />
+                <Image src={margin} boxSize={{ base: 14, sm: 20 }} />
               </Flex>
             </Flex>
           </Flex>
@@ -265,6 +301,7 @@ const Dashboard = () => {
             borderColor="#eaecef"
             p={6}
             mb={6}
+            bgColor="#f5f5f5"
           >
             <Flex
               flexDir="column"
@@ -281,7 +318,7 @@ const Dashboard = () => {
               >
                 <Text m={0}>Recent Transactions</Text>
                 <Button
-                  as={ReactRouterLink}
+                  as={reactrouterlink}
                   to="/transaction"
                   colorScheme="none"
                   variant="ghost"
@@ -304,7 +341,7 @@ const Dashboard = () => {
                   More
                 </Button>
               </Flex>
-              <Flex>
+              <Flex overflowX={{ base: 'scroll' }}>
                 <Table
                   w="100%"
                   variant="unstyled"
@@ -329,7 +366,7 @@ const Dashboard = () => {
                   </Thead>
                   <Tbody>
                     {transactions.map((transaction) => (
-                      <Tr key={transaction.id} _hover={{ bgColor: '#f5f5f5' }}>
+                      <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
                         <Td py={6} px={1}>
                           <Flex>
                             <Icon as={transaction.icon} boxSize={6} />

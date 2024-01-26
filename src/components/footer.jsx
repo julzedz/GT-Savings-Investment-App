@@ -2,7 +2,7 @@
 import {
   Box, Text, Button, Flex, Image, Icon, Img,
 } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import {
   FaInstagram, FaFacebookF, FaLinkedin, FaYoutube,
 } from 'react-icons/fa';
@@ -54,7 +54,7 @@ const Footer = () => (
         or click the button below to access our contact form.
       </Text>
       <Button
-        as={ReactRouterLink}
+        as={reactrouterlink}
         to="/contactform"
         m={5}
         p={7}
@@ -68,7 +68,7 @@ const Footer = () => (
     <Box bgColor="#dcdfe0">
       <Box py={{ base: 3 }} display={{ base: '', md: 'none' }}>
         <Flex
-          as={ReactRouterLink}
+          as={reactrouterlink}
           to="/"
           my={5}
           align="center"
@@ -117,10 +117,10 @@ const Footer = () => (
           color="#0C3C61"
           fontSize="sm"
         >
-          <Text as={ReactRouterLink} to="/about" m={0} p={{ base: 0, lg: 2 }}>
+          <Text as={reactrouterlink} to="/about" m={0} p={{ base: 0, lg: 2 }}>
             About Us
           </Text>
-          <Text as={ReactRouterLink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
+          <Text as={reactrouterlink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
             Contact Us
           </Text>
         </Box>
@@ -139,7 +139,7 @@ const Footer = () => (
       </Box>
       <Box p={4} display={{ base: 'none', md: 'flex' }} alignItems="center" justifyContent="space-evenly" flexWrap="wrap" gap={8}>
         <Flex
-          as={ReactRouterLink}
+          as={reactrouterlink}
           to="/"
           my={5}
           align="center"
@@ -205,20 +205,24 @@ const Footer = () => (
             COMPANY
           </Text>
           <Text
-            as={ReactRouterLink}
+            as={reactrouterlink}
             to="/about"
             m={0}
             p={{ base: 0, lg: 2 }}
           >
             About Us
           </Text>
-          <Text display="block" as={ReactRouterLink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
+          <Text display="block" as={reactrouterlink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
             Contact Us
           </Text>
         </Box>
       </Box>
       <Box textAlign="center" pt={4} pb={3} fontFamily="heading" fontSize="sm" color="#0C3C61">
-        2024 © GT Savings Bank. All rights reserved.
+        <span>
+          {new Date().getFullYear()}
+          {' '}
+        </span>
+        © GT Savings Bank. All rights reserved.
       </Box>
     </Box>
   </>

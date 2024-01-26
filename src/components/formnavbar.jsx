@@ -5,7 +5,7 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as reactrouterlink } from 'react-router-dom';
 import logo from '../assets/bank-leaf.png';
 
 const FormNavbar = () => (
@@ -23,7 +23,7 @@ const FormNavbar = () => (
       left={0}
     >
       <Box py={{ base: 3 }}>
-        <Flex align="center" className="logo-group" as={ReactRouterLink} to="/">
+        <Flex align="center" className="logo-group" as={reactrouterlink} to="/">
 
           <Image src={logo} alt="Logo" boxSize="40px" />
           <div>

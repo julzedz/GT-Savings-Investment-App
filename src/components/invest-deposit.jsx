@@ -11,7 +11,7 @@ import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
 // import Tether from '../assets/icons8-tether.svg';
 
-const Deposit = () => {
+const InvestDeposit = () => {
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [file, setFile] = useState(null);
 
@@ -64,6 +64,26 @@ const Deposit = () => {
             >
               Fund Account
             </Text>
+            <FormControl
+              w={{
+                base: '100%', md: '80%', lg: '70%', slg: '60%',
+              }}
+              mb={6}
+            >
+              <FormLabel fontSize="xs">Investment Plan</FormLabel>
+              <Select
+              // value=""
+                id="payment"
+                placeholder="Select Investment Plan"
+              >
+                <option value="estate">Real Estate</option>
+                <option value="nfp">NFP</option>
+                <option value="art">Art</option>
+                <option value="stocks">Stocks</option>
+                <option value="forex">Forex</option>
+                <option value="crypto">Cryptocurrency</option>
+              </Select>
+            </FormControl>
             <FormControl
               w={{
                 base: '100%', md: '80%', lg: '70%', slg: '60%',
@@ -163,6 +183,8 @@ const Deposit = () => {
               mt={4}
               mb={20}
               colorScheme="green"
+              // isLoading={props.isSubmitting}
+              // disabled={props.isSubmitting}
               type="submit"
               fontFamily="noto"
               w="40%"
@@ -180,4 +202,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default InvestDeposit;
