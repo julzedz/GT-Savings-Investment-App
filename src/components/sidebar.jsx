@@ -1,12 +1,10 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import {
   Flex, Text, IconButton, Divider, Avatar, Heading, Image, Button, useBreakpointValue,
 } from '@chakra-ui/react';
 import {
-  FiMenu,
-  FiHome,
-  FiUser,
-  FiDollarSign,
+  FiMenu, FiHome, FiUser, FiDollarSign,
 } from 'react-icons/fi';
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
@@ -14,12 +12,34 @@ import { Link as reactrouterlink } from 'react-router-dom';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
+import api from '../api';
 
 const Sidebar = () => {
+  const [user, setUser] = useState(null);
   const breakpointnavsize = useBreakpointValue({ base: 'small', md: 'large' });
   const [navSize, setNavSize] = useState(breakpointnavsize);
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
+
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/5');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
+
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     setNavSize(breakpointnavsize);
@@ -124,10 +144,12 @@ const Sidebar = () => {
         <Divider display={navSize === 'small' ? 'none' : 'flex'} />
         <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
           <Avatar size="sm" />
-          <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-            <Heading as="h3" size="sm" mb={0}>Rob Smith</Heading>
-            <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">Admin</Text>
-          </Flex>
+          {user && (
+            <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
+              <Heading as="h3" size="sm" mb={0}>{user.fullname}</Heading>
+              <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">User</Text>
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </Flex>
