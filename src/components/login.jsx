@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
-import { Link as reactrouterlink } from 'react-router-dom';
+import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 import React from 'react';
 import {
   Text, Flex,
@@ -11,10 +12,37 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import FormNavbar from './formnavbar';
 import AccountFooter from './accountfooter';
+import api from '../api';
 
 const Login = () => {
   const [isVisible, setIsVisible] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState(null);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await api.post('/sessions', {
+        email,
+        password,
+      });
+
+      const { user, token } = response.data;
+      // Store user and token in local storage
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', JSON.stringify(token));
+      setTimeout(() => {
+        navigate('/dashboard'); // Redirect to dashboard page
+      }, 3000); // After 3 seconds
+      console.log('Login successful:', response.data);
+    } catch (error) {
+      console.error('Error creating user:', error);
+      setError('Invalid email or password'); // Handle error (display error message)
+    }
+  };
 
   return (
     <>
@@ -51,13 +79,13 @@ const Login = () => {
               <InputLeftElement pointerEvents="none">
                 <Icon as={FaUser} />
               </InputLeftElement>
-              <Input type="email" variant="filled" placeholder="Email" />
+              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} variant="filled" placeholder="Email" />
             </InputGroup>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FaLock} />
               </InputLeftElement>
-              <Input type={isVisible ? 'text' : 'password'} variant="filled" placeholder="Password" />
+              <Input type={isVisible ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} variant="filled" placeholder="Password" />
               <InputRightElement>
                 <Icon
                   cursor="pointer"
@@ -67,9 +95,10 @@ const Login = () => {
               </InputRightElement>
             </InputGroup>
             <Checkbox colorScheme="green" w="fit-content">Remember my username</Checkbox>
-            <Button colorScheme="green" type="submit" variant="solid">
+            <Button colorScheme="green" type="submit" variant="solid" onClick={handleSubmit}>
               Login
             </Button>
+            {error && <Text color="red">{error}</Text>}
             <Text
               as={Link}
               mt={4}
