@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import {
@@ -14,8 +15,10 @@ import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
+import api from '../api';
 
 const Investment = () => {
+  const [user, setUser] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
   const [price, setPrice] = useState(null);
   const getFormattedDate = () => {
@@ -93,6 +96,26 @@ const Investment = () => {
     setIsVisible(!isVisible);
   };
 
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/5');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <>
       <Flex
@@ -102,6 +125,7 @@ const Investment = () => {
         w="100%"
       >
         <Sidebar />
+        {user && (
         <Flex
           ml={4}
           flexDir="column"
@@ -120,7 +144,7 @@ const Investment = () => {
             <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                <Text m={0}>123456789</Text>
+                <Text m={0}>{user.account_number}</Text>
               </Flex>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User Type</Text>
@@ -221,7 +245,7 @@ const Investment = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,761.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${user.account.investment}` : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
@@ -232,11 +256,11 @@ const Investment = () => {
               <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Stakes
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$112,512.91' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user.account.stakes}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Earnings
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$32,512.91' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user.account.earnings}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
@@ -442,6 +466,8 @@ const Investment = () => {
           </Flex>
           <AccountFooter />
         </Flex>
+        )}
+        ;
       </Flex>
     </>
   );
