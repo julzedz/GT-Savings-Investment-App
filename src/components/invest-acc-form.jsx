@@ -12,7 +12,7 @@ import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
 import api from '../api';
 
-const InvestDeposit = () => {
+const InvAccForm = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
@@ -34,11 +34,11 @@ const InvestDeposit = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const sum = Number(numberInputRef.current.value); // get sum value
+    const addinvest = Number(numberInputRef.current.value); // get amount value
     try {
       const response = await api.put('/accounts/3', {
         // eslint-disable-next-line object-shorthand
-        sum: sum, // Include the amount in the request body
+        addinvest: addinvest, // Include the amount in the request body
       });
       console.log('Deposit successful:', response.data);
       setTimeout(() => {
@@ -79,31 +79,12 @@ const InvestDeposit = () => {
                 base: '100%', md: '80%', lg: '70%', slg: '60%',
               }}
               mb={6}
+              id="payment-method"
             >
-              <FormLabel fontSize="xs">Investment Plan</FormLabel>
+              <FormLabel fontSize="xs" htmlFor="payment-method">Payment Method</FormLabel>
               <Select
               // value=""
-                id="payment"
-                placeholder="Select Investment Plan"
-              >
-                <option value="estate">Real Estate</option>
-                <option value="nfp">NFP</option>
-                <option value="art">Art</option>
-                <option value="stocks">Stocks</option>
-                <option value="forex">Forex</option>
-                <option value="crypto">Cryptocurrency</option>
-              </Select>
-            </FormControl>
-            <FormControl
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              mb={6}
-            >
-              <FormLabel fontSize="xs">Payment Method</FormLabel>
-              <Select
-              // value=""
-                id="payment"
+                id="payment-method-select"
                 placeholder="Select payment method"
               >
                 <option value="USDT">USDT</option>
@@ -160,8 +141,9 @@ const InvestDeposit = () => {
                 base: '100%', md: '80%', lg: '70%', slg: '60%',
               }}
               mb={6}
+              id="deposit-address"
             >
-              <FormLabel fontSize="xs">Deposit Address</FormLabel>
+              <FormLabel htmlFor="deposit-address" fontSize="xs">Deposit Address</FormLabel>
               <Flex alignItems="center" justifyContent="space-between" bgColor="#fafafa" borderRadius="5px" p={5} minH="10rem" gap="5%" w="100%">
                 <Flex alignItems="center" justifyContent="center">
                   <Image src={qrcode} boxSize="100px" minW="100px" />
@@ -197,8 +179,6 @@ const InvestDeposit = () => {
               mt={4}
               mb={20}
               colorScheme="green"
-              // isLoading={props.isSubmitting}
-              // disabled={props.isSubmitting}
               type="submit"
               fontFamily="noto"
               w="40%"
@@ -216,4 +196,4 @@ const InvestDeposit = () => {
   );
 };
 
-export default InvestDeposit;
+export default InvAccForm;

@@ -18,6 +18,7 @@ import Deposit from '../components/deposit';
 import Withdrawal from '../components/withdrawal';
 import ContactForm from '../components/contactform';
 import InvestDeposit from '../components/invest-deposit';
+import InvAccForm from '../components/invest-acc-form';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -46,6 +47,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="withdrawal" element={<Withdrawal />} />
             <Route path="/contactform" element={<ContactForm />} />
             <Route path="/invest-deposit" element={<InvestDeposit />} />
+            <Route path="/invaccform" element={<InvAccForm />} />
           </Routes>
         </div>
         {showFooter && <Footer />}

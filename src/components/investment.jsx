@@ -178,7 +178,7 @@ const Investment = () => {
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
                   as={reactrouterlink}
-                  to="/deposit"
+                  to="/invaccform"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
@@ -271,7 +271,7 @@ const Investment = () => {
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, slg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
                 as={reactrouterlink}
-                to="/deposit"
+                to="/invaccform"
                 fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
