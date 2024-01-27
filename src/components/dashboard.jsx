@@ -206,13 +206,15 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `${(balance / 40000).toFixed(8)} ` : '****'}
+                {isVisible ? `≈ ${(balance / 40000).toFixed(8)} ` : '****'}
                 BTC
               </Text>
-              <Text fontSize="sm" lineHeight="short" mb={3}>
+              {/* <Text fontSize="sm" lineHeight="short" mb={3}>
                 Today&apos;s PnL
-                <Text display="inline" ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
-              </Text>
+                <Text display="inline" ml="3" color="green">
+                  {isVisible ? '+ $712.50(0.2%)' : '****'}
+                </Text>
+              </Text> */}
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button

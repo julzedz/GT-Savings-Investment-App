@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
@@ -9,11 +10,13 @@ import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
-// import Tether from '../assets/icons8-tether.svg';
+import api from '../api';
 
 const InvestDeposit = () => {
+  const numberInputRef = useRef(null);
+  const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
 
   const handleCopy = async () => {
     try {
@@ -24,21 +27,28 @@ const InvestDeposit = () => {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    // send file into database
-  };
+  // const handleFileChange = (e) => {
+  //   setFile(e.target.files[0]);
+  //   // send file into database
+  // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', file);
-    const response = await fetch('https:///api.3xtradehub.com/api/v1/deposit', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await response.json();
-    console.log(data);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const sum = Number(numberInputRef.current.value); // get sum value
+    try {
+      const response = await api.put('/accounts/3', {
+        // eslint-disable-next-line object-shorthand
+        sum: sum, // Include the amount in the request body
+      });
+      console.log('Deposit successful:', response.data);
+      setTimeout(() => {
+        navigate('/dashboard'); // Redirect to dashboard
+      }, 3000); // After 3 seconds
+      return response.data; // Add return statement
+    } catch (error) {
+      console.error('Error sending ', error);
+      return null;
+    }
   };
 
   return (
@@ -114,7 +124,7 @@ const InvestDeposit = () => {
             >
               <FormLabel fontSize="xs">Amount</FormLabel>
               <NumberInput step={500} min={1000}>
-                <NumberInputField placeholder="Enter amount" />
+                <NumberInputField ref={numberInputRef} placeholder="Enter amount" />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
@@ -176,7 +186,11 @@ const InvestDeposit = () => {
               mb={6}
             >
               <FormLabel fontSize="xs">Payment Receipt</FormLabel>
-              <Input type="file" accept="image/*" onChange={handleFileChange} />
+              <Input
+                type="file"
+                accept="image/*"
+                // onChange={handleFileChange}
+              />
             </FormControl>
 
             <Button
