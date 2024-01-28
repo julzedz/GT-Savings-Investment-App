@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import {
@@ -8,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
+// eslint-disable-next-line no-unused-vars
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
@@ -24,7 +26,7 @@ const Dashboard = () => {
       return response.data;
     } catch (error) {
       console.error('Error fetching user:', error);
-      return null;
+      return `$ ${0}`;
     // Handle errors (e.g., redirect to login)
     }
   };
@@ -38,7 +40,7 @@ const Dashboard = () => {
     fetchUserData();
   }, []);
 
-  let balance = null;
+  let balance = 0.00;
   if (user && user.account) {
     balance = user.account.savings_account;
   }
@@ -62,15 +64,15 @@ const Dashboard = () => {
   ];
 
   const transactions = [
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2023-11-18 19:42:31', status: 'Completed',
-    },
-    {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+16250.57', date: '2023-09-15 19:42:31', status: 'Completed',
-    },
-    {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-08-21 19:42:31', status: 'Completed',
-    },
+    // {
+    //   icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2023-11-18 19:42:31', status: 'Completed',
+    // },
+    // {
+    //   icon: RiDownload2Line, action: 'Deposit USDT', amount: '+16250.57', date: '2023-09-15 19:42:31', status: 'Completed',
+    // },
+    // {
+    //   icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-08-21 19:42:31', status: 'Completed',
+    // },
   ];
 
   return (
@@ -206,7 +208,7 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈ ${(balance / 40000).toFixed(8)} ` : '****'}
+                {isVisible ? `≈ ${(balance / 41000).toFixed(8)} ` : '****'}
                 BTC
               </Text>
               {/* <Text fontSize="sm" lineHeight="short" mb={3}>
@@ -396,19 +398,20 @@ const Dashboard = () => {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {transactions.map((transaction) => (
-                      <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
-                        <Td py={6} px={1}>
-                          <Flex>
-                            <Icon as={transaction.icon} boxSize={6} />
-                            <Text m={0} ml={4}>{transaction.action}</Text>
-                          </Flex>
-                        </Td>
-                        <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
-                        <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
-                        <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
-                      </Tr>
-                    ))}
+                    {transactions.length > 0
+                      ? transactions.map((transaction) => (
+                        <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
+                          <Td py={6} px={1}>
+                            <Flex>
+                              <Icon as={transaction.icon} boxSize={6} />
+                              <Text m={0} ml={4}>{transaction.action}</Text>
+                            </Flex>
+                          </Td>
+                          <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
+                          <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
+                          <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
+                        </Tr>
+                      )) : <Text textAlign="center">No transactions yet</Text>}
                   </Tbody>
                 </Table>
               </Flex>
