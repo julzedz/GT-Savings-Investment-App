@@ -100,7 +100,7 @@ const Signup = () => {
                 country: values.citizenship,
               };
               // handle form submission here
-              api.post('/registrations', userPayload)
+              api.post('/users', userPayload)
                 .then((response) => {
                   console.log('User created:', response.data);
                   setSuccessMessage(true);
