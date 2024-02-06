@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
@@ -16,7 +17,7 @@ const Deposit = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
-  // const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null); // Declare file state
 
   const handleCopy = async () => {
     try {
@@ -27,24 +28,35 @@ const Deposit = () => {
     }
   };
 
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  //   // send file into database
-  // };
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    // send file into database
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const amount = Number(numberInputRef.current.value); // get amount value
+    const formData = new FormData();
+    formData.append('file', file); // Add the file to the form data
+    formData.append('amount', amount); // Add the amount to the form data
     try {
-      const response = await api.put('/accounts/3', {
+      const uploadResponse = await api.put('/accounts/me', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         // eslint-disable-next-line object-shorthand
-        amount: amount, // Include the amount in the request body
       });
-      console.log('Deposit successful:', response.data);
+      // the URL of the uploaded image
+      const { imageUrl } = uploadResponse.data;
+
+      // PUT request to update the savings account with the deposit amount
+      const updateResponse = await api.put('/accounts/me', { amount });
+      console.log('Image upload successful:', uploadResponse.data);
+      console.log('Savings account updated:', updateResponse.data);
       setTimeout(() => {
         navigate('/dashboard'); // Redirect to dashboard
       }, 3000); // After 3 seconds
-      return response.data; // Add return statement
+      return uploadResponse.data; // Add return statement
     } catch (error) {
       console.error('Error sending ', error);
       return null;
@@ -171,7 +183,7 @@ const Deposit = () => {
               <Input
                 type="file"
                 accept="image/*"
-                // onChange={handleFileChange}
+                onChange={handleFileChange}
               />
             </FormControl>
 
