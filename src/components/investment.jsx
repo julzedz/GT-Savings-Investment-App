@@ -8,6 +8,8 @@ import {
   NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText, Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import axios from 'axios';
@@ -15,7 +17,7 @@ import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
-import api from '../api';
+import { COOKIE_TOKEN } from './login';
 
 const Investment = () => {
   const [user, setUser] = useState(null);
@@ -96,24 +98,26 @@ const Investment = () => {
     setIsVisible(!isVisible);
   };
 
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/users/me');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-    // Handle errors (e.g., redirect to login)
-    }
-  };
+  // const fetchUser = async () => {
+  //   try {
+  //     const response = await api.get('/users/me');
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching user:', error);
+  //     return null;
+  //   // Handle errors (e.g., redirect to login)
+  //   }
+  // };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userData = await fetchUser();
-      setUser(userData);
-    };
+    // const fetchUserData = async () => {
+    //   const userData = await fetchUser();
+    //   setUser(userData);
+    // };
 
-    fetchUserData();
+    // fetchUserData();
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    setUser(JSON.parse(userDetails));
   }, []);
 
   return (
@@ -245,22 +249,22 @@ const Investment = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${user.account.investment}` : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${user?.account?.investment}` : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈${(user.account.investment / 40000).toFixed(9)} ` : '****'}
+                {isVisible ? `≈${(user?.account?.investment / 40000).toFixed(9)} ` : '****'}
                 BTC
               </Text>
               <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Stakes
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user.account.stakes}` : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.stakes}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Earnings
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user.account.earnings}` : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.earnings}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
