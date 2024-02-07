@@ -6,10 +6,13 @@ import {
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
   ListItem, Tooltip, Image, FormHelperText, Input, Button,
 } from '@chakra-ui/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
+import { COOKIE_TOKEN } from './login';
 import api from '../api';
 
 const InvAccForm = () => {
@@ -33,10 +36,13 @@ const InvAccForm = () => {
   // };
 
   const handleSubmit = async (event) => {
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    const parsedToken = JSON.parse(userDetails);
+    const userId = parsedToken.account.id;
     event.preventDefault();
     const addinvest = Number(numberInputRef.current.value); // get amount value
     try {
-      const response = await api.put('/accounts/3', {
+      const response = await api.put(`/accounts/${userId}`, {
         // eslint-disable-next-line object-shorthand
         addinvest: addinvest, // Include the amount in the request body
       });
