@@ -10,9 +10,13 @@ import {
 } from '@chakra-ui/react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import FormNavbar from './formnavbar';
 import AccountFooter from './accountfooter';
 import api from '../api';
+
+export const COOKIE_TOKEN = '1234';
 
 const Login = () => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -33,13 +37,14 @@ const Login = () => {
       const { user, token } = response.data;
       // Store user and token in local storage
       localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('token', token);
+      Cookies.set(COOKIE_TOKEN, JSON.stringify(user));
+      console.log(user);
       setTimeout(() => {
         navigate('/dashboard'); // Redirect to dashboard page
       }, 3000); // After 3 seconds
-      console.log('Login successful:', response.data);
     } catch (error) {
-      console.error('Error creating user:', error);
+      // console.error('Error creating user:', error);
       setError('Invalid email or password'); // Handle error (display error message)
     }
   };

@@ -11,33 +11,39 @@ import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 // eslint-disable-next-line no-unused-vars
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
-import api from '../api';
+import { COOKIE_TOKEN } from './login';
+// import api from '../api';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
 
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/users/me');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return `$ ${0}`;
-    // Handle errors (e.g., redirect to login)
-    }
-  };
+  // const fetchUser = async () => {
+  //   try {
+  //     const response = await api.get('/users/me');
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching user:', error);
+  //     return `$ ${0}`;
+  //   // Handle errors (e.g., redirect to login)
+  //   }
+  // };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userData = await fetchUser();
-      setUser(userData);
-    };
+    // const fetchUserData = async () => {
+    //   const userData = await fetchUser();
+    //   setUser(userData);
+    // };
 
-    fetchUserData();
+    // fetchUserData();
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    console.log(JSON.parse(userDetails));
+    setUser(JSON.parse(userDetails));
   }, []);
 
   let balance = 0.00;
