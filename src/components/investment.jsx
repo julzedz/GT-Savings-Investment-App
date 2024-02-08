@@ -8,8 +8,6 @@ import {
   NumberInputStepper, NumberInputField, NumberIncrementStepper, FormHelperText, Link,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Cookies from 'js-cookie';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import axios from 'axios';
@@ -17,7 +15,7 @@ import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
-import { COOKIE_TOKEN } from './login';
+import api from '../api';
 
 const Investment = () => {
   const [user, setUser] = useState(null);
@@ -98,26 +96,24 @@ const Investment = () => {
     setIsVisible(!isVisible);
   };
 
-  // const fetchUser = async () => {
-  //   try {
-  //     const response = await api.get('/users/me');
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error('Error fetching user:', error);
-  //     return null;
-  //   // Handle errors (e.g., redirect to login)
-  //   }
-  // };
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/me');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
 
   useEffect(() => {
-    // const fetchUserData = async () => {
-    //   const userData = await fetchUser();
-    //   setUser(userData);
-    // };
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
 
-    // fetchUserData();
-    const userDetails = Cookies.get(COOKIE_TOKEN);
-    setUser(JSON.parse(userDetails));
+    fetchUserData();
   }, []);
 
   return (
