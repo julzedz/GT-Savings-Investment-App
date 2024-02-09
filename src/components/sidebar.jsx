@@ -24,7 +24,6 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     try {
-      await api.delete('/login');
       localStorage.removeItem('token');
       navigate('/');
     } catch (error) {
