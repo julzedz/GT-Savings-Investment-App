@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip, Image, FormHelperText, Input, Button,
+  ListItem, Image, FormHelperText, Input, Button,
 } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
@@ -19,16 +19,27 @@ const InvestDeposit = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
+  const [copied, setCopied] = useState(false);
   // const [file, setFile] = useState(null);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(address);
-      console.log('Address copied to clipboard');
+      setCopied(true);
     } catch (err) {
       console.log('Failed to copy address', err);
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (copied) {
+      timer = setTimeout(() => {
+        setCopied(false);
+      }, 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [copied]);
 
   // const handleFileChange = (e) => {
   //   setFile(e.target.files[0]);
@@ -174,14 +185,13 @@ const InvestDeposit = () => {
                 </Flex>
                 <Flex alignItems="center" justifyContent="center" position="relative">
                   <Flex flexDir="column">
+                    {copied && <Text alignSelf="center" fontSize="xs" bgColor="#e9e9e9" color="black" w="fit-content" p="4px">Copied!</Text>}
                     <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
                     <Text fontSize={{ base: 'xs', sm: 'md' }} lineHeight={{ base: 'shorter', sm: '16px' }} fontWeight={{ base: '400', sm: '500' }} color="#1e2329" wordBreak="break-word" textAlign="start">
                       {address}
                     </Text>
                   </Flex>
-                  <Tooltip label="Click to copy" fontFamily="new" fontSize="xs">
-                    <Icon as={FaCopy} boxSize={7} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
-                  </Tooltip>
+                  <Icon as={FaCopy} boxSize={7} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
                 </Flex>
               </Flex>
             </FormControl>
