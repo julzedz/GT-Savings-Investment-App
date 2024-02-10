@@ -129,7 +129,7 @@ const Deposit = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <FormHelperText fontSize="xs">Minimum deposit ≈1000 USDT</FormHelperText>
+              <FormHelperText fontSize="xs">Minimum deposit ≈1000 USD</FormHelperText>
             </FormControl>
 
             {/* <Text>Note</Text> */}

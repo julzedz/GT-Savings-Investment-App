@@ -416,7 +416,7 @@ const Dashboard = () => {
                           <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
                           <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
                         </Tr>
-                      )) : <Text textAlign="center">No transactions yet</Text>}
+                      )) : <Text textAlign="center" p={6}> </Text>}
                   </Tbody>
                 </Table>
               </Flex>
