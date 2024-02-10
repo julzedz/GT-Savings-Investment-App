@@ -81,6 +81,7 @@ const Profile = () => {
               fontFamily="noto"
               fontSize={{ base: 'lg', xl: '2xl' }}
               fontWeight="bold"
+              textTransform="capitalize"
             >
               {`${user.first_name} ${user.last_name}`}
 
@@ -109,7 +110,7 @@ const Profile = () => {
               <Divider />
               <Flex px={6} pb={2} flexDir="column">
                 <Box color="applegreen" fontWeight="semibold">Address</Box>
-                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">{`${user.city}, ${user.state}, ${user.country}`}</Box>
+                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium" textTransform="capitalize">{`${user.city}, ${user.state}, ${user.country}`}</Box>
               </Flex>
               <Divider />
               <Flex px={6} pb={4} flexDir="column">
