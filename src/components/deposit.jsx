@@ -7,8 +7,11 @@ import {
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
   ListItem, Tooltip, Image, FormHelperText, Input, Button,
 } from '@chakra-ui/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
+import { COOKIE_TOKEN } from './transaction';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
 import api from '../api';
@@ -17,7 +20,7 @@ const Deposit = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
-  const [file, setFile] = useState(null); // Declare file state
+  // const [file, setFile] = useState(null); // Declare file state
 
   const handleCopy = async () => {
     try {
@@ -28,35 +31,38 @@ const Deposit = () => {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    // send file into database
-  };
+  // const handleFileChange = (e) => {
+  //   setFile(e.target.files[0]);
+  //   // send file into database
+  // };
 
   const handleSubmit = async (event) => {
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    const parsedToken = JSON.parse(userDetails);
+    const accountId = parsedToken.account.id;
     event.preventDefault();
     const amount = Number(numberInputRef.current.value); // get amount value
-    const formData = new FormData();
-    formData.append('file', file); // Add the file to the form data
-    formData.append('amount', amount); // Add the amount to the form data
+    // const formData = new FormData();
+    // formData.append('file', file); // Add the file to the form data
+    // formData.append('amount', amount); // Add the amount to the form data
     try {
-      const uploadResponse = await api.put('/accounts/me', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        // eslint-disable-next-line object-shorthand
-      });
+    //   const uploadResponse = await api.put(`/accounts/${accountId}`, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+      // eslint-disable-next-line object-shorthand
+      // });
       // the URL of the uploaded image
-      const { imageUrl } = uploadResponse.data;
+      // const { imageUrl } = uploadResponse.data;
 
       // PUT request to update the savings account with the deposit amount
-      const updateResponse = await api.put('/accounts/me', { amount });
-      console.log('Image upload successful:', uploadResponse.data);
-      console.log('Savings account updated:', updateResponse.data);
+      // eslint-disable-next-line object-shorthand
+      const response = await api.put(`/accounts/${accountId}`, { amount: amount });
+      console.log('Savings account updated:', response.data);
       setTimeout(() => {
         navigate('/dashboard'); // Redirect to dashboard
       }, 3000); // After 3 seconds
-      return uploadResponse.data; // Add return statement
+      return response.data; // Add return statement
     } catch (error) {
       console.error('Error sending ', error);
       return null;
@@ -183,7 +189,7 @@ const Deposit = () => {
               <Input
                 type="file"
                 accept="image/*"
-                onChange={handleFileChange}
+                // onChange={handleFileChange}
               />
             </FormControl>
 
