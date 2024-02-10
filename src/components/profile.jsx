@@ -70,8 +70,8 @@ const Profile = () => {
             <Image
               borderRadius="full"
               boxSize="200px"
-              src="https://bit.ly/dan-abramov"
-              alt="Dan Abramov"
+              // src="https://bit.ly/dan-abramov"
+              alt="user"
               alignSelf="center"
               fallbackSrc={avatar}
               m={6}
