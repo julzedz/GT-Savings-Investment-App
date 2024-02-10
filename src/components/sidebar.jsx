@@ -9,6 +9,8 @@ import {
 import { BsGraphUpArrow } from 'react-icons/bs';
 import { useLocation } from 'react-router';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
@@ -25,6 +27,7 @@ const Sidebar = () => {
   const handleLogout = async () => {
     try {
       localStorage.removeItem('token');
+      Cookies.remove('COOKIE_TOKEN');
       navigate('/');
     } catch (error) {
       console.error('Failed to log out', error);
@@ -156,7 +159,7 @@ const Sidebar = () => {
           <Avatar size="sm" />
           {user && (
             <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-              <Heading as="h3" size="sm" mb={0}>{user.fullname}</Heading>
+              <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>{user.fullname}</Heading>
               <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">User</Text>
             </Flex>
           )}
