@@ -16,6 +16,7 @@ import InvestmentPlans from '../components/investmentplans';
 import Signup from '../components/signup';
 import Deposit from '../components/deposit';
 import Withdrawal from '../components/withdrawal';
+import Withdrawalsavings from '../components/withdrawal-savings';
 import ContactForm from '../components/contactform';
 import InvestDeposit from '../components/invest-deposit';
 import InvAccForm from '../components/invest-acc-form';
@@ -45,6 +46,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="deposit" element={<Deposit />} />
             <Route path="withdrawal" element={<Withdrawal />} />
+            <Route path="withdrawal-savings" element={<Withdrawalsavings />} />
             <Route path="/contactform" element={<ContactForm />} />
             <Route path="/invest-deposit" element={<InvestDeposit />} />
             <Route path="/invaccform" element={<InvAccForm />} />
