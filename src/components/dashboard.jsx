@@ -155,7 +155,7 @@ const Dashboard = () => {
                 </Button>
                 <Button
                   as={reactrouterlink}
-                  to="/withdrawal"
+                  to="/withdrawal-savings"
                   colorScheme="green"
                   size="sm"
                   variant="solid"
@@ -239,7 +239,7 @@ const Dashboard = () => {
               </Button>
               <Button
                 as={reactrouterlink}
-                to="/withdrawal"
+                to="/withdrawal-savings"
                 colorScheme="green"
                 size="sm"
                 variant="solid"
