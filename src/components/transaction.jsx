@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import {
-  Flex, Divider, Box, Text, Table, Thead, Tbody, Tr, Th, Td, Select,
+  Flex, Divider, Box, Text,
+  Table, Thead, Tr, Th, Select,
+  // Tbody, Td
 } from '@chakra-ui/react';
 import { MdArrowDropDown } from 'react-icons/md';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -93,7 +95,7 @@ const Transaction = () => {
               <option value="option3">Withdrawal</option>
             </Select>
           </Flex>
-          <Box overflowX={{ base: 'scroll' }}>
+          <Box overflowX={{ base: 'scroll' }} mb="96">
             <Table>
               <Thead>
                 <Tr>
@@ -103,7 +105,7 @@ const Transaction = () => {
                   <Th>Status</Th>
                 </Tr>
               </Thead>
-              <Tbody>
+              {/* <Tbody>
                 <Tr>
                   <Td>Deposit</Td>
                   <Td>$1250.00</Td>
@@ -134,7 +136,7 @@ const Transaction = () => {
                   <Td>2021-03-14</Td>
                   <Td>Completed</Td>
                 </Tr>
-              </Tbody>
+              </Tbody> */}
             </Table>
           </Box>
           <AccountFooter />
