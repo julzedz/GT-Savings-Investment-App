@@ -264,7 +264,7 @@ const Investment = () => {
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $0.0(0.0%)' : '****'}</Box>
                 </Text>
               </Flex>
             </Flex>
