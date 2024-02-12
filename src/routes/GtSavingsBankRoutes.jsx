@@ -20,6 +20,7 @@ import Withdrawalsavings from '../components/withdrawal-savings';
 import ContactForm from '../components/contactform';
 import InvestDeposit from '../components/invest-deposit';
 import InvAccForm from '../components/invest-acc-form';
+import ProtectedRoute from './ProtectedRoute';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -35,21 +36,21 @@ const GtSavingsBankRoutes = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/banking" element={<Banking />} />
-            <Route path="/investment" element={<Investment />} />
+            <Route path="/investment" element={<ProtectedRoute element={<Investment />} />} />
             <Route path="/about" element={<About />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+            <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
             <Route path="/insurance" element={<Insurance />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/transaction" element={<Transaction />} />
+            <Route path="/transaction" element={<ProtectedRoute element={<Transaction />} />} />
             <Route path="/investmentplans" element={<InvestmentPlans />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="deposit" element={<Deposit />} />
-            <Route path="withdrawal" element={<Withdrawal />} />
-            <Route path="withdrawal-savings" element={<Withdrawalsavings />} />
+            <Route path="deposit" element={<ProtectedRoute element={<Deposit />} />} />
+            <Route path="withdrawal" element={<ProtectedRoute element={<Withdrawal />} />} />
+            <Route path="withdrawal-savings" element={<ProtectedRoute element={<Withdrawalsavings />} />} />
             <Route path="/contactform" element={<ContactForm />} />
-            <Route path="/invest-deposit" element={<InvestDeposit />} />
-            <Route path="/invaccform" element={<InvAccForm />} />
+            <Route path="/invest-deposit" element={<ProtectedRoute element={<InvestDeposit />} />} />
+            <Route path="/invaccform" element={<ProtectedRoute element={<InvAccForm />} />} />
           </Routes>
         </div>
         {showFooter && <Footer />}
