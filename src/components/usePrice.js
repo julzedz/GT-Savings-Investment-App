@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const usePrice = () => {
   const [price, setPrice] = useState(null);
+  const [eth, setEth] = useState(null);
 
   const getFormattedDate = () => {
     const today = new Date();
@@ -15,17 +16,19 @@ const usePrice = () => {
   };
   const todayFormatted = getFormattedDate();
   const APIUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=N8C4IMCIJLLWQ021';
+  const APIUrl1 = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ETH&market=USD&apikey=N8C4IMCIJLLWQ021';
   const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
-    axios.get(APIUrl, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    })
-      .then((response) => {
+    Promise.all([
+      axios.get(APIUrl, { headers: { Authorization: `Bearer ${apiKey}` } }),
+      axios.get(APIUrl1, { headers: { Authorization: `Bearer ${apiKey}` } }),
+    ])
+      .then(([response, response1]) => {
         const price = response.data['Time Series (Digital Currency Daily)']?.[todayFormatted]?.['4a. close (USD)'];
+        const eth = response1.data['Time Series (Digital Currency Daily)']?.[todayFormatted]?.['4a. close (USD)'];
         setPrice(price);
+        setEth(eth);
       })
       .catch((error) => {
         const errorMessage = 'Loading...';
@@ -33,7 +36,7 @@ const usePrice = () => {
         throw updatedError;
       });
   }, [apiKey, todayFormatted]);
-  return { price };
+  return { price, eth };
 };
 
 export default usePrice;
