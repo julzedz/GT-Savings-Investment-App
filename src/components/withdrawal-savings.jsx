@@ -11,9 +11,9 @@ import AccountFooter from './accountfooter';
 
 const userDetails = Cookies.get(COOKIE_TOKEN);
 const parsedToken = JSON.parse(userDetails);
-const { investment } = parsedToken.account;
+const savingsAccount = parsedToken.account.savings_account;
 
-const Withdrawal = () => (
+const Withdrawalsavings = () => (
   <Flex
     color="black"
     w="100%"
@@ -115,7 +115,7 @@ const Withdrawal = () => (
           <Flex flexDir="column">
             <Text fontSize="xs" mb={1} color="gray">Wallet balance</Text>
             <Text>
-              {investment}
+              {savingsAccount}
               {' '}
               USD
             </Text>
@@ -162,4 +162,4 @@ const Withdrawal = () => (
   </Flex>
 );
 
-export default Withdrawal;
+export default Withdrawalsavings;

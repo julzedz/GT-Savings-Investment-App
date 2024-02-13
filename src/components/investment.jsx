@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import {
@@ -9,45 +10,17 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
-import axios from 'axios';
 import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
+import api from '../api';
+import usePrice from './usePrice';
 
 const Investment = () => {
+  const { price, eth } = usePrice();
+  const [user, setUser] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [price, setPrice] = useState(null);
-  const getFormattedDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  };
-  const todayFormatted = getFormattedDate();
-  const APIUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=N8C4IMCIJLLWQ021';
-  const apiKey = process.env.REACT_APP_API_KEY;
-
-  useEffect(() => {
-    axios.get(APIUrl, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    })
-      .then((response) => {
-        const price = response.data['Time Series (Digital Currency Daily)']?.[todayFormatted]?.['4a. close (USD)'];
-        setPrice(price);
-      })
-      .catch((error) => {
-        const errorMessage = 'Loading...';
-        const updatedError = { ...error, message: errorMessage };
-        throw updatedError;
-      });
-  }, [apiKey, todayFormatted]);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
 
@@ -64,10 +37,10 @@ const Investment = () => {
       name: 'Gold', price: '1270.80', change: '-0.40%', color: 'red',
     },
     {
-      name: 'Bitcoin', price: `${Number(price).toFixed(2)}`, change: '-2.74%', color: 'red',
+      name: 'Bitcoin', price: `${Number(price).toFixed(2)}`, change: '+2.74%', color: 'green',
     },
     {
-      name: 'Ethereum', price: '2489.80', change: '-1.40%', color: 'red',
+      name: 'Ethereum', price: `${Number(eth).toFixed(2)}`, change: '+1.40%', color: 'green',
     },
     {
       name: 'US 10 Year', price: '4.145', change: '+0.07%', color: 'green',
@@ -93,6 +66,26 @@ const Investment = () => {
     setIsVisible(!isVisible);
   };
 
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/me');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return null;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <>
       <Flex
@@ -102,6 +95,7 @@ const Investment = () => {
         w="100%"
       >
         <Sidebar />
+        {user && (
         <Flex
           ml={4}
           flexDir="column"
@@ -120,7 +114,7 @@ const Investment = () => {
             <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                <Text m={0}>123456789</Text>
+                <Text m={0}>{user.account_number}</Text>
               </Flex>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User Type</Text>
@@ -154,7 +148,7 @@ const Investment = () => {
               <Flex p={0} m={0} gap={3} display={{ base: 'none', slg: 'flex' }}>
                 <Button
                   as={reactrouterlink}
-                  to="/deposit"
+                  to="/invaccform"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
@@ -221,33 +215,33 @@ const Investment = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? '125,761.32' : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${user?.account?.investment}` : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? '≈ 4.2734883 ' : '****'}
+                {isVisible ? `≈${(user?.account?.investment / price).toFixed(9)} ` : '****'}
                 BTC
               </Text>
               <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Stakes
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$112,512.91' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.stakes}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Earnings
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? '$32,512.91' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.earnings}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Box>
+                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $0.0(0.0%)' : '****'}</Box>
                 </Text>
               </Flex>
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, slg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
                 as={reactrouterlink}
-                to="/deposit"
+                to="/invaccform"
                 fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
@@ -442,6 +436,8 @@ const Investment = () => {
           </Flex>
           <AccountFooter />
         </Flex>
+        )}
+        ;
       </Flex>
     </>
   );

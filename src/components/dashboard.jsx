@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import {
   Flex, Text, Divider, Tooltip, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
@@ -7,14 +9,49 @@ import {
 } from '@chakra-ui/react';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
+// eslint-disable-next-line no-unused-vars
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
+// eslint-disable-next-line import/no-extraneous-dependencies
+// import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
+// import { COOKIE_TOKEN } from './transaction';
+import api from '../api';
+import usePrice from './usePrice';
 
+// eslint-disable-next-line react/prop-types
 const Dashboard = () => {
-  const balance = '355,760.32';
+  const [user, setUser] = useState(null);
+  const { price } = usePrice();
+
+  const fetchUser = async () => {
+    try {
+      const response = await api.get('/users/me');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      return `$ ${0}`;
+    // Handle errors (e.g., redirect to login)
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
+
+    fetchUserData();
+    // const userDetails = Cookies.get(COOKIE_TOKEN);
+    // setUser(JSON.parse(userDetails));
+  }, []);
+
+  let balance = 0.00;
+  if (user && user.account) {
+    balance = user.account.savings_account;
+  }
   const [isVisible, setIsVisible] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
@@ -35,15 +72,15 @@ const Dashboard = () => {
   ];
 
   const transactions = [
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2023-11-18 19:42:31', status: 'Completed',
-    },
-    {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+16250.57', date: '2023-09-15 19:42:31', status: 'Completed',
-    },
-    {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-08-21 19:42:31', status: 'Completed',
-    },
+    // {
+    //   icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2023-11-18 19:42:31', status: 'Completed',
+    // },
+    // {
+    //   icon: RiDownload2Line, action: 'Deposit USDT', amount: '+16250.57', date: '2023-09-15 19:42:31', status: 'Completed',
+    // },
+    // {
+    //   icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-08-21 19:42:31', status: 'Completed',
+    // },
   ];
 
   return (
@@ -66,14 +103,16 @@ const Dashboard = () => {
           fontFamily="noto"
         >
           <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
-            <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }}>
-              Welcome Rob! 👋
-            </Text>
+            {user && (
+              <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }} textTransform="capitalize">{`Welcome ${user.first_name} 👋`}</Text>
+            )}
             <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
             <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                <Text m={0}>123456789</Text>
+                {user && (
+                  <Text m={0}>{user.account_number}</Text>
+                )}
               </Flex>
               <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
                 <Text color="#929aa5" m={0} mb={1}>User Type</Text>
@@ -119,7 +158,7 @@ const Dashboard = () => {
                 </Button>
                 <Button
                   as={reactrouterlink}
-                  to="/withdrawal"
+                  to="/withdrawal-savings"
                   colorScheme="green"
                   size="sm"
                   variant="solid"
@@ -172,18 +211,20 @@ const Dashboard = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? balance : '****'}</Text>
+              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${balance}` : '****'}</Text>
               <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? '≈ 8.2734883 ' : '****'}
+                {isVisible ? `≈ ${(balance / price).toFixed(8)} ` : '****'}
                 BTC
               </Text>
-              <Text fontSize="sm" lineHeight="short" mb={3}>
+              {/* <Text fontSize="sm" lineHeight="short" mb={3}>
                 Today&apos;s PnL
-                <Text display="inline" ml="3" color="green">{isVisible ? '+ $712.50(0.2%)' : '****'}</Text>
-              </Text>
+                <Text display="inline" ml="3" color="green">
+                  {isVisible ? '+ $712.50(0.2%)' : '****'}
+                </Text>
+              </Text> */}
             </Flex>
             <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
               <Button
@@ -201,7 +242,7 @@ const Dashboard = () => {
               </Button>
               <Button
                 as={reactrouterlink}
-                to="/withdrawal"
+                to="/withdrawal-savings"
                 colorScheme="green"
                 size="sm"
                 variant="solid"
@@ -365,19 +406,20 @@ const Dashboard = () => {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {transactions.map((transaction) => (
-                      <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
-                        <Td py={6} px={1}>
-                          <Flex>
-                            <Icon as={transaction.icon} boxSize={6} />
-                            <Text m={0} ml={4}>{transaction.action}</Text>
-                          </Flex>
-                        </Td>
-                        <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
-                        <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
-                        <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
-                      </Tr>
-                    ))}
+                    {transactions.length > 0
+                      ? transactions.map((transaction) => (
+                        <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
+                          <Td py={6} px={1}>
+                            <Flex>
+                              <Icon as={transaction.icon} boxSize={6} />
+                              <Text m={0} ml={4}>{transaction.action}</Text>
+                            </Flex>
+                          </Td>
+                          <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
+                          <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
+                          <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
+                        </Tr>
+                      )) : <Text textAlign="center" p={6}> </Text>}
                   </Tbody>
                 </Table>
               </Flex>

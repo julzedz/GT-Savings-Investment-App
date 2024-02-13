@@ -16,6 +16,7 @@ const Navbar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   const [isOpen, setOpen] = useState(false);
+  const token = localStorage.getItem('token');
 
   return (
     <>
@@ -58,22 +59,24 @@ const Navbar = () => {
         </Box>
 
         {/* Login */}
-        <Button
-          as={reactrouterlink}
-          to="/login"
-          order={{ base: 2, slg: 3 }}
-          bg="applegreen"
-          alignItems="center"
-          height="auto"
-          color="white"
-          px={4}
-          py={3}
-          _hover={{ bg: 'applegreen', color: 'black' }}
-          fontFamily="new"
-          display={{ base: 'block', xl: 'none' }}
-        >
-          Login
-        </Button>
+        {!token && (
+          <Button
+            as={reactrouterlink}
+            to="/login"
+            order={{ base: 2, slg: 3 }}
+            bg="applegreen"
+            alignItems="center"
+            height="auto"
+            color="white"
+            px={4}
+            py={3}
+            _hover={{ bg: 'applegreen', color: 'black' }}
+            fontFamily="new"
+            display={{ base: 'block', xl: 'none' }}
+          >
+            Login
+          </Button>
+        )}
 
         {/* Nav Links */}
         <Flex align="center" className="nav-menu" mx={10} alignItems="center" justifyContent="center" display={{ base: 'none', slg: 'flex' }}>
@@ -85,6 +88,7 @@ const Navbar = () => {
           </DropdownMenu>
           <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
             <DropdownItem href="/investment">Investment</DropdownItem>
+            <DropdownItem href="/investmentplans">Investment Plans</DropdownItem>
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/about' || '/appointment' || 'contactform')}>
@@ -92,21 +96,24 @@ const Navbar = () => {
             <DropdownItem href="/about">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
-          <Button
-            as={reactrouterlink}
-            to="/login"
-            bg="applegreen"
-            alignItems="center"
-            height="auto"
-            color="white"
-            px={4}
-            py={3}
-            _hover={{ bg: 'applegreen', color: 'black' }}
-            fontFamily="new"
-            display={{ base: 'none', xl: 'block' }}
-          >
-            Login
-          </Button>
+          {!token && (
+            <Button
+              as={reactrouterlink}
+              to="/login"
+              bg="applegreen"
+              alignItems="center"
+              height="auto"
+              color="white"
+              px={4}
+              py={3}
+              _hover={{ bg: 'applegreen', color: 'black' }}
+              fontFamily="new"
+              display={{ base: 'none', xl: 'block' }}
+            >
+              Login
+            </Button>
+          )}
+
         </Flex>
 
         <Flex display={{ base: 'flex', slg: 'none' }} order={{ base: 3 }}>

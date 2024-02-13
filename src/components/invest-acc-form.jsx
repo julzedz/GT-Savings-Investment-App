@@ -1,27 +1,26 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip, Image, FormHelperText, Input, Button,
+  ListItem, Image, FormHelperText, Input, Button,
 } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
-import { COOKIE_TOKEN } from './transaction';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
+import { COOKIE_TOKEN } from './login';
 import api from '../api';
 
-const Deposit = () => {
+const InvAccForm = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [copied, setCopied] = useState(false);
-  // const [file, setFile] = useState(null); // Declare file state
+  // const [file, setFile] = useState(null);
 
   const handleCopy = async () => {
     try {
@@ -46,31 +45,21 @@ const Deposit = () => {
   //   setFile(e.target.files[0]);
   //   // send file into database
   // };
+
   const handleSubmit = async (event) => {
     const userDetails = Cookies.get(COOKIE_TOKEN);
     const parsedToken = JSON.parse(userDetails);
-    const accountId = parsedToken.account.id;
+    const userId = parsedToken.account.id;
     event.preventDefault();
-    const amount = Number(numberInputRef.current.value); // get amount value
-    // const formData = new FormData();
-    // formData.append('file', file); // Add the file to the form data
-    // formData.append('amount', amount); // Add the amount to the form data
+    const addinvest = Number(numberInputRef.current.value); // get amount value
     try {
-    //   const uploadResponse = await api.put(`/accounts/${accountId}`, formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-      // eslint-disable-next-line object-shorthand
-      // });
-      // the URL of the uploaded image
-      // const { imageUrl } = uploadResponse.data;
-
-      // PUT request to update the savings account with the deposit amount
-      // eslint-disable-next-line object-shorthand
-      const response = await api.put(`/accounts/${accountId}`, { amount: amount });
-      console.log('Savings account updated:', response.data);
+      const response = await api.put(`/accounts/${userId}`, {
+        // eslint-disable-next-line object-shorthand
+        addinvest: addinvest, // Include the amount in the request body
+      });
+      console.log('Deposit successful:', response.data);
       setTimeout(() => {
-        navigate('/dashboard'); // Redirect to dashboard
+        navigate('/investment'); // Redirect to dashboard
       }, 3000); // After 3 seconds
       return response.data; // Add return statement
     } catch (error) {
@@ -223,4 +212,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default InvAccForm;
