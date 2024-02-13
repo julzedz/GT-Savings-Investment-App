@@ -10,47 +10,17 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
-import axios from 'axios';
 import earn from '../assets/earn.svg';
 import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
 import api from '../api';
+import usePrice from './usePrice';
 
 const Investment = () => {
+  const { price } = usePrice();
   const [user, setUser] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [price, setPrice] = useState(null);
-  const getFormattedDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
-    return formattedDate;
-  };
-  const todayFormatted = getFormattedDate();
-  const APIUrl = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=N8C4IMCIJLLWQ021';
-  const apiKey = process.env.REACT_APP_API_KEY;
-
-  useEffect(() => {
-    axios.get(APIUrl, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    })
-      .then((response) => {
-        const price = response.data['Time Series (Digital Currency Daily)']?.[todayFormatted]?.['4a. close (USD)'];
-        setPrice(price);
-      })
-      .catch((error) => {
-        const errorMessage = 'Loading...';
-        const updatedError = { ...error, message: errorMessage };
-        throw updatedError;
-      });
-  }, [apiKey, todayFormatted]);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
 
@@ -67,10 +37,10 @@ const Investment = () => {
       name: 'Gold', price: '1270.80', change: '-0.40%', color: 'red',
     },
     {
-      name: 'Bitcoin', price: `${Number(price).toFixed(2)}`, change: '-2.74%', color: 'red',
+      name: 'Bitcoin', price: `${Number(price).toFixed(2)}`, change: '+2.74%', color: 'green',
     },
     {
-      name: 'Ethereum', price: '2489.80', change: '-1.40%', color: 'red',
+      name: 'Ethereum', price: '2689.80', change: '+1.40%', color: 'green',
     },
     {
       name: 'US 10 Year', price: '4.145', change: '+0.07%', color: 'green',

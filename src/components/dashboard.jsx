@@ -19,9 +19,12 @@ import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
 // import { COOKIE_TOKEN } from './transaction';
 import api from '../api';
+import usePrice from './usePrice';
 
+// eslint-disable-next-line react/prop-types
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const { price } = usePrice();
 
   const fetchUser = async () => {
     try {
@@ -213,7 +216,7 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈ ${(balance / 41000).toFixed(8)} ` : '****'}
+                {isVisible ? `≈ ${(balance / price).toFixed(8)} ` : '****'}
                 BTC
               </Text>
               {/* <Text fontSize="sm" lineHeight="short" mb={3}>
