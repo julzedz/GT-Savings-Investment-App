@@ -35,12 +35,12 @@ const GtSavingsBankRoutes = () => {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/banking" element={<Banking />} />
+            <Route path="/banking" element={<ProtectedRoute element={<Banking />} />} />
             <Route path="/investment" element={<ProtectedRoute element={<Investment />} />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
             <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-            <Route path="/insurance" element={<Insurance />} />
+            <Route path="/insurance" element={<ProtectedRoute element={<Insurance />} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/transaction" element={<ProtectedRoute element={<Transaction />} />} />
             <Route path="/investmentplans" element={<InvestmentPlans />} />
