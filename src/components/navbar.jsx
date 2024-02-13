@@ -88,6 +88,7 @@ const Navbar = () => {
           </DropdownMenu>
           <DropdownMenu label="Investment Services" isActive={isActive('/investment' || '/insurance')}>
             <DropdownItem href="/investment">Investment</DropdownItem>
+            <DropdownItem href="/investmentplans">Investment Plans</DropdownItem>
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/about' || '/appointment' || 'contactform')}>
