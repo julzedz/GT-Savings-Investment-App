@@ -10,8 +10,12 @@ import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 
 const userDetails = Cookies.get(COOKIE_TOKEN);
-const parsedToken = JSON.parse(userDetails);
-const savingsAccount = parsedToken.account.savings_account;
+let parsedToken;
+let savingsAccount;
+if (userDetails) {
+  parsedToken = JSON.parse(userDetails);
+  savingsAccount = parsedToken.account.savings_account;
+}
 
 const Withdrawalsavings = () => (
   <Flex
@@ -115,7 +119,9 @@ const Withdrawalsavings = () => (
           <Flex flexDir="column">
             <Text fontSize="xs" mb={1} color="gray">Wallet balance</Text>
             <Text>
-              {savingsAccount}
+              <Text>
+                {savingsAccount ? `Investment: ${savingsAccount}` : '0.00'}
+              </Text>
               {' '}
               USD
             </Text>
