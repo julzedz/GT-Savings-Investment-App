@@ -216,6 +216,7 @@ const Navbar = () => {
                   py={4}
                 >
                   <AccordionLink href="/investment">Investment</AccordionLink>
+                  <AccordionLink href="/investmentplans">Investment Plans</AccordionLink>
                   <AccordionLink href="/loans">Insurance</AccordionLink>
                 </Flex>
               </AccordionPanel>
