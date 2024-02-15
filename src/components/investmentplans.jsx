@@ -154,9 +154,9 @@ const InvestmentPlans = () => {
               classes and sectors to minimize risk.
             </ListItem>
             <ListItem>
-              There is no minimum required to open an account;
-              however, in order for us to invest your money, your account
-              balance must be at least $1000.
+              We do not impose a minimum requirement for opening an account;
+              nevertheless, to facilitate investment of your funds,
+              a minimum account balance of $1000 is necessary.
             </ListItem>
             <ListItem>
               Before investing, consider the funds&apos;
