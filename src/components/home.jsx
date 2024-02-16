@@ -66,6 +66,7 @@ const Home = () => {
         >
           <Heading
             m={3}
+            mt={{ base: 12, sm: 3 }}
             p={4}
             textAlign={{ base: 'center', lg: 'left' }}
             fontSize={{ base: '5xl', lg: '7xl' }}
@@ -77,7 +78,7 @@ const Home = () => {
           <Text
             m={3}
             p={4}
-            mb={44}
+            mb={{ base: 39, sm: 44 }}
             textAlign={{ base: 'center', lg: 'left' }}
             fontSize={{ base: '2xl', lg: '3xl' }}
             fontWeight={{ base: 'bold', lg: 'black' }}
