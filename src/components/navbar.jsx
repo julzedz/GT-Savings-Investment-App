@@ -36,10 +36,10 @@ const Navbar = () => {
         <Box py={{ base: 3 }}>
           <Flex align="center" className="logo-group" as={reactrouterlink} to="/">
 
-            <Image src={logo} alt="Logo" boxSize="40px" />
+            <Image src={logo} alt="Logo" boxSize={{ base: '20px', sm: '40px' }} />
             <div>
               <Text
-                fontSize="lg"
+                fontSize={{ base: 'sm', sm: 'lg' }}
                 fontWeight="bold"
                 color="white"
                 fontFamily="Atomic Age"
@@ -48,7 +48,7 @@ const Navbar = () => {
               >
                 GT Savings Bank
                 <Text
-                  color={isActive('/home') ? 'applegreen' : 'persianred'}
+                  color={isActive('/home') ? 'applegreen' : 'applegreen'}
                   style={{ display: 'inline' }}
                 >
                   .
@@ -68,10 +68,12 @@ const Navbar = () => {
             alignItems="center"
             height="auto"
             color="white"
-            px={4}
-            py={3}
-            _hover={{ bg: 'applegreen', color: 'black' }}
+            borderRadius={{ base: '20px', sm: '10px' }}
+            px={{ base: 3, sm: 4 }}
+            py={{ base: 2, sm: 3 }}
+            _hover={{ color: 'black' }}
             fontFamily="new"
+            fontSize={{ base: 'sm', sm: 'unset' }}
             display={{ base: 'block', xl: 'none' }}
           >
             Login
