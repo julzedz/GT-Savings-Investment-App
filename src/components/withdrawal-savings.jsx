@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
-import { COOKIE_TOKEN } from './transaction';
+import { COOKIE_TOKEN } from './dashboard';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 

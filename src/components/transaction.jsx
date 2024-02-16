@@ -6,13 +6,9 @@ import {
   // Tbody, Td
 } from '@chakra-ui/react';
 import { MdArrowDropDown } from 'react-icons/md';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import api from '../api';
-
-export const COOKIE_TOKEN = '123';
 
 const Transaction = () => {
   const [user, setUser] = useState(null);
@@ -31,8 +27,6 @@ const Transaction = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await fetchUser();
-      Cookies.set(COOKIE_TOKEN, JSON.stringify(userData));
-      console.log(userData);
       setUser(userData);
     };
 

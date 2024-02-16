@@ -11,7 +11,7 @@ import {
 import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
-import { COOKIE_TOKEN } from './transaction';
+import { COOKIE_TOKEN } from './dashboard';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
 import api from '../api';
@@ -42,30 +42,13 @@ const Deposit = () => {
     return () => clearTimeout(timer);
   }, [copied]);
 
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  //   // send file into database
-  // };
   const handleSubmit = async (event) => {
     const userDetails = Cookies.get(COOKIE_TOKEN);
     const parsedToken = JSON.parse(userDetails);
     const accountId = parsedToken.account.id;
     event.preventDefault();
     const amount = Number(numberInputRef.current.value); // get amount value
-    // const formData = new FormData();
-    // formData.append('file', file); // Add the file to the form data
-    // formData.append('amount', amount); // Add the amount to the form data
     try {
-    //   const uploadResponse = await api.put(`/accounts/${accountId}`, formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-      // eslint-disable-next-line object-shorthand
-      // });
-      // the URL of the uploaded image
-      // const { imageUrl } = uploadResponse.data;
-
-      // PUT request to update the savings account with the deposit amount
       // eslint-disable-next-line object-shorthand
       const response = await api.put(`/accounts/${accountId}`, { amount: amount });
       console.log('Savings account updated:', response.data);

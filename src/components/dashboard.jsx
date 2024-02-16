@@ -11,15 +11,16 @@ import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 // eslint-disable-next-line no-unused-vars
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import Cookies from 'js-cookie';
+// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
+import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
-// import { COOKIE_TOKEN } from './transaction';
 import api from '../api';
 import usePrice from './usePrice';
+
+export const COOKIE_TOKEN = '124';
 
 // eslint-disable-next-line react/prop-types
 const Dashboard = () => {
@@ -40,6 +41,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await fetchUser();
+      Cookies.set(COOKIE_TOKEN, JSON.stringify(userData));
       setUser(userData);
     };
 

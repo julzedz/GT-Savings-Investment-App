@@ -12,7 +12,7 @@ import { FaCopy } from 'react-icons/fa';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
-import { COOKIE_TOKEN } from './login';
+import { COOKIE_TOKEN } from './dashboard';
 import api from '../api';
 
 const InvestDeposit = () => {
