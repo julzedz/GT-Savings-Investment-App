@@ -117,8 +117,10 @@ const Login = () => {
         </Flex>
         <Text
           fontFamily="mono"
+          fontSize={{ base: 'sm', sm: 'unset' }}
           alignSelf="center"
           justifySelf="center"
+          px={{ base: 4, sm: 'unset' }}
           mt={8}
         >
           New to GT Savings Bank?
