@@ -220,7 +220,7 @@ const Investment = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈${(user?.account?.investment / price).toFixed(9)} ` : '****'}
+                {isVisible ? `≈${Number.isNaN(user?.account?.investment / price) ? (user?.account?.investment / 52000).toFixed(8) : (user?.account?.investment / price).toFixed(9)} ` : '****'}
                 BTC
               </Text>
               <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>

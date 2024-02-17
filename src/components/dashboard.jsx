@@ -218,7 +218,7 @@ const Dashboard = () => {
             </Flex>
             <Flex flexDir="column" mt={3}>
               <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈ ${(balance / price).toFixed(8)} ` : '****'}
+                {isVisible ? `≈ ${Number.isNaN(balance / price) ? (balance / 52000).toFixed(8) : (balance / price).toFixed(8)} ` : '****'}
                 BTC
               </Text>
               {/* <Text fontSize="sm" lineHeight="short" mb={3}>
