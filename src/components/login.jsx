@@ -25,9 +25,11 @@ const Login = () => {
   const [error, setError] = React.useState(null);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); // start loading
     try {
       const response = await api.post('/login', {
         email,
@@ -39,13 +41,14 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       Cookies.set(COOKIE_TOKEN, JSON.stringify(user));
-      console.log(user);
       setTimeout(() => {
         navigate('/dashboard'); // Redirect to dashboard page
       }, 3000); // After 3 seconds
     } catch (error) {
       // console.error('Error creating user:', error);
       setError('Invalid email or password'); // Handle error (display error message)
+    } finally {
+      setIsLoading(false); // stop loading
     }
   };
 
@@ -100,7 +103,7 @@ const Login = () => {
               </InputRightElement>
             </InputGroup>
             <Checkbox colorScheme="green" w="fit-content">Remember my username</Checkbox>
-            <Button colorScheme="green" type="submit" variant="solid" onClick={handleSubmit}>
+            <Button colorScheme="green" type="submit" variant="solid" onClick={handleSubmit} isLoading={isLoading}>
               Login
             </Button>
             {error && <Text color="red">{error}</Text>}

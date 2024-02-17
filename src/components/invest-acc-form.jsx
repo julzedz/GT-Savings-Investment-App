@@ -21,6 +21,7 @@ const InvAccForm = () => {
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [copied, setCopied] = useState(false);
   // const [file, setFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -52,6 +53,7 @@ const InvAccForm = () => {
     const userId = parsedToken.account.id;
     event.preventDefault();
     const addinvest = Number(numberInputRef.current.value); // get amount value
+    setIsLoading(true);
     try {
       const response = await api.put(`/accounts/${userId}`, {
         // eslint-disable-next-line object-shorthand
@@ -65,6 +67,8 @@ const InvAccForm = () => {
     } catch (error) {
       console.error('Error sending ', error);
       return null;
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -201,6 +205,7 @@ const InvAccForm = () => {
               alignSelf="center"
               p={6}
               onClick={handleSubmit}
+              isLoading={isLoading}
             >
               Submit
             </Button>

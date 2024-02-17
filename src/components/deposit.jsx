@@ -22,13 +22,15 @@ const Deposit = () => {
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [copied, setCopied] = useState(false);
   // const [file, setFile] = useState(null); // Declare file state
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(address);
       setCopied(true);
+      return null; // Add return statement
     } catch (err) {
-      console.log('Failed to copy address', err);
+      return null;
     }
   };
 
@@ -48,17 +50,18 @@ const Deposit = () => {
     const accountId = parsedToken.account.id;
     event.preventDefault();
     const amount = Number(numberInputRef.current.value); // get amount value
+    setIsLoading(true); // start loading
     try {
       // eslint-disable-next-line object-shorthand
       const response = await api.put(`/accounts/${accountId}`, { amount: amount });
-      console.log('Savings account updated:', response.data);
       setTimeout(() => {
         navigate('/dashboard'); // Redirect to dashboard
       }, 3000); // After 3 seconds
       return response.data; // Add return statement
     } catch (error) {
-      console.error('Error sending ', error);
       return null;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -195,6 +198,7 @@ const Deposit = () => {
               alignSelf="center"
               p={6}
               onClick={handleSubmit}
+              isLoading={isLoading}
             >
               Submit
             </Button>
