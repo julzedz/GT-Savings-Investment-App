@@ -31,16 +31,16 @@ const Investment = () => {
 
   const assetItems = [
     {
-      name: 'Crude Oil (Brent)', price: '44.85', change: '-3.47%', color: 'red',
+      name: 'Crude Oil (Brent)', price: '81.85', change: '+0.47%', color: 'green',
     },
     {
-      name: 'Gold', price: '1270.80', change: '-0.40%', color: 'red',
+      name: 'Gold', price: '1870.80', change: '-0.40%', color: 'red',
     },
     {
-      name: 'Bitcoin', price: `${Number(price).toFixed(2)}`, change: '+2.74%', color: 'green',
+      name: 'Bitcoin', price: `${Number.isNaN(price) ? 51937.42 : Number(price).toFixed(2)}`, change: '+2.74%', color: 'green',
     },
     {
-      name: 'Ethereum', price: `${Number(eth).toFixed(2)}`, change: '+1.40%', color: 'green',
+      name: 'Ethereum', price: `${Number.isNaN(eth) ? 2788.67 : Number(eth).toFixed(2)}`, change: '+1.40%', color: 'green',
     },
     {
       name: 'US 10 Year', price: '4.145', change: '+0.07%', color: 'green',
@@ -49,13 +49,13 @@ const Investment = () => {
 
   const topNews = [
     {
-      title: 'Dow futures waver as market awaits further earnings', source: 'Investing.com', time: '16h ago', link: 'https://www.investing.com/',
+      title: 'Dow Futures: NVIDIA Earnings are Huge Tests for AI-Led Rally; Super Micro Suffers Climax Top', source: 'Investors Business Daily', time: '16h ago', link: 'https://uk.finance.yahoo.com/m/f85a2703-528f-365f-afbc-cd0e27d1b96b/dow-futures:-nvidia-earnings.html',
     },
     {
       title: 'Fed raises rate, gives details on balance sheet reduction', source: 'MarketWatch', time: '12h ago', link: 'https://www.marketwatch.com/',
     },
     {
-      title: 'US STOCKS-S&P 500 ends higher as AI optimism lifts chip stocks', source: 'Reuters', time: '11h ago', link: 'https://www.reuters.com/',
+      title: 'GLOBAL MARKETS-Yields, dollar rise after stronger-than-expectedUS PPI data', source: 'Reuters', time: '11h ago', link: 'https://www.reuters.com/',
     },
     {
       title: 'Will Big Tech be the markets hero after a rocky 2024 start?', source: 'Associated Press', time: '2h ago', link: 'https://www.associatedpress.com/',
@@ -107,7 +107,7 @@ const Investment = () => {
           fontFamily="noto"
         >
           <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
-            <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }}>
+            <Text m={0} alignSelf="flex-start" fontSize={{ base: 'xl', sm: '2xl' }} fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }}>
               Investment Portfolio
             </Text>
             <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
@@ -226,15 +226,15 @@ const Investment = () => {
               <Flex justifyContent="space-around" maxWidth="50rem" gap={{ base: 1, sm: 6 }} mt={4} borderRadius={6} p={6} bgColor="gunmetal" color="white" w={{ base: '100%', sm: 'fit-content' }} textAlign="center" whiteSpace={{ base: 'nowrap', sm: 'nowrap' }}>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Stakes
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.stakes}` : '****'}</Box>
+                  <Box fontSize={{ base: 'xs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.stakes}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>
                   Earnings
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.earnings}` : '****'}</Box>
+                  <Box fontSize={{ base: 'xs', sm: 'sm' }} ml={{ base: 0, sm: 3 }}>{isVisible ? `$${user?.account?.earnings}` : '****'}</Box>
                 </Text>
                 <Text fontSize={{ base: 'xs', sm: 'sm' }} lineHeight={6} mb={1}>
                   Today&apos;s PnL
-                  <Box fontSize={{ base: 'xxs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $0.0(0.0%)' : '****'}</Box>
+                  <Box fontSize={{ base: 'xs', sm: 'sm' }} ml={{ base: 0, sm: 3 }} color="green">{isVisible ? '+ $0.0(0.0%)' : '****'}</Box>
                 </Text>
               </Flex>
             </Flex>
