@@ -21,7 +21,12 @@ const validationSchema = Yup.object({
   lastName: Yup.string().required('Provide a last name').min(3, 'Name must be at least 3 characters'),
   dob: Yup.date().required('Provide date of birth'),
   citizenship: Yup.string().required('Select a country of citizenship'),
-  mobile: Yup.number().typeError('Mobile number must be a number').required('Provide a mobile number').min(10, 'Provide a mobile number'),
+  mobile: Yup.string()
+    .matches(
+      /^(\+\d{1,3}[- ]?)?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/,
+      'Mobile number must be valid',
+    )
+    .required('Provide a mobile number'),
   email: Yup.string().email('Invalid email address').required('Provide an email address'),
   city: Yup.string().required('Provide a city'),
   state: Yup.string().required('Provide a state'),
