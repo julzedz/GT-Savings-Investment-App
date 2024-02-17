@@ -49,7 +49,7 @@ const Investment = () => {
 
   const topNews = [
     {
-      title: 'Dow Futures: NVIDIA Earnings are Huge Tests for AI-Led Rally; Super Micro Suffers Climax Top', source: 'Investors Business Daily', time: '16h ago', link: 'https://uk.finance.yahoo.com/m/f85a2703-528f-365f-afbc-cd0e27d1b96b/dow-futures:-nvidia-earnings.html',
+      title: 'Dow Futures: NVIDIA Earnings are Huge Tests for AI-Led Rally', source: 'Investors Business Daily', time: '16h ago', link: 'https://uk.finance.yahoo.com/m/f85a2703-528f-365f-afbc-cd0e27d1b96b/dow-futures:-nvidia-earnings.html',
     },
     {
       title: 'Fed raises rate, gives details on balance sheet reduction', source: 'MarketWatch', time: '12h ago', link: 'https://www.marketwatch.com/',
