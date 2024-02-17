@@ -23,6 +23,7 @@ const Navbar = () => {
       <Flex
         bg="black"
         px={4}
+        py={{ base: 2 }}
         align="center"
         justify="space-between"
         boxShadow="md"
@@ -39,7 +40,7 @@ const Navbar = () => {
             <Image src={logo} alt="Logo" boxSize={{ base: '20px', sm: '40px' }} />
             <div>
               <Text
-                fontSize={{ base: 'sm', sm: 'lg' }}
+                fontSize={{ base: 'md', sm: 'lg' }}
                 fontWeight="bold"
                 color="white"
                 fontFamily="Atomic Age"
@@ -69,11 +70,11 @@ const Navbar = () => {
             height="auto"
             color="white"
             borderRadius={{ base: '20px', sm: '10px' }}
-            px={{ base: 3, sm: 4 }}
-            py={{ base: 2, sm: 3 }}
+            px={{ base: 3.5, sm: 4 }}
+            py={{ base: 2.5, sm: 3 }}
             _hover={{ color: 'black' }}
             fontFamily="new"
-            fontSize={{ base: 'sm', sm: 'unset' }}
+            fontSize={{ base: 'md', sm: 'unset' }}
             display={{ base: 'block', xl: 'none' }}
           >
             Login
