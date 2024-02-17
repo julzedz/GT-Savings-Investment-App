@@ -251,6 +251,7 @@ const Dashboard = () => {
                 fontSize={{ base: 'xs', sm: 'sm' }}
                 fontWeight="600"
                 lineHeight="short"
+                px={8}
                 width={{ base: '30%', slg: 'auto' }}
               >
                 Withdraw
