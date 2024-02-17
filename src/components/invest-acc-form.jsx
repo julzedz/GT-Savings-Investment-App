@@ -42,11 +42,6 @@ const InvAccForm = () => {
     return () => clearTimeout(timer);
   }, [copied]);
 
-  // const handleFileChange = (e) => {
-  //   setFile(e.target.files[0]);
-  //   // send file into database
-  // };
-
   const handleSubmit = async (event) => {
     const userDetails = Cookies.get(COOKIE_TOKEN);
     const parsedToken = JSON.parse(userDetails);
