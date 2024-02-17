@@ -23,7 +23,7 @@ const Navbar = () => {
       <Flex
         bg="black"
         px={4}
-        py={{ base: 2 }}
+        py={{ base: 2, sm: 0 }}
         align="center"
         justify="space-between"
         boxShadow="md"
