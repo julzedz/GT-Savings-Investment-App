@@ -69,7 +69,7 @@ const Profile = () => {
           <Flex flexDir="column" bgColor="#f5f5f5" pb={16}>
             <Image
               borderRadius="full"
-              boxSize="200px"
+              boxSize={{ base: '70px', sm: '150px' }}
               // src="https://bit.ly/dan-abramov"
               alt="user"
               alignSelf="center"
