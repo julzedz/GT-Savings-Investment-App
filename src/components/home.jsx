@@ -108,10 +108,10 @@ const Home = () => {
                 <ArrowDownIcon boxSize={6} color="white" _hover={{ color: 'gunmetal' }} />
               </Button>
               <Text
-                mx={2}
+                mx={{ base: '1', sm: '2' }}
                 my={3}
                 fontFamily="Space Grotesk"
-                fontSize="18px"
+                fontSize={{ base: '14px', sm: '18px' }}
               >
                 Let&apos;s Get Started
               </Text>
