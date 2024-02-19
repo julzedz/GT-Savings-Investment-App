@@ -154,7 +154,7 @@ const Home = () => {
             <Box color="white" p={4}>
               <h2>TAKE YOUR SAVINGS TO THE NEXT LEVEL</h2>
               <Text py={4}>
-                With a low minimum deposit required, start earning interest at competitive rates. Ready to take the first steps towards financial freedom?
+                With a low minimum deposit required, earn interest at competitive rates. Ready to take the first steps towards financial freedom?
               </Text>
               <Button
                 as={RouterLink}
@@ -187,7 +187,7 @@ const Home = () => {
               borderRadius={5}
             />
             <Box color="white" p={4}>
-              <h2>SET AMBITIOUS GOALS. WE WILL MAKE IT WORK.</h2>
+              <h2>SET HIGH GOALS. WE WILL MAKE IT WORK.</h2>
               <Text py={4}>
                 Choose from a range of investment portfolios designed for everyone. Our investor-owned structure keeps us focused on your needs.
               </Text>
