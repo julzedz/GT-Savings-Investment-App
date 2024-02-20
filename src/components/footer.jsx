@@ -55,7 +55,7 @@ const Footer = () => (
       </Text>
       <Button
         as={reactrouterlink}
-        to="/contactform"
+        // to="/contactform"
         m={5}
         p={7}
         fontFamily="new"
@@ -117,10 +117,20 @@ const Footer = () => (
           color="#0C3C61"
           fontSize="sm"
         >
-          <Text as={reactrouterlink} to="/about" m={0} p={{ base: 0, lg: 2 }}>
+          <Text
+            as={reactrouterlink}
+            // to="/about"
+            m={0}
+            p={{ base: 0, lg: 2 }}
+          >
             About Us
           </Text>
-          <Text as={reactrouterlink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
+          <Text
+            as={reactrouterlink}
+            // to="/contactform"
+            m={0}
+            p={{ base: 0, lg: 2 }}
+          >
             Contact Us
           </Text>
         </Box>
@@ -206,13 +216,19 @@ const Footer = () => (
           </Text>
           <Text
             as={reactrouterlink}
-            to="/about"
+            // to="/about"
             m={0}
             p={{ base: 0, lg: 2 }}
           >
             About Us
           </Text>
-          <Text display="block" as={reactrouterlink} to="/contactform" m={0} p={{ base: 0, lg: 2 }}>
+          <Text
+            display="block"
+            as={reactrouterlink}
+            // to="/contactform"
+            m={0}
+            p={{ base: 0, lg: 2 }}
+          >
             Contact Us
           </Text>
         </Box>

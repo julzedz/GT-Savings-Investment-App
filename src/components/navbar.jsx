@@ -95,8 +95,8 @@ const Navbar = () => {
             <DropdownItem href="/insurance">Insurance</DropdownItem>
           </DropdownMenu>
           <DropdownMenu label="Support" isActive={isActive('/about' || '/appointment' || 'contactform')}>
-            <DropdownItem href="/contactform">Contact Us</DropdownItem>
-            <DropdownItem href="/about">About Us</DropdownItem>
+            <DropdownItem href="/contactformx">Contact Us</DropdownItem>
+            <DropdownItem href="/aboutx">About Us</DropdownItem>
             <DropdownItem href="/appointment">Make an Appointment</DropdownItem>
           </DropdownMenu>
           {!token && (
@@ -255,8 +255,8 @@ const Navbar = () => {
                   px={2}
                   py={4}
                 >
-                  <AccordionLink href="/contactform">Contact Us</AccordionLink>
-                  <AccordionLink href="/about">About Us</AccordionLink>
+                  <AccordionLink href="/contactformx">Contact Us</AccordionLink>
+                  <AccordionLink href="/aboutx">About Us</AccordionLink>
                   <AccordionLink href="/appointment">Make an Appointment</AccordionLink>
                 </Flex>
               </AccordionPanel>

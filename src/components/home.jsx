@@ -321,7 +321,7 @@ const Home = () => {
               Learn more about us
               <Button
                 as={RouterLink}
-                to="/about"
+                to="/aboutx"
                 mx={2}
                 variant="outline"
                 borderRadius="50%"
