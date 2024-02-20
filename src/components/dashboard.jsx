@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
-// eslint-disable-next-line no-unused-vars
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 // eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import Cookies from 'js-cookie';
