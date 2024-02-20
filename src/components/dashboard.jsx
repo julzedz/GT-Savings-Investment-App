@@ -74,13 +74,13 @@ const Dashboard = () => {
 
   const transactions = [
     {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-21250.75', date: '2024-02-11 19:42:31', status: 'Completed',
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1,250.43', date: '2024-02-11 19:42:31', status: 'Completed',
     },
     {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-16250.57', date: '2023-01-24 14:32:15', status: 'Completed',
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-10,001.92', date: '2024-02-05 14:35:15', status: 'Completed',
     },
     {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45490.38', date: '2023-01-13 07:26:33', status: 'Completed',
+      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45,490.38', date: '2024-02-01 07:26:33', status: 'Completed',
     },
   ];
 
