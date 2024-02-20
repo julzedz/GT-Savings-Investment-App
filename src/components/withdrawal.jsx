@@ -14,7 +14,9 @@ let parsedToken;
 let investment;
 if (userDetails) {
   parsedToken = JSON.parse(userDetails);
-  investment = parsedToken.account.investment;
+  if (parsedToken.account) {
+    investment = parsedToken.account.investment;
+  }
 }
 
 const Withdrawal = () => (

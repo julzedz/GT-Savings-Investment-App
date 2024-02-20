@@ -14,7 +14,9 @@ let parsedToken;
 let savingsAccount;
 if (userDetails) {
   parsedToken = JSON.parse(userDetails);
-  savingsAccount = parsedToken.account.savings_account;
+  if (parsedToken.account) {
+    savingsAccount = parsedToken.account.savings_account;
+  }
 }
 
 const Withdrawalsavings = () => (
