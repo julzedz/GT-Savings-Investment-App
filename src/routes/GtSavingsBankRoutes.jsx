@@ -13,6 +13,7 @@ import Login from '../components/login';
 import Footer from '../components/footer';
 import Transaction from '../components/transaction';
 import InvestmentPlans from '../components/investmentplans';
+import EditUser from '../components/edituser';
 import Signup from '../components/signup';
 import Deposit from '../components/deposit';
 import Withdrawal from '../components/withdrawal';
@@ -51,6 +52,7 @@ const GtSavingsBankRoutes = () => {
             <Route path="/contactform" element={<ContactForm />} />
             <Route path="/invest-deposit" element={<ProtectedRoute element={<InvestDeposit />} />} />
             <Route path="/invaccform" element={<ProtectedRoute element={<InvAccForm />} />} />
+            <Route path="/edituser" element={<EditUser />} />
           </Routes>
         </div>
         {showFooter && <Footer />}
