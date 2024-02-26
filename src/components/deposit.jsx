@@ -6,10 +6,12 @@ import {
   Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
   NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
   ListItem, Tooltip, Image, FormHelperText, Input, Button,
+  Modal, ModalOverlay, ModalContent, ModalBody, Spinner, Box,
 } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import Sidebar from './sidebar';
 import { COOKIE_TOKEN } from './dashboard';
 import AccountFooter from './accountfooter';
@@ -23,6 +25,8 @@ const Deposit = () => {
   const [copied, setCopied] = useState(false);
   // const [file, setFile] = useState(null); // Declare file state
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [transactionStatus, setTransactionStatus] = useState('');
 
   const handleCopy = async () => {
     try {
@@ -45,28 +49,61 @@ const Deposit = () => {
   }, [copied]);
 
   const handleSubmit = async (event) => {
-    const userDetails = Cookies.get(COOKIE_TOKEN);
-    const parsedToken = JSON.parse(userDetails);
-    const accountId = parsedToken.account.id;
     event.preventDefault();
     const amount = Number(numberInputRef.current.value); // get amount value
     setIsLoading(true); // start loading
-    try {
+    setIsOpen(true);
+    setTransactionStatus('Your transaction is being processed...');
+
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    const parsedToken = JSON.parse(userDetails);
+    const accountId = parsedToken.account.id;
+
+    const timer = setTimeout(async () => {
+      try {
       // eslint-disable-next-line object-shorthand
-      const response = await api.put(`/accounts/${accountId}`, { amount: amount });
-      setTimeout(() => {
-        navigate('/dashboard'); // Redirect to dashboard
-      }, 3000); // After 3 seconds
-      return response.data; // Add return statement
-    } catch (error) {
-      return null;
-    } finally {
-      setIsLoading(false);
-    }
+        const response = await api.put(`/accounts/${accountId}`, { amount: amount });
+        setTransactionStatus('Deposit Successful');
+        setTimeout(() => {
+          setIsOpen(false);
+          navigate('/dashboard'); // Redirect to dashboard
+        }, 3000); // After 10 seconds
+        return response.data; // Add return statement
+      } catch (error) {
+        setTransactionStatus('Transaction Failed');
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 3000);
+        return null;
+      } finally {
+        setIsLoading(false);
+      }
+    }, 5000);
   };
 
   return (
     <>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody>
+            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p={10} fontFamily="noto" fontSize="md" fontWeight="700">
+              <Text mb={4}>{transactionStatus}</Text>
+              {transactionStatus === 'Transaction Failed' && <WarningIcon w={8} h={8} color="red.500" ml={2} />}
+              {transactionStatus === 'Your transaction is being processed...' && (
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="green.500"
+                size="xl"
+              />
+              )}
+              {transactionStatus === 'Deposit Successful' && <CheckCircleIcon boxSize={6} color="green.500" size="xl" />}
+            </Box>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
       <Flex>
         <Sidebar />
         <Flex
