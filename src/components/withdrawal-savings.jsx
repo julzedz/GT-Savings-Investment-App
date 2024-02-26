@@ -120,17 +120,17 @@ const Withdrawalsavings = () => (
         >
           <Flex flexDir="column">
             <Text fontSize="xs" mb={1} color="gray">Wallet balance</Text>
-            <Text>
-              <Text>
-                {savingsAccount ? `Investment: ${savingsAccount}` : '0.00'}
+            <Text display="inline">
+              <Text display="inline">
+                {savingsAccount ? `Balance: ${savingsAccount}` : '0.00'}
+                {' '}
               </Text>
-              {' '}
               USD
             </Text>
           </Flex>
           <Flex flexDir="column">
             <Text fontSize="xs" mb={1} color="gray">Minimum withdrawal</Text>
-            <Text>500 USDT</Text>
+            <Text>500 USD</Text>
           </Flex>
         </Flex>
         <UnorderedList
