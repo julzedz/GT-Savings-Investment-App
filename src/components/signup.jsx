@@ -9,7 +9,6 @@ import {
   FormLabel, Input, FormErrorMessage,
   Button,
 } from '@chakra-ui/react';
-import PropTypes from 'prop-types';
 import AccountFooter from './accountfooter';
 import FormNavbar from './formnavbar';
 import building from '../assets/building2.jpg';
@@ -122,7 +121,7 @@ const Signup = () => {
                 });
             }}
           >
-            {(props) => (
+            {() => (
               <Form style={{ backgroundColor: '', textAlign: 'center' }}>
                 <Flex mb={6} width="100%" px={{ base: 6, sm: 1 }} gap={6} justifyContent="center" alignItems="flex-end">
                   <FormLabel w="35%" m={0} mb={3} fontSize="xs" lineHeight="short">Full name</FormLabel>
@@ -319,7 +318,6 @@ const Signup = () => {
                 <Button
                   mt={4}
                   colorScheme="green"
-                  isLoading={props.isSubmitting}
                   type="submit"
                   fontFamily="noto"
                   w={{ base: '60%', sm: '80%' }}
@@ -345,10 +343,6 @@ const Signup = () => {
       <AccountFooter />
     </>
   );
-};
-
-Signup.propTypes = {
-  isSubmitting: PropTypes.bool.isRequired,
 };
 
 export default Signup;
