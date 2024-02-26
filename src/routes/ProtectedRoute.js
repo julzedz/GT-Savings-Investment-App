@@ -10,7 +10,7 @@ const ProtectedRoute = ({ element }) => {
 };
 
 ProtectedRoute.propTypes = {
-  element: PropTypes.elementType.isRequired,
+  element: PropTypes.element.isRequired,
 };
 
 export default ProtectedRoute;
