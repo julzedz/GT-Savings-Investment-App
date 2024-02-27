@@ -59,7 +59,7 @@ const Deposit = () => {
     const parsedToken = JSON.parse(userDetails);
     const accountId = parsedToken.account.id;
 
-    const timer = setTimeout(async () => {
+    setTimeout(async () => {
       try {
       // eslint-disable-next-line object-shorthand
         const response = await api.put(`/accounts/${accountId}`, { amount: amount });
