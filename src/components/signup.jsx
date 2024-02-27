@@ -187,6 +187,7 @@ const Signup = () => {
                           placeholder="Select a country"
                           borderColor="black"
                         >
+                          <option value="Angola">Angola</option>
                           <option value="Australia">Australia</option>
                           <option value="Austria">Austria</option>
                           <option value="Brazil">Brazil</option>
@@ -196,7 +197,10 @@ const Signup = () => {
                           <option value="Mexico">Mexico</option>
                           <option value="New Zealand">New Zealand</option>
                           <option value="Norway">Norway</option>
+                          <option value="Russia">Russia</option>
                           <option value="Singapore">Singapore</option>
+                          <option value="South Africa">South Africa</option>
+                          <option value="Thailand">Thailand</option>
                           <option value="United Kingdom">United Kingdom</option>
                           <option value="United States">United States</option>
                         </Select>
