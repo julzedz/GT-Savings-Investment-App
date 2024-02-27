@@ -27,6 +27,8 @@ const Deposit = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState('');
+  const [depositAmount, setDepositAmount] = useState('');
+  const [paymentReceipt, setPaymentReceipt] = useState(null);
 
   const handleCopy = async () => {
     try {
@@ -155,7 +157,7 @@ const Deposit = () => {
               mb={6}
             >
               <FormLabel fontSize="xs">Amount</FormLabel>
-              <NumberInput step={500} min={1000}>
+              <NumberInput id="deposit-amount" value={depositAmount} onChange={(value) => setDepositAmount(value)} step={500} min={1000}>
                 <NumberInputField ref={numberInputRef} placeholder="Enter amount" />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
@@ -221,7 +223,7 @@ const Deposit = () => {
               <Input
                 type="file"
                 accept="image/*"
-                // onChange={handleFileChange}
+                onChange={(event) => setPaymentReceipt(event.target.files[0])}
               />
             </FormControl>
 
@@ -236,6 +238,7 @@ const Deposit = () => {
               p={6}
               onClick={handleSubmit}
               isLoading={isLoading}
+              isDisabled={!depositAmount || !paymentReceipt}
             >
               Submit
             </Button>
