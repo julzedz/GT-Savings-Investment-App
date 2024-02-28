@@ -100,9 +100,10 @@ const Withdrawalsavings = () => {
                     onChange={handleChange}
                     placeholder="Enter 6 digit pin"
                     mb={6}
+                    fontFamily="new"
                   />
                 </InputGroup>
-                <Button mx="40%" mb={6} type="submit" isDisabled={!handleChange} onClick={handleSubmit} colorScheme="green">
+                <Button mx="40%" mb={6} type="submit" fontFamily="new" isDisabled={pin.length < 6} onClick={handleSubmit} colorScheme="green">
                   Confirm
                 </Button>
               </FormControl>
