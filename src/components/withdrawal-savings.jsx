@@ -29,6 +29,9 @@ const Withdrawalsavings = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState('');
   const navigate = useNavigate();
+  const [withdrawAmount, setWithdrawAmount] = useState('');
+  const [address, setAddress] = useState(null);
+  const [network, setNetwork] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -135,7 +138,12 @@ const Withdrawalsavings = () => {
               mb={6}
             >
               <FormLabel fontSize="xs">Withdraw amount</FormLabel>
-              <NumberInput step={100} min={500}>
+              <NumberInput
+                value={withdrawAmount}
+                onChange={(value) => setWithdrawAmount(value)}
+                step={100}
+                min={500}
+              >
                 <NumberInputField ref={numberInputRef} placeholder="Enter amount" />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
@@ -151,8 +159,8 @@ const Withdrawalsavings = () => {
             >
               <FormLabel fontSize="xs">Send To: Address</FormLabel>
               <Input
-              // value=""
-              // onChange=""
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
                 type="text"
                 placeholder="Enter address"
               />
@@ -165,7 +173,8 @@ const Withdrawalsavings = () => {
             >
               <FormLabel fontSize="xs">Select network</FormLabel>
               <Select
-                // value=""
+                value={network}
+                onChange={(event) => setNetwork(event.target.value)}
                 id="networks"
                 placeholder="Network"
               >
@@ -219,8 +228,6 @@ const Withdrawalsavings = () => {
               mt={4}
               mb={20}
               colorScheme="green"
-                // isLoading={props.isSubmitting}
-                // disabled={props.isSubmitting}
               type="submit"
               fontFamily="noto"
               w="40%"
@@ -228,6 +235,7 @@ const Withdrawalsavings = () => {
               p={6}
               onClick={handleSubmit}
               isLoading={isLoading}
+              isDisabled={!withdrawAmount || !address || !network}
             >
               Submit
             </Button>
