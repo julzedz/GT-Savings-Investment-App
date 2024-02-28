@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react';
 import {
   Flex, Text, FormControl, FormLabel, Select, NumberInput, NumberInputField, NumberInputStepper,
   NumberIncrementStepper, NumberDecrementStepper, Input, Button, ListItem, UnorderedList,
-  Modal, ModalOverlay, ModalContent, ModalBody, Box, Spinner,
+  Modal, ModalOverlay, ModalContent, ModalBody, Box, Spinner, ModalHeader, ModalCloseButton,
+  InputGroup,
 } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
@@ -32,6 +33,19 @@ const Withdrawalsavings = () => {
   const [withdrawAmount, setWithdrawAmount] = useState('');
   const [address, setAddress] = useState(null);
   const [network, setNetwork] = useState(null);
+  const [isPinOpen, setIsPinOpen] = useState(false);
+  const [pin, setPin] = useState('');
+
+  const handleOpen = () => setIsPinOpen(true);
+  const handleClose = () => setIsPinOpen(false);
+  const handleChange = (event) => setPin(event.target.value);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // eslint-disable-next-line no-console
+    console.log('Submitted PIN:', pin);
+    setIsPinOpen(false);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -68,6 +82,35 @@ const Withdrawalsavings = () => {
 
   return (
     <>
+      <Modal isOpen={isPinOpen} onClose={handleClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader fontFamily="new" textAlign="center">Enter Payment PIN</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <form onSubmit={handleFormSubmit}>
+              <FormControl>
+                <InputGroup>
+                  <Input
+                    id="pin"
+                    name="pin"
+                    type="password"
+                    value={pin}
+                    maxLength={6}
+                    onChange={handleChange}
+                    placeholder="Enter 6 digit pin"
+                    mb={6}
+                  />
+                </InputGroup>
+                <Button mx="40%" mb={6} type="submit" isDisabled={!handleChange} onClick={handleSubmit} colorScheme="green">
+                  Confirm
+                </Button>
+              </FormControl>
+            </form>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -233,7 +276,7 @@ const Withdrawalsavings = () => {
               w="40%"
               alignSelf="center"
               p={6}
-              onClick={handleSubmit}
+              onClick={handleOpen}
               isLoading={isLoading}
               isDisabled={!withdrawAmount || !address || !network}
             >
