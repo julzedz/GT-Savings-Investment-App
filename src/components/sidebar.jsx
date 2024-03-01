@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Flex, Text, IconButton, Divider, Heading, Image, Button, useBreakpointValue,
-  // Avatar,
+  Avatar,
 } from '@chakra-ui/react';
 import {
   FiMenu, FiHome, FiUser, FiDollarSign,
@@ -158,25 +158,27 @@ const Sidebar = () => {
         mb={4}
       >
         <Divider display={navSize === 'small' ? 'none' : 'flex'} />
-        <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
-          {/* <Avatar size="sm" /> */}
-          <Image
-            borderRadius="full"
-            boxSize={{ base: '50px', sm: '50px' }}
-            src={dp}
-            alt="user"
-            alignSelf="center"
-            objectFit="cover"
-            fallbackSrc={avatar}
-            // m={6}
-          />
-          {user && (
+        {user && (
+          <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
+            {user.id === 3 ? (
+              <Image
+                borderRadius="full"
+                boxSize={{ base: '50px', sm: '50px' }}
+                src={dp}
+                alt="user"
+                alignSelf="center"
+                objectFit="cover"
+                fallbackSrc={avatar}
+              />
+            ) : (
+              <Avatar size="sm" />
+            )}
             <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
               <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>{user.fullname}</Heading>
               <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">User</Text>
             </Flex>
-          )}
-        </Flex>
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );
