@@ -7,6 +7,7 @@ import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
 import avatar from '../assets/avatar-icon.webp';
 import api from '../api';
+import dp from '../assets/PHOTO-2024-03-01-02-09-21.jpg';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -70,9 +71,10 @@ const Profile = () => {
             <Image
               borderRadius="full"
               boxSize={{ base: '70px', sm: '150px' }}
-              // src="https://bit.ly/dan-abramov"
+              src={dp}
               alt="user"
               alignSelf="center"
+              objectFit="cover"
               fallbackSrc={avatar}
               m={6}
             />
