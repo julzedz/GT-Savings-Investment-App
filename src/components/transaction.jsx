@@ -156,7 +156,7 @@ const Transaction = () => {
               <option value="option3">Withdrawal</option>
             </Select>
           </Flex>
-          <Box overflowX={{ base: 'scroll' }} mb="96">
+          <Box overflowX={{ base: 'scroll' }} mb="12">
             <Table>
               <Thead>
                 <Tr>
