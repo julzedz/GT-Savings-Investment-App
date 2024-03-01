@@ -72,7 +72,7 @@ const Dashboard = () => {
     },
   ];
 
-  const transactions = [
+  const transactions = user.id === 3 ? [
     {
       icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1,250.43', date: '2024-02-11 19:42:31', status: 'Completed',
     },
@@ -82,7 +82,7 @@ const Dashboard = () => {
     {
       icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45,490.38', date: '2024-02-01 07:26:33', status: 'Completed',
     },
-  ];
+  ] : [];
 
   return (
     <>
