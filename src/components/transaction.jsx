@@ -34,7 +34,7 @@ const Transaction = () => {
     fetchUserData();
   }, []);
 
-  const transactions = [
+  const transactions = user && user.id === 3 ? [
     // {
     //   icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-10,000.00', date: '2024-02-29 20:42:31', status: 'Completed',
     // },
@@ -98,7 +98,7 @@ const Transaction = () => {
     {
       icon: RiDownload2Line, action: 'Deposit USDT', amount: '+25,002.11', date: '2023-11-01 05:36:33', status: 'Completed',
     },
-  ];
+  ] : [];
 
   return (
     <>
@@ -156,7 +156,8 @@ const Transaction = () => {
               <option value="option3">Withdrawal</option>
             </Select>
           </Flex>
-          <Box overflowX={{ base: 'scroll' }} mb="12">
+          {user && (
+          <Box overflowX={{ base: 'scroll' }} mb={user && user.id === 3 ? 12 : 96}>
             <Table>
               <Thead>
                 <Tr>
@@ -182,40 +183,9 @@ const Transaction = () => {
                     </Tr>
                   )) : <Text textAlign="center" p={6}> </Text>}
               </Tbody>
-              {/* <Tbody>
-                <Tr>
-                  <Td>Deposit</Td>
-                  <Td>$1250.00</Td>
-                  <Td>2021-12-15</Td>
-                  <Td>Completed</Td>
-                </Tr>
-                <Tr>
-                  <Td>Withdrawal</Td>
-                  <Td>$55,000.00</Td>
-                  <Td>2021-02-17</Td>
-                  <Td>Completed</Td>
-                </Tr>
-                <Tr>
-                  <Td>Deposit</Td>
-                  <Td>$15,340.00</Td>
-                  <Td>2021-10-09</Td>
-                  <Td>Completed</Td>
-                </Tr>
-                <Tr>
-                  <Td>Withdrawal</Td>
-                  <Td>$5,000.00</Td>
-                  <Td>2021-01-26</Td>
-                  <Td>Completed</Td>
-                </Tr>
-                <Tr>
-                  <Td>Withdrawal</Td>
-                  <Td>$3,720.00</Td>
-                  <Td>2021-03-14</Td>
-                  <Td>Completed</Td>
-                </Tr>
-              </Tbody> */}
             </Table>
           </Box>
+          )}
           <AccountFooter />
         </Flex>
       </Flex>
