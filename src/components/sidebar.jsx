@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import {
-  Flex, Text, IconButton, Divider, Avatar, Heading, Image, Button, useBreakpointValue,
+  Flex, Text, IconButton, Divider, Heading, Image, Button, useBreakpointValue,
+  // Avatar,
 } from '@chakra-ui/react';
 import {
   FiMenu, FiHome, FiUser, FiDollarSign,
@@ -15,6 +16,8 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
 import api from '../api';
+import dp from '../assets/PHOTO-2024-03-01-02-09-21.jpg';
+import avatar from '../assets/avatar-icon.webp';
 
 const Sidebar = () => {
   const [user, setUser] = useState(null);
@@ -156,7 +159,17 @@ const Sidebar = () => {
       >
         <Divider display={navSize === 'small' ? 'none' : 'flex'} />
         <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
-          <Avatar size="sm" />
+          {/* <Avatar size="sm" /> */}
+          <Image
+            borderRadius="full"
+            boxSize={{ base: '50px', sm: '50px' }}
+            src={dp}
+            alt="user"
+            alignSelf="center"
+            objectFit="cover"
+            fallbackSrc={avatar}
+            // m={6}
+          />
           {user && (
             <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
               <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>{user.fullname}</Heading>
