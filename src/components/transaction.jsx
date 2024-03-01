@@ -35,6 +35,9 @@ const Transaction = () => {
   }, []);
 
   const transactions = [
+    // {
+    //   icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-10,000.00', date: '2024-02-29 20:42:31', status: 'Completed',
+    // },
     {
       icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1,250.43', date: '2024-02-11 19:42:31', status: 'Completed',
     },
