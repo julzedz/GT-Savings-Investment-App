@@ -71,7 +71,7 @@ const Profile = () => {
             <Image
               borderRadius="full"
               boxSize={{ base: '70px', sm: '150px' }}
-              src={dp}
+              src={user.id === 3 ? dp : avatar}
               alt="user"
               alignSelf="center"
               objectFit="cover"
