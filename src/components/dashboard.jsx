@@ -9,7 +9,10 @@ import {
 } from '@chakra-ui/react';
 import { Link as reactrouterlink } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
+import {
+  // RiDownload2Line,
+  RiUpload2Line,
+} from 'react-icons/ri';
 // eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
@@ -74,13 +77,13 @@ const Dashboard = () => {
 
   const transactions = user && user.id === 3 ? [
     {
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-02 08:59:31', status: 'Completed',
+    },
+    {
       icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1,250.43', date: '2024-02-11 19:42:31', status: 'Completed',
     },
     {
       icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-10,001.92', date: '2024-02-05 14:35:15', status: 'Completed',
-    },
-    {
-      icon: RiDownload2Line, action: 'Deposit USDT', amount: '+45,490.38', date: '2024-02-01 07:26:33', status: 'Completed',
     },
   ] : [];
 
