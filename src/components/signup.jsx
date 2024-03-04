@@ -46,6 +46,7 @@ const validationSchema = Yup.object({
 const Signup = () => {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -91,6 +92,7 @@ const Signup = () => {
             validationSchema={validationSchema}
             onSubmit={(values, actions) => {
               actions.setSubmitting(true); // Show loading state
+              setIsLoading(true);
 
               const userPayload = {
                 first_name: values.firstName,
@@ -118,6 +120,7 @@ const Signup = () => {
                 })
                 .finally(() => {
                   actions.setSubmitting(false); // Hide loading state
+                  setIsLoading(false);
                 });
             }}
           >
@@ -330,6 +333,7 @@ const Signup = () => {
                   alignSelf="center"
                   textAlign="center"
                   p={6}
+                  isLoading={isLoading}
                 >
                   Submit
                 </Button>
