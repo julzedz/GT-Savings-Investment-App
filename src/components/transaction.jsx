@@ -36,7 +36,10 @@ const Transaction = () => {
 
   const transactions = user && user.id === 3 ? [
     {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-02 21:37:31', status: 'Completed',
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-07 21:11:54', status: 'Completed',
+    },
+    {
+      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-06 21:37:31', status: 'Completed',
     },
     {
       icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-02 08:59:31', status: 'Completed',
