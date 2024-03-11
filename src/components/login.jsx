@@ -44,7 +44,7 @@ const Login = () => {
           title: 'Security Alert',
           description: 'Account Suspended: Contact Support',
           status: 'error',
-          duration: 9000,
+          duration: 5000,
           position: 'top',
           isClosable: true,
         });
