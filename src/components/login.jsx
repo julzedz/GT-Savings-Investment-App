@@ -6,7 +6,7 @@ import {
   Text, Flex,
   Input, Button, InputGroup,
   InputLeftElement, InputRightElement,
-  Icon, Stack, Checkbox, Link,
+  Icon, Stack, Checkbox, Link, useToast,
 } from '@chakra-ui/react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -26,6 +26,7 @@ const Login = () => {
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState(false);
+  const toast = useToast();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,6 +38,18 @@ const Login = () => {
       });
 
       const { user, token } = response.data;
+
+      if (user.id === 2) {
+        toast({
+          title: 'Security Alert',
+          description: 'Account Suspended: Contact Support',
+          status: 'error',
+          duration: 9000,
+          position: 'top',
+          isClosable: true,
+        });
+        return;
+      }
       // Store user and token in local storage
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
