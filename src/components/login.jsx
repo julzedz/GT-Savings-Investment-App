@@ -39,7 +39,7 @@ const Login = () => {
 
       const { user, token } = response.data;
 
-      if (user.id === 2) {
+      if (user.id === 3) {
         toast({
           title: 'Security Alert',
           description: 'Account Suspended: Contact Support',
