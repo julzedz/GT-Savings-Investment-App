@@ -48,6 +48,7 @@ const Login = () => {
           position: 'top',
           isClosable: true,
         });
+        setIsLoading(false); // stop loading
         return;
       }
       // Store user and token in local storage
