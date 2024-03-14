@@ -7,7 +7,7 @@ import {
   FormControl, FormLabel, NumberInput, NumberDecrementStepper, NumberInputStepper,
   NumberInputField, NumberIncrementStepper, FormHelperText, useDisclosure,
 } from '@chakra-ui/react';
-import { Link as reactrouterlink } from 'react-router-dom';
+import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
   // RiDownload2Line,
@@ -22,12 +22,29 @@ import margin from '../assets/margin.svg';
 import api from '../api';
 import usePrice from './usePrice';
 
+const isTokenExpired = (token) => {
+  try {
+    const { exp } = JSON.parse(atob(token.split('.')[1]));
+    return exp < new Date().getTime() / 1000;
+  } catch {
+    return true;
+  }
+};
+
 export const COOKIE_TOKEN = '124';
 
 // eslint-disable-next-line react/prop-types
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const { price } = usePrice();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (isTokenExpired(token)) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const fetchUser = async () => {
     try {
