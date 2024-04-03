@@ -64,13 +64,13 @@ const Deposit = () => {
     setTimeout(async () => {
       try {
       // eslint-disable-next-line object-shorthand
-        const response = await api.put(`/accounts/${accountId}`, { amount: amount });
-        setTransactionStatus('Deposit Successful');
+        // const response = await api.put(`/accounts/${accountId}`, { amount: amount });
+        // setTransactionStatus('Deposit Successful');
         setTimeout(() => {
-          setIsOpen(false);
-          navigate('/dashboard'); // Redirect to dashboard
+          // setIsOpen(false);
+          // navigate('/dashboard'); // Redirect to dashboard
         }, 3000); // After 10 seconds
-        return response.data; // Add return statement
+        return null; // response.data; // Add return statement
       } catch (error) {
         setTransactionStatus('Transaction Failed');
         setTimeout(() => {
