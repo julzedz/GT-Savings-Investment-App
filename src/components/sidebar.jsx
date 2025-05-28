@@ -1,13 +1,29 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import {
-  Flex, Text, IconButton, Divider, Heading, Image, Button, useBreakpointValue,
+  Flex,
+  Text,
+  IconButton,
+  Divider,
+  Heading,
+  Image,
+  Button,
+  useBreakpointValue,
   Avatar,
 } from '@chakra-ui/react';
 import {
-  FiMenu, FiHome, FiUser, FiDollarSign,
+  FiMenu,
+  FiHome,
+  // FiUser,
+  FiDollarSign,
+  FiDownload,
 } from 'react-icons/fi';
-import { BsGraphUpArrow } from 'react-icons/bs';
+import { FaCreditCard, FaGlobe } from 'react-icons/fa';
+import { GrDocument } from 'react-icons/gr';
+import { TbReceiptTax } from 'react-icons/tb';
+import { IoPaperPlaneOutline } from 'react-icons/io5';
+import { BsFillGearFill, BsGraphUpArrow } from 'react-icons/bs';
+import { GoQuestion } from 'react-icons/go';
 import { useLocation } from 'react-router';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -44,7 +60,7 @@ const Sidebar = () => {
     } catch (error) {
       console.error('Error fetching user:', error);
       return null;
-    // Handle errors (e.g., redirect to login)
+      // Handle errors (e.g., redirect to login)
     }
   };
 
@@ -71,18 +87,19 @@ const Sidebar = () => {
       breakpointnavsize="true"
       h="100vh"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
-      w={navSize === 'small' ? 20 : 80}
+      w={navSize === 'small' ? 20 : 44}
       borderRadius={navSize === 'small' ? '2px' : '0'}
       flexDir="column"
-      justifyContent="space-between"
       bgColor="applegreen"
       color="white"
+      justifyContent="flex-start"
     >
       <Flex
         p="15px"
         flexDir="column"
         alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         as="nav"
+        pb={0}
       >
         <Flex>
           <IconButton
@@ -106,11 +123,10 @@ const Sidebar = () => {
             p={2}
             borderRadius={8}
           >
-
-            <Image src={logo} alt="Logo" boxSize="30px" />
+            <Image src={logo} alt="Logo" boxSize="20px" />
             <div>
               <Text
-                fontSize="lg"
+                fontSize="12px"
                 fontWeight="bold"
                 color="white"
                 fontFamily="Atomic Age"
@@ -118,23 +134,158 @@ const Sidebar = () => {
                 my={0}
               >
                 GT Savings Bank
-                <Text
-                  color="applegreen"
-                  display="inline"
-                >
+                <Text color="applegreen" display="inline">
                   .
                 </Text>
               </Text>
             </div>
           </Flex>
         </Flex>
-        <NavItem href="/dashboard" isActive={isActive('/dashboard')} navSize={navSize} icon={FiHome} title="Dashboard" />
-        <NavItem href="/transaction" isActive={isActive('/transaction')} navSize={navSize} icon={FiDollarSign} title="Transactions" active />
-        <NavItem href="/investment" isActive={isActive('/investment')} navSize={navSize} icon={BsGraphUpArrow} title="Investment" />
-        <NavItem navSize={navSize} href="/profile" isActive={isActive('/profile')} icon={FiUser} title="Profile" />
+        <Text
+          p={0}
+          m={0}
+          color="gray.600"
+          fontFamily="noto"
+          fontWeight="semibold"
+          fontSize="xs"
+        >
+          MAIN MENU
+        </Text>
+        <NavItem
+          href="/dashboard"
+          isActive={isActive('/dashboard')}
+          navSize={navSize}
+          icon={FiHome}
+          title="Dashboard"
+          // m={0}
+        />
+        <NavItem
+          href="/transaction"
+          isActive={isActive('/transaction')}
+          navSize={navSize}
+          icon={FiDollarSign}
+          title="Transactions"
+          active
+          // m={0}
+        />
+        <NavItem
+          href="/cards"
+          isActive={isActive('/cards')}
+          navSize={navSize}
+          icon={FaCreditCard}
+          title="Cards"
+          // m={0}
+        />
+        <Text
+          p={0}
+          m={0}
+          color="gray.600"
+          fontFamily="noto"
+          fontWeight="semibold"
+          fontSize="xs"
+        >
+          TRANSFERS
+        </Text>
+        <NavItem
+          href="/cards"
+          isActive={isActive('/cards')}
+          navSize={navSize}
+          icon={IoPaperPlaneOutline}
+          title="Local Transfer"
+        />
+        <NavItem
+          href="/cards"
+          isActive={isActive('/cards')}
+          navSize={navSize}
+          icon={FaGlobe}
+          title="International Wire"
+        />
+        <NavItem
+          href="/deposit"
+          isActive={isActive('/deposit')}
+          navSize={navSize}
+          icon={FiDownload}
+          title="Deposit"
+        />
+        <Text
+          p={0}
+          m={0}
+          color="gray.600"
+          fontFamily="noto"
+          fontWeight="semibold"
+          fontSize="xs"
+        >
+          SERVICES
+        </Text>
+        <NavItem
+          href="/investment"
+          isActive={isActive('/investment')}
+          navSize={navSize}
+          icon={BsGraphUpArrow}
+          title="Investment"
+        />
+        <NavItem
+          href="/loan"
+          isActive={isActive('/loan')}
+          navSize={navSize}
+          icon={GrDocument}
+          title="Loan Request"
+        />
+        <NavItem
+          href="/taxrefund"
+          isActive={isActive('/taxrefund')}
+          navSize={navSize}
+          icon={TbReceiptTax}
+          title="IRS Tax Refund"
+        />
+        <Text
+          p={0}
+          m={0}
+          color="gray.600"
+          fontFamily="noto"
+          fontWeight="semibold"
+          fontSize="xs"
+        >
+          ACCOUNT
+        </Text>
+        <NavItem
+          navSize={navSize}
+          href="/profile"
+          isActive={isActive('/profile')}
+          icon={BsFillGearFill}
+          title="Settings"
+        />
+        <NavItem
+          navSize={navSize}
+          href="/profile"
+          isActive={isActive('/profile')}
+          icon={GoQuestion}
+          title="Support Ticket"
+        />
+        {/* <NavItem
+          navSize={navSize}
+          href="/profile"
+          isActive={isActive('/profile')}
+          icon={FiUser}
+          title="Profile"
+        /> */}
       </Flex>
-      <Button display={{ base: 'block', md: 'none' }} alignSelf="flex-start" as="reactrouterlink" onClick={handleLogout} fontFamily="noto" textDecoration="underline" fontSize="sm" p leftIcon={<ArrowBackIcon _hover={{ color: 'black' }} boxSize={6} />} colorScheme="white" variant="link"> </Button>
       <Button
+        display={{ base: 'block', md: 'none' }}
+        alignSelf="flex-start"
+        as="reactrouterlink"
+        onClick={handleLogout}
+        fontFamily="noto"
+        textDecoration="underline"
+        fontSize="sm"
+        p
+        leftIcon={<ArrowBackIcon _hover={{ color: 'black' }} boxSize={6} />}
+        colorScheme="white"
+        variant="link"
+      >
+        {' '}
+      </Button>
+      {/* <Button
         alignSelf="flex-start"
         as="reactrouterlink"
         display={{ base: 'none', md: 'block' }}
@@ -149,17 +300,23 @@ const Sidebar = () => {
       >
         Logout
 
-      </Button>
+      </Button> */}
+      <Divider display={navSize === 'small' ? 'none' : 'flex'} />
       <Flex
-        p="5%"
+        // p="5%"
         flexDir="column"
         w="100%"
         alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         mb={4}
       >
-        <Divider display={navSize === 'small' ? 'none' : 'flex'} />
         {user && (
-          <Flex mt={4} alignItems="center" as={reactrouterlink} to="/profile" _hover={{ textDecoration: 'none' }}>
+          <Flex
+            mt={4}
+            alignItems="center"
+            as={reactrouterlink}
+            to="/profile"
+            _hover={{ textDecoration: 'none' }}
+          >
             {user.id === 3 ? (
               <Image
                 borderRadius="full"
@@ -173,9 +330,22 @@ const Sidebar = () => {
             ) : (
               <Avatar size="sm" />
             )}
-            <Flex flexDir="column" ml={4} display={navSize === 'small' ? 'none' : 'flex'}>
-              <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>{user.fullname}</Heading>
-              <Text color="gray.500" fontFamily="noto" fontWeight="normal" fontSize="sm">User</Text>
+            <Flex
+              flexDir="column"
+              ml={4}
+              display={navSize === 'small' ? 'none' : 'flex'}
+            >
+              <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>
+                {user.fullname}
+              </Heading>
+              <Text
+                color="gray.500"
+                fontFamily="noto"
+                fontWeight="normal"
+                fontSize="sm"
+              >
+                User
+              </Text>
             </Flex>
           </Flex>
         )}

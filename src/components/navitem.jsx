@@ -13,7 +13,7 @@ const NavItem = ({
   navSize, icon, title, href, isActive,
 }) => (
   <Flex
-    mt={30}
+    mt={1}
     flexDir="column"
     width="100%"
     alignItems={navSize === 'small' ? 'center' : 'flex-start'}
@@ -23,16 +23,16 @@ const NavItem = ({
       <Link
         href={href}
         bg={isActive && 'gunmetal'}
-        p={3}
-        borderRadius={8}
+        p={1}
+        borderRadius={4}
         _hover={{ textDecoration: 'none', bg: 'gunmetal' }}
         width={navSize === 'large' && '100%'}
         fontFamily="heading"
       >
         <MenuButton w="100%">
-          <Flex>
-            <Icon as={icon} fontSize="xl" color={isActive ? 'white' : 'gray.300'} />
-            <Text ml={5} display={navSize === 'small' ? 'none' : 'flex'}>{title}</Text>
+          <Flex p={0} alignItems="center" px={1}>
+            <Icon as={icon} fontSize="sm" color={isActive ? 'white' : 'gray.300'} />
+            <Text pl={2} fontSize="xs" m={0} display={navSize === 'small' ? 'none' : 'flex'}>{title}</Text>
           </Flex>
         </MenuButton>
       </Link>
