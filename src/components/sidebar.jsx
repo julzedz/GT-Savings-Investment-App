@@ -14,10 +14,11 @@ import {
 import {
   FiMenu,
   FiHome,
-  // FiUser,
+  FiUser,
   FiDollarSign,
   FiDownload,
 } from 'react-icons/fi';
+import { RiArrowLeftLine } from 'react-icons/ri';
 import { FaCreditCard, FaGlobe } from 'react-icons/fa';
 import { GrDocument } from 'react-icons/gr';
 import { TbReceiptTax } from 'react-icons/tb';
@@ -262,13 +263,6 @@ const Sidebar = () => {
           icon={GoQuestion}
           title="Support Ticket"
         />
-        {/* <NavItem
-          navSize={navSize}
-          href="/profile"
-          isActive={isActive('/profile')}
-          icon={FiUser}
-          title="Profile"
-        /> */}
       </Flex>
       <Button
         display={{ base: 'block', md: 'none' }}
@@ -285,38 +279,23 @@ const Sidebar = () => {
       >
         {' '}
       </Button>
-      {/* <Button
-        alignSelf="flex-start"
-        as="reactrouterlink"
-        display={{ base: 'none', md: 'block' }}
-        fontFamily="noto"
-        fontSize="sm"
-        p
-        leftIcon={<ArrowBackIcon />}
-        colorScheme="white"
-        variant="link"
-        iscentered="true"
-        onClick={handleLogout}
-      >
-        Logout
-
-      </Button> */}
-      <Divider display={navSize === 'small' ? 'none' : 'flex'} />
+      <Divider my={2} display={navSize === 'small' ? 'none' : 'flex'} />
       <Flex
-        // p="5%"
+        px={2}
+        my={2}
+        pb="15%"
+        alignSelf="center"
+        justifySelf="center"
+        bgColor="rgba(255, 255, 255, 0.1)"
+        color="black"
+        borderRadius={10}
         flexDir="column"
-        w="100%"
+        w="90%"
         alignItems={navSize === 'small' ? 'center' : 'flex-start'}
         mb={4}
       >
         {user && (
-          <Flex
-            mt={4}
-            alignItems="center"
-            as={reactrouterlink}
-            to="/profile"
-            _hover={{ textDecoration: 'none' }}
-          >
+          <Flex mt={4} alignItems="center" _hover={{ textDecoration: 'none' }}>
             {user.id === 3 ? (
               <Image
                 borderRadius="full"
@@ -335,20 +314,54 @@ const Sidebar = () => {
               ml={4}
               display={navSize === 'small' ? 'none' : 'flex'}
             >
-              <Heading textTransform="capitalize" as="h3" size="sm" mb={0}>
+              <Heading textTransform="capitalize" as="h5" size="xs" mb={0}>
                 {user.fullname}
               </Heading>
               <Text
-                color="gray.500"
+                color="gray.700"
                 fontFamily="noto"
                 fontWeight="normal"
-                fontSize="sm"
+                fontSize="xs"
               >
-                User
+                ID: {user.account_number}
               </Text>
             </Flex>
           </Flex>
         )}
+        <Flex
+          alignSelf="center"
+          fontFamily="new"
+          width="100%"
+          flexDir="column"
+          alignItems="center"
+          justifyContent="center"
+          pt={6}
+          gap={2}
+        >
+          <Button
+            variant="solid"
+            as={reactrouterlink}
+            to="/profile"
+            colorScheme="green"
+            size="xs"
+            fontSize="xs"
+            leftIcon={<FiUser />}
+            w="100%"
+          >
+            Profile
+          </Button>
+          <Button
+            display={{ base: 'none', md: 'flex' }}
+            variant="outline"
+            colorScheme="red"
+            fontSize="xs"
+            size="xs"
+            w="100%"
+            onClick={handleLogout}
+          >
+            <RiArrowLeftLine /> Logout
+          </Button>
+        </Flex>
       </Flex>
     </Flex>
   );
