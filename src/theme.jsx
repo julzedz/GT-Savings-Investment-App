@@ -107,14 +107,17 @@ const zIndices = {
 };
 
 const colors = {
-  applegreen: '#97A722',
-  black: '#000',
-  white: '#fff',
-  cerulean: '#027F99',
-  navyblue: '#1F5283',
-  persianred: '#BB4430',
-  gunmetal: '#1F2829',
-  transparent: 'transparent',
+  applegreen: "#97A722",
+  black: "#000",
+  white: "#fff",
+  cerulean: "#027F99",
+  navyblue: "#1F5283",
+  persianred: "#BB4430",
+  gunmetal: "#1F2829",
+  transparent: "transparent",
+  lightgreen: "#9EE37D",
+  tiffanyblue: "#AAEFDF",
+  coolorbeige: "#F5F7DC",
 };
 
 const theme = extendTheme({
