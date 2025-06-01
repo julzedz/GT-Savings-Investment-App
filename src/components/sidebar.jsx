@@ -279,7 +279,11 @@ const Sidebar = () => {
       >
         {' '}
       </Button>
+<<<<<<< HEAD
       <Divider my={2} display={navSize === 'small' ? 'none' : 'flex'} />
+=======
+      <Divider my={4} display={navSize === 'small' ? 'none' : 'flex'} />
+>>>>>>> e6a8d43b0539a1ce7b3d0b61072228ead78578b8
       <Flex
         px={2}
         my={2}
