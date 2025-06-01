@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Text,
@@ -15,38 +15,115 @@ import {
   Link,
   Flex,
   Img,
-} from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+  Skeleton,
+  SkeletonText,
+} from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   ArrowDownIcon,
   ArrowForwardIcon,
   CheckCircleIcon,
-} from "@chakra-ui/icons";
-import coverImage from "../assets/skyscraper2.jpg";
-import bgsvg from "../assets/ColoredShapes.svg";
-import finegal from "../assets/blondesmilephone.jpg";
-import banker from "../assets/banker.jpg";
-import elder from "../assets/elder-couple1.jpg";
-import greycircles from "../assets/Mass Circles.svg";
-import meeting from "../assets/meeting.jpg";
-import building1 from "../assets/building1.jpg";
-import streetfast from "../assets/street-fast-transformed.jpeg";
+} from '@chakra-ui/icons';
+import coverImage from '../assets/skyscraper2.jpg';
+import bgsvg from '../assets/ColoredShapes.svg';
+import finegal from '../assets/blondesmilephone.jpg';
+import banker from '../assets/banker.jpg';
+import elder from '../assets/elder-couple1.jpg';
+import greycircles from '../assets/Mass Circles.svg';
+import meeting from '../assets/meeting.jpg';
+import building1 from '../assets/building1.jpg';
+import streetfast from '../assets/street-fast-transformed.jpeg';
 
 const Home = () => {
-  console.log("Home component rendered");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial page load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <>
+        <Box
+          position="relative"
+          mt={{ base: 13, lg: 0 }}
+          height={{ base: 'auto', lg: '3xl' }}
+        >
+          <Skeleton height={{ base: '2xl', lg: '3xl' }} width="100%" />
+        </Box>
+        <Box
+          bgImage={bgsvg}
+          w="100%"
+          height="fit-content"
+          fontFamily="Space Grotesk"
+        >
+          <Grid
+            h="100%"
+            w="100%"
+            p={{ base: 4, sm: 8, lg: 12 }}
+            templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
+            templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
+            gap={6}
+          >
+            <GridItem colSpan={2}>
+              <Skeleton height="300px" borderRadius={5} mb={3} />
+              <Skeleton height="100px" />
+            </GridItem>
+            <GridItem colSpan={2}>
+              <Skeleton height="300px" borderRadius={5} mb={3} />
+              <Skeleton height="100px" />
+            </GridItem>
+            <GridItem colSpan={{ base: '2', md: '4' }}>
+              <Skeleton height="400px" borderRadius="xl" />
+            </GridItem>
+          </Grid>
+        </Box>
+        <Box bgImage={greycircles} fontSize="18px" fontFamily="newer">
+          <Flex
+            flexDirection={{ base: 'column', xl: 'row' }}
+            width="100%"
+            p={8}
+            gap={8}
+          >
+            <Skeleton
+              width={{ base: '100%', slg: '60%', xl: '50%' }}
+              height={{ base: '300px', lg: '400px' }}
+            />
+            <Box width="50%">
+              <Skeleton height="20px" mb={4} />
+              <Skeleton height="40px" mb={8} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+              <Skeleton height="20px" mb={2} />
+            </Box>
+          </Flex>
+        </Box>
+      </>
+    );
+  }
+
   const listItems = [
-    { text: "Open Account", link: "/signup", as: RouterLink },
-    { text: "Savings", link: "/dashboard", as: RouterLink },
-    { text: "Investment", link: "/investment", as: RouterLink },
-    { text: "Mortgages", link: "/mortgages" },
-    { text: "Loans", link: "/investment" },
+    { text: 'Open Account', link: '/signup', as: RouterLink },
+    { text: 'Savings', link: '/dashboard', as: RouterLink },
+    { text: 'Investment', link: '/investment', as: RouterLink },
+    { text: 'Mortgages', link: '/mortgages' },
+    { text: 'Loans', link: '/investment' },
   ];
   return (
     <>
       <Box
         position="relative"
         mt={{ base: 13, lg: 0 }}
-        height={{ base: "auto", lg: "3xl" }}
+        height={{ base: 'auto', lg: '3xl' }}
       >
         <Box
           position="absolute"
@@ -59,24 +136,24 @@ const Home = () => {
           src={coverImage}
           alt=""
           width="100%"
-          height={{ base: "2xl", lg: "3xl" }}
+          height={{ base: '2xl', lg: '3xl' }}
         />
         <Box
           m={3}
           p={3}
           textColor="white"
           pos="absolute"
-          top={{ base: "15", lg: "28" }}
-          left={{ base: "auto", lg: "6" }}
+          top={{ base: '15', lg: '28' }}
+          left={{ base: 'auto', lg: '6' }}
         >
           <Heading
             m={3}
             mt={{ base: 12, sm: 3 }}
             p={4}
-            textAlign={{ base: "center", lg: "left" }}
-            fontSize={{ base: "5xl", lg: "7xl" }}
-            fontWeight={{ base: "bold", lg: "black" }}
-            width={{ base: "100%", lg: "80%" }}
+            textAlign={{ base: 'center', lg: 'left' }}
+            fontSize={{ base: '5xl', lg: '7xl' }}
+            fontWeight={{ base: 'bold', lg: 'black' }}
+            width={{ base: '100%', lg: '80%' }}
           >
             Build Wealth On Your Terms
           </Heading>
@@ -84,9 +161,9 @@ const Home = () => {
             m={3}
             p={4}
             mb={{ base: 39, sm: 44 }}
-            textAlign={{ base: "center", lg: "left" }}
-            fontSize={{ base: "2xl", lg: "3xl" }}
-            fontWeight={{ base: "bold", lg: "black" }}
+            textAlign={{ base: 'center', lg: 'left' }}
+            fontSize={{ base: '2xl', lg: '3xl' }}
+            fontWeight={{ base: 'bold', lg: 'black' }}
             letterSpacing="wide"
           >
             We are committed to helping you set and clarify your financial
@@ -94,16 +171,16 @@ const Home = () => {
           </Text>
           <Link
             href="#signupSection"
-            _hover={{ textDecoration: "none", color: "applegreen" }}
+            _hover={{ textDecoration: 'none', color: 'applegreen' }}
           >
             <Flex
               m={3}
               p={3}
               textColor="white"
               transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-              justifyContent={{ base: "center", lg: "left" }}
+              justifyContent={{ base: 'center', lg: 'left' }}
               alignItems="center"
-              width={{ base: "100%", lg: "auto" }}
+              width={{ base: '100%', lg: 'auto' }}
             >
               <Button
                 mx={2}
@@ -112,19 +189,19 @@ const Home = () => {
                 borderRadius="50%"
                 height="60px"
                 width="60px"
-                _hover={{ bg: "applegreen" }}
+                _hover={{ bg: 'applegreen' }}
               >
                 <ArrowDownIcon
                   boxSize={6}
                   color="white"
-                  _hover={{ color: "gunmetal" }}
+                  _hover={{ color: 'gunmetal' }}
                 />
               </Button>
               <Text
-                mx={{ base: "1", sm: "2" }}
+                mx={{ base: '1', sm: '2' }}
                 my={3}
                 fontFamily="Space Grotesk"
-                fontSize={{ base: "14px", sm: "18px" }}
+                fontSize={{ base: '14px', sm: '18px' }}
               >
                 Let&apos;s Get Started
               </Text>
@@ -144,8 +221,8 @@ const Home = () => {
           h="100%"
           w="100%"
           p={{ base: 4, sm: 8, lg: 12 }}
-          templateRows={{ base: "auto", lg: "repeat(2, 1fr)" }}
-          templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
+          templateRows={{ base: 'auto', lg: 'repeat(2, 1fr)' }}
+          templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
           gap={6}
         >
           <GridItem
@@ -159,8 +236,8 @@ const Home = () => {
             <Img
               src={elder}
               width="100%"
-              height={{ base: "auto", md: "calc(45vw * 2/3)" }}
-              m={{ base: "0 auto", md: "3 3", lg: "" }}
+              height={{ base: 'auto', md: 'calc(45vw * 2/3)' }}
+              m={{ base: '0 auto', md: '3 3', lg: '' }}
               mb={3}
               borderRadius={5}
             />
@@ -181,7 +258,7 @@ const Home = () => {
                 width="100%"
                 color="white"
                 p={3}
-                _hover={{ bg: "applegreen", color: "black" }}
+                _hover={{ bg: 'applegreen', color: 'black' }}
               >
                 OPEN AN ACCOUNT
               </Button>
@@ -191,8 +268,8 @@ const Home = () => {
             <Img
               src={banker}
               width="100%"
-              height={{ base: "auto", md: "calc(45vw * 2/3)" }}
-              m={{ base: "0 auto", md: "3 3", lg: "" }}
+              height={{ base: 'auto', md: 'calc(45vw * 2/3)' }}
+              m={{ base: '0 auto', md: '3 3', lg: '' }}
               mb={3}
               borderRadius={5}
             />
@@ -213,35 +290,35 @@ const Home = () => {
                 width="100%"
                 color="white"
                 p={3}
-                _hover={{ bg: "applegreen", color: "black" }}
+                _hover={{ bg: 'applegreen', color: 'black' }}
               >
                 VIEW INVESTMENT OPTIONS
               </Button>
             </Box>
           </GridItem>
           <GridItem
-            colSpan={{ base: "2", md: "4" }}
+            colSpan={{ base: '2', md: '4' }}
             bg="navyblue"
             borderRadius="xl"
-            padding={{ base: "8", md: "", slg: "0" }}
+            padding={{ base: '8', md: '', slg: '0' }}
             h="fit-content"
             color="white"
           >
             <Flex w="100%" justifyContent="space-between">
               <Box
                 p={{ base: 3, lg: 6 }}
-                flexBasis={{ base: "auto", slg: "49%" }}
+                flexBasis={{ base: 'auto', slg: '49%' }}
               >
                 <Box
-                  m={{ base: "0 auto", slg: "0" }}
-                  textAlign={{ base: "center", slg: "left" }}
+                  m={{ base: '0 auto', slg: '0' }}
+                  textAlign={{ base: 'center', slg: 'left' }}
                 >
                   <Text
-                    fontSize={{ base: "25px", slg: "28px", xl: "4xl" }}
+                    fontSize={{ base: '25px', slg: '28px', xl: '4xl' }}
                     fontWeight="800"
                     fontFamily="newer"
                     textTransform="uppercase"
-                    textAlign={{ slg: "center" }}
+                    textAlign={{ slg: 'center' }}
                     mb={2}
                   >
                     We Make Banking Easy!
@@ -251,9 +328,9 @@ const Home = () => {
                     width={44}
                     height={44}
                     borderRadius="50%"
-                    m={{ base: "0 auto", md: "3 3", lg: "" }}
+                    m={{ base: '0 auto', md: '3 3', lg: '' }}
                     mb={3}
-                    display={{ base: "", slg: "none" }}
+                    display={{ base: '', slg: 'none' }}
                   />
                   <Text
                     fontSize="18px"
@@ -268,28 +345,28 @@ const Home = () => {
                 <List
                   spacing={8}
                   p="0"
-                  m={{ base: "", slg: "" }}
+                  m={{ base: '', slg: '' }}
                   fontFamily="Space Grotesk"
-                  textAlign={{ base: "center", slg: "left" }}
+                  textAlign={{ base: 'center', slg: 'left' }}
                   fontWeight="bold"
                 >
                   {listItems.map((item) => (
                     <ListItem
                       key={item.text}
                       _hover={{
-                        transform: { base: "none", slg: "translateX(10px)" },
-                        transition: { base: "none", slg: "transform 0.2s" },
+                        transform: { base: 'none', slg: 'translateX(10px)' },
+                        transition: { base: 'none', slg: 'transform 0.2s' },
                       }}
-                      w={{ base: "auto", slg: "fit-content" }}
+                      w={{ base: 'auto', slg: 'fit-content' }}
                     >
                       <Link
                         as={item.as}
-                        _hover={{ textDecoration: "none" }}
+                        _hover={{ textDecoration: 'none' }}
                         to={item.link}
                       >
                         <ArrowForwardIcon
                           mx={4}
-                          display={{ base: "none", slg: "inline" }}
+                          display={{ base: 'none', slg: 'inline' }}
                         />
                         {item.text}
                       </Link>
@@ -303,14 +380,14 @@ const Home = () => {
                 objectFit="cover"
                 borderRadius="0 12px 12px 0"
                 m={{
-                  base: "0 auto",
-                  md: "3 3",
-                  lg: "",
-                  slg: "0",
+                  base: '0 auto',
+                  md: '3 3',
+                  lg: '',
+                  slg: '0',
                 }}
                 p={0}
-                mb={{ base: "3", slg: "0" }}
-                display={{ base: "none", slg: "block" }}
+                mb={{ base: '3', slg: '0' }}
+                display={{ base: 'none', slg: 'block' }}
               />
             </Flex>
           </GridItem>
@@ -318,7 +395,7 @@ const Home = () => {
       </Box>
       <Box bgImage={greycircles} fontSize="18px" fontFamily="newer">
         <Flex
-          flexDirection={{ base: "column", xl: "row" }}
+          flexDirection={{ base: 'column', xl: 'row' }}
           width="100%"
           p={8}
           gap={8}
@@ -326,11 +403,11 @@ const Home = () => {
           <Img
             src={meeting}
             alt=""
-            width={{ base: "100%", slg: "60%", xl: "50%" }}
-            height={{ base: "auto" }}
-            m={{ base: "auto", md: "3 3", lg: "" }}
+            width={{ base: '100%', slg: '60%', xl: '50%' }}
+            height={{ base: 'auto' }}
+            m={{ base: 'auto', md: '3 3', lg: '' }}
           />
-          <Box textAlign={{ base: "center", slg: "left" }}>
+          <Box textAlign={{ base: 'center', slg: 'left' }}>
             <Text
               fontSize="sm"
               fontFamily="lit"
@@ -346,7 +423,7 @@ const Home = () => {
               fontSize="3xl"
               fontFamily="Fira Sans"
               fontWeight="normal"
-              textAlign={{ base: "center", xl: "left" }}
+              textAlign={{ base: 'center', xl: 'left' }}
             >
               GT Savings Bank is a modern, tech-driven savings and investment
               banking platform.
@@ -369,8 +446,8 @@ const Home = () => {
                 as={RouterLink}
                 to="https://www.finra.org/"
               >
-                {" "}
-                FINRA{" "}
+                {' '}
+                FINRA{' '}
               </Box>
               and
               <Box
@@ -379,8 +456,8 @@ const Home = () => {
                 as={RouterLink}
                 to="https://www.sipc.org/"
               >
-                {" "}
-                SIPC{" "}
+                {' '}
+                SIPC{' '}
               </Box>
               .
             </Text>
@@ -409,13 +486,13 @@ const Home = () => {
                 colorScheme="cerulean"
                 height="50px"
                 width="50px"
-                _hover={{ bg: "applegreen" }}
+                _hover={{ bg: 'applegreen' }}
               >
                 <ArrowForwardIcon
                   color="gunmetal"
                   boxSize={6}
                   borderColor="gunmetal"
-                  _hover={{ color: "gunmetal" }}
+                  _hover={{ color: 'gunmetal' }}
                 />
               </Button>
             </Text>
@@ -439,12 +516,12 @@ const Home = () => {
           fontSize="2xl"
           fontFamily="Fira Sans"
           fontWeight="normal"
-          textAlign={{ base: "center" }}
+          textAlign={{ base: 'center' }}
         >
           Banking Services
         </Text>
         <Flex
-          flexDirection={{ base: "column", slg: "row" }}
+          flexDirection={{ base: 'column', slg: 'row' }}
           width="100%"
           p={8}
           gap={8}
@@ -453,19 +530,19 @@ const Home = () => {
             src={building1}
             alt=""
             width={{
-              base: "80%",
-              md: "60%",
-              slg: "45%",
-              xl: "35%",
+              base: '80%',
+              md: '60%',
+              slg: '45%',
+              xl: '35%',
             }}
             alignSelf="center"
-            height={{ base: "auto", lg: "calc(46vw * 2/3)" }}
-            objectFit={{ base: "cover", lg: "contain" }}
-            m={{ base: "0 auto", md: "", lg: "" }}
+            height={{ base: 'auto', lg: 'calc(46vw * 2/3)' }}
+            objectFit={{ base: 'cover', lg: 'contain' }}
+            m={{ base: '0 auto', md: '', lg: '' }}
           />
           <Box
-            textAlign={{ base: "center", slg: "left" }}
-            flexBasis={{ base: "auto", slg: "48%" }}
+            textAlign={{ base: 'center', slg: 'left' }}
+            flexBasis={{ base: 'auto', slg: '48%' }}
             alignSelf="center"
           >
             <Text letterSpacing="wide">
@@ -500,13 +577,13 @@ const Home = () => {
                 colorScheme="cerulean"
                 height="50px"
                 width="50px"
-                _hover={{ bg: "applegreen" }}
+                _hover={{ bg: 'applegreen' }}
               >
                 <ArrowForwardIcon
                   color="gunmetal"
                   boxSize={6}
                   borderColor="gunmetal"
-                  _hover={{ color: "gunmetal" }}
+                  _hover={{ color: 'gunmetal' }}
                 />
               </Button>
             </Text>
@@ -530,12 +607,12 @@ const Home = () => {
           fontSize="2xl"
           fontFamily="Fira Sans"
           fontWeight="normal"
-          textAlign={{ base: "center" }}
+          textAlign={{ base: 'center' }}
         >
           Investment Services
         </Text>
         <Flex
-          flexDirection={{ base: "column", slg: "row" }}
+          flexDirection={{ base: 'column', slg: 'row' }}
           width="100%"
           p={8}
           gap={8}
@@ -544,19 +621,19 @@ const Home = () => {
             src={streetfast}
             alt=""
             width={{
-              base: "80%",
-              md: "60%",
-              slg: "45%",
-              xl: "35%",
+              base: '80%',
+              md: '60%',
+              slg: '45%',
+              xl: '35%',
             }}
             alignSelf="center"
-            height={{ base: "auto", lg: "calc(46vw * 2/3)" }}
-            objectFit={{ base: "cover", lg: "contain" }}
-            m={{ base: "0 auto", md: "", lg: "" }}
+            height={{ base: 'auto', lg: 'calc(46vw * 2/3)' }}
+            objectFit={{ base: 'cover', lg: 'contain' }}
+            m={{ base: '0 auto', md: '', lg: '' }}
           />
           <Box
-            textAlign={{ base: "center", slg: "left" }}
-            flexBasis={{ base: "auto", slg: "48%" }}
+            textAlign={{ base: 'center', slg: 'left' }}
+            flexBasis={{ base: 'auto', slg: '48%' }}
             alignSelf="center"
           >
             <Text letterSpacing="wide">
@@ -600,13 +677,13 @@ const Home = () => {
                 colorScheme="cerulean"
                 height="50px"
                 width="50px"
-                _hover={{ bg: "applegreen" }}
+                _hover={{ bg: 'applegreen' }}
               >
                 <ArrowForwardIcon
                   color="gunmetal"
                   boxSize={6}
                   borderColor="gunmetal"
-                  _hover={{ color: "gunmetal" }}
+                  _hover={{ color: 'gunmetal' }}
                 />
               </Button>
             </Text>
