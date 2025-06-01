@@ -2,16 +2,51 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import {
-  Flex, Text, Divider, Tooltip, Button, Icon, Image, Table, Thead, Tbody, Tr, Th, Td,
-  Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,
-  FormControl, FormLabel, NumberInput, NumberDecrementStepper, NumberInputStepper,
-  NumberInputField, NumberIncrementStepper, FormHelperText, useDisclosure,
+  Flex,
+  HStack,
+  Text,
+  Divider,
+  Tooltip,
+  Button,
+  Icon,
+  Image,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  NumberInput,
+  NumberDecrementStepper,
+  NumberInputStepper,
+  NumberInputField,
+  NumberIncrementStepper,
+  FormHelperText,
+  useDisclosure,
+  Avatar,
+  Box,
 } from '@chakra-ui/react';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
-import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
+  ViewIcon,
+  ViewOffIcon,
+  ChevronRightIcon,
+  CalendarIcon,
+} from '@chakra-ui/icons';
+import {
+  RiNotification2Fill,
   // RiDownload2Line,
   RiUpload2Line,
+  RiWallet3Line,
 } from 'react-icons/ri';
 // eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import Cookies from 'js-cookie';
@@ -21,6 +56,14 @@ import earn from '../assets/earn.svg';
 import margin from '../assets/margin.svg';
 import api from '../api';
 import usePrice from './usePrice';
+import CurrentDateDisplay from './CurrentDateDisplay';
+import { FaArrowTrendDown, FaArrowTrendUp, FaShield } from 'react-icons/fa6';
+import { BiTachometer } from 'react-icons/bi';
+import { MdOutlineShield } from 'react-icons/md';
+import LiveClock from './LiveClock';
+import { FaBuilding } from 'react-icons/fa';
+import { use } from 'react';
+import EmptyState from './EmptyState';
 
 const isTokenExpired = (token) => {
   try {
@@ -46,6 +89,16 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
+  const handleGoProfile = () => {
+    navigate('/profile');
+  };
+  const handleSend = () => {
+    navigate('/withdrawal-savings');
+  };
+  const handleDeposit = () => {
+    navigate('/deposit');
+  };
+
   const fetchUser = async () => {
     try {
       const response = await api.get('/users/me');
@@ -53,7 +106,7 @@ const Dashboard = () => {
     } catch (error) {
       console.error('Error fetching user:', error);
       return `$ ${0}`;
-    // Handle errors (e.g., redirect to login)
+      // Handle errors (e.g., redirect to login)
     }
   };
 
@@ -69,100 +122,300 @@ const Dashboard = () => {
     // setUser(JSON.parse(userDetails));
   }, []);
 
-  let balance = 0.00;
+  let balance = 0.0;
   if (user && user.account) {
     balance = user.account.savings_account;
   }
   const [isVisible, setIsVisible] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
-
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
   const headers = [
     {
-      text: 'Transactions', justify: 'flex-start', textAlign: 'left', width: '40%',
+      text: 'Transactions',
+      justify: 'flex-start',
+      textAlign: 'left',
+      width: '40%',
     },
     { text: 'Amount', justify: 'center', textAlign: 'right' },
     { text: 'Date', justify: 'center', textAlign: 'right' },
     {
-      text: 'Status', justify: 'center', textAlign: 'right', width: '22%',
+      text: 'Status',
+      justify: 'center',
+      textAlign: 'right',
+      width: '22%',
     },
   ];
 
-  const transactions = user && user.id === 3 ? [
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-11 10:16:20', status: 'Completed',
-    },
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-09 19:06:46', status: 'Completed',
-    },
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-07 21:11:54', status: 'Completed',
-    },
-    {
-      icon: RiUpload2Line, action: 'Withdraw USDT', amount: '-1000.00', date: '2024-03-06 21:37:31', status: 'Completed',
-    },
-  ] : [];
+  const transactions =
+    user && user.id === 3
+      ? [
+          {
+            icon: RiUpload2Line,
+            action: 'Withdraw USDT',
+            amount: '-1000.00',
+            date: '2024-03-11 10:16:20',
+            status: 'Completed',
+          },
+          {
+            icon: RiUpload2Line,
+            action: 'Withdraw USDT',
+            amount: '-1000.00',
+            date: '2024-03-09 19:06:46',
+            status: 'Completed',
+          },
+          {
+            icon: RiUpload2Line,
+            action: 'Withdraw USDT',
+            amount: '-1000.00',
+            date: '2024-03-07 21:11:54',
+            status: 'Completed',
+          },
+          {
+            icon: RiUpload2Line,
+            action: 'Withdraw USDT',
+            amount: '-1000.00',
+            date: '2024-03-06 21:37:31',
+            status: 'Completed',
+          },
+        ]
+      : [];
 
   return (
     <>
-      <Flex
-      // bgColor="gunmetal"
-      // color="white"
-        color="black"
-        w="100%"
-      >
+      <Flex color="black" w="100%">
         <Sidebar />
         <Flex
-          ml={4}
           flexDir="column"
           minHeight="3xl"
-          p={5}
+          // p={5}
           flex="1"
-          marginLeft={{ base: 20, md: '21rem' }}
+          marginLeft={{ base: 20, md: '11.01rem' }}
           overflowY="scroll"
           fontFamily="noto"
+          bgColor="gray.200"
         >
-          <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
-            {user && (
-              <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }} textTransform="capitalize">{`Welcome ${user.first_name} 👋`}</Text>
-            )}
-            <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
-            <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
-              <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
-                <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                {user && (
-                  <Text m={0}>{user.account_number}</Text>
-                )}
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            borderBottom="1px solid gray.500"
+            bgColor="white"
+            fontSize="xs"
+            px={6}
+            py={3}
+          >
+            <Flex
+              alignItems="center"
+              gap={2}
+              color="gray.500"
+              fontWeight="medium"
+            >
+              <CalendarIcon />
+              <CurrentDateDisplay />
+            </Flex>
+            <Flex gap={4} alignItems="center">
+              <Flex
+                bgColor="tiffanyblue"
+                alignItems="center"
+                py={0.5}
+                px={2}
+                gap={2}
+                borderRadius="lg"
+                fontWeight="medium"
+              >
+                <RiWallet3Line />
+                <Text>${balance}</Text>
               </Flex>
-              <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
-                <Text color="#929aa5" m={0} mb={1}>User Type</Text>
-                <Text m={0}>Personal</Text>
-              </Flex>
+              <RiNotification2Fill />
+              <Avatar size="xs" />
             </Flex>
           </Flex>
           <Flex
+            m={4}
+            gap={4}
+            flexDir={{ base: 'column', lg: 'row' }}
+            alignItems="center"
+          >
+            <Flex
+              w="25%"
+              border="1px solid blue.700"
+              bgGradient="linear(to-r, blue.200, blue.100)"
+              px={4}
+              py={4}
+              borderRadius="xl"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Flex flexDir="column">
+                <Text fontSize="0.65rem" color="gray.600" fontWeight="medium">
+                  Current Balance
+                </Text>
+                <Text fontSize="md" fontWeight="bold">
+                  ${balance}
+                </Text>
+              </Flex>
+              <Box bgColor="blue.500" p={3} borderRadius={'full'}>
+                <RiWallet3Line color="blue" />
+              </Box>
+            </Flex>
+            <Flex
+              w="25%"
+              border="1px solid blue.700"
+              bgGradient="linear(to-r, green.50, white)"
+              px={4}
+              py={4}
+              borderRadius="xl"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Flex flexDir="column">
+                <Text fontSize="0.65rem" color="gray.500" fontWeight="medium">
+                  Monthly Income
+                </Text>
+                <Text fontSize="md" color="green" fontWeight="bold">
+                  ${balance}
+                </Text>
+              </Flex>
+              <Box bgColor="green.200" p={3} borderRadius={'full'}>
+                <FaArrowTrendUp color="green" />
+              </Box>
+            </Flex>
+            <Flex
+              w="25%"
+              border="1px solid red.600"
+              bgGradient="linear(to-r, red.50, white)"
+              px={4}
+              py={4}
+              borderRadius="xl"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Flex flexDir="column">
+                <Text fontSize="0.65rem" color="gray.500" fontWeight="medium">
+                  Monthly Outgoing
+                </Text>
+                <Text fontSize="md" color="red.500" fontWeight="bold">
+                  ${balance}
+                </Text>
+              </Flex>
+              <Box
+                bgColor="red.200"
+                color="red.400"
+                p={3}
+                borderRadius={'full'}
+              >
+                <FaArrowTrendDown />
+              </Box>
+            </Flex>
+            <Flex
+              w="25%"
+              border="1px solid blue.700"
+              bgGradient="linear(to-r, purple.50, white)"
+              px={4}
+              py={4}
+              borderRadius="xl"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Flex flexDir="column">
+                <Text fontSize="0.65rem" color="gray.600" fontWeight="medium">
+                  Transaction Limit
+                </Text>
+                <Text fontSize="md" color="purple.600" fontWeight="bold">
+                  $500,000.00
+                </Text>
+              </Flex>
+              <Box
+                bgColor="purple.200"
+                color="purple.500"
+                p={3}
+                borderRadius={'full'}
+              >
+                <BiTachometer />
+              </Box>
+            </Flex>
+            {/* {user && (
+              <Text
+                m={0}
+                alignSelf="flex-start"
+                fontSize="2xl"
+                fontWeight="medium"
+                pr={8}
+                pb={{ base: 4, lg: 0 }}
+                textTransform="capitalize"
+              >{`Welcome ${user.first_name} 👋`}</Text>
+            )}
+            <Divider
+              display={{ base: 'none', lg: 'inline' }}
+              w="1px"
+              color="#eaecef"
+              orientation="vertical"
+            /> */}
+            {/* <Flex
+              w={{ base: '100%', lg: 'auto' }}
+              flexDir={{ base: 'column', lg: 'row' }}
+              fontSize="sm"
+              lineHeight="shorter"
+              alignItems="center"
+              px={{ base: 0, lg: 8 }}
+            >
+              <Flex
+                w={{ base: 'inherit', lg: 'auto' }}
+                alignItems="center"
+                justifyContent={{ base: 'space-between', lg: 'center' }}
+                m={0}
+                mr={{ base: 0, lg: 12 }}
+                flexDir={{ base: 'row', lg: 'column' }}
+              >
+                <Text color="#929aa5" m={0} mb={1}>
+                  User ID
+                </Text>
+                {user && <Text m={0}>{user.account_number}</Text>}
+              </Flex>
+            </Flex> */}
+          </Flex>
+          <Flex
             flexDir="column"
-            maxWidth="60rem"
+            maxWidth="65%"
             borderRadius="2xl"
             borderWidth={{ base: 'none', slg: '1px' }}
             borderColor="#eaecef"
             p={6}
-            mb={6}
+            mb={4}
+            ml={4}
             bgColor="#f5f5f5"
           >
             <Flex justifyContent="space-between">
-              <Flex p={0} gap={1.5} alignItems="center" mb={0.5} justifyContent="space-evenly">
-                <Text m={0} fontSize="xl" fontWeight="semibold"> Estimated Balance</Text>
+              <Flex
+                p={0}
+                gap={1.5}
+                alignItems="center"
+                mb={0.5}
+                justifyContent="space-evenly"
+              >
+                <Text m={0} fontSize="xl" fontWeight="semibold">
+                  {' '}
+                  Estimated Balance
+                </Text>
                 {isVisible ? (
-                  <Tooltip label="Hide Balance" fontFamily="new" fontSize="xs" aria-label="A tooltip">
+                  <Tooltip
+                    label="Hide Balance"
+                    fontFamily="new"
+                    fontSize="xs"
+                    aria-label="A tooltip"
+                  >
                     <ViewIcon cursor="pointer" onClick={toggleVisibility} />
                   </Tooltip>
                 ) : (
-                  <Tooltip label="Show Balance" fontFamily="new" fontSize="xs" aria-label="A tooltip">
+                  <Tooltip
+                    label="Show Balance"
+                    fontFamily="new"
+                    fontSize="xs"
+                    aria-label="A tooltip"
+                  >
                     <ViewOffIcon cursor="pointer" onClick={toggleVisibility} />
                   </Tooltip>
                 )}
@@ -224,7 +477,9 @@ const Dashboard = () => {
                         <NumberDecrementStepper />
                       </NumberInputStepper>
                     </NumberInput>
-                    <FormHelperText fontSize="xs">Transfer amount to your Investment Account</FormHelperText>
+                    <FormHelperText fontSize="xs">
+                      Transfer amount to your Investment Account
+                    </FormHelperText>
                   </FormControl>
                 </ModalBody>
                 <ModalFooter>
@@ -235,22 +490,34 @@ const Dashboard = () => {
               </ModalContent>
             </Modal>
             <Flex width="fit-content">
-              <Text fontSize={{ base: '2xl', lg: '2rem' }} fontWeight="semibold" m={0}>{isVisible ? `$${balance}` : '****'}</Text>
-              <Text fontSize="sm" fontWeight="semibold" lineHeight="short" m={0} ml={2} alignSelf="flex-end" pb={2}>USD</Text>
-            </Flex>
-            <Flex flexDir="column" mt={3}>
-              <Text fontSize="sm" lineHeight="short" mb={3}>
-                {isVisible ? `≈ ${Number.isNaN(balance / price) ? (balance / 52000).toFixed(8) : (balance / price).toFixed(8)} ` : '****'}
-                BTC
+              <Text
+                fontSize={{ base: '2xl', lg: '2rem' }}
+                fontWeight="semibold"
+                m={0}
+              >
+                {isVisible ? `$${balance}` : '****'}
               </Text>
-              {/* <Text fontSize="sm" lineHeight="short" mb={3}>
-                Today&apos;s PnL
-                <Text display="inline" ml="3" color="green">
-                  {isVisible ? '+ $712.50(0.2%)' : '****'}
-                </Text>
-              </Text> */}
+              <Text
+                fontSize="sm"
+                fontWeight="semibold"
+                lineHeight="short"
+                m={0}
+                ml={2}
+                alignSelf="flex-end"
+                pb={2}
+              >
+                USD
+              </Text>
             </Flex>
-            <Flex justifyContent={{ base: 'space-between', lg: 'normal' }} p={0} m={0} mt={{ base: 4, lg: 0 }} gap={{ base: 0, lg: 3 }} display={{ base: 'flex', slg: 'none' }}>
+            <Flex flexDir="column" mt={3}></Flex>
+            <Flex
+              justifyContent={{ base: 'space-between', lg: 'normal' }}
+              p={0}
+              m={0}
+              mt={{ base: 4, lg: 0 }}
+              gap={{ base: 0, lg: 3 }}
+              display={{ base: 'flex', slg: 'none' }}
+            >
               <Button
                 as={reactrouterlink}
                 to="/deposit"
@@ -291,18 +558,153 @@ const Dashboard = () => {
                 Transfer
               </Button>
             </Flex>
+            <Flex
+              justifyContent="space-between"
+              bgColor="gray.100"
+              p={3}
+              borderRadius={3}
+            >
+              <Flex gap={4} alignItems="center">
+                <Flex>
+                  <Box bgColor="gray.300" p={2} borderRadius={'full'}>
+                    <MdOutlineShield />
+                  </Box>
+                </Flex>
+                <Flex flexDir="column">
+                  <Text fontSize="xs" fontWeight="medium">
+                    Your Account Number{' '}
+                  </Text>
+                  {user && (
+                    <Text fontWeight="bold" letterSpacing="2px">
+                      {user.account_number}
+                    </Text>
+                  )}
+                </Flex>
+              </Flex>
+              <Flex flexDir="column">
+                <Text fontWeight="bold" alignSelf="flex-end">
+                  <LiveClock />
+                </Text>
+                <Text fontSize="xs">
+                  <CurrentDateDisplay />
+                </Text>
+              </Flex>
+            </Flex>
           </Flex>
           <Flex
-            maxWidth="60rem"
-            p={0}
-            m={0}
-            mb={6}
-            alignItems="center"
-            justifyContent="space-between"
-            gap={{ base: '6', slg: 'none' }}
-            flexDir={{ base: 'column', slg: 'row' }}
+            maxWidth="65%"
+            p={6}
+            mb={4}
+            ml={4}
+            bgColor="#f5f5f5"
+            flexDir="column"
+            borderRadius="2xl"
           >
-            <Flex
+            <Box mb={4}>
+              <Text fontWeight="bold">What would you like to do today?</Text>
+              <Text fontSize="xs" color="gray.600">
+                Choose from our popular actions below
+              </Text>
+            </Box>
+            <HStack w="100%">
+              <Flex
+                as={Button}
+                // as={reactrouterlink}
+                px={12}
+                py={12}
+                colorScheme="gray"
+                flexDir="column"
+                alignItems="center"
+                borderRadius="xl"
+                onClick={handleGoProfile}
+              >
+                <Box
+                  bgColor="gray.300"
+                  color="gray.500"
+                  p={2}
+                  borderRadius={'full'}
+                  mb={3}
+                >
+                  <FaBuilding />
+                </Box>
+                <Text fontSize="xs" fontWeight="semibold">
+                  Account Info
+                </Text>
+              </Flex>
+              <Flex
+                as={Button}
+                // as={reactrouterlink}
+                px={12}
+                py={12}
+                colorScheme="gray"
+                flexDir="column"
+                alignItems="center"
+                borderRadius="xl"
+                onClick={handleGoProfile}
+              >
+                <Box
+                  bgColor="gray.300"
+                  color="gray.500"
+                  p={2}
+                  borderRadius={'full'}
+                  mb={3}
+                >
+                  <FaBuilding />
+                </Box>
+                <Text fontSize="xs" fontWeight="semibold">
+                  Account Info
+                </Text>
+              </Flex>
+              <Flex
+                as={Button}
+                // as={reactrouterlink}
+                px={12}
+                py={12}
+                colorScheme="gray"
+                flexDir="column"
+                alignItems="center"
+                borderRadius="xl"
+                onClick={handleGoProfile}
+              >
+                <Box
+                  bgColor="gray.300"
+                  color="gray.500"
+                  p={2}
+                  borderRadius={'full'}
+                  mb={3}
+                >
+                  <FaBuilding />
+                </Box>
+                <Text fontSize="xs" fontWeight="semibold">
+                  Account Info
+                </Text>
+              </Flex>
+              <Flex
+                as={Button}
+                // as={reactrouterlink}
+                px={12}
+                py={12}
+                colorScheme="gray"
+                flexDir="column"
+                alignItems="center"
+                borderRadius="xl"
+                onClick={handleGoProfile}
+              >
+                <Box
+                  bgColor="gray.300"
+                  color="gray.500"
+                  p={2}
+                  borderRadius={'full'}
+                  mb={3}
+                >
+                  <FaBuilding />
+                </Box>
+                <Text fontSize="xs" fontWeight="semibold">
+                  Account Info
+                </Text>
+              </Flex>
+            </HStack>
+            {/* <Flex
               as={reactrouterlink}
               to="/invest-deposit"
               borderWidth="1px"
@@ -319,12 +721,41 @@ const Dashboard = () => {
               bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>One-step investment solution, enjoy high returns.</Text>
-                <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
-                  ROI up to
-                  <Text m={0} display="inline" fontWeight="medium" color="green"> 40%</Text>
+                <Text
+                  m={0}
+                  fontSize={{ base: 'sm', sm: 'md' }}
+                  fontWeight="medium"
+                  lineHeight={6}
+                  mb={1}
+                >
+                  One-step investment solution, enjoy high returns.
                 </Text>
-                <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Simple Earn</Text>
+                <Text
+                  m={0}
+                  fontSize="sm"
+                  fontWeight="normal"
+                  lineHeight="shorter"
+                >
+                  ROI up to
+                  <Text
+                    m={0}
+                    display="inline"
+                    fontWeight="medium"
+                    color="green"
+                  >
+                    {' '}
+                    40%
+                  </Text>
+                </Text>
+                <Text
+                  color="#707a8a"
+                  m={0}
+                  mt={2}
+                  fontSize="sm"
+                  lineHeight="shorter"
+                >
+                  Simple Earn
+                </Text>
               </Flex>
               <Flex>
                 <Image src={earn} boxSize={{ base: 14, sm: 20 }} />
@@ -347,17 +778,41 @@ const Dashboard = () => {
               bgColor="#f5f5f5"
             >
               <Flex flexDir="column" w="80%">
-                <Text m={0} fontSize={{ base: 'sm', sm: 'md' }} fontWeight="medium" lineHeight={6} mb={1}>Choose from a broad range of investment options.</Text>
-                <Text m={0} fontSize="sm" fontWeight="normal" lineHeight="shorter">
-                  S&P 500
-                  <Text display="inline" fontWeight="medium" color="green"> + 48.40</Text>
+                <Text
+                  m={0}
+                  fontSize={{ base: 'sm', sm: 'md' }}
+                  fontWeight="medium"
+                  lineHeight={6}
+                  mb={1}
+                >
+                  Choose from a broad range of investment options.
                 </Text>
-                <Text color="#707a8a" m={0} mt={2} fontSize="sm" lineHeight="shorter">Securities</Text>
+                <Text
+                  m={0}
+                  fontSize="sm"
+                  fontWeight="normal"
+                  lineHeight="shorter"
+                >
+                  S&P 500
+                  <Text display="inline" fontWeight="medium" color="green">
+                    {' '}
+                    + 48.40
+                  </Text>
+                </Text>
+                <Text
+                  color="#707a8a"
+                  m={0}
+                  mt={2}
+                  fontSize="sm"
+                  lineHeight="shorter"
+                >
+                  Securities
+                </Text>
               </Flex>
               <Flex>
                 <Image src={margin} boxSize={{ base: 14, sm: 20 }} />
               </Flex>
-            </Flex>
+            </Flex> */}
           </Flex>
           <Flex
             flexDir="column"
@@ -369,9 +824,7 @@ const Dashboard = () => {
             mb={6}
             bgColor="#f5f5f5"
           >
-            <Flex
-              flexDir="column"
-            >
+            <Flex flexDir="column">
               <Flex
                 p={0}
                 m={0}
@@ -388,7 +841,7 @@ const Dashboard = () => {
                   to="/transaction"
                   colorScheme="none"
                   variant="ghost"
-                  rightIcon={(
+                  rightIcon={
                     <ChevronRightIcon
                       _hover={{ color: '#eaecef' }}
                       color="black"
@@ -398,7 +851,7 @@ const Dashboard = () => {
                       p={0}
                       m={-2}
                     />
-                )}
+                  }
                   fontSize="sm"
                   textAlign="center"
                   p={0}
@@ -408,45 +861,59 @@ const Dashboard = () => {
                 </Button>
               </Flex>
               <Flex overflowX={{ base: 'scroll' }}>
-                <Table
-                  w="100%"
-                  variant="unstyled"
-                  size={{ base: 'sm', xl: 'md' }}
-                >
-                  <Thead>
-                    <Tr>
-                      {headers.map((header) => (
-                        <Th
-                          key={header.id}
-                          justifySelf={header.justify}
-                          textAlign={header.textAlign}
-                          textTransform="capitalize"
-                          fontWeight="100"
-                          p={0}
-                          w={header.width}
+                {transactions.length > 0 ? (
+                  <Table
+                    w="100%"
+                    variant="unstyled"
+                    size={{ base: 'sm', xl: 'md' }}
+                  >
+                    <Thead>
+                      <Tr>
+                        {headers.map((header) => (
+                          <Th
+                            key={header.id}
+                            justifySelf={header.justify}
+                            textAlign={header.textAlign}
+                            textTransform="capitalize"
+                            fontWeight="100"
+                            p={0}
+                            w={header.width}
+                          >
+                            {header.text}
+                          </Th>
+                        ))}
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {transactions.map((transaction) => (
+                        <Tr
+                          key={transaction.id}
+                          _hover={{ bgColor: '#f0f1f1' }}
                         >
-                          {header.text}
-                        </Th>
-                      ))}
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {transactions.length > 0
-                      ? transactions.map((transaction) => (
-                        <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
                           <Td py={6} px={1}>
                             <Flex>
                               <Icon as={transaction.icon} boxSize={6} />
-                              <Text m={0} ml={4}>{transaction.action}</Text>
+                              <Text m={0} ml={4}>
+                                {transaction.action}
+                              </Text>
                             </Flex>
                           </Td>
-                          <Td py={6} px={0} textAlign="right">{transaction.amount}</Td>
-                          <Td py={6} px={0} textAlign="right">{transaction.date}</Td>
-                          <Td py={6} px={1} textAlign="right">{transaction.status}</Td>
+                          <Td py={6} px={0} textAlign="right">
+                            {transaction.amount}
+                          </Td>
+                          <Td py={6} px={0} textAlign="right">
+                            {transaction.date}
+                          </Td>
+                          <Td py={6} px={1} textAlign="right">
+                            {transaction.status}
+                          </Td>
                         </Tr>
-                      )) : <Text textAlign="center" p={6}> </Text>}
-                  </Tbody>
-                </Table>
+                      ))}
+                    </Tbody>
+                  </Table>
+                ) : (
+                  <EmptyState message="No recent transactions" />
+                )}
               </Flex>
             </Flex>
           </Flex>
