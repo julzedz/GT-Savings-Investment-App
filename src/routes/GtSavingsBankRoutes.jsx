@@ -1,6 +1,4 @@
-import {
-  Routes, Navigate, Route, useLocation,
-} from 'react-router';
+import { Routes, Navigate, Route, useLocation } from 'react-router';
 import Navbar from '../components/navbar';
 import Home from '../components/home';
 import Banking from '../components/banking';
@@ -22,6 +20,8 @@ import ContactForm from '../components/contactform';
 import InvestDeposit from '../components/invest-deposit';
 import InvAccForm from '../components/invest-acc-form';
 import ProtectedRoute from './ProtectedRoute';
+import OTPInput from '../components/OTPInput';
+import UserDetails from '../components/admin/UserDetails';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -72,6 +72,7 @@ const GtSavingsBankRoutes = () => {
               element={<ProtectedRoute element={<Insurance />} />}
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/verify-otp" element={<OTPInput />} />
             <Route
               path="/transaction"
               element={<ProtectedRoute element={<Transaction />} />}
@@ -100,6 +101,10 @@ const GtSavingsBankRoutes = () => {
               element={<ProtectedRoute element={<InvAccForm />} />}
             />
             <Route path="/edituser" element={<EditUser />} />
+            <Route
+              path="/user/:userId"
+              element={<ProtectedRoute element={<UserDetails />} />}
+            />
           </Routes>
         </div>
         {showFooter && <Footer />}
