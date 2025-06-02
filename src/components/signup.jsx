@@ -16,56 +16,64 @@ import {
   Button,
   Skeleton,
   SkeletonText,
+  Stack,
+  Container,
+  Text,
+  useToast,
+  Grid,
+  GridItem,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import AccountFooter from './accountfooter';
 import FormNavbar from './formnavbar';
 import building from '../assets/building2.jpg';
 import api from '../api';
-// import bgsvg from '../assets/ColoredShapes.svg';
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
-    .required('Provide a first name')
-    .min(3, 'Name must be at least 3 characters'),
+    .required('First name is required')
+    .min(2, 'First name must be at least 2 characters'),
   lastName: Yup.string()
-    .required('Provide a last name')
-    .min(3, 'Name must be at least 3 characters'),
-  dob: Yup.date().required('Provide date of birth'),
-  citizenship: Yup.string().required('Select a country of citizenship'),
+    .required('Last name is required')
+    .min(2, 'Last name must be at least 2 characters'),
+  dob: Yup.date()
+    .required('Date of birth is required')
+    .max(new Date(), 'Date of birth cannot be in the future'),
+  citizenship: Yup.string().required('Country of citizenship is required'),
   mobile: Yup.string()
     .matches(
       /^(\+\d{1,3}[- ]?)?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/,
-      'Mobile number must be valid'
+      'Please enter a valid phone number'
     )
-    .required('Provide a mobile number'),
+    .required('Phone number is required'),
   email: Yup.string()
-    .email('Invalid email address')
-    .required('Provide an email address'),
-  city: Yup.string().required('Provide a city'),
-  state: Yup.string().required('Provide a state'),
+    .email('Please enter a valid email address')
+    .required('Email is required'),
+  city: Yup.string().required('City is required'),
+  state: Yup.string().required('State is required'),
   password: Yup.string()
-    .required('Provide a password')
+    .required('Password is required')
     .matches(
       /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Password must contain at least 8 characters, one uppercase, one number and one special case character'
+      'Password must contain at least 8 characters, one uppercase, one number and one special character'
     ),
-  // confirmPassword: Yup
-  //   .string()
-  //   .required('Please confirm your password')
-  //   .when('password', {
-  //     is: (password) => (!!(password && password.length > 0)),
-  //     then: Yup.string().oneOf([Yup.ref('password')], "Password doesn't match"),
-  //   }),
+  confirmPassword: Yup.string()
+    .required('Please confirm your password')
+    .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [successMessage, setSuccessMessage] = useState(false);
+  const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
-    // Simulate initial page load
     const timer = setTimeout(() => {
       setIsPageLoading(false);
     }, 1000);
@@ -89,30 +97,37 @@ const Signup = () => {
         >
           <Skeleton height="80px" width="200px" m={3} p={4} />
         </Box>
-        <Flex minH="2xl" flexDir="column" bgColor="#f2f2f2" pb={40}>
-          <Flex mt={12} fontFamily="noto" justifyContent="center" w="100%">
-            <Box
-              bgColor="white"
-              p={8}
-              borderRadius="md"
-              width={{ base: '90%', md: '70%', lg: '50%' }}
-            >
-              <Stack spacing={6}>
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-                <Skeleton height="40px" />
-              </Stack>
-            </Box>
-          </Flex>
-        </Flex>
+        <Container maxW="container.xl" py={8}>
+          <Box
+            bg="white"
+            p={8}
+            borderRadius="xl"
+            boxShadow="xl"
+            maxW="800px"
+            mx="auto"
+          >
+            <Stack spacing={6}>
+              <Skeleton height="40px" />
+              <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+                <GridItem>
+                  <Skeleton height="40px" />
+                </GridItem>
+                <GridItem>
+                  <Skeleton height="40px" />
+                </GridItem>
+              </Grid>
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+            </Stack>
+          </Box>
+        </Container>
         <AccountFooter />
       </>
     );
@@ -141,11 +156,19 @@ const Signup = () => {
           width={{ base: '100%', lg: '80%' }}
           textColor="white"
         >
-          Signup
+          Create Account
         </Heading>
       </Box>
-      <Flex minH="2xl" flexDir="column" bgColor="#f2f2f2" pb={40}>
-        <Flex mt={12} fontFamily="noto" justifyContent="center" w="100%">
+      <Container maxW="container.xl" py={8}>
+        <Box
+          bg="white"
+          p={8}
+          borderRadius="xl"
+          boxShadow="xl"
+          maxW="800px"
+          mx="auto"
+          fontFamily="new"
+        >
           <Formik
             initialValues={{
               firstName: '',
@@ -160,171 +183,133 @@ const Signup = () => {
               confirmPassword: '',
             }}
             validationSchema={validationSchema}
-            onSubmit={(values, actions) => {
-              actions.setSubmitting(true);
+            onSubmit={async (values, actions) => {
               setIsLoading(true);
+              try {
+                const userPayload = {
+                  first_name: values.firstName,
+                  last_name: values.lastName,
+                  date_of_birth: values.dob,
+                  phone_number: values.mobile,
+                  email: values.email,
+                  city: values.city,
+                  state: values.state,
+                  password: values.password,
+                  country: values.citizenship,
+                };
 
-              const userPayload = {
-                first_name: values.firstName,
-                last_name: values.lastName,
-                date_of_birth: values.dob,
-                phone_number: values.mobile,
-                email: values.email,
-                city: values.city,
-                state: values.state,
-                password: values.password,
-                country: values.citizenship,
-              };
-
-              api
-                .post('/users', userPayload)
-                .then((response) => {
-                  console.log('User created:', response.data);
-                  setSuccessMessage(true);
-                  setTimeout(() => {
-                    navigate('/login');
-                  }, 3000);
-                })
-                .catch((error) => {
-                  console.log('Error creating user:', error);
-                })
-                .finally(() => {
-                  actions.setSubmitting(false);
-                  setIsLoading(false);
+                await api.post('/users', userPayload);
+                toast({
+                  title: 'Account created successfully',
+                  description: 'Redirecting to login...',
+                  status: 'success',
+                  duration: 3000,
+                  isClosable: true,
                 });
+                setTimeout(() => {
+                  navigate('/login');
+                }, 3000);
+              } catch (error) {
+                toast({
+                  title: 'Error creating account',
+                  description:
+                    error.response?.data?.message || 'Something went wrong',
+                  status: 'error',
+                  duration: 5000,
+                  isClosable: true,
+                });
+              } finally {
+                setIsLoading(false);
+                actions.setSubmitting(false);
+              }
             }}
           >
-            {() => (
-              <Form style={{ backgroundColor: '', textAlign: 'center' }}>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                  >
-                    Full name
-                  </FormLabel>
-                  <Field name="firstName">
-                    {({ field, form }) => (
-                      <FormControl
-                        isInvalid={
-                          form.errors.firstName && form.touched.firstName
-                        }
-                      >
-                        <FormLabel
-                          fontSize="xs"
-                          lineHeight="short"
-                          htmlFor="firstName"
-                        >
-                          First name
-                        </FormLabel>
-                        <Input
-                          borderColor="black"
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="firstName"
-                          isDisabled={isLoading}
-                        />
-                        <FormErrorMessage fontSize="xs" p={0} m={0}>
-                          {form.errors.firstName}
-                        </FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                  <Field name="lastName">
-                    {({ field, form }) => (
-                      <FormControl
-                        isInvalid={
-                          form.errors.lastName && form.touched.lastName
-                        }
-                      >
-                        <FormLabel
-                          fontSize="xs"
-                          lineHeight="short"
-                          htmlFor="lastName"
-                        >
-                          Last name
-                        </FormLabel>
-                        <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="lastName"
-                          borderColor="black"
-                          isDisabled={isLoading}
-                        />
-                        <FormErrorMessage fontSize="xs" p={0} m={0}>
-                          {form.errors.lastName}
-                        </FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="dob"
-                  >
-                    Date of birth
-                  </FormLabel>
+            {({ errors, touched }) => (
+              <Form>
+                <Stack spacing={6}>
+                  <Heading size="lg" textAlign="center" mb={6}>
+                    Personal Information
+                  </Heading>
+
+                  <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+                    <GridItem>
+                      <Field name="firstName">
+                        {({ field, form }) => (
+                          <FormControl
+                            isInvalid={
+                              form.errors.firstName && form.touched.firstName
+                            }
+                          >
+                            <FormLabel>First Name</FormLabel>
+                            <Input
+                              {...field}
+                              placeholder="Enter your first name"
+                              size="lg"
+                              variant="filled"
+                              _hover={{ borderColor: 'green.500' }}
+                              _focus={{
+                                borderColor: 'green.500',
+                                boxShadow: '0 0 0 1px green.500',
+                              }}
+                            />
+                            <FormErrorMessage>
+                              {form.errors.firstName}
+                            </FormErrorMessage>
+                          </FormControl>
+                        )}
+                      </Field>
+                    </GridItem>
+                    <GridItem>
+                      <Field name="lastName">
+                        {({ field, form }) => (
+                          <FormControl
+                            isInvalid={
+                              form.errors.lastName && form.touched.lastName
+                            }
+                          >
+                            <FormLabel>Last Name</FormLabel>
+                            <Input
+                              {...field}
+                              placeholder="Enter your last name"
+                              size="lg"
+                              variant="filled"
+                              _hover={{ borderColor: 'green.500' }}
+                              _focus={{
+                                borderColor: 'green.500',
+                                boxShadow: '0 0 0 1px green.500',
+                              }}
+                            />
+                            <FormErrorMessage>
+                              {form.errors.lastName}
+                            </FormErrorMessage>
+                          </FormControl>
+                        )}
+                      </Field>
+                    </GridItem>
+                  </Grid>
+
                   <Field name="dob">
                     {({ field, form }) => (
                       <FormControl
                         isInvalid={form.errors.dob && form.touched.dob}
                       >
+                        <FormLabel>Date of Birth</FormLabel>
                         <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="dob"
+                          {...field}
                           type="date"
-                          borderColor="black"
-                          isDisabled={isLoading}
+                          size="lg"
+                          variant="filled"
+                          _hover={{ borderColor: 'green.500' }}
+                          _focus={{
+                            borderColor: 'green.500',
+                            boxShadow: '0 0 0 1px green.500',
+                          }}
                         />
                         <FormErrorMessage>{form.errors.dob}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="citizenship"
-                  >
-                    Citizenship
-                  </FormLabel>
+
                   <Field name="citizenship">
                     {({ field, form }) => (
                       <FormControl
@@ -332,31 +317,28 @@ const Signup = () => {
                           form.errors.citizenship && form.touched.citizenship
                         }
                       >
+                        <FormLabel>Country of Citizenship</FormLabel>
                         <Select
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="citizenship"
-                          placeholder="Select a country"
-                          borderColor="black"
-                          isDisabled={isLoading}
+                          {...field}
+                          placeholder="Select your country"
+                          size="lg"
+                          variant="filled"
+                          _hover={{ borderColor: 'green.500' }}
+                          _focus={{
+                            borderColor: 'green.500',
+                            boxShadow: '0 0 0 1px green.500',
+                          }}
                         >
-                          <option value="Angola">Angola</option>
-                          <option value="Australia">Australia</option>
-                          <option value="Austria">Austria</option>
-                          <option value="Brazil">Brazil</option>
-                          <option value="Canada">Canada</option>
-                          <option value="Germany">Germany</option>
-                          <option value="Kuwait">Kuwait</option>
-                          <option value="Mexico">Mexico</option>
-                          <option value="New Zealand">New Zealand</option>
-                          <option value="Norway">Norway</option>
-                          <option value="Russia">Russia</option>
-                          <option value="Singapore">Singapore</option>
-                          <option value="South Africa">South Africa</option>
-                          <option value="Thailand">Thailand</option>
-                          <option value="United Kingdom">United Kingdom</option>
                           <option value="United States">United States</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="Canada">Canada</option>
+                          <option value="Australia">Australia</option>
+                          <option value="Germany">Germany</option>
+                          <option value="France">France</option>
+                          <option value="Japan">Japan</option>
+                          <option value="Singapore">Singapore</option>
+                          <option value="South Korea">South Korea</option>
+                          <option value="Other">Other</option>
                         </Select>
                         <FormErrorMessage>
                           {form.errors.citizenship}
@@ -364,38 +346,23 @@ const Signup = () => {
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="mobile"
-                  >
-                    Mobile number
-                  </FormLabel>
+
                   <Field name="mobile">
                     {({ field, form }) => (
                       <FormControl
                         isInvalid={form.errors.mobile && form.touched.mobile}
                       >
+                        <FormLabel>Phone Number</FormLabel>
                         <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="mobile"
-                          type="tel"
-                          borderColor="black"
-                          isDisabled={isLoading}
+                          {...field}
+                          placeholder="Enter your phone number"
+                          size="lg"
+                          variant="filled"
+                          _hover={{ borderColor: 'green.500' }}
+                          _focus={{
+                            borderColor: 'green.500',
+                            boxShadow: '0 0 0 1px green.500',
+                          }}
                         />
                         <FormErrorMessage>
                           {form.errors.mobile}
@@ -403,136 +370,87 @@ const Signup = () => {
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="email"
-                  >
-                    Email
-                  </FormLabel>
+
                   <Field name="email">
                     {({ field, form }) => (
                       <FormControl
                         isInvalid={form.errors.email && form.touched.email}
                       >
+                        <FormLabel>Email Address</FormLabel>
                         <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="email"
+                          {...field}
                           type="email"
-                          borderColor="black"
-                          isDisabled={isLoading}
+                          placeholder="Enter your email"
+                          size="lg"
+                          variant="filled"
+                          _hover={{ borderColor: 'green.500' }}
+                          _focus={{
+                            borderColor: 'green.500',
+                            boxShadow: '0 0 0 1px green.500',
+                          }}
                         />
                         <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="city"
-                  >
-                    City
-                  </FormLabel>
-                  <Field name="city">
-                    {({ field, form }) => (
-                      <FormControl
-                        isInvalid={form.errors.city && form.touched.city}
-                      >
-                        <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="city"
-                          type="text"
-                          borderColor="black"
-                          isDisabled={isLoading}
-                        />
-                        <FormErrorMessage>{form.errors.city}</FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="state"
-                  >
-                    State
-                  </FormLabel>
-                  <Field name="state">
-                    {({ field, form }) => (
-                      <FormControl
-                        isInvalid={form.errors.state && form.touched.state}
-                      >
-                        <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="state"
-                          type="text"
-                          borderColor="black"
-                          isDisabled={isLoading}
-                        />
-                        <FormErrorMessage>{form.errors.state}</FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="password"
-                  >
-                    Password
-                  </FormLabel>
+
+                  <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+                    <GridItem>
+                      <Field name="city">
+                        {({ field, form }) => (
+                          <FormControl
+                            isInvalid={form.errors.city && form.touched.city}
+                          >
+                            <FormLabel>City</FormLabel>
+                            <Input
+                              {...field}
+                              placeholder="Enter your city"
+                              size="lg"
+                              variant="filled"
+                              _hover={{ borderColor: 'green.500' }}
+                              _focus={{
+                                borderColor: 'green.500',
+                                boxShadow: '0 0 0 1px green.500',
+                              }}
+                            />
+                            <FormErrorMessage>
+                              {form.errors.city}
+                            </FormErrorMessage>
+                          </FormControl>
+                        )}
+                      </Field>
+                    </GridItem>
+                    <GridItem>
+                      <Field name="state">
+                        {({ field, form }) => (
+                          <FormControl
+                            isInvalid={form.errors.state && form.touched.state}
+                          >
+                            <FormLabel>State</FormLabel>
+                            <Input
+                              {...field}
+                              placeholder="Enter your state"
+                              size="lg"
+                              variant="filled"
+                              _hover={{ borderColor: 'green.500' }}
+                              _focus={{
+                                borderColor: 'green.500',
+                                boxShadow: '0 0 0 1px green.500',
+                              }}
+                            />
+                            <FormErrorMessage>
+                              {form.errors.state}
+                            </FormErrorMessage>
+                          </FormControl>
+                        )}
+                      </Field>
+                    </GridItem>
+                  </Grid>
+
+                  <Heading size="lg" textAlign="center" mb={6}>
+                    Account Security
+                  </Heading>
+
                   <Field name="password">
                     {({ field, form }) => (
                       <FormControl
@@ -540,40 +458,39 @@ const Signup = () => {
                           form.errors.password && form.touched.password
                         }
                       >
-                        <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="password"
-                          type="password"
-                          borderColor="black"
-                          isDisabled={isLoading}
-                        />
-                        <FormErrorMessage fontSize="xs" p={0} m={0}>
+                        <FormLabel>Password</FormLabel>
+                        <InputGroup size="lg">
+                          <Input
+                            {...field}
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Create a password"
+                            variant="filled"
+                            _hover={{ borderColor: 'green.500' }}
+                            _focus={{
+                              borderColor: 'green.500',
+                              boxShadow: '0 0 0 1px green.500',
+                            }}
+                          />
+                          <InputRightElement>
+                            <IconButton
+                              variant="ghost"
+                              aria-label={
+                                showPassword ? 'Hide password' : 'Show password'
+                              }
+                              icon={
+                                showPassword ? <ViewOffIcon /> : <ViewIcon />
+                              }
+                              onClick={() => setShowPassword(!showPassword)}
+                            />
+                          </InputRightElement>
+                        </InputGroup>
+                        <FormErrorMessage>
                           {form.errors.password}
                         </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Flex
-                  mb={6}
-                  width="100%"
-                  px={{ base: 6, sm: 1 }}
-                  gap={6}
-                  justifyContent="center"
-                  alignItems="flex-end"
-                >
-                  <FormLabel
-                    w="35%"
-                    m={0}
-                    mb={3}
-                    fontSize="xs"
-                    lineHeight="short"
-                    htmlFor="confirmPassword"
-                  >
-                    Confirm password
-                  </FormLabel>
+
                   <Field name="confirmPassword">
                     {({ field, form }) => (
                       <FormControl
@@ -582,55 +499,71 @@ const Signup = () => {
                           form.touched.confirmPassword
                         }
                       >
-                        <Input
-                          value={field.value}
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          id="confirmPassword"
-                          type="password"
-                          borderColor="black"
-                          isDisabled={isLoading}
-                        />
+                        <FormLabel>Confirm Password</FormLabel>
+                        <InputGroup size="lg">
+                          <Input
+                            {...field}
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            placeholder="Confirm your password"
+                            variant="filled"
+                            _hover={{ borderColor: 'green.500' }}
+                            _focus={{
+                              borderColor: 'green.500',
+                              boxShadow: '0 0 0 1px green.500',
+                            }}
+                          />
+                          <InputRightElement>
+                            <IconButton
+                              variant="ghost"
+                              aria-label={
+                                showConfirmPassword
+                                  ? 'Hide password'
+                                  : 'Show password'
+                              }
+                              icon={
+                                showConfirmPassword ? (
+                                  <ViewOffIcon />
+                                ) : (
+                                  <ViewIcon />
+                                )
+                              }
+                              onClick={() =>
+                                setShowConfirmPassword(!showConfirmPassword)
+                              }
+                            />
+                          </InputRightElement>
+                        </InputGroup>
                         <FormErrorMessage>
                           {form.errors.confirmPassword}
                         </FormErrorMessage>
                       </FormControl>
                     )}
                   </Field>
-                </Flex>
-                <Button
-                  mt={4}
-                  colorScheme="green"
-                  type="submit"
-                  fontFamily="noto"
-                  w={{ base: '60%', sm: '80%' }}
-                  mx="auto"
-                  justifySelf="center"
-                  alignSelf="center"
-                  textAlign="center"
-                  p={6}
-                  isLoading={isLoading}
-                  loadingText="Creating account..."
-                >
-                  Submit
-                </Button>
-                {successMessage && (
-                  <Flex
-                    justify="center"
-                    align="center"
-                    bg="green.500"
-                    color="white"
-                    p={4}
-                    mb={4}
+
+                  <Button
+                    type="submit"
+                    colorScheme="green"
+                    size="lg"
+                    width="full"
+                    mt={6}
+                    isLoading={isLoading}
+                    loadingText="Creating account..."
+                    _hover={{
+                      transform: 'translateY(-2px)',
+                      boxShadow: 'lg',
+                    }}
+                    _active={{
+                      transform: 'translateY(0)',
+                    }}
                   >
-                    Signup successful! Redirecting to login...
-                  </Flex>
-                )}
+                    Create Account
+                  </Button>
+                </Stack>
               </Form>
             )}
           </Formik>
-        </Flex>
-      </Flex>
+        </Box>
+      </Container>
       <AccountFooter />
     </>
   );
