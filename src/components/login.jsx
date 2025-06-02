@@ -58,26 +58,34 @@ const Login = () => {
 
       const { user, token } = response.data;
 
-      if (user.id === 3 || user.id === 11) {
-        toast({
-          title: 'Security Alert',
-          description: 'Account Suspended: Contact Support',
-          status: 'error',
-          duration: 5000,
-          position: 'top',
-          isClosable: true,
-        });
-        setIsLoading(false);
-        return;
-      }
+      // Store the token and user data
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('token', token);
       Cookies.set(COOKIE_TOKEN, JSON.stringify(user));
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 3000);
+
+      // Set the token in the API headers
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      toast({
+        title: 'Login successful',
+        description: 'Please enter the verification code sent to your email',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+
+      // Navigate to OTP verification
+      navigate('/verify-otp');
     } catch (error) {
-      setError('Invalid email or password');
+      setError(error.response?.data?.message || 'Invalid email or password');
+      toast({
+        title: 'Login failed',
+        description:
+          error.response?.data?.message || 'Invalid email or password',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
     } finally {
       setIsLoading(false);
     }

@@ -62,7 +62,7 @@ import usePrice from './usePrice';
 import CurrentDateDisplay from './CurrentDateDisplay';
 import { FaArrowTrendDown, FaArrowTrendUp, FaShield } from 'react-icons/fa6';
 import { BiPlus, BiTachometer } from 'react-icons/bi';
-import { MdOutlineShield } from 'react-icons/md';
+import { MdHistory, MdOutlineShield } from 'react-icons/md';
 import LiveClock from './LiveClock';
 import { FaBuilding } from 'react-icons/fa';
 import { use } from 'react';
@@ -735,7 +735,7 @@ const Dashboard = () => {
                       borderRadius={'full'}
                       mb={3}
                     >
-                      <FaBuilding />
+                      <MdHistory />
                     </Box>
                     <Text fontSize="xs" fontWeight="semibold">
                       History
