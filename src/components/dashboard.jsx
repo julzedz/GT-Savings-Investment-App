@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import {
   Flex,
@@ -16,58 +14,35 @@ import {
   Tr,
   Th,
   Td,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  FormControl,
-  FormLabel,
-  NumberInput,
-  NumberDecrementStepper,
-  NumberInputStepper,
-  NumberInputField,
-  NumberIncrementStepper,
-  FormHelperText,
   useDisclosure,
-  Avatar,
   Box,
   Skeleton,
-  SkeletonText,
-  SkeletonCircle,
 } from '@chakra-ui/react';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 import {
   ViewIcon,
   ViewOffIcon,
   ChevronRightIcon,
-  CalendarIcon,
 } from '@chakra-ui/icons';
 import {
-  RiNotification2Fill,
   // RiDownload2Line,
   RiUpload2Line,
   RiWallet3Line,
 } from 'react-icons/ri';
-// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
 import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
-import earn from '../assets/earn.svg';
-import margin from '../assets/margin.svg';
 import api from '../api';
 import usePrice from './usePrice';
 import CurrentDateDisplay from './CurrentDateDisplay';
-import { FaArrowTrendDown, FaArrowTrendUp, FaShield } from 'react-icons/fa6';
+import { FaArrowTrendDown, FaArrowTrendUp } from 'react-icons/fa6';
 import { BiPlus, BiTachometer } from 'react-icons/bi';
 import { MdHistory, MdOutlineShield } from 'react-icons/md';
 import LiveClock from './LiveClock';
 import { FaBuilding } from 'react-icons/fa';
-import { use } from 'react';
 import EmptyState from './EmptyState';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
+import Header from './Header';
 
 const isTokenExpired = (token) => {
   try {
@@ -80,7 +55,6 @@ const isTokenExpired = (token) => {
 
 export const COOKIE_TOKEN = '124';
 
-// eslint-disable-next-line react/prop-types
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -98,7 +72,7 @@ const Dashboard = () => {
     navigate('/profile');
   };
   const handleSend = () => {
-    navigate('/withdrawal-savings');
+    navigate('/withdrawal');
   };
   const handleDeposit = () => {
     navigate('/deposit');
@@ -201,52 +175,13 @@ const Dashboard = () => {
         <Flex
           flexDir="column"
           minHeight="3xl"
-          // p={5}
           flex="1"
           marginLeft={{ base: 20, md: '11.01rem' }}
           overflowY="scroll"
           fontFamily="noto"
           bgColor="gray.200"
         >
-          <Flex
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom="1px solid gray.500"
-            bgColor="white"
-            fontSize="xs"
-            px={6}
-            py={3}
-          >
-            <Flex
-              alignItems="center"
-              gap={2}
-              color="gray.500"
-              fontWeight="medium"
-            >
-              <CalendarIcon />
-              <CurrentDateDisplay />
-            </Flex>
-            <Flex gap={4} alignItems="center">
-              <Flex
-                bgColor="tiffanyblue"
-                alignItems="center"
-                py={0.5}
-                px={2}
-                gap={2}
-                borderRadius="lg"
-                fontWeight="medium"
-              >
-                <RiWallet3Line />
-                {isLoading ? (
-                  <Skeleton height="20px" width="60px" />
-                ) : (
-                  <Text>${balance}</Text>
-                )}
-              </Flex>
-              <RiNotification2Fill />
-              <Avatar size="xs" />
-            </Flex>
-          </Flex>
+          <Header isLoading={isLoading} balance={balance} />
           <Flex
             m={4}
             gap={4}
@@ -285,7 +220,7 @@ const Dashboard = () => {
                     </Text>
                   </Flex>
                   <Box bgColor="blue.500" p={3} borderRadius={'full'}>
-                    <RiWallet3Line color="blue" />
+                    <RiWallet3Line />
                   </Box>
                 </Flex>
                 <Flex
@@ -437,60 +372,18 @@ const Dashboard = () => {
                 </Button>
                 <Button
                   as={reactrouterlink}
-                  to="/withdrawal-savings"
+                  to="/withdrawal"
                   colorScheme="green"
                   size="sm"
                   variant="solid"
                   fontSize="sm"
                   fontWeight="600"
                   lineHeight="short"
-                >
-                  Withdraw
-                </Button>
-                <Button
-                  colorScheme="green"
-                  size="sm"
-                  variant="solid"
-                  fontSize="sm"
-                  fontWeight="600"
-                  lineHeight="short"
-                  onClick={onOpen}
                 >
                   Transfer
                 </Button>
               </Flex>
             </Flex>
-            <Modal
-              initialFocusRef={initialRef}
-              isOpen={isOpen}
-              onClose={onClose}
-            >
-              <ModalOverlay />
-              <ModalContent>
-                <ModalHeader fontFamily="noto">Transfer</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody fontFamily="noto" pb={6}>
-                  <FormControl>
-                    <FormLabel fontSize="xs">Savings Account</FormLabel>
-                    <NumberInput ref={initialRef} step={500} min={100}>
-                      <NumberInputField placeholder="Enter amount" />
-                      <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                      </NumberInputStepper>
-                    </NumberInput>
-                    <FormHelperText fontSize="xs">
-                      Transfer amount to your Investment Account
-                    </FormHelperText>
-                  </FormControl>
-                </ModalBody>
-                <ModalFooter>
-                  <Button fontFamily="noto" colorScheme="green">
-                    Send
-                  </Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
             <Flex width="fit-content">
               <Text
                 fontSize={{ base: '2xl', lg: '2rem' }}
@@ -535,7 +428,7 @@ const Dashboard = () => {
               </Button>
               <Button
                 as={reactrouterlink}
-                to="/withdrawal-savings"
+                to="/withdrawal"
                 colorScheme="green"
                 size="sm"
                 variant="solid"
@@ -546,18 +439,6 @@ const Dashboard = () => {
                 width={{ base: '30%', slg: 'auto' }}
               >
                 Withdraw
-              </Button>
-              <Button
-                colorScheme="green"
-                size="sm"
-                variant="solid"
-                fontSize={{ base: 'xs', sm: 'sm' }}
-                fontWeight="600"
-                lineHeight="short"
-                width={{ base: '30%', slg: 'auto' }}
-                onClick={onOpen}
-              >
-                Transfer
               </Button>
             </Flex>
             <Flex
@@ -747,7 +628,7 @@ const Dashboard = () => {
           </Flex>
           <Flex
             flexDir="column"
-            maxWidth="60rem"
+            maxWidth="100%"
             borderRadius="2xl"
             borderWidth={{ base: 'none', slg: '1px' }}
             borderColor="#eaecef"
