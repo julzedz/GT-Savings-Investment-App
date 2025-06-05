@@ -12,7 +12,7 @@ const EmptyState = ({ message = 'No transactions yet' }) => {
       w="100%"
       textAlign="center"
       borderRadius="lg"
-      bg={useColorModeValue('white', 'gray.700')}
+      bg={useColorModeValue('#f5f5f5', 'gray.700')}
     >
       <VStack spacing={4}>
         <Icon as={RiInboxArchiveLine} w={12} h={12} color={iconColor} />
