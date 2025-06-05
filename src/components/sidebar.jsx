@@ -188,8 +188,8 @@ const Sidebar = () => {
           TRANSFERS
         </Text>
         <NavItem
-          href="/cards"
-          isActive={isActive('/cards')}
+          href="/withdrawal"
+          isActive={isActive('/withdrawal')}
           navSize={navSize}
           icon={IoPaperPlaneOutline}
           title="Local Transfer"
