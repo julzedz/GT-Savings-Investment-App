@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable max-len */
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 import React from 'react';
 import {
@@ -20,8 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import FormNavbar from './formnavbar';
 import AccountFooter from './accountfooter';
 import api from '../api';
@@ -56,15 +53,8 @@ const Login = () => {
         password,
       });
 
-      const { user, token } = response.data;
-
-      // Store the token and user data
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
-      Cookies.set(COOKIE_TOKEN, JSON.stringify(user));
-
-      // Set the token in the API headers
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // Store the user data
+      localStorage.setItem('user', JSON.stringify({ email: email }));
 
       toast({
         title: 'Login successful',
@@ -77,11 +67,10 @@ const Login = () => {
       // Navigate to OTP verification
       navigate('/verify-otp');
     } catch (error) {
-      setError(error.response?.data?.message || 'Invalid email or password');
+      setError(error.response?.data?.error || 'Invalid email or password');
       toast({
         title: 'Login failed',
-        description:
-          error.response?.data?.message || 'Invalid email or password',
+        description: error.response?.data?.error || 'Invalid email or password',
         status: 'error',
         duration: 3000,
         isClosable: true,

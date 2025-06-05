@@ -11,7 +11,7 @@ import {
   Spinner,
   Center,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../api';
 
 const OTPInput = () => {
@@ -20,9 +20,20 @@ const OTPInput = () => {
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [timeLeft, setTimeLeft] = useState(60);
   const navigate = useNavigate();
+  const location = useLocation();
   const toast = useToast();
 
+  // Get email from localStorage
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const email = user.email;
+
   useEffect(() => {
+    // Redirect to login if no email is found
+    if (!email) {
+      navigate('/login');
+      return;
+    }
+
     // Simulate initial page load
     const timer = setTimeout(() => {
       setIsPageLoading(false);
@@ -43,7 +54,7 @@ const OTPInput = () => {
       clearTimeout(timer);
       clearInterval(countdown);
     };
-  }, []);
+  }, [email, navigate]);
 
   const handleVerify = async () => {
     if (otp.length !== 4) {
@@ -59,9 +70,26 @@ const OTPInput = () => {
 
     setIsLoading(true);
     try {
-      const response = await api.post('/verify-otp', { otp });
+      const response = await api.post(
+        '/verify-otp',
+        {
+          email: email,
+          otp: otp,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
-      if (response.data.verified) {
+      if (response.data.token) {
+        // Store the new token and user data
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        api.defaults.headers.common['Authorization'] =
+          `Bearer ${response.data.token}`;
+
         toast({
           title: 'Verification successful',
           status: 'success',
@@ -70,12 +98,13 @@ const OTPInput = () => {
         });
         navigate('/dashboard');
       } else {
-        throw new Error('Invalid OTP');
+        throw new Error('Invalid response from server');
       }
     } catch (error) {
+      console.error('Verification error:', error.response?.data);
       toast({
         title: 'Verification failed',
-        description: error.response?.data?.message || 'Invalid OTP code',
+        description: error.response?.data?.error || 'Invalid OTP code',
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -90,7 +119,15 @@ const OTPInput = () => {
 
     setIsLoading(true);
     try {
-      await api.post('/resend-otp');
+      await api.post(
+        '/resend-otp',
+        { email: email },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       setTimeLeft(60);
       toast({
         title: 'OTP resent',
@@ -100,9 +137,10 @@ const OTPInput = () => {
         isClosable: true,
       });
     } catch (error) {
+      console.error('Resend error:', error.response?.data);
       toast({
         title: 'Failed to resend OTP',
-        description: 'Please try again later',
+        description: error.response?.data?.error || 'Please try again later',
         status: 'error',
         duration: 3000,
         isClosable: true,
