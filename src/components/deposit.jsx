@@ -29,6 +29,7 @@ import {
   InputLeftAddon,
   InputRightAddon,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
@@ -36,30 +37,30 @@ import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import Sidebar from './sidebar';
 import { COOKIE_TOKEN } from './dashboard';
 import AccountFooter from './accountfooter';
-import qrcode from '../assets/qrcode.jpg';
 import api from '../api';
 import Header from './Header';
 
 const Deposit = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
-  const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [copied, setCopied] = useState(false);
-  const [file, setFile] = useState(null); // Declare file state
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState('');
   const [depositAmount, setDepositAmount] = useState('');
   const [paymentReceipt, setPaymentReceipt] = useState(null);
+  const toast = useToast();
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(address);
-      setCopied(true);
-      return null;
-    } catch (err) {
-      return null;
-    }
+  const handleCopy = (value) => {
+    navigator.clipboard.writeText(value);
+    toast({
+      title: 'Copied!',
+      description: `${value} copied to clipboard.`,
+      status: 'success',
+      duration: 1500,
+      isClosable: true,
+      position: 'top',
+    });
   };
 
   useEffect(() => {
@@ -237,14 +238,12 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() =>
-                        navigator.clipboard.writeText('Mining Bank')
-                      }
+                      onClick={() => handleCopy('Mining Bank')}
                     />
                   </FormControl>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Account Name</FormLabel>
-                    <Input value="Miller lauren" isReadOnly />
+                    <Input value="Miller Frost" isReadOnly />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -253,16 +252,14 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() =>
-                        navigator.clipboard.writeText('Miller lauren')
-                      }
+                      onClick={() => handleCopy('Miller Frost')}
                     />
                   </FormControl>
                 </Flex>
                 <Flex gap={4}>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Account Number</FormLabel>
-                    <Input value="99388383" isReadOnly />
+                    <Input value="9938838352" isReadOnly />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -271,7 +268,7 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => navigator.clipboard.writeText('99388383')}
+                      onClick={() => handleCopy('9938838352')}
                     />
                   </FormControl>
                   <FormControl flex={1}>
@@ -285,7 +282,7 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => navigator.clipboard.writeText('3222ASD')}
+                      onClick={() => handleCopy('3222ASD')}
                     />
                   </FormControl>
                 </Flex>
@@ -340,7 +337,7 @@ const Deposit = () => {
               p={6}
               onClick={handleSubmit}
               isLoading={isLoading}
-              isDisabled={!depositAmount }
+              isDisabled={!depositAmount}
             >
               Submit
             </Button>
