@@ -1,14 +1,35 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Flex, Text, FormControl, Select, FormLabel, NumberInput, NumberInputField, Icon,
-  NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, UnorderedList,
-  ListItem, Tooltip, Image, FormHelperText, Input, Button,
-  Modal, ModalOverlay, ModalContent, ModalBody, Spinner, Box,
+  Flex,
+  Text,
+  FormControl,
+  Select,
+  FormLabel,
+  NumberInput,
+  NumberInputField,
+  Icon,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  UnorderedList,
+  ListItem,
+  Tooltip,
+  Image,
+  FormHelperText,
+  Input,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  Spinner,
+  Box,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  HStack,
 } from '@chakra-ui/react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
@@ -17,13 +38,14 @@ import { COOKIE_TOKEN } from './dashboard';
 import AccountFooter from './accountfooter';
 import qrcode from '../assets/qrcode.jpg';
 import api from '../api';
+import Header from './Header';
 
 const Deposit = () => {
   const numberInputRef = useRef(null);
   const navigate = useNavigate();
   const address = '0x3bF71E4250631076269426d735F4Ea37c10C7256';
   const [copied, setCopied] = useState(false);
-  // const [file, setFile] = useState(null); // Declare file state
+  const [file, setFile] = useState(null); // Declare file state
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState('');
@@ -34,7 +56,7 @@ const Deposit = () => {
     try {
       await navigator.clipboard.writeText(address);
       setCopied(true);
-      return null; // Add return statement
+      return null;
     } catch (err) {
       return null;
     }
@@ -60,16 +82,16 @@ const Deposit = () => {
     const userDetails = Cookies.get(COOKIE_TOKEN);
     const parsedToken = JSON.parse(userDetails);
     const accountId = parsedToken.account.id;
-
     setTimeout(async () => {
       try {
-      // eslint-disable-next-line object-shorthand
-        // const response = await api.put(`/accounts/${accountId}`, { amount: amount });
-        // setTransactionStatus('Deposit Successful');
+        const response = await api.put(`/accounts/${accountId}`, {
+          amount: amount,
+        });
+        setTransactionStatus('Deposit Successful');
         setTimeout(() => {
-          // setIsOpen(false);
-          // navigate('/dashboard'); // Redirect to dashboard
-        }, 3000); // After 10 seconds
+          setIsOpen(false);
+          navigate('/dashboard'); // Redirect to dashboard
+        }, 3000);
         return null; // response.data; // Add return statement
       } catch (error) {
         setTransactionStatus('Transaction Failed');
@@ -83,25 +105,50 @@ const Deposit = () => {
     }, 5000);
   };
 
+  const [savings, setSavings] = useState(() => {
+    const userDetails = Cookies.get(COOKIE_TOKEN);
+    if (userDetails) {
+      const parsedToken = JSON.parse(userDetails);
+      if (parsedToken.account) {
+        return parsedToken.account.savings_account;
+      }
+    }
+    return 0;
+  });
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
           <ModalBody>
-            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" p={10} fontFamily="noto" fontSize="md" fontWeight="700">
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              p={10}
+              fontFamily="noto"
+              fontSize="md"
+              fontWeight="700"
+            >
               <Text mb={4}>{transactionStatus}</Text>
-              {transactionStatus === 'Transaction Failed' && <WarningIcon w={8} h={8} color="red.500" ml={2} />}
-              {transactionStatus === 'Your transaction is being processed...' && (
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="green.500"
-                size="xl"
-              />
+              {transactionStatus === 'Transaction Failed' && (
+                <WarningIcon w={8} h={8} color="red.500" ml={2} />
               )}
-              {transactionStatus === 'Deposit Successful' && <CheckCircleIcon boxSize={6} color="green.500" size="xl" />}
+              {transactionStatus ===
+                'Your transaction is being processed...' && (
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="green.500"
+                  size="xl"
+                />
+              )}
+              {transactionStatus === 'Deposit Successful' && (
+                <CheckCircleIcon boxSize={6} color="green.500" size="xl" />
+              )}
             </Box>
           </ModalBody>
         </ModalContent>
@@ -109,15 +156,16 @@ const Deposit = () => {
       <Flex>
         <Sidebar />
         <Flex
-          ml={4}
           flexDir="column"
           minHeight="3xl"
-          p={5}
           flex="1"
-          marginLeft={{ base: 20, md: '21rem' }}
+          marginLeft={{ base: 20, md: '11.01rem' }}
+          overflowY="scroll"
           fontFamily="noto"
+          bgColor="gray.200"
         >
-          <Flex minHeight="3xl" flexDir="column">
+          <Header isLoading={false} balance={savings || 0} />
+          <Flex ml={6} minHeight="3xl" flexDir="column">
             <Text
               alignSelf="center"
               justifySelf="center"
@@ -125,107 +173,161 @@ const Deposit = () => {
               fontWeight="bold"
               mb={6}
             >
-              Fund Account
+              Make Deposit
             </Text>
-            <FormControl
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              mb={6}
-              id="payment-method"
-            >
-              <FormLabel fontSize="xs" htmlFor="payment-method">Payment Method</FormLabel>
-              <Select
-              // value=""
-                id="payment-method-select"
-                placeholder="Select payment method"
+
+            {/* Deposit Amount Input */}
+            <Box mx={6} mb={6}>
+              <FormLabel fontWeight="bold">Deposit Amount</FormLabel>
+              <InputGroup size="lg">
+                <InputLeftAddon bg="gray.100" fontWeight="bold">
+                  $
+                </InputLeftAddon>
+                <NumberInput
+                  value={depositAmount}
+                  min={1}
+                  onChange={(valueString, valueNumber) => {
+                    if (valueString === '') {
+                      setDepositAmount('');
+                    } else {
+                      setDepositAmount(valueNumber);
+                    }
+                  }}
+                  flex={1}
+                  w="full"
+                >
+                  <NumberInputField
+                    borderLeftRadius={0}
+                    borderRightRadius={0}
+                    placeholder="Enter amount"
+                    ref={numberInputRef}
+                  />
+                </NumberInput>
+                <InputRightAddon bg="gray.100">.00</InputRightAddon>
+              </InputGroup>
+              <HStack mt={3} spacing={3}>
+                {[100, 500, 1000, 5000, 10000].map((amt) => (
+                  <Button
+                    key={amt}
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setDepositAmount(amt)}
+                  >
+                    ${amt}
+                  </Button>
+                ))}
+              </HStack>
+            </Box>
+
+            {/* Bank Transfer Details */}
+            <Box mx={6} mb={6}>
+              <Text fontWeight="bold" mb={2} fontSize="lg">
+                Bank Transfer Details
+              </Text>
+              <Box bg="gray.50" borderRadius="lg" p={6}>
+                <Flex gap={4} mb={4}>
+                  <FormControl flex={1}>
+                    <FormLabel fontSize="sm">Bank Name</FormLabel>
+                    <Input value="Mining Bank" isReadOnly />
+                    <Icon
+                      as={FaCopy}
+                      boxSize={5}
+                      color="gray.400"
+                      cursor="pointer"
+                      position="absolute"
+                      right={3}
+                      top={9}
+                      onClick={() =>
+                        navigator.clipboard.writeText('Mining Bank')
+                      }
+                    />
+                  </FormControl>
+                  <FormControl flex={1}>
+                    <FormLabel fontSize="sm">Account Name</FormLabel>
+                    <Input value="Miller lauren" isReadOnly />
+                    <Icon
+                      as={FaCopy}
+                      boxSize={5}
+                      color="gray.400"
+                      cursor="pointer"
+                      position="absolute"
+                      right={3}
+                      top={9}
+                      onClick={() =>
+                        navigator.clipboard.writeText('Miller lauren')
+                      }
+                    />
+                  </FormControl>
+                </Flex>
+                <Flex gap={4}>
+                  <FormControl flex={1}>
+                    <FormLabel fontSize="sm">Account Number</FormLabel>
+                    <Input value="99388383" isReadOnly />
+                    <Icon
+                      as={FaCopy}
+                      boxSize={5}
+                      color="gray.400"
+                      cursor="pointer"
+                      position="absolute"
+                      right={3}
+                      top={9}
+                      onClick={() => navigator.clipboard.writeText('99388383')}
+                    />
+                  </FormControl>
+                  <FormControl flex={1}>
+                    <FormLabel fontSize="sm">Swift Code</FormLabel>
+                    <Input value="3222ASD" isReadOnly />
+                    <Icon
+                      as={FaCopy}
+                      boxSize={5}
+                      color="gray.400"
+                      cursor="pointer"
+                      position="absolute"
+                      right={3}
+                      top={9}
+                      onClick={() => navigator.clipboard.writeText('3222ASD')}
+                    />
+                  </FormControl>
+                </Flex>
+              </Box>
+            </Box>
+
+            {/* File Upload for Receipt */}
+            <Box mx={6} mb={6}>
+              <FormLabel fontWeight="bold">Upload Payment Proof</FormLabel>
+              <Box
+                border="2px dashed #CBD5E0"
+                borderRadius="lg"
+                p={8}
+                textAlign="center"
+                bg="gray.50"
+                cursor="pointer"
+                onClick={() =>
+                  document.getElementById('file-upload-input').click()
+                }
               >
-                <option value="USDT">USDT</option>
-                <option value="USDC">USDC</option>
-                <option value="BTC">BTC</option>
-                <option value="ETH">Ethereum</option>
-                <option value="cashapp">Cashapp</option>
-                <option value="venmo">Venmo</option>
-                <option value="paypal">PayPal</option>
-                <option value="zelle">Zelle</option>
-              </Select>
-            </FormControl>
-            <FormControl
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              mb={6}
-            >
-              <FormLabel fontSize="xs">Amount</FormLabel>
-              <NumberInput id="deposit-amount" value={depositAmount} onChange={(value) => setDepositAmount(value)} step={500} min={1000}>
-                <NumberInputField ref={numberInputRef} placeholder="Enter amount" />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <FormHelperText fontSize="xs">Minimum deposit ≈1000 USD</FormHelperText>
-            </FormControl>
-
-            {/* <Text>Note</Text> */}
-            <UnorderedList
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              textColor="#707a8a"
-              fontSize="xs"
-              spacing={3}
-              mb={6}
-            >
-              <ListItem>Please make deposit before submitting the form.</ListItem>
-              <ListItem>
-                Deposits will be credited and available on dashboard after 1 confirmation.
-              </ListItem>
-              <ListItem>Crypto deposits are faster and preferable.</ListItem>
-              <ListItem>
-                Deposits may be via any of the supported networks:
-                Tron (TRC20), BSC (BEP20), ETH (ERC20), Polygon, Arbitrum Network.
-              </ListItem>
-              <ListItem>Do not send NFTs to this address.</ListItem>
-            </UnorderedList>
-
-            <FormControl
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              mb={6}
-              id="deposit-address"
-            >
-              <FormLabel htmlFor="deposit-address" fontSize="xs">Deposit Address</FormLabel>
-              <Flex alignItems="center" justifyContent="space-between" bgColor="#fafafa" borderRadius="5px" p={5} minH="10rem" gap="5%" w="100%">
-                <Flex alignItems="center" justifyContent="center">
-                  <Image src={qrcode} boxSize="100px" minW="100px" />
-                </Flex>
-                <Flex alignItems="center" justifyContent="center" position="relative">
-                  <Flex flexDir="column">
-                    {copied && <Text alignSelf="center" fontSize="xs" bgColor="#e9e9e9" color="black" w="fit-content" p="4px">Copied!</Text>}
-                    <Text fontSize="xs" color="gray.500" m={0}>Address</Text>
-                    <Text fontSize={{ base: 'xs', sm: 'md' }} lineHeight={{ base: 'shorter', sm: '16px' }} fontWeight={{ base: '400', sm: '500' }} color="#1e2329" wordBreak="break-word" textAlign="start">
-                      {address}
-                    </Text>
-                  </Flex>
-                  <Icon as={FaCopy} boxSize={7} padding="4px" borderRadius="2px" bgColor="#e9ecef" color="gray" _hover={{ color: 'black' }} cursor="pointer" ml={2} display="inline" onClick={handleCopy} />
-                </Flex>
-              </Flex>
-            </FormControl>
-            <FormControl
-              w={{
-                base: '100%', md: '80%', lg: '70%', slg: '60%',
-              }}
-              mb={6}
-            >
-              <FormLabel fontSize="xs">Payment Receipt</FormLabel>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(event) => setPaymentReceipt(event.target.files[0])}
-              />
-            </FormControl>
+                <Icon as={FaCopy} boxSize={8} color="blue.400" mb={2} />
+                <Text fontWeight="semibold" color="blue.600">
+                  Click to upload
+                </Text>
+                <Text color="gray.400">or drag and drop</Text>
+                <Text color="gray.400" fontSize="sm">
+                  PNG, JPG or PDF (max. 5MB)
+                </Text>
+                <Input
+                  id="file-upload-input"
+                  type="file"
+                  accept="image/*,application/pdf"
+                  display="none"
+                  onChange={(e) => setPaymentReceipt(e.target.files[0])}
+                />
+                {paymentReceipt && (
+                  <Text mt={2} color="green.500">
+                    {paymentReceipt.name}
+                  </Text>
+                )}
+              </Box>
+            </Box>
 
             <Button
               mt={4}
@@ -238,7 +340,7 @@ const Deposit = () => {
               p={6}
               onClick={handleSubmit}
               isLoading={isLoading}
-              isDisabled={!depositAmount || !paymentReceipt}
+              isDisabled={!depositAmount }
             >
               Submit
             </Button>
