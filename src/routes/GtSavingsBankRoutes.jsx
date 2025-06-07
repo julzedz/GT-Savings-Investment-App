@@ -22,6 +22,7 @@ import InvAccForm from '../components/invest-acc-form';
 import ProtectedRoute from './ProtectedRoute';
 import OTPInput from '../components/OTPInput';
 import UserDetails from '../components/admin/UserDetails';
+import Receipt from '../components/Receipt';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -101,6 +102,10 @@ const GtSavingsBankRoutes = () => {
               element={<ProtectedRoute element={<InvAccForm />} />}
             />
             <Route path="/edituser" element={<EditUser />} />
+            <Route
+              path="/receipt"
+              element={<ProtectedRoute element={<Receipt />} />}
+            />
             <Route
               path="/user/:userId"
               element={<ProtectedRoute element={<UserDetails />} />}
