@@ -29,7 +29,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { RiWallet3Line } from 'react-icons/ri';
-import { FaUser, FaUniversity, FaExchangeAlt, FaRegEdit } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import {
   MdOutlineDescription,
   MdArrowBack,
@@ -38,6 +38,9 @@ import {
 } from 'react-icons/md';
 import Cookies from 'js-cookie';
 import { COOKIE_TOKEN } from './dashboard';
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import bankLogo from '../assets/bank-leaf.png';
 
 const userDetails = Cookies.get(COOKIE_TOKEN);
 let parsedToken;
@@ -65,6 +68,8 @@ const LocalBankTransfer = () => {
   const [balance, setBalance] = useState(DEFAULT_BALANCE);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleQuickAmount = (val) => setAmount(val);
   const handleAll = () => setAmount(balance);
@@ -84,6 +89,82 @@ const LocalBankTransfer = () => {
       return;
     }
     onOpen();
+  };
+
+  const handleConfirmTransfer = async () => {
+    setIsSubmitting(true);
+    try {
+      if (!numericAmount || isNaN(numericAmount) || numericAmount <= 0) {
+        toast({
+          title: 'Invalid amount',
+          description: 'Please enter a valid amount greater than 0.',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      // Get user/account info from cookie
+      const userDetails = Cookies.get(COOKIE_TOKEN);
+      const parsedToken = JSON.parse(userDetails);
+      const accountId = parsedToken.account.id;
+      const sender = parsedToken;
+      const withdraw = numericAmount;
+
+      // 1. Withdraw from account
+      await api.put(`/accounts/${accountId}`, { withdraw });
+
+      // 2. Create transaction (payload wrapped in transaction object)
+      const transactionPayload = {
+        transaction: {
+          amount: numericAmount,
+          transaction_type: 'debit',
+          description,
+        },
+      };
+      const transactionRes = await api.post(
+        '/transactions',
+        transactionPayload
+      );
+      const transaction =
+        transactionRes.data.transaction || transactionRes.data;
+
+      // 3. Navigate to receipt page with all details
+      navigate('/receipt', {
+        state: {
+          transaction,
+          sender,
+          receiver: {
+            name: accountName,
+            accountNumber,
+            bank: bankName,
+            type: transferType,
+          },
+          amount: numericAmount,
+          newBalance,
+          bankLogo,
+        },
+      });
+    } catch (error) {
+      console.error('Transfer error:', error.response || error);
+      toast({
+        title: 'Transfer failed',
+        description:
+          (error.response?.data?.errors &&
+          Array.isArray(error.response.data.errors)
+            ? error.response.data.errors.join(', ')
+            : null) ||
+          error.response?.data?.message ||
+          'An error occurred',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } finally {
+      setIsSubmitting(false);
+      onClose();
+    }
   };
 
   return (
@@ -332,7 +413,7 @@ const LocalBankTransfer = () => {
                 <Text>{bankName}</Text>
               </Flex>
               <Flex justify="space-between">
-                <Text color="gray.500">Account Type</Text>
+                <Text color="gray.500">Type</Text>
                 <Text>{transferType}</Text>
               </Flex>
               <Divider />
@@ -372,10 +453,21 @@ const LocalBankTransfer = () => {
             </Box>
           </ModalBody>
           <ModalFooter>
-            <Button variant="ghost" mr={3} onClick={onClose}>
+            <Button
+              variant="ghost"
+              mr={3}
+              onClick={onClose}
+              isDisabled={isSubmitting}
+            >
               Cancel
             </Button>
-            <Button colorScheme="blue">Confirm Transfer</Button>
+            <Button
+              colorScheme="blue"
+              onClick={handleConfirmTransfer}
+              isLoading={isSubmitting}
+            >
+              Confirm Transfer
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

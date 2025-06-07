@@ -259,7 +259,7 @@ const Sidebar = () => {
         <NavItem
           navSize={navSize}
           href="/profile"
-          isActive={isActive('/profile')}
+          isActive={isActive('/#')}
           icon={GoQuestion}
           title="Support Ticket"
         />
