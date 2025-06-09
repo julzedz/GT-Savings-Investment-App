@@ -48,7 +48,7 @@ const Footer = () => (
         textAlign="center"
       >
         Please call us at
-        <Box display="inline" color="applegreen" fontFamily="new" fontSize="lg"> 800-947-6438</Box>
+        <Box display="inline" color="applegreen" fontFamily="new" fontSize="lg"> +1(707) 999-4604</Box>
         , email us at
         <Box display="inline" color="applegreen" fontFamily="new" fontSize="lg"> info@gtsavingsbank.net </Box>
         or click the button below to access our contact form.
@@ -101,7 +101,7 @@ const Footer = () => (
             Routing #309803757
           </Text>
           <Text>
-            P.O. Box 2400 | Los Angeles CA 90097
+            P.O. Box 2400 |  San Francisco CA 90097
           </Text>
           <Box margin="0 auto" display="flex" justifyContent="space-between" width="30%" alignItems="center">
             <Icon as={FaFacebookF} boxSize={5} color="gunmetal" />
@@ -183,7 +183,7 @@ const Footer = () => (
             Routing #309803757
           </Text>
           <Text>
-            P.O. Box 2400 | Los Angeles CA 90097
+            P.O. Box 2400 | San Francisco CA 90097
           </Text>
           <Box margin="0 auto" display="flex" justifyContent="space-between" width="80%" alignItems="center">
             <Icon as={FaFacebookF} boxSize={5} color="gunmetal" />
