@@ -4,19 +4,10 @@ import {
   Flex,
   Text,
   FormControl,
-  Select,
   FormLabel,
   NumberInput,
   NumberInputField,
   Icon,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  UnorderedList,
-  ListItem,
-  Tooltip,
-  Image,
-  FormHelperText,
   Input,
   Button,
   Modal,
@@ -31,14 +22,12 @@ import {
   HStack,
   useToast,
 } from '@chakra-ui/react';
-import Cookies from 'js-cookie';
 import { FaCopy } from 'react-icons/fa';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import Sidebar from './sidebar';
-import { COOKIE_TOKEN } from './dashboard';
 import AccountFooter from './accountfooter';
-import api from '../api';
 import Header from './Header';
+import useStore from '../store/useStore';
 
 const Deposit = () => {
   const numberInputRef = useRef(null);
@@ -49,19 +38,8 @@ const Deposit = () => {
   const [transactionStatus, setTransactionStatus] = useState('');
   const [depositAmount, setDepositAmount] = useState('');
   const [paymentReceipt, setPaymentReceipt] = useState(null);
-  const toast = useToast();
 
-  const handleCopy = (value) => {
-    navigator.clipboard.writeText(value);
-    toast({
-      title: 'Copied!',
-      description: `${value} copied to clipboard.`,
-      status: 'success',
-      duration: 1500,
-      isClosable: true,
-      position: 'top',
-    });
-  };
+  const { user, balance, updateBalance, createTransaction } = useStore();
 
   useEffect(() => {
     let timer;
@@ -75,47 +53,40 @@ const Deposit = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const amount = Number(numberInputRef.current.value); // get amount value
-    setIsLoading(true); // start loading
+    const amount = Number(numberInputRef.current.value);
+    setIsLoading(true);
     setIsOpen(true);
     setTransactionStatus('Your transaction is being processed...');
 
-    const userDetails = Cookies.get(COOKIE_TOKEN);
-    const parsedToken = JSON.parse(userDetails);
-    const accountId = parsedToken.account.id;
-    setTimeout(async () => {
-      try {
-        const response = await api.put(`/accounts/${accountId}`, {
-          amount: amount,
-        });
-        setTransactionStatus('Deposit Successful');
-        setTimeout(() => {
-          setIsOpen(false);
-          navigate('/dashboard'); // Redirect to dashboard
-        }, 3000);
-        return null; // response.data; // Add return statement
-      } catch (error) {
-        setTransactionStatus('Transaction Failed');
-        setTimeout(() => {
-          setIsOpen(false);
-        }, 3000);
-        return null;
-      } finally {
-        setIsLoading(false);
-      }
-    }, 5000);
-  };
+    try {
+      const accountId = user.account.id;
+      await updateBalance(accountId, amount);
 
-  const [savings, setSavings] = useState(() => {
-    const userDetails = Cookies.get(COOKIE_TOKEN);
-    if (userDetails) {
-      const parsedToken = JSON.parse(userDetails);
-      if (parsedToken.account) {
-        return parsedToken.account.savings_account;
-      }
+      const transactionPayload = {
+        transaction: {
+          amount,
+          transaction_type: 'credit',
+          description: 'Deposit',
+          status: 'processed',
+        },
+      };
+
+      await createTransaction(transactionPayload);
+
+      setTransactionStatus('Deposit Successful');
+      setTimeout(() => {
+        setIsOpen(false);
+        navigate('/dashboard');
+      }, 3000);
+    } catch (error) {
+      setTransactionStatus('Transaction Failed');
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 3000);
+    } finally {
+      setIsLoading(false);
     }
-    return 0;
-  });
+  };
 
   return (
     <>
@@ -165,7 +136,7 @@ const Deposit = () => {
           fontFamily="noto"
           bgColor="gray.200"
         >
-          <Header isLoading={false} balance={savings || 0} />
+          <Header />
           <Flex ml={6} minHeight="3xl" flexDir="column">
             <Text
               alignSelf="center"
@@ -229,7 +200,7 @@ const Deposit = () => {
                 <Flex gap={4} mb={4}>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Bank Name</FormLabel>
-                    <Input value="Mining Bank" isReadOnly />
+                    <Input />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -238,12 +209,11 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => handleCopy('Mining Bank')}
                     />
                   </FormControl>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Account Name</FormLabel>
-                    <Input value="Miller Frost" isReadOnly />
+                    <Input />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -252,14 +222,13 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => handleCopy('Miller Frost')}
                     />
                   </FormControl>
                 </Flex>
                 <Flex gap={4}>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Account Number</FormLabel>
-                    <Input value="9938838352" isReadOnly />
+                    <Input />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -268,12 +237,11 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => handleCopy('9938838352')}
                     />
                   </FormControl>
                   <FormControl flex={1}>
                     <FormLabel fontSize="sm">Swift Code</FormLabel>
-                    <Input value="3222ASD" isReadOnly />
+                    <Input />
                     <Icon
                       as={FaCopy}
                       boxSize={5}
@@ -282,7 +250,6 @@ const Deposit = () => {
                       position="absolute"
                       right={3}
                       top={9}
-                      onClick={() => handleCopy('3222ASD')}
                     />
                   </FormControl>
                 </Flex>
