@@ -59,9 +59,7 @@ const Deposit = () => {
     setTransactionStatus('Your transaction is being processed...');
 
     try {
-      const accountId = user.account.id;
-      await updateBalance(accountId, amount);
-
+      // First create the transaction
       const transactionPayload = {
         transaction: {
           amount,
@@ -73,12 +71,21 @@ const Deposit = () => {
 
       await createTransaction(transactionPayload);
 
+      // Then update the balance
+      const accountId = user?.account?.id;
+      if (!accountId) {
+        throw new Error('Account ID not found');
+      }
+
+      await updateBalance(accountId, amount);
+
       setTransactionStatus('Deposit Successful');
       setTimeout(() => {
         setIsOpen(false);
         navigate('/dashboard');
       }, 3000);
     } catch (error) {
+      console.error('Deposit error:', error);
       setTransactionStatus('Transaction Failed');
       setTimeout(() => {
         setIsOpen(false);

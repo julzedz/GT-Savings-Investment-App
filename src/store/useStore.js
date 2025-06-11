@@ -62,7 +62,10 @@ const useStore = create((set, get) => ({
     try {
       set({ isLoading: true });
       const response = await api.put(`/accounts/${accountId}`, { amount });
-      const newBalance = response.data.account.savings_account;
+      const newBalance =
+        response.data?.account?.savings_account ||
+        response.data?.savings_account ||
+        0;
       set({
         balance: newBalance,
         isLoading: false,
