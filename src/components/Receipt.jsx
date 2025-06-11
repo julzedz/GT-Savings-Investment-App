@@ -14,13 +14,33 @@ import bankLogo from '../assets/bank-leaf.png';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import approved from '../assets/approved.png';
+import failed from '../assets/failed.png';
 
 const Receipt = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const receiptRef = useRef();
-  const { transaction, sender, receiver, amount, newBalance } =
-    location.state || {};
+  const { transaction, sender, receiver, amount } = location.state || {};
+
+  // Determine text and color based on transaction status
+  const statusText = transaction?.status || 'Unknown';
+  const isProcessed = statusText === 'processed';
+  const isFailed = statusText === 'failed';
+  const statusColor = isProcessed
+    ? 'green.600'
+    : isFailed
+      ? 'red.600'
+      : 'orange.500';
+  const headerMessage = isProcessed
+    ? 'Transaction Successful'
+    : isFailed
+      ? 'Transaction Failed'
+      : 'Transaction Status';
+  const subHeaderMessage = isProcessed
+    ? 'Your transfer was completed successfully.'
+    : isFailed
+      ? 'Your transfer could not be completed.'
+      : 'Check transaction status for more details.';
 
   const handlePrint = async () => {
     const input = receiptRef.current;
@@ -99,10 +119,10 @@ const Receipt = () => {
             </Text>
           </Flex>
           <Text fontSize="xl" fontWeight="bold" align="center" mb={2}>
-            Transaction Successful
+            {headerMessage}
           </Text>
-          <Text fontSize="sm" color="green.500" align="center" mb={6}>
-            Your transfer was completed successfully.
+          <Text fontSize="sm" color={statusColor} align="center" mb={6}>
+            {subHeaderMessage}
           </Text>
           <Divider mb={6} />
           <VStack fontSize="sm" align="stretch" spacing={3} mb={6}>
@@ -116,11 +136,7 @@ const Receipt = () => {
               <Text color="red.300" fontWeight="semibold">
                 Date:
               </Text>
-              <Text>
-                {transaction.formatted_created_at
-                  ? transaction.formatted_created_at
-                  : ''}
-              </Text>
+              <Text>{transaction.formatted_created_at}</Text>
             </HStack>
             <HStack justify="space-between">
               <Text color="red.300" fontWeight="semibold">
@@ -139,16 +155,21 @@ const Receipt = () => {
               </Text>
               <Text>
                 $
-                {Number(newBalance).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                })}
+                {Number(sender.account?.savings_account).toLocaleString(
+                  undefined,
+                  {
+                    minimumFractionDigits: 2,
+                  }
+                )}
               </Text>
             </HStack>
             <HStack justify="space-between">
               <Text color="red.300" fontWeight="semibold">
                 Status:
               </Text>
-              <Text color="green.600">Processed</Text>
+              <Text color={statusColor} textTransform="capitalize">
+                {statusText}
+              </Text>
             </HStack>
           </VStack>
           <Divider mb={6} />
@@ -202,15 +223,27 @@ const Receipt = () => {
               <Text>{receiver.type}</Text>
             </HStack>
           </VStack>
-          <Box
-            w="fit-content"
-            mx="auto"
-            position="relative"
-            top="-90px"
-            zIndex={1}
-          >
-            <img src={approved} width={150} alt="" />
-          </Box>
+          {isProcessed ? (
+            <Box
+              w="fit-content"
+              mx="auto"
+              position="relative"
+              top="-90px"
+              zIndex={1}
+            >
+              <img src={approved} width={150} alt="" />
+            </Box>
+          ) : isFailed ? (
+            <Box
+              w="fit-content"
+              mx="auto"
+              position="relative"
+              top="-90px"
+              zIndex={1}
+            >
+              <img src={failed} width={150} alt="" />
+            </Box>
+          ) : null}
         </Box>
         <Flex gap={4} mt={8} justify="center">
           <Button

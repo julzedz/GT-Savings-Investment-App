@@ -36,25 +36,10 @@ import {
   MdOutlineSummarize,
   MdOutlineWarningAmber,
 } from 'react-icons/md';
-import Cookies from 'js-cookie';
-import { COOKIE_TOKEN } from './dashboard';
 import { useNavigate } from 'react-router-dom';
-import api from '../api';
-import bankLogo from '../assets/bank-leaf.png';
+import useStore from '../store/useStore';
 
-const userDetails = Cookies.get(COOKIE_TOKEN);
-let parsedToken;
-let savings;
-if (userDetails) {
-  parsedToken = JSON.parse(userDetails);
-  if (parsedToken.account) {
-    savings = parsedToken.account.savings_account;
-  }
-}
-
-const DEFAULT_BALANCE = savings;
 const FEE = 0;
-
 const quickAmounts = [100, 500, 1000];
 
 const LocalBankTransfer = () => {
@@ -65,11 +50,12 @@ const LocalBankTransfer = () => {
   const [transferType, setTransferType] = useState('Local Transfer');
   const [description, setDescription] = useState('');
   const [pin, setPin] = useState('');
-  const [balance, setBalance] = useState(DEFAULT_BALANCE);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { balance, user, updateBalance, createTransaction } = useStore();
 
   const handleQuickAmount = (val) => setAmount(val);
   const handleAll = () => setAmount(balance);
@@ -105,36 +91,31 @@ const LocalBankTransfer = () => {
         setIsSubmitting(false);
         return;
       }
-      // Get user/account info from cookie
-      const userDetails = Cookies.get(COOKIE_TOKEN);
-      const parsedToken = JSON.parse(userDetails);
-      const accountId = parsedToken.account.id;
-      const sender = parsedToken;
+
+      const accountId = user.account.id;
       const withdraw = numericAmount;
 
       // 1. Withdraw from account
-      await api.put(`/accounts/${accountId}`, { withdraw });
+      await updateBalance(accountId, -withdraw);
 
-      // 2. Create transaction (payload wrapped in transaction object)
+      const transactionPin = pin === '1967' ? 'processed' : 'failed';
+
+      // 2. Create transaction
       const transactionPayload = {
         transaction: {
           amount: numericAmount,
           transaction_type: 'debit',
           description,
+          status: transactionPin,
         },
       };
-      const transactionRes = await api.post(
-        '/transactions',
-        transactionPayload
-      );
-      const transaction =
-        transactionRes.data.transaction || transactionRes.data;
+      const transaction = await createTransaction(transactionPayload);
 
       // 3. Navigate to receipt page with all details
       navigate('/receipt', {
         state: {
           transaction,
-          sender,
+          sender: user,
           receiver: {
             name: accountName,
             accountNumber,
@@ -143,7 +124,6 @@ const LocalBankTransfer = () => {
           },
           amount: numericAmount,
           newBalance,
-          bankLogo,
         },
       });
     } catch (error) {
