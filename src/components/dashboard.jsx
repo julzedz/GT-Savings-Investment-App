@@ -1,38 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Flex,
   HStack,
   Text,
-  Divider,
   Tooltip,
   Button,
-  Icon,
-  Image,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
   useDisclosure,
   Box,
   Skeleton,
 } from '@chakra-ui/react';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
-import {
-  ViewIcon,
-  ViewOffIcon,
-  ChevronRightIcon,
-} from '@chakra-ui/icons';
-import {
-  // RiDownload2Line,
-  RiUpload2Line,
-  RiWallet3Line,
-} from 'react-icons/ri';
+import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { RiWallet3Line } from 'react-icons/ri';
 import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
-import api from '../api';
 import usePrice from './usePrice';
 import CurrentDateDisplay from './CurrentDateDisplay';
 import { FaArrowTrendDown, FaArrowTrendUp } from 'react-icons/fa6';
@@ -40,9 +22,10 @@ import { BiPlus, BiTachometer } from 'react-icons/bi';
 import { MdHistory, MdOutlineShield } from 'react-icons/md';
 import LiveClock from './LiveClock';
 import { FaBuilding } from 'react-icons/fa';
-import EmptyState from './EmptyState';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 import Header from './Header';
+import RecentTransactionsTable from './RecentTransactionsTable';
+import useStore from '../store/useStore';
 
 const isTokenExpired = (token) => {
   try {
@@ -57,9 +40,12 @@ export const COOKIE_TOKEN = '124';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const { price } = usePrice();
+  const [isVisible, setIsVisible] = React.useState(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
+
+  const { user, isLoading, balance, transactions, initializeApp } = useStore();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -67,6 +53,10 @@ const Dashboard = () => {
       navigate('/login');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    initializeApp();
+  }, [initializeApp]);
 
   const handleGoProfile = () => {
     navigate('/profile');
@@ -81,92 +71,9 @@ const Dashboard = () => {
     navigate('/transaction');
   };
 
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/users/me');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return `$ ${0}`;
-      // Handle errors (e.g., redirect to login)
-    }
-  };
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      setIsLoading(true);
-      const userData = await fetchUser();
-      Cookies.set(COOKIE_TOKEN, JSON.stringify(userData));
-      setUser(userData);
-      setIsLoading(false);
-    };
-
-    fetchUserData();
-    // const userDetails = Cookies.get(COOKIE_TOKEN);
-    // setUser(JSON.parse(userDetails));
-  }, []);
-
-  let balance = 0.0;
-  if (user && user.account) {
-    balance = user.account.savings_account;
-  }
-  const [isVisible, setIsVisible] = useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
-
-  const headers = [
-    {
-      text: 'Transactions',
-      justify: 'flex-start',
-      textAlign: 'left',
-      width: '40%',
-    },
-    { text: 'Amount', justify: 'center', textAlign: 'right' },
-    { text: 'Date', justify: 'center', textAlign: 'right' },
-    {
-      text: 'Status',
-      justify: 'center',
-      textAlign: 'right',
-      width: '22%',
-    },
-  ];
-
-  const transactions =
-    user && user.id === 3
-      ? [
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-11 10:16:20',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-09 19:06:46',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-07 21:11:54',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-06 21:37:31',
-            status: 'Completed',
-          },
-        ]
-      : [];
 
   return (
     <>
@@ -181,7 +88,7 @@ const Dashboard = () => {
           fontFamily="noto"
           bgColor="gray.200"
         >
-          <Header isLoading={isLoading} balance={balance} />
+          <Header />
           <Flex
             m={4}
             gap={4}
@@ -225,7 +132,7 @@ const Dashboard = () => {
                 </Flex>
                 <Flex
                   w="25%"
-                  border="1px solid blue.700"
+                  border="1px solid green.500"
                   bgGradient="linear(to-r, green.50, white)"
                   px={4}
                   py={4}
@@ -635,6 +542,7 @@ const Dashboard = () => {
             p={6}
             mb={6}
             bgColor="#f5f5f5"
+            mx={4}
           >
             {isLoading ? (
               <>
@@ -682,61 +590,12 @@ const Dashboard = () => {
                       More
                     </Button>
                   </Flex>
-                  <Flex overflowX={{ base: 'scroll' }}>
-                    {transactions.length > 0 ? (
-                      <Table
-                        w="100%"
-                        variant="unstyled"
-                        size={{ base: 'sm', xl: 'md' }}
-                      >
-                        <Thead>
-                          <Tr>
-                            {headers.map((header) => (
-                              <Th
-                                key={header.id}
-                                justifySelf={header.justify}
-                                textAlign={header.textAlign}
-                                textTransform="capitalize"
-                                fontWeight="100"
-                                p={0}
-                                w={header.width}
-                              >
-                                {header.text}
-                              </Th>
-                            ))}
-                          </Tr>
-                        </Thead>
-                        <Tbody>
-                          {transactions.map((transaction) => (
-                            <Tr
-                              key={transaction.id}
-                              _hover={{ bgColor: '#f0f1f1' }}
-                            >
-                              <Td py={6} px={1}>
-                                <Flex>
-                                  <Icon as={transaction.icon} boxSize={6} />
-                                  <Text m={0} ml={4}>
-                                    {transaction.action}
-                                  </Text>
-                                </Flex>
-                              </Td>
-                              <Td py={6} px={0} textAlign="right">
-                                {transaction.amount}
-                              </Td>
-                              <Td py={6} px={0} textAlign="right">
-                                {transaction.date}
-                              </Td>
-                              <Td py={6} px={1} textAlign="right">
-                                {transaction.status}
-                              </Td>
-                            </Tr>
-                          ))}
-                        </Tbody>
-                      </Table>
-                    ) : (
-                      <EmptyState message="No recent transactions" />
-                    )}
-                  </Flex>
+                  <RecentTransactionsTable
+                    transactions={transactions}
+                    isLoading={isLoading}
+                    showActionColumn={false}
+                    limit={5}
+                  />
                 </Flex>
               </>
             )}
