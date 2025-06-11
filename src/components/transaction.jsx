@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Flex,
   Divider,
@@ -14,291 +14,90 @@ import {
   Select,
   Tbody,
   Td,
+  Badge,
+  Button,
+  FormControl,
+  Input,
+  HStack,
 } from '@chakra-ui/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import { RiDownload2Line, RiUpload2Line } from 'react-icons/ri';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
-import api from '../api';
+import Header from './Header';
 import EmptyState from './EmptyState';
+import { useNavigate } from 'react-router-dom';
+import useStore from '../store/useStore';
 
 const Transaction = () => {
-  const [user, setUser] = useState(null);
-
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/users/me');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-      // Handle errors (e.g., redirect to login)
-    }
-  };
+  const navigate = useNavigate();
+  const { user, isLoading, transactions, fetchUser, fetchTransactions } =
+    useStore();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userData = await fetchUser();
-      setUser(userData);
+    const fetchData = async () => {
+      await fetchUser();
+      await fetchTransactions();
     };
-    fetchUserData();
-  }, []);
+    fetchData();
+  }, [fetchUser, fetchTransactions]);
 
-  const transactions =
-    user && user.id === 3
-      ? [
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-11 10:16:26',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-09 19:06:46',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-07 21:11:54',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-06 21:37:31',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1000.00',
-            date: '2024-03-02 08:59:31',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1,250.43',
-            date: '2024-02-11 19:42:31',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-10,001.92',
-            date: '2024-02-05 14:35:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+45,490.38',
-            date: '2024-02-01 07:26:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-2,500.34',
-            date: '2024-01-24 05:32:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-500.76',
-            date: '2024-01-22 20:17:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-950.92',
-            date: '2024-01-20 19:28:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+10,000',
-            date: '2024-01-18 07:50:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-16,250.57',
-            date: '2024-01-14 14:45:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-16,250.57',
-            date: '2024-01-14 13:15:05',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+15,003.89',
-            date: '2024-01-11 04:36:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-16,250.57',
-            date: '2024-01-09 14:32:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+12,004.21',
-            date: '2024-01-04 07:26:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-5,501.33',
-            date: '2024-01-02 07:41:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-9,002.84',
-            date: '2024-01-01 14:32:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+23,001.29',
-            date: '2023-12-31 08:59:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+30,002.76',
-            date: '2023-12-30 07:26:20',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-1,501.83',
-            date: '2023-12-28 14:32:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+5,003.12',
-            date: '2023-12-25 21:31:33',
-            status: 'Completed',
-          },
-          {
-            icon: RiUpload2Line,
-            action: 'Withdraw USDT',
-            amount: '-4,501.92',
-            date: '2023-12-20 14:32:15',
-            status: 'Completed',
-          },
-          {
-            icon: RiDownload2Line,
-            action: 'Deposit USDT',
-            amount: '+25,002.11',
-            date: '2023-11-01 05:36:33',
-            status: 'Completed',
-          },
-        ]
-      : [];
+  let balance = 0;
+  if (user && user.account) {
+    balance = user.account.savings_account;
+  }
+
+  const handleViewReceipt = (transaction) => {
+    const senderDetails = user;
+    const receiverDetails = {
+      name: transaction.recipient_name || 'N/A',
+      accountNumber: transaction.recipient_account_number || 'N/A',
+      bank: transaction.recipient_bank || 'N/A',
+      type: transaction.recipient_type || 'N/A',
+    };
+
+    navigate('/receipt', {
+      state: {
+        transaction,
+        sender: senderDetails,
+        receiver: receiverDetails,
+        amount: transaction.amount,
+        newBalance: null,
+        bankLogo: '/src/assets/bank-leaf.png',
+      },
+    });
+  };
+
+  const headers = [
+    { text: 'Amount', justify: 'flex-start', textAlign: 'left' },
+    { text: 'Type', justify: 'center', textAlign: 'center' },
+    { text: 'Status', justify: 'center', textAlign: 'center' },
+    { text: 'Reference ID', justify: 'center', textAlign: 'left' },
+    { text: 'Description', justify: 'center', textAlign: 'left' },
+    { text: 'Created', justify: 'center', textAlign: 'left' },
+    { text: 'Action', justify: 'center', textAlign: 'center' },
+  ];
 
   return (
     <>
       <Flex color="black" w="100%">
         <Sidebar />
         <Flex
-          ml={4}
           flexDir="column"
-          minHeight="xl"
-          p={5}
+          minHeight="3xl"
           flex="1"
-          marginLeft={{ base: 20, md: '21rem' }}
+          marginLeft={{ base: 20, md: '11.01rem' }}
+          overflowY="scroll"
           fontFamily="noto"
+          bgColor="gray.200"
         >
+          <Header />
+
           <Flex
-            flexDir={{ base: 'column', lg: 'row' }}
-            mb={8}
-            alignItems="center"
-            justifyContent="flex-start"
-          >
-            <Text
-              m={0}
-              alignSelf="flex-start"
-              fontSize="2xl"
-              fontWeight="medium"
-              pr={8}
-              pb={{ base: 4, lg: 0 }}
-            >
-              Transactions
-            </Text>
-            <Divider
-              display={{ base: 'none', lg: 'inline' }}
-              w="1px"
-              color="#eaecef"
-              orientation="vertical"
-            />
-            <Flex
-              w={{ base: '100%', lg: 'auto' }}
-              flexDir={{ base: 'column', lg: 'row' }}
-              fontSize="sm"
-              lineHeight="shorter"
-              alignItems="center"
-              px={{ base: 0, lg: 8 }}
-            >
-              <Flex
-                w={{ base: 'inherit', lg: 'auto' }}
-                alignItems="center"
-                justifyContent={{ base: 'space-between', lg: 'center' }}
-                m={0}
-                mr={{ base: 0, lg: 12 }}
-                flexDir={{ base: 'row', lg: 'column' }}
-              >
-                <Text color="#929aa5" m={0} mb={1}>
-                  User ID
-                </Text>
-                {user && <Text m={0}>{user.account_number}</Text>}
-              </Flex>
-              <Flex
-                w={{ base: 'inherit', lg: 'auto' }}
-                alignItems="center"
-                justifyContent={{ base: 'space-between', lg: 'center' }}
-                m={0}
-                mr={{ base: 0, lg: 12 }}
-                flexDir={{ base: 'row', lg: 'column' }}
-              >
-                <Text color="#929aa5" m={0} mb={1}>
-                  User Type
-                </Text>
-                <Text m={0}>Personal</Text>
-              </Flex>
-            </Flex>
-          </Flex>
-          <Text
             p={0}
             m={0}
+            mx={6}
+            mt={4}
             alignItems="center"
             justifyContent="space-between"
             w="100%"
@@ -306,9 +105,12 @@ const Transaction = () => {
             fontWeight="bold"
             mb={6}
           >
-            Transaction History
-          </Text>
-          <Flex gap={6} mt={3}>
+            <Text m={0}>Transaction History</Text>
+          </Flex>
+          <Flex mx={6} gap={6} mt={3} mb={6}>
+            <FormControl flex="1">
+              <Input placeholder="Search by transaction reference..." />
+            </FormControl>
             <Select
               variant="filled"
               w={32}
@@ -320,7 +122,6 @@ const Transaction = () => {
               <option value="option3">Past 7 days</option>
             </Select>
             <Select
-              mb={12}
               variant="filled"
               w={32}
               textOverflow="ellipsis"
@@ -331,49 +132,123 @@ const Transaction = () => {
               <option value="option3">Withdrawal</option>
             </Select>
           </Flex>
-          {user && (
-            <Box
-              overflowX={{ base: 'scroll' }}
-              mb={user && user.id === 3 ? 12 : 96}
-            >
+          {isLoading ? (
+            <Box mx={6}>
+              <Text>Loading transactions...</Text>
+            </Box>
+          ) : (
+            <Box overflowX={{ base: 'scroll' }} mb={12} mx={6}>
               {transactions.length > 0 ? (
-                <Table>
+                <Table variant="simple" size="md" width="full">
                   <Thead>
                     <Tr>
-                      <Th>Transactions</Th>
-                      <Th>Amount</Th>
-                      <Th>Date</Th>
-                      <Th>Status</Th>
+                      {headers.map((header) => (
+                        <Th
+                          key={header.text}
+                          textAlign={header.textAlign}
+                          textTransform="capitalize"
+                          fontWeight="bold"
+                          fontSize="sm"
+                          py={3}
+                          px={2}
+                        >
+                          {header.text}
+                        </Th>
+                      ))}
                     </Tr>
                   </Thead>
                   <Tbody>
                     {transactions.map((transaction) => (
-                      <Tr key={transaction.id} _hover={{ bgColor: '#f0f1f1' }}>
-                        <Td py={6} px={1}>
-                          <Flex>
-                            <Icon as={transaction.icon} boxSize={6} />
-                            <Text m={0} ml={4} fontSize="sm">
-                              {transaction.action}
+                      <Tr
+                        key={transaction.id || transaction.reference_id}
+                        _hover={{ bgColor: 'gray.50' }}
+                      >
+                        <Td py={3} px={2} fontSize="sm">
+                          <HStack>
+                            <Icon
+                              as={
+                                transaction.transaction_type === 'debit'
+                                  ? RiUpload2Line
+                                  : RiDownload2Line
+                              }
+                              boxSize={5}
+                              color={
+                                transaction.transaction_type === 'debit'
+                                  ? 'red.500'
+                                  : 'green.500'
+                              }
+                            />
+                            <Text fontWeight="medium">
+                              $
+                              {Number(transaction.amount).toLocaleString(
+                                undefined,
+                                { minimumFractionDigits: 2 }
+                              )}
                             </Text>
-                          </Flex>
+                          </HStack>
                         </Td>
-                        <Td px={0}>{transaction.amount}</Td>
-                        <Td py={6} px={0} fontSize="sm">
-                          {transaction.date}
+                        <Td py={3} px={2} fontSize="sm" textAlign="center">
+                          <Badge
+                            colorScheme={
+                              transaction.transaction_type === 'debit'
+                                ? 'red'
+                                : 'green'
+                            }
+                            textTransform="capitalize"
+                            px={2}
+                            py={1}
+                            borderRadius="md"
+                          >
+                            {transaction.transaction_type}
+                          </Badge>
                         </Td>
-                        <Td py={6} px={1} fontSize="sm">
-                          {transaction.status}
+                        <Td py={3} px={2} fontSize="sm" textAlign="center">
+                          <Badge
+                            colorScheme={
+                              transaction.status === 'processed'
+                                ? 'green'
+                                : transaction.status === 'pending'
+                                  ? 'yellow'
+                                  : 'red'
+                            }
+                            textTransform="capitalize"
+                            px={2}
+                            py={1}
+                            borderRadius="md"
+                          >
+                            {transaction.status}
+                          </Badge>
+                        </Td>
+                        <Td py={3} px={2} fontSize="sm">
+                          {transaction.reference_id || 'N/A'}
+                        </Td>
+                        <Td py={3} px={2} fontSize="sm">
+                          {transaction.description || 'N/A'}
+                        </Td>
+                        <Td py={3} px={2} fontSize="sm">
+                          {transaction.formatted_created_at || 'N/A'}
+                        </Td>
+                        <Td py={3} px={2} fontSize="sm" textAlign="center">
+                          <Button
+                            size="xs"
+                            colorScheme="blue"
+                            onClick={() => handleViewReceipt(transaction)}
+                          >
+                            Receipt
+                          </Button>
                         </Td>
                       </Tr>
                     ))}
                   </Tbody>
                 </Table>
               ) : (
-                <EmptyState message="No transactions found" />
+                <EmptyState message="No transactions found." />
               )}
             </Box>
           )}
-          <AccountFooter />
+          <Flex alignSelf="center" mt="auto">
+            <AccountFooter />
+          </Flex>
         </Flex>
       </Flex>
     </>
