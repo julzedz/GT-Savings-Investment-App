@@ -29,7 +29,7 @@ const Withdrawal = () => (
       fontFamily="noto"
       bgColor="gray.200"
     >
-      <Header isLoading={false} balance={savings || 0} />
+      <Header />
       <Flex px={4} minHeight="3xl" flexDir="column">
         <Text
           alignSelf="center"
