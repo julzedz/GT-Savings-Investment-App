@@ -1,12 +1,18 @@
 import React from 'react';
-import { Flex, Text, Skeleton, Avatar } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  Skeleton,
+  Avatar,
+} from '@chakra-ui/react';
 import { CalendarIcon } from '@chakra-ui/icons';
 import { RiNotification2Fill, RiWallet3Line } from 'react-icons/ri';
 import CurrentDateDisplay from './CurrentDateDisplay';
 import useStore from '../store/useStore';
 
 const Header = () => {
-  const { isLoading, balance } = useStore();
+  const { isLoading, getFormattedBalance } = useStore();
+  const formattedBalance = getFormattedBalance();
 
   return (
     <Flex
@@ -36,7 +42,7 @@ const Header = () => {
           {isLoading ? (
             <Skeleton height="20px" width="60px" />
           ) : (
-            <Text>${balance}</Text>
+            <Text>${formattedBalance}</Text>
           )}
         </Flex>
         <RiNotification2Fill />

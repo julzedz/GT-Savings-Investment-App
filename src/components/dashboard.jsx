@@ -12,10 +12,8 @@ import {
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { RiWallet3Line } from 'react-icons/ri';
-import Cookies from 'js-cookie';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
-import usePrice from './usePrice';
 import CurrentDateDisplay from './CurrentDateDisplay';
 import { FaArrowTrendDown, FaArrowTrendUp } from 'react-icons/fa6';
 import { BiPlus, BiTachometer } from 'react-icons/bi';
@@ -36,16 +34,13 @@ const isTokenExpired = (token) => {
   }
 };
 
-export const COOKIE_TOKEN = '124';
-
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { price } = usePrice();
   const [isVisible, setIsVisible] = React.useState(true);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
 
-  const { user, isLoading, balance, transactions, initializeApp } = useStore();
+  const { user, isLoading, getFormattedBalance, transactions, initializeApp } =
+    useStore();
+  const formattedBalance = getFormattedBalance();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -123,7 +118,7 @@ const Dashboard = () => {
                       Current Balance
                     </Text>
                     <Text fontSize="md" fontWeight="bold">
-                      ${balance}
+                      ${formattedBalance}
                     </Text>
                   </Flex>
                   <Box bgColor="blue.500" p={3} borderRadius={'full'}>
@@ -149,7 +144,7 @@ const Dashboard = () => {
                       Monthly Income
                     </Text>
                     <Text fontSize="md" color="green" fontWeight="bold">
-                      ${balance}
+                      ${formattedBalance}
                     </Text>
                   </Flex>
                   <Box bgColor="green.200" p={3} borderRadius={'full'}>
@@ -175,7 +170,7 @@ const Dashboard = () => {
                       Monthly Outgoing
                     </Text>
                     <Text fontSize="md" color="red.500" fontWeight="bold">
-                      ${balance}
+                      ${formattedBalance}
                     </Text>
                   </Flex>
                   <Box
@@ -297,7 +292,7 @@ const Dashboard = () => {
                 fontWeight="semibold"
                 m={0}
               >
-                {isVisible ? `$${balance}` : '****'}
+                {isVisible ? `$${formattedBalance}` : '****'}
               </Text>
               <Text
                 fontSize="sm"

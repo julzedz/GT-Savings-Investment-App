@@ -20,6 +20,18 @@ const useStore = create((set, get) => ({
     return transactions.slice(0, limit);
   },
 
+  getFormattedBalance: () => {
+    const { balance } = get();
+    // Convert to number and check if it has decimals
+    const num = Number(balance);
+    // Format with commas and handle decimals
+    const formatted = num.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    });
+    return formatted;
+  },
+
   // Async actions
   fetchUser: async () => {
     try {

@@ -20,7 +20,6 @@ import {
   InputLeftAddon,
   InputRightAddon,
   HStack,
-  useToast,
 } from '@chakra-ui/react';
 import { FaCopy } from 'react-icons/fa';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
@@ -39,7 +38,7 @@ const Deposit = () => {
   const [depositAmount, setDepositAmount] = useState('');
   const [paymentReceipt, setPaymentReceipt] = useState(null);
 
-  const { user, balance, updateBalance, createTransaction } = useStore();
+  const { user, updateBalance, createTransaction } = useStore();
 
   useEffect(() => {
     let timer;
