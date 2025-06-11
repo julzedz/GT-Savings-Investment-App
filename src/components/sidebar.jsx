@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Flex,
   Text,
@@ -27,7 +26,6 @@ import { BsFillGearFill, BsGraphUpArrow } from 'react-icons/bs';
 import { GoQuestion } from 'react-icons/go';
 import { useLocation } from 'react-router';
 import { Link as reactrouterlink, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
@@ -35,14 +33,24 @@ import logo from '../assets/bank-leaf.png';
 import api from '../api';
 import dp from '../assets/PHOTO-2024-03-01-02-09-21.jpg';
 import avatar from '../assets/avatar-icon.webp';
+import useStore from '../store/useStore';
 
 const Sidebar = () => {
-  const [user, setUser] = useState(null);
   const breakpointnavsize = useBreakpointValue({ base: 'small', md: 'large' });
-  const [navSize, setNavSize] = useState(breakpointnavsize);
+  const [navSize, setNavSize] = React.useState(breakpointnavsize);
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   const navigate = useNavigate();
+
+  const { user, fetchUser } = useStore();
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+
+  useEffect(() => {
+    setNavSize(breakpointnavsize);
+  }, [breakpointnavsize]);
 
   const handleLogout = async () => {
     try {
@@ -54,33 +62,10 @@ const Sidebar = () => {
     }
   };
 
-  const fetchUser = async () => {
-    try {
-      const response = await api.get('/users/me');
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching user:', error);
-      return null;
-      // Handle errors (e.g., redirect to login)
-    }
-  };
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const userData = await fetchUser();
-      setUser(userData);
-    };
-
-    fetchUserData();
-  }, []);
-
-  useEffect(() => {
-    setNavSize(breakpointnavsize);
-  }, [breakpointnavsize]);
-
   const toggleNavSize = () => {
     setNavSize(navSize === 'small' ? 'large' : 'small');
   };
+
   return (
     <Flex
       pos="fixed"
@@ -296,19 +281,7 @@ const Sidebar = () => {
       >
         {user && (
           <Flex mt={4} alignItems="center" _hover={{ textDecoration: 'none' }}>
-            {user.id === 3 ? (
-              <Image
-                borderRadius="full"
-                boxSize={{ base: '50px', sm: '50px' }}
-                src={dp}
-                alt="user"
-                alignSelf="center"
-                objectFit="cover"
-                fallbackSrc={avatar}
-              />
-            ) : (
               <Avatar size="sm" />
-            )}
             <Flex
               flexDir="column"
               ml={4}
