@@ -23,6 +23,7 @@ import ProtectedRoute from './ProtectedRoute';
 import OTPInput from '../components/OTPInput';
 import UserDetails from '../components/admin/UserDetails';
 import Receipt from '../components/Receipt';
+import InternationalWire from '../components/InternationalWire';
 
 const GtSavingsBankRoutes = () => {
   const location = useLocation();
@@ -109,6 +110,10 @@ const GtSavingsBankRoutes = () => {
             <Route
               path="/user/:userId"
               element={<ProtectedRoute element={<UserDetails />} />}
+            />
+            <Route
+              path="/internationalwire"
+              element={<ProtectedRoute element={<InternationalWire />} />}
             />
           </Routes>
         </div>

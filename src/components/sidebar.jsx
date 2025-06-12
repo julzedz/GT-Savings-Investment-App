@@ -180,8 +180,8 @@ const Sidebar = () => {
           title="Local Transfer"
         />
         <NavItem
-          href="/cards"
-          isActive={isActive('/cards')}
+          href="/internationalwire"
+          isActive={isActive('/internationalwire')}
           navSize={navSize}
           icon={FaGlobe}
           title="International Wire"
@@ -281,7 +281,7 @@ const Sidebar = () => {
       >
         {user && (
           <Flex mt={4} alignItems="center" _hover={{ textDecoration: 'none' }}>
-              <Avatar size="sm" />
+            <Avatar size="sm" />
             <Flex
               flexDir="column"
               ml={4}

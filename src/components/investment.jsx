@@ -15,7 +15,7 @@ import Sidebar from './sidebar';
 import margin from '../assets/margin.svg';
 import AccountFooter from './accountfooter';
 import api from '../api';
-import usePrice from './usePrice';
+// import usePrice from './usePrice';
 
 const Investment = () => {
   const { price, eth } = usePrice();
