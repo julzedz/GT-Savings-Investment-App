@@ -55,8 +55,8 @@ function App() {
         script.type = 'text/javascript';
         script.async = true;
         script.crossorigin = 'anonymous';
-        // eslint-disable-next-line prefer-template
-        script.src = 'https://js.driftt.com/include/' + n + '/' + driftId + '.js';
+        script.src =
+          'https://js.driftt.com/include/' + n + '/' + driftId + '.js';
         const firstScript = document.getElementsByTagName('script')[0];
         firstScript.parentNode.insertBefore(script, firstScript);
       };
