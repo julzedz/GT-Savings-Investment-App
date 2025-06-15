@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -16,7 +15,6 @@ import {
   Flex,
   Img,
   Skeleton,
-  SkeletonText,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -38,7 +36,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial page load
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -55,12 +52,7 @@ const Home = () => {
         >
           <Skeleton height={{ base: '2xl', lg: '3xl' }} width="100%" />
         </Box>
-        <Box
-          bgImage={bgsvg}
-          w="100%"
-          height="fit-content"
-          fontFamily="Space Grotesk"
-        >
+        <Box w="100%" height="fit-content" fontFamily="Space Grotesk">
           <Grid
             h="100%"
             w="100%"
