@@ -33,23 +33,12 @@ const UserDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) {
-      navigate('/dashboard');
-      return;
-    }
     fetchUserDetails();
-  }, [userId, navigate]);
+  }, [userId]);
 
   const fetchUserDetails = async () => {
     setIsLoading(true);
     try {
-      const token = localStorage.getItem('admin_token');
-      if (!token) {
-        throw new Error('No admin token available');
-      }
-
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       const userResponse = await api.get(`/users/${userId}`);
       setUser(userResponse.data);
 
@@ -73,9 +62,6 @@ const UserDetails = () => {
         duration: 3000,
         isClosable: true,
       });
-      if (error.response?.status === 401) {
-        navigate('/login');
-      }
     } finally {
       setIsLoading(false);
     }
