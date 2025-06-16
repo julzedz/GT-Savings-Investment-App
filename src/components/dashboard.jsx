@@ -470,7 +470,7 @@ const Dashboard = () => {
                       p={2}
                       borderRadius={'full'}
                     >
-                      <FiBarChart2 />
+                      <BiTachometer />
                     </Box>
                     <Flex fontSize="xs" flexDir="column" ml={2}>
                       <Text color="gray.600">Transaction Limit</Text>
