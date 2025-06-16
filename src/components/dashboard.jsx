@@ -54,9 +54,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(true);
 
-  const { user, isLoading, getFormattedBalance, transactions, initializeApp } =
+  const { user, isLoading, getFormattedBalance, getFormattedInvestment, getFormattedEarnings, transactions, initializeApp } =
     useStore();
   const formattedBalance = getFormattedBalance();
+  const formattedInvestment = getFormattedInvestment();
+  const formattedEarnings = getFormattedEarnings();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -166,7 +168,7 @@ const Dashboard = () => {
                       Monthly Income
                     </Text>
                     <Text fontSize="md" color="green" fontWeight="bold">
-                      ${formattedBalance}
+                      ${formattedInvestment}
                     </Text>
                   </Flex>
                   <Box bgColor="green.200" p={3} borderRadius={'full'}>
@@ -192,7 +194,7 @@ const Dashboard = () => {
                       Monthly Outgoing
                     </Text>
                     <Text fontSize="md" color="red.500" fontWeight="bold">
-                      ${formattedBalance}
+                      ${formattedEarnings}
                     </Text>
                   </Flex>
                   <Box
