@@ -6,6 +6,8 @@ const useStore = create((set, get) => ({
   user: null,
   isLoading: true,
   balance: 0,
+  investment: 0,
+  earnings: 0,
   transactions: [],
 
   // Actions
@@ -32,6 +34,26 @@ const useStore = create((set, get) => ({
     return formatted;
   },
 
+  getFormattedInvestment: () => {
+    const { investment } = get();
+    const num = Number(investment);
+    const formatted = num.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    });
+    return formatted;
+  },
+
+  getFormattedEarnings: () => {
+    const { earnings } = get();
+    const num = Number(earnings);
+    const formatted = num.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    });
+    return formatted;
+  },
+
   // Async actions
   fetchUser: async () => {
     try {
@@ -41,6 +63,8 @@ const useStore = create((set, get) => ({
       set({
         user: userData,
         balance: userData.account?.savings_account || 0,
+        investment: userData.account?.investment || 0,
+        earnings: userData.account?.earnings || 0,
         isLoading: false,
       });
       return userData;
