@@ -236,13 +236,13 @@ const UserDetails = () => {
                     'number'
                   )}
                   {renderEditableField(
-                    'Investment Account',
+                    'Monthly Income',
                     'investment_account',
                     account.investment,
                     'number'
                   )}
                   {renderEditableField(
-                    'Earnings',
+                    'Monthly Outgoing',
                     'earnings',
                     account.earnings,
                     'number'
