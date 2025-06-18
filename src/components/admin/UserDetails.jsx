@@ -18,12 +18,13 @@ import {
   NumberDecrementStepper,
   Spinner,
   Center,
+  Select,
 } from '@chakra-ui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useStore from '../../store/useStore';
 
 const UserDetails = () => {
-  const { userId } = useParams();
+  const { userId: routeUserId } = useParams();
   const [editingField, setEditingField] = useState(null);
   const [editValue, setEditValue] = useState('');
   const navigate = useNavigate();
@@ -37,12 +38,17 @@ const UserDetails = () => {
     fetchAccountById,
     updateUserField,
     updateAccountField,
+    getStatus,
+    setStatus,
+    updateStatus,
   } = useStore();
+
+  const selectedUserId = selectedUser?.id;
 
   useEffect(() => {
     const loadUserData = async () => {
       try {
-        const userData = await fetchUserById(userId);
+        const userData = await fetchUserById(routeUserId);
         if (userData?.account) {
           await fetchAccountById(userData.account.id);
         }
@@ -59,7 +65,7 @@ const UserDetails = () => {
     };
 
     loadUserData();
-  }, [userId, fetchUserById, fetchAccountById, toast]);
+  }, [routeUserId, fetchUserById, fetchAccountById, toast]);
 
   const handleEdit = (field, value) => {
     setEditingField(field);
@@ -78,7 +84,7 @@ const UserDetails = () => {
       ) {
         await updateAccountField(selectedAccount.id, field, editValue);
       } else {
-        await updateUserField(userId, field, editValue);
+        await updateUserField(selectedUserId, field, editValue);
       }
 
       toast({
@@ -96,6 +102,37 @@ const UserDetails = () => {
         duration: 3000,
         isClosable: true,
       });
+    }
+  };
+
+  const currentStatus = getStatus(selectedUserId);
+  const statusColor =
+    {
+      Active: 'green',
+      Inactive: 'red',
+      'On Hold': 'yellow',
+    }[currentStatus] || 'gray';
+
+  const handleStatusChange = async (e) => {
+    const newStatus = e.target.value;
+    setStatus(selectedUserId, newStatus);
+    if (selectedUserId) {
+      try {
+        await updateStatus(selectedUserId, newStatus);
+        toast({
+          title: 'Status updated',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
+      } catch (error) {
+        toast({
+          title: 'Failed to update status',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -185,6 +222,22 @@ const UserDetails = () => {
               <Text fontSize="lg" fontWeight="medium">
                 Personal Information
               </Text>
+              <HStack>
+                <Text>Status:</Text>
+                <Button size="sm" colorScheme={statusColor} variant="solid">
+                  {currentStatus}
+                </Button>
+                <Select
+                  size="sm"
+                  value={currentStatus}
+                  onChange={handleStatusChange}
+                  w="auto"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="On Hold">On Hold</option>
+                </Select>
+              </HStack>
               {renderEditableField(
                 'First Name',
                 'first_name',

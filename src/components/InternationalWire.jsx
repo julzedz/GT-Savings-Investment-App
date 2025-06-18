@@ -76,6 +76,7 @@ const InternationalWire = () => {
     getFormattedBalance,
     updateBalance,
     createTransaction,
+    getStatus,
   } = useStore();
   const handleQuickAmount = (val) => setAmount(val);
   const handleAll = () => setAmount(balance);
@@ -83,6 +84,19 @@ const InternationalWire = () => {
   const newBalance = balance - numericAmount >= 0 ? balance - numericAmount : 0;
 
   const formattedBalance = getFormattedBalance();
+
+  // User-specific status
+  const currentStatus = getStatus(user?.id);
+  console.log('Current Status:', currentStatus); // Debug log
+  const statusColor =
+    {
+      Active: 'green',
+      Inactive: 'red',
+      'On Hold': 'yellow',
+    }[currentStatus] || 'gray';
+
+  const isButtonDisabled = currentStatus !== 'Active';
+  console.log('Is Button Disabled:', isButtonDisabled); // Debug log
 
   const handlePreview = (e) => {
     e.preventDefault();
@@ -233,11 +247,11 @@ const InternationalWire = () => {
                   </Box>
                 </Flex>
                 <Badge
-                  colorScheme="green"
+                  colorScheme={statusColor}
                   textTransform="capitalize"
                   fontSize="xs"
                 >
-                  Available
+                  {currentStatus}
                 </Badge>
               </Flex>
 
@@ -413,7 +427,14 @@ const InternationalWire = () => {
 
               {/* Action Buttons */}
               <Flex gap={4}>
-                <Button colorScheme="blue" flex={1} onClick={handlePreview}>
+                <Button
+                  colorScheme="blue"
+                  flex={1}
+                  onClick={handlePreview}
+                  isDisabled={isButtonDisabled}
+                  opacity={isButtonDisabled ? 0.6 : 1}
+                  cursor={isButtonDisabled ? 'not-allowed' : 'pointer'}
+                >
                   Preview Transfer
                 </Button>
                 <Button variant="outline" leftIcon={<MdArrowBack />} flex={1}>
