@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
 import { Formik, Field, Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -187,15 +185,17 @@ const Signup = () => {
               setIsLoading(true);
               try {
                 const userPayload = {
-                  first_name: values.firstName,
-                  last_name: values.lastName,
-                  date_of_birth: values.dob,
-                  phone_number: values.mobile,
-                  email: values.email,
-                  city: values.city,
-                  state: values.state,
-                  password: values.password,
-                  country: values.citizenship,
+                  user: {
+                    first_name: values.firstName,
+                    last_name: values.lastName,
+                    date_of_birth: values.dob,
+                    phone_number: values.mobile,
+                    email: values.email,
+                    city: values.city,
+                    state: values.state,
+                    password: values.password,
+                    country: values.citizenship,
+                  },
                 };
 
                 await api.post('/users', userPayload);
