@@ -9,12 +9,16 @@ const useStore = create((set, get) => ({
   investment: 0,
   earnings: 0,
   transactions: [],
+  selectedUser: null,
+  selectedAccount: null,
 
   // Actions
   setUser: (user) => set({ user }),
   setLoading: (isLoading) => set({ isLoading }),
   setBalance: (balance) => set({ balance }),
   setTransactions: (transactions) => set({ transactions }),
+  setSelectedUser: (user) => set({ selectedUser: user }),
+  setSelectedAccount: (account) => set({ selectedAccount: account }),
 
   // Selectors
   getRecentTransactions: (limit = 5) => {
@@ -72,6 +76,81 @@ const useStore = create((set, get) => ({
       console.error('Error fetching user:', error);
       set({ isLoading: false });
       return null;
+    }
+  },
+
+  fetchUserById: async (userId) => {
+    try {
+      set({ isLoading: true });
+      const response = await api.get(`/users/${userId}`);
+      const userData = response.data;
+      set({ selectedUser: userData, isLoading: false });
+      return userData;
+    } catch (error) {
+      console.error('Error fetching user by ID:', error);
+      set({ isLoading: false });
+      throw error;
+    }
+  },
+
+  fetchAccountById: async (accountId) => {
+    try {
+      set({ isLoading: true });
+      const response = await api.get(`/accounts/${accountId}`);
+      const accountData = response.data;
+      set({ selectedAccount: accountData, isLoading: false });
+      return accountData;
+    } catch (error) {
+      console.error('Error fetching account:', error);
+      set({ isLoading: false });
+      throw error;
+    }
+  },
+
+  updateUserField: async (userId, field, value) => {
+    try {
+      set({ isLoading: true });
+      const response = await api.put(`/users/${userId}`, {
+        user: {
+          [field]: value,
+        },
+      });
+      set((state) => ({
+        selectedUser: { ...state.selectedUser, ...response.data },
+        isLoading: false,
+      }));
+      return response.data;
+    } catch (error) {
+      console.error('Error updating user field:', error);
+      set({ isLoading: false });
+      throw error;
+    }
+  },
+
+  updateAccountField: async (accountId, field, value) => {
+    try {
+      set({ isLoading: true });
+      const fieldMapping = {
+        savings_account: 'new_savings_account',
+        investment_account: 'new_invest',
+        earnings: 'new_earnings',
+        stakes: 'new_stakes',
+      };
+
+      const updates = {
+        [fieldMapping[field]]: value,
+      };
+
+      const response = await api.patch(`/accounts/${accountId}`, updates);
+      set((state) => ({
+        selectedAccount: { ...state.selectedAccount, ...response.data },
+        isLoading: false,
+      }));
+      return response.data;
+    } catch (error) {
+      console.error('Error updating account field:', error);
+      set({ isLoading: false });
+      throw error;
     }
   },
 

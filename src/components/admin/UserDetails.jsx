@@ -20,52 +20,46 @@ import {
   Center,
 } from '@chakra-ui/react';
 import { useParams, useNavigate } from 'react-router-dom';
-import api from '../../api';
+import useStore from '../../store/useStore';
 
 const UserDetails = () => {
   const { userId } = useParams();
-  const [user, setUser] = useState(null);
-  const [account, setAccount] = useState(null);
   const [editingField, setEditingField] = useState(null);
   const [editValue, setEditValue] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const toast = useToast();
   const navigate = useNavigate();
+  const toast = useToast();
+
+  const {
+    selectedUser,
+    selectedAccount,
+    isLoading,
+    fetchUserById,
+    fetchAccountById,
+    updateUserField,
+    updateAccountField,
+  } = useStore();
 
   useEffect(() => {
-    fetchUserDetails();
-  }, [userId]);
-
-  const fetchUserDetails = async () => {
-    setIsLoading(true);
-    try {
-      const userResponse = await api.get(`/users/${userId}`);
-      setUser(userResponse.data);
-
-      if (userResponse.data.account) {
-        const accountResponse = await api.get(
-          `/accounts/${userResponse.data.account.id}`
-        );
-        setAccount(accountResponse.data);
+    const loadUserData = async () => {
+      try {
+        const userData = await fetchUserById(userId);
+        if (userData?.account) {
+          await fetchAccountById(userData.account.id);
+        }
+      } catch (error) {
+        toast({
+          title: 'Error fetching user details',
+          description:
+            error.response?.data?.message || 'Failed to load user details',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
       }
-    } catch (error) {
-      console.error('Error in fetchUserDetails:', {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-      });
-      toast({
-        title: 'Error fetching user details',
-        description:
-          error.response?.data?.message || 'Failed to load user details',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    };
+
+    loadUserData();
+  }, [userId, fetchUserById, fetchAccountById, toast]);
 
   const handleEdit = (field, value) => {
     setEditingField(field);
@@ -74,9 +68,6 @@ const UserDetails = () => {
 
   const handleSave = async (field) => {
     try {
-      let response;
-      const updates = {};
-
       if (
         [
           'savings_account',
@@ -85,21 +76,9 @@ const UserDetails = () => {
           'stakes',
         ].includes(field)
       ) {
-        const fieldMapping = {
-          savings_account: 'new_savings_account',
-          investment_account: 'new_invest',
-          earnings: 'new_earnings',
-          stakes: 'new_stakes',
-        };
-
-        updates[fieldMapping[field]] = editValue;
-        response = await api.patch(`/accounts/${account.id}`, updates);
-        setAccount(response.data);
+        await updateAccountField(selectedAccount.id, field, editValue);
       } else {
-        response = await api.put(`/users/${userId}`, {
-          [field]: editValue,
-        });
-        setUser(response.data);
+        await updateUserField(userId, field, editValue);
       }
 
       toast({
@@ -110,12 +89,6 @@ const UserDetails = () => {
       });
       setEditingField(null);
     } catch (error) {
-      console.error('Error in handleSave:', {
-        field,
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-      });
       toast({
         title: 'Update failed',
         description: error.response?.data?.message || 'Failed to update field',
@@ -140,7 +113,7 @@ const UserDetails = () => {
     );
   }
 
-  if (!user) {
+  if (!selectedUser) {
     return (
       <Center h="100vh">
         <Text>No user data available</Text>
@@ -212,13 +185,31 @@ const UserDetails = () => {
               <Text fontSize="lg" fontWeight="medium">
                 Personal Information
               </Text>
-              {renderEditableField('First Name', 'first_name', user.first_name)}
-              {renderEditableField('Last Name', 'last_name', user.last_name)}
-              {renderEditableField('Email', 'email', user.email)}
-              {renderEditableField('Phone', 'phone_number', user.phone_number)}
-              {renderEditableField('City', 'city', user.city)}
-              {renderEditableField('State', 'state', user.state)}
-              {renderEditableField('Country', 'country', user.country)}
+              {renderEditableField(
+                'First Name',
+                'first_name',
+                selectedUser.first_name
+              )}
+              {renderEditableField(
+                'Last Name',
+                'last_name',
+                selectedUser.last_name
+              )}
+              {renderEditableField('Email', 'email', selectedUser.email)}
+              {renderEditableField(
+                'Phone',
+                'phone_number',
+                selectedUser.phone_number
+              )}
+              {renderEditableField('City', 'city', selectedUser.city)}
+              {renderEditableField('State', 'state', selectedUser.state)}
+              {renderEditableField('Country', 'country', selectedUser.country)}
+              {renderEditableField(
+                'Home Address',
+                'home_address',
+                selectedUser.home_address
+              )}
+              {renderEditableField('PIN', 'PIN', selectedUser.PIN)}
             </VStack>
           </GridItem>
 
@@ -227,30 +218,30 @@ const UserDetails = () => {
               <Text fontSize="lg" fontWeight="medium">
                 Account Information
               </Text>
-              {account ? (
+              {selectedAccount ? (
                 <>
                   {renderEditableField(
                     'Savings Account',
                     'savings_account',
-                    account.savings_account,
+                    selectedAccount.savings_account,
                     'number'
                   )}
                   {renderEditableField(
                     'Monthly Income',
                     'investment_account',
-                    account.investment,
+                    selectedAccount.investment,
                     'number'
                   )}
                   {renderEditableField(
                     'Monthly Outgoing',
                     'earnings',
-                    account.earnings,
+                    selectedAccount.earnings,
                     'number'
                   )}
                   {renderEditableField(
                     'Stakes',
                     'stakes',
-                    account.stakes,
+                    selectedAccount.stakes,
                     'number'
                   )}
                 </>
@@ -261,6 +252,11 @@ const UserDetails = () => {
           </GridItem>
         </Grid>
       </VStack>
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Button colorScheme="green" onClick={() => navigate('/dashboard')}>
+          Back to Dashboard
+        </Button>
+      </Box>
     </Box>
   );
 };
