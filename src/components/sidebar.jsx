@@ -30,9 +30,6 @@ import Cookies from 'js-cookie';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import NavItem from './navitem';
 import logo from '../assets/bank-leaf.png';
-import api from '../api';
-import dp from '../assets/PHOTO-2024-03-01-02-09-21.jpg';
-import avatar from '../assets/avatar-icon.webp';
 import useStore from '../store/useStore';
 
 const Sidebar = () => {
@@ -281,7 +278,7 @@ const Sidebar = () => {
       >
         {user && (
           <Flex mt={4} alignItems="center" _hover={{ textDecoration: 'none' }}>
-            <Avatar size="sm" />
+            <Avatar src={logo} size="sm" bgColor="black" />
             <Flex
               flexDir="column"
               ml={4}

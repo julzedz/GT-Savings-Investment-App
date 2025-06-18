@@ -1,16 +1,45 @@
 /* eslint-disable no-console */
 import { useEffect, useState } from 'react';
 import {
-  Flex, Divider, Text, Box, Image, Button, Link as reactrouterlink,
+  Flex,
+  Box,
+  Text,
+  Image,
+  Button,
+  Link as ChakraLink,
+  Grid,
+  GridItem,
+  VStack,
+  HStack,
+  Icon,
+  useColorModeValue,
+  Card,
+  CardBody,
+  CardHeader,
+  Divider,
+  Avatar,
+  Badge,
 } from '@chakra-ui/react';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaHome,
+  FaCity,
+  FaMapMarkerAlt,
+  FaGlobe,
+  FaClock,
+} from 'react-icons/fa';
 import Sidebar from './sidebar';
 import AccountFooter from './accountfooter';
-import avatar from '../assets/avatar-icon.webp';
+import avatar from '../assets/bank-leaf.png';
 import api from '../api';
-import dp from '../assets/PHOTO-2024-03-01-02-09-21.jpg';
+import Header from './Header';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const cardBg = useColorModeValue('white', 'gray.700');
+  const textColor = useColorModeValue('gray.600', 'gray.200');
+  const borderColor = useColorModeValue('gray.200', 'gray.600');
 
   const fetchUser = async () => {
     try {
@@ -19,7 +48,6 @@ const Profile = () => {
     } catch (error) {
       console.error('Error fetching user:', error);
       return null;
-    // Handle errors (e.g., redirect to login)
     }
   };
 
@@ -32,115 +60,170 @@ const Profile = () => {
     fetchUserData();
   }, []);
 
+  const createdAt = user?.created_at;
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  };
+  const formattedCreatedAt = createdAt
+    ? new Date(createdAt).toLocaleDateString('en-US', options)
+    : '';
+
+  const InfoItem = ({ icon, label, value }) => (
+    <HStack
+      spacing={4}
+      align="start"
+      p={4}
+      borderBottom="1px"
+      borderColor={borderColor}
+    >
+      <Icon as={icon} boxSize={5} color="applegreen" />
+      <Box flex="1">
+        <Text fontSize="sm" color="gray.500" mb={1}>
+          {label}
+        </Text>
+        <Text fontSize="md" fontWeight="medium" color={textColor}>
+          {value || 'Not provided'}
+        </Text>
+      </Box>
+    </HStack>
+  );
+
   return (
-    <>
-      <Flex
-        color="black"
-        w="100%"
-      >
-        <Sidebar />
-        { user && (
+    <Flex color="black" w="100%">
+      <Sidebar />
+      {user && (
         <Flex
-          ml={4}
           flexDir="column"
-          minHeight="3xl"
-          p={5}
+          minHeight="100vh"
           flex="1"
-          marginLeft={{ base: 20, md: '21rem' }}
-          overflowY="scroll"
+          marginLeft={{ base: 20, md: '11.01rem' }}
+          overflowY="auto"
           fontFamily="noto"
+          bgColor="gray.50"
         >
-          <Flex flexDir={{ base: 'column', lg: 'row' }} mb={8} alignItems="center" justifyContent="flex-start">
-            <Text m={0} alignSelf="flex-start" fontSize="2xl" fontWeight="medium" pr={8} pb={{ base: 4, lg: 0 }}>
-              My Profile
-            </Text>
-            <Divider display={{ base: 'none', lg: 'inline' }} w="1px" color="#eaecef" orientation="vertical" />
-            <Flex w={{ base: '100%', lg: 'auto' }} flexDir={{ base: 'column', lg: 'row' }} fontSize="sm" lineHeight="shorter" alignItems="center" px={{ base: 0, lg: 8 }}>
-              <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
-                <Text color="#929aa5" m={0} mb={1}>User ID</Text>
-                <Text m={0}>{user.account_number}</Text>
-              </Flex>
-              <Flex w={{ base: 'inherit', lg: 'auto' }} alignItems="center" justifyContent={{ base: 'space-between', lg: 'center' }} m={0} mr={{ base: 0, lg: 12 }} flexDir={{ base: 'row', lg: 'column' }}>
-                <Text color="#929aa5" m={0} mb={1}>User Type</Text>
-                <Text m={0}>Personal</Text>
-              </Flex>
-            </Flex>
-          </Flex>
-          {/* <h3>Contact Information</h3> */}
-          <Flex flexDir="column" bgColor="#f5f5f5" pb={16}>
-            <Image
-              borderRadius="full"
-              boxSize={{ base: '70px', sm: '150px' }}
-              src={user.id === 3 ? dp : avatar}
-              alt="user"
-              alignSelf="center"
-              objectFit="cover"
-              fallbackSrc={avatar}
-              m={6}
-            />
-            <Text
-              textAlign="center"
-              fontFamily="noto"
-              fontSize={{ base: 'lg', xl: '2xl' }}
-              fontWeight="bold"
-              textTransform="capitalize"
+          <Header />
+          <Box maxW="1200px" mx="auto" px={4} py={8} w="full">
+            <Grid
+              templateColumns={{ base: '1fr', lg: '300px 1fr' }}
+              gap={8}
+              alignItems="start"
             >
-              {`${user.first_name} ${user.last_name}`}
+              {/* Profile Card */}
+              <GridItem>
+                <Card
+                  bg={cardBg}
+                  boxShadow="lg"
+                  borderRadius="xl"
+                  overflow="hidden"
+                >
+                  <CardBody p={0}>
+                    <Box h="120px" bg="applegreen" position="relative" />
+                    <Box position="relative" mt="-60px" px={6}>
+                      <Avatar
+                        size="xl"
+                        src={avatar}
+                        name={user.fullname}
+                        border="4px solid white"
+                        boxShadow="lg"
+                        bgColor="black"
+                      />
+                      <VStack spacing={2} mt={4} align="start">
+                        <Text
+                          fontSize="xl"
+                          fontWeight="bold"
+                          textTransform="capitalize"
+                        >
+                          {user.fullname}
+                        </Text>
+                        <Badge
+                          colorScheme="green"
+                          px={3}
+                          py={1}
+                          borderRadius="full"
+                          fontSize="sm"
+                        >
+                          User
+                        </Badge>
+                      </VStack>
+                    </Box>
+                    <Box p={6}>
+                      <Button
+                        w="full"
+                        colorScheme="green"
+                        variant="outline"
+                        size="lg"
+                        as={ChakraLink}
+                        href="#"
+                        _hover={{
+                          textDecoration: 'none',
+                          bg: 'applegreen',
+                          color: 'white',
+                        }}
+                      >
+                        Reset Password
+                      </Button>
+                    </Box>
+                  </CardBody>
+                </Card>
+              </GridItem>
 
-            </Text>
-
-            <Text alignSelf="center" textAlign="center" fontFamily="noto" padding={2} bgColor="rgba(159, 167, 34, 0.6)" color="applegreen" fontWeight="semibold" width="80px" borderRadius="50">User</Text>
-            <Flex
-              fontFamily="new"
-              textAlign="left"
-            // maxW="md"
-              minW={{ base: '2xs', md: 'md', lg: 'lg' }}
-              alignSelf="center"
-              my={6}
-              p={6}
-              flexDir="column"
-            >
-              <Flex px={6} pb={2} flexDir="column">
-                <Box color="applegreen" fontWeight="semibold">Email</Box>
-                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">{user.email}</Box>
-              </Flex>
-              <Divider />
-              <Flex px={6} pb={2} flexDir="column">
-                <Box color="applegreen" fontWeight="semibold">Phone Number</Box>
-                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">{user.phone_number}</Box>
-              </Flex>
-              <Divider />
-              <Flex px={6} pb={2} flexDir="column">
-                <Box color="applegreen" fontWeight="semibold">Address</Box>
-                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium" textTransform="capitalize">{`${user.city}, ${user.state}, ${user.country}`}</Box>
-              </Flex>
-              <Divider />
-              <Flex px={6} pb={4} flexDir="column">
-                <Box color="applegreen" fontWeight="semibold">Created At</Box>
-                <Box fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} fontWeight="medium">{user.created_at}</Box>
-              </Flex>
-            </Flex>
-            <Button
-              w={{ base: '120px', sm: '200px' }}
-              alignSelf="center"
-              m={5}
-              p={7}
-              fontFamily="new"
-              fontSize={{ base: 'xs', sm: 'unset' }}
-              bgColor="applegreen"
-              as={reactrouterlink}
-              to=""
-              _hover={{ color: 'white', bgColor: 'gunmetal' }}
-            >
-              Reset Password
-            </Button>
-          </Flex>
-
+              {/* User Information Card */}
+              <GridItem>
+                <Card bg={cardBg} boxShadow="lg" borderRadius="xl">
+                  <CardHeader pb={0}>
+                    <Text fontSize="2xl" fontWeight="bold" color="gray.700">
+                      Personal Information
+                    </Text>
+                  </CardHeader>
+                  <CardBody>
+                    <VStack spacing={0} align="stretch" divider={<Divider />}>
+                      <InfoItem
+                        icon={FaEnvelope}
+                        label="Email"
+                        value={user.email}
+                      />
+                      <InfoItem
+                        icon={FaPhone}
+                        label="Phone Number"
+                        value={user.phone_number}
+                      />
+                      <InfoItem
+                        icon={FaHome}
+                        label="Home Address"
+                        value={user.home_address}
+                      />
+                      <InfoItem icon={FaCity} label="City" value={user.city} />
+                      <InfoItem
+                        icon={FaMapMarkerAlt}
+                        label="State"
+                        value={user.state}
+                      />
+                      <InfoItem
+                        icon={FaGlobe}
+                        label="Country"
+                        value={user.country}
+                      />
+                      <InfoItem
+                        icon={FaClock}
+                        label="Member Since"
+                        value={formattedCreatedAt}
+                      />
+                    </VStack>
+                  </CardBody>
+                </Card>
+              </GridItem>
+            </Grid>
+          </Box>
           <AccountFooter />
         </Flex>
-        )}
-      </Flex>
-    </>
+      )}
+    </Flex>
   );
 };
 
