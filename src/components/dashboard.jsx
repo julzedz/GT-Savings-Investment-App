@@ -54,8 +54,15 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(true);
 
-  const { user, isLoading, getFormattedBalance, getFormattedInvestment, getFormattedEarnings, transactions, initializeApp } =
-    useStore();
+  const {
+    user,
+    isLoading,
+    getFormattedBalance,
+    getFormattedInvestment,
+    getFormattedEarnings,
+    transactions,
+    initializeApp,
+  } = useStore();
   const formattedBalance = getFormattedBalance();
   const formattedInvestment = getFormattedInvestment();
   const formattedEarnings = getFormattedEarnings();
@@ -70,6 +77,17 @@ const Dashboard = () => {
   useEffect(() => {
     initializeApp();
   }, [initializeApp]);
+
+  const createdAt = user?.created_at;
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
+  const formattedCreatedAt = createdAt
+    ? new Date(createdAt).toLocaleDateString('en-US', options)
+    : '';
 
   const handleGoProfile = () => {
     navigate('/profile');
@@ -443,9 +461,9 @@ const Dashboard = () => {
                       <BiCalendar />
                     </Box>
                     <Flex fontSize="xs" flexDir="column" ml={2}>
-                      <Text color="gray.600">Account Age</Text>
+                      <Text color="gray.600">Member Since</Text>
                       <Text fontSize="sm" fontWeight="semibold">
-                        5 years
+                        {formattedCreatedAt}
                       </Text>
                     </Flex>
                   </Flex>
