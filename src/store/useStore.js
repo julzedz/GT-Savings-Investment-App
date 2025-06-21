@@ -1,22 +1,6 @@
 import { create } from 'zustand';
 import api from '../api';
 
-// Helper functions for localStorage persistence
-const STATUS_KEY = 'user_status_map';
-const loadStatusFromStorage = () => {
-  try {
-    const stored = localStorage.getItem(STATUS_KEY);
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
-};
-const saveStatusToStorage = (status) => {
-  try {
-    localStorage.setItem(STATUS_KEY, JSON.stringify(status));
-  } catch {}
-};
-
 const useStore = create((set, get) => ({
   // User state
   user: null,
@@ -27,7 +11,6 @@ const useStore = create((set, get) => ({
   transactions: [],
   selectedUser: null,
   selectedAccount: null,
-  status: loadStatusFromStorage(), // userId -> status
 
   // Actions
   setUser: (user) => set({ user }),
@@ -36,27 +19,6 @@ const useStore = create((set, get) => ({
   setTransactions: (transactions) => set({ transactions }),
   setSelectedUser: (user) => set({ selectedUser: user }),
   setSelectedAccount: (account) => set({ selectedAccount: account }),
-  setStatus: (userId, statusValue) =>
-    set((state) => {
-      const newStatus = { ...state.status, [userId]: statusValue };
-      saveStatusToStorage(newStatus);
-      return { status: newStatus };
-    }),
-  getStatus: (userId) => {
-    const { status } = get();
-    return status[userId] || 'Active';
-  },
-
-  // Optionally, persist status to backend (not used now)
-  updateStatus: async (userId, statusValue) => {
-    set((state) => {
-      const newStatus = { ...state.status, [userId]: statusValue };
-      saveStatusToStorage(newStatus);
-      return { status: newStatus };
-    });
-    // No backend call since you don't want to persist
-    return statusValue;
-  },
 
   // Selectors
   getRecentTransactions: (limit = 5) => {
@@ -148,11 +110,12 @@ const useStore = create((set, get) => ({
   updateUserField: async (userId, field, value) => {
     try {
       set({ isLoading: true });
-      const response = await api.put(`/users/${userId}`, {
+      const payload = {
         user: {
           [field]: value,
         },
-      });
+      };
+      const response = await api.put(`/users/${userId}`, payload);
       set((state) => ({
         selectedUser: { ...state.selectedUser, ...response.data },
         isLoading: false,

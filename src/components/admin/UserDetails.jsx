@@ -105,7 +105,7 @@ const UserDetails = () => {
     }
   };
 
-  const currentStatus = getStatus(selectedUserId);
+  const currentStatus = selectedUser?.status || 'Active';
   const statusColor =
     {
       Active: 'green',
@@ -115,10 +115,9 @@ const UserDetails = () => {
 
   const handleStatusChange = async (e) => {
     const newStatus = e.target.value;
-    setStatus(selectedUserId, newStatus);
     if (selectedUserId) {
       try {
-        await updateStatus(selectedUserId, newStatus);
+        await updateUserField(selectedUserId, 'status', newStatus);
         toast({
           title: 'Status updated',
           status: 'success',
@@ -128,6 +127,8 @@ const UserDetails = () => {
       } catch (error) {
         toast({
           title: 'Failed to update status',
+          description:
+            error.response?.data?.errors?.join(', ') || error.message,
           status: 'error',
           duration: 3000,
           isClosable: true,

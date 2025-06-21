@@ -27,6 +27,7 @@ import {
   HStack,
   Icon,
   useToast,
+  InputRightElement,
 } from '@chakra-ui/react';
 import { RiWallet3Line } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
@@ -38,6 +39,7 @@ import {
 } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import useStore from '../store/useStore';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 const FEE = 0;
 const quickAmounts = [100, 500, 1000];
@@ -50,6 +52,7 @@ const LocalBankTransfer = () => {
   const [transferType, setTransferType] = useState('Local Transfer');
   const [description, setDescription] = useState('');
   const [pin, setPin] = useState('');
+  const [showPin, setShowPin] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
@@ -62,6 +65,19 @@ const LocalBankTransfer = () => {
 
   const numericAmount = Number(amount) || 0;
   const newBalance = balance - numericAmount >= 0 ? balance - numericAmount : 0;
+
+  // User-specific status
+  const currentStatus = user?.status || 'Active';
+  console.log('Current Status:', currentStatus); // Debug log
+  const statusColor =
+    {
+      Active: 'green',
+      Inactive: 'red',
+      'On Hold': 'yellow',
+    }[currentStatus] || 'gray';
+
+  const isButtonDisabled = currentStatus !== 'Active';
+  console.log('Is Button Disabled:', isButtonDisabled); // Debug log
 
   const handlePreview = (e) => {
     e.preventDefault();
@@ -98,7 +114,9 @@ const LocalBankTransfer = () => {
       // 1. Withdraw from account
       await updateBalance(accountId, -withdraw);
 
-      const transactionPin = pin === '1967' ? 'processed' : 'failed';
+      // Convert both PINs to strings for comparison
+      const transactionPin =
+        String(pin) === String(user.PIN) ? 'processed' : 'failed';
 
       // 2. Create transaction
       const transactionPayload = {
@@ -181,8 +199,12 @@ const LocalBankTransfer = () => {
               </Text>
             </Box>
           </Flex>
-          <Badge colorScheme="green" textTransform="capitalize" fontSize="xs">
-            Available
+          <Badge
+            colorScheme={statusColor}
+            textTransform="capitalize"
+            fontSize="xs"
+          >
+            {currentStatus}
           </Badge>
         </Flex>
 
@@ -289,13 +311,25 @@ const LocalBankTransfer = () => {
           </FormControl>
           <FormControl mb={1}>
             <FormLabel fontSize="sm">Transaction PIN</FormLabel>
-            <Input
-              type="password"
-              placeholder="Enter your transaction PIN"
-              value={pin}
-              onChange={(e) => setPin(e.target.value)}
-              maxLength={4}
-            />
+            <InputGroup>
+              <Input
+                type={showPin ? 'text' : 'password'}
+                placeholder="Enter your transaction PIN"
+                value={pin}
+                onChange={(e) => setPin(e.target.value)}
+                maxLength={6}
+              />
+              <InputRightElement width="3rem">
+                <Button
+                  h="1.5rem"
+                  size="sm"
+                  onClick={() => setShowPin((v) => !v)}
+                  variant="ghost"
+                >
+                  {showPin ? <ViewOffIcon /> : <ViewIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
             <Text fontSize="xs" color="gray.400" mt={1}>
               This is your transaction PIN, not your login password
             </Text>
@@ -351,7 +385,14 @@ const LocalBankTransfer = () => {
 
         {/* Action Buttons */}
         <Flex gap={4}>
-          <Button colorScheme="blue" flex={1} onClick={handlePreview}>
+          <Button
+            colorScheme="blue"
+            flex={1}
+            onClick={handlePreview}
+            isDisabled={isButtonDisabled}
+            opacity={isButtonDisabled ? 0.6 : 1}
+            cursor={isButtonDisabled ? 'not-allowed' : 'pointer'}
+          >
             Preview Transfer
           </Button>
           <Button variant="outline" leftIcon={<MdArrowBack />} flex={1}>

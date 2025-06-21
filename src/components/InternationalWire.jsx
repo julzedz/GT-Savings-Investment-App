@@ -78,7 +78,6 @@ const InternationalWire = () => {
     getFormattedBalance,
     updateBalance,
     createTransaction,
-    getStatus,
   } = useStore();
   const handleQuickAmount = (val) => setAmount(val);
   const handleAll = () => setAmount(balance);
@@ -88,7 +87,7 @@ const InternationalWire = () => {
   const formattedBalance = getFormattedBalance();
 
   // User-specific status
-  const currentStatus = getStatus(user?.id);
+  const currentStatus = user?.status || 'Active';
   console.log('Current Status:', currentStatus); // Debug log
   const statusColor =
     {
