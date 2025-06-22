@@ -27,7 +27,7 @@ import {
   FaRegCircleQuestion,
 } from 'react-icons/fa6';
 import { BiCalendar, BiPlus, BiTachometer } from 'react-icons/bi';
-import { MdHistory, MdOutlineShield } from 'react-icons/md';
+import { MdHistory, MdOutlineShield, MdWarning } from 'react-icons/md';
 import LiveClock from './LiveClock';
 import { FaBuilding } from 'react-icons/fa';
 import {
@@ -66,6 +66,10 @@ const Dashboard = () => {
   const formattedBalance = getFormattedBalance();
   const formattedInvestment = getFormattedInvestment();
   const formattedEarnings = getFormattedEarnings();
+
+  // Get user status for warning display
+  const userStatus = user?.status || 'Active';
+  const showWarning = userStatus === 'Inactive';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -124,8 +128,63 @@ const Dashboard = () => {
           overflowY="scroll"
           fontFamily="noto"
           bgColor="gray.200"
+          position="relative"
         >
           <Header />
+          {/* Warning Ticker - Only shows when status is Inactive */}
+          {showWarning && (
+            <Box
+              position="absolute"
+              top="49px"
+              left={0}
+              right={0}
+              zIndex={10}
+              bg="red.500"
+              color="white"
+              py={3}
+              px={4}
+              overflow="hidden"
+              _before={{
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background:
+                  'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+                animation: 'shimmer 2s infinite',
+              }}
+            >
+              <Box
+                display="flex"
+                alignItems="center"
+                animation="scroll-left 20s linear infinite"
+                whiteSpace="nowrap"
+                sx={{
+                  '@keyframes scroll-left': {
+                    '0%': { transform: 'translateX(100%)' },
+                    '100%': { transform: 'translateX(-100%)' },
+                  },
+                  '@keyframes shimmer': {
+                    '0%': { transform: 'translateX(-100%)' },
+                    '100%': { transform: 'translateX(100%)' },
+                  },
+                }}
+              >
+                <MdWarning
+                  size={20}
+                  style={{ marginRight: '8px', flexShrink: 0 }}
+                />
+                <Text fontSize="sm" fontWeight="bold" mr={8}>
+                  ⚠️ ACCOUNT BLOCKED ⚠️ Your account has been deactivated.
+                  Please contact support at info@gtsavingsltd.online to resolve
+                  this issue. ⚠️ ACCOUNT BLOCKED ⚠️
+                </Text>
+              </Box>
+            </Box>
+          )}
+
           <Flex
             m={4}
             gap={4}
